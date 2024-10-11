@@ -15,7 +15,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteCaso";
+            objSelectCmd.CommandText = "spSelectCasos";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -60,7 +60,7 @@ namespace Data
         }
 
         //Metodo para actulizar un Caso
-        public bool updateProducts(int _id, string _codigo, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool updateCaso(int _id, string _codigo, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -97,7 +97,7 @@ namespace Data
         }
 
         //Metodo para borrar una Caso
-        public bool deleteCategory(int _id)
+        public bool deleteCaso(int _id)
         {
             bool executed = false;
             int row;

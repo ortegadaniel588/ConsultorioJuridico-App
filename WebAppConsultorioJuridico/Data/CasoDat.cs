@@ -8,6 +8,23 @@ namespace Data
     public class CasoDat
     {
         Persistence objPer = new Persistence();
+        
+        //Metodo para mostrar unicamente el id y el nombre Empresa (Nomre consultorio)
+        public DataSet showCasoDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCasoDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+        
         //Metodo para mostrar todas las Caso
         public DataSet showCaso()
         {

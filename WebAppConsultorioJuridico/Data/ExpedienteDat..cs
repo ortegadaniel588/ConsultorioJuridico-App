@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Data
 {
-    public class ExpedienteData
+    public class ExpedienteDat
     {
         Persistence objPer = new Persistence();
         //Metodo para mostrar todas las Expediente

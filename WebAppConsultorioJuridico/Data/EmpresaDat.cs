@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Data
 {
-    public class CasoDat
+    public class EmpresaDat
     {
         Persistence objPer = new Persistence();
         //Metodo para mostrar todas las Empresa
-        public DataSet showCaso()
+        public DataSet showEmpresa()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
@@ -23,7 +23,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo Empresa
-        public bool saveCaso(string _numeronit, string _nombre, string _mision, string _vision, string _dirrecion, string _telefono, string _telefono2, string _correo)
+        public bool saveEmpresa(string _numeronit, string _nombre, string _mision, string _vision, string _dirrecion, string _telefono, string _telefono2, string _correo)
         {
             bool executed = false;
             int row;
@@ -60,7 +60,7 @@ namespace Data
         }
 
         //Metodo para actulizar un Empresa
-        public bool updateCaso(int _id, string _codigo, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool updateEmpresa(int _id, string _codigo, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -97,7 +97,7 @@ namespace Data
         }
 
         //Metodo para borrar una Empresa
-        public bool deleteCaso(int _id)
+        public bool deleteEmpresa(int _id)
         {
             bool executed = false;
             int row;

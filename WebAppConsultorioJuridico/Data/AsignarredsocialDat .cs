@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Data
 {
-    public class CasoDat
+    public class RedsocialDat
     {
         Persistence objPer = new Persistence();
         //Metodo para mostrar todas las AsignarRedesSocial
@@ -23,7 +23,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo AsignarRedesSocial
-        public bool saveCaso(int _empresa_idempresa, int _redsocial_idredsocial, string p_url)
+        public bool saveRedsocial(int _empresa_idempresa, int _redsocial_idredsocial, string p_url)
         {
             bool executed = false;
             int row;
@@ -57,7 +57,7 @@ namespace Data
         }
 
         //Metodo para actulizar un AsignarRedesSocial
-        public bool updateCaso(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
+        public bool updateRedsocial(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
         {
             bool executed = false;
             int row;
@@ -89,7 +89,7 @@ namespace Data
         }
 
         //Metodo para borrar una AsignarRedesSocial
-        public bool deleteCaso(int _id)
+        public bool deleteRedsocial(int _id)
         {
             bool executed = false;
             int row;

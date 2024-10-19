@@ -11,7 +11,23 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
-        // Método para mostrar todos los roles
+        public DataSet showRolesDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectRolesDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
+        
+        // Mï¿½todo para mostrar todos los roles
         public DataSet ShowRoles()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();

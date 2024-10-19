@@ -5,11 +5,11 @@ using System.Web;
 
 namespace Data
 {
-    public class CasoDat
+    public class RedsocialDat
     {
         Persistence objPer = new Persistence();
         //Metodo para mostrar todas las RedesSociales
-        public DataSet showCaso()
+        public DataSet showRedsocial()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
@@ -23,7 +23,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo RedesSociales
-        public bool saveCaso(string _nombre, string _descripcion)
+        public bool saveRedsocial(string _nombre, string _descripcion)
         {
             bool executed = false;
             int row;
@@ -55,7 +55,7 @@ namespace Data
         }
 
         //Metodo para actulizar un RedesSociales
-        public bool updateCaso(int _id, string _nombre, int _descripcion)
+        public bool updateRedsocial(int _id, string _nombre, int _descripcion)
         {
             bool executed = false;
             int row;
@@ -86,7 +86,7 @@ namespace Data
         }
 
         //Metodo para borrar una RedesSociales
-        public bool deleteCaso(int _id)
+        public bool deleteRedsocial(int _id)
         {
             bool executed = false;
             int row;

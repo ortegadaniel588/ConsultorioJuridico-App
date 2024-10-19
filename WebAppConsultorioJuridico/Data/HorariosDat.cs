@@ -11,6 +11,21 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
+        public DataSet showHorariosDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectHorariosDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         public DataSet ShowHorarios()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
@@ -114,7 +129,7 @@ namespace Data
             return executed;
         }
 
-        // Método para seleccionar horarios disponibles por especialidad y fecha
+        // Mï¿½todo para seleccionar horarios disponibles por especialidad y fecha
         public DataSet ShowHorariosDisponibles(int especialidadId, DateTime fecha)
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();

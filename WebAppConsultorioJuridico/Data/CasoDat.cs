@@ -35,7 +35,7 @@ namespace Data
 
             objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_empresa_id", MySqlDbType.Int32).Value = _empresa_id;
-            objSelectCmd.Parameters.Add("p_fechacierre", MySqlDbType.VarString).Value = _fechacierre;
+            objSelectCmd.Parameters.Add("p_fechacierre", MySqlDbType.DateTime).Value = _fechacierre;
             objSelectCmd.Parameters.Add("p_asunto", MySqlDbType.VarString).Value = _asunto;
             objSelectCmd.Parameters.Add("p_tipo_id", MySqlDbType.Int32).Value = _tipo_id;
             objSelectCmd.Parameters.Add("p_estado_id", MySqlDbType.Int32).Value = _estado_id;
@@ -73,7 +73,7 @@ namespace Data
             objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
             objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_empresa_id", MySqlDbType.Int32).Value = _empresa_id;
-            objSelectCmd.Parameters.Add("p_fechacierre", MySqlDbType.VarString).Value = _fechacierre;
+            objSelectCmd.Parameters.Add("p_fechacierre", MySqlDbType.DateTime).Value = _fechacierre;
             objSelectCmd.Parameters.Add("p_asunto", MySqlDbType.VarString).Value = _asunto;
             objSelectCmd.Parameters.Add("p_tipo_id", MySqlDbType.Int32).Value = _tipo_id;
             objSelectCmd.Parameters.Add("p_estado_id", MySqlDbType.Int32).Value = _estado_id;

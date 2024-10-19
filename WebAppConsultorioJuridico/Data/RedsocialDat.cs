@@ -8,6 +8,23 @@ namespace Data
     public class RedsocialDat
     {
         Persistence objPer = new Persistence();
+
+        //Metodo para mostrar unicamente el id y el nombre Red social
+        public DataSet showRedsocialDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectRedSocialDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+        
         //Metodo para mostrar todas las RedesSociales
         public DataSet showRedsocial()
         {

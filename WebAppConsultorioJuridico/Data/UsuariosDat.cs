@@ -11,6 +11,21 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
+        public DataSet showUsuariosDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectUsuarioDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
         public DataSet ShowUsuarios()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();

@@ -70,7 +70,7 @@ namespace Data
             objSelectCmd.CommandText = "spUpdateExpediente";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idexpendiente", MySqlDbType.Int32).Value = _id;
             objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
             objSelectCmd.Parameters.Add("p_accionrealizada", MySqlDbType.VarString).Value = _accionrealizada;

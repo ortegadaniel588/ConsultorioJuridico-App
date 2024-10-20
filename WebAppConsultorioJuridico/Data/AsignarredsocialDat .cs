@@ -25,7 +25,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo AsignarRedesSocial
-        public bool saveRedsocial(int _empresa_idempresa, int _redsocial_idredsocial, string p_url)
+        public bool saveRedsocial(int _empresa_idempresa, int _redsocial_idredsocial, string _url)
         {
             bool executed = false;
             int row;

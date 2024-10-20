@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Data
 {
-    public class RedsocialDat
+    public class AsignarredsocialDat
     {
         Persistence objPer = new Persistence();
         //Metodo para mostrar todas las AsignarRedesSocial

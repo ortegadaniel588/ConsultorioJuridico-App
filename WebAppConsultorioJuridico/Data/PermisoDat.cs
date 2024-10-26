@@ -12,7 +12,6 @@ namespace Data
 	{
 		Persistence objPer = new Persistence();
 
-		// Método para mostrar todos los Permisos
 		public DataSet showPermisos()
 		{
 			MySqlDataAdapter objAdapter = new MySqlDataAdapter();
@@ -28,7 +27,6 @@ namespace Data
 			return objData;
 		}
 
-		// Método para guardar un nuevo Permiso
 		public bool savePermiso(string nombre, string descripcion)
 		{
 			bool executed = false;
@@ -58,7 +56,6 @@ namespace Data
 			return executed;
 		}
 
-		// Método para actualizar un Permiso existente
 		public bool updatePermiso(int idpermiso, string nombre, string descripcion)
 		{
 			bool executed = false;
@@ -89,7 +86,6 @@ namespace Data
 			return executed;
 		}
 
-		// Método para eliminar un Permiso
 		public bool deletePermiso(int idpermiso)
 		{
 			bool executed = false;

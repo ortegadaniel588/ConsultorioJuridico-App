@@ -7,56 +7,59 @@ using System.Web;
 
 namespace Data
 {
-    public class RolDat
+    public class RedsocialDat
     {
         Persistence objPer = new Persistence();
 
-        public DataSet showRolesDDL()
+        //Metodo para mostrar unicamente el id y el nombre Red social
+        public DataSet showRedsocialDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectRolesDDL";
+            objSelectCmd.CommandText = "spSelectRedSocialDDL";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
             objPer.closeConnection();
             return objData;
         }
-
         
-        // M�todo para mostrar todos los roles
-        public DataSet ShowRoles()
+        //Metodo para mostrar todas las RedesSociales
+        public DataSet showRedsocial()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
-
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectRoles";
+            objSelectCmd.CommandText = "spSelectRedesSociales";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
             objPer.closeConnection();
             return objData;
         }
-
-        public bool SaveRol(string nombre, string descripcion)
+        //Metodo para guardar un nuevo RedesSociales
+        public bool saveRedsocial(string _nombre, string _descripcion)
         {
             bool executed = false;
-            int row = 0;
-            MySqlCommand objInsertCmd = new MySqlCommand();
-            objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInsertRol";
-            objInsertCmd.CommandType = CommandType.StoredProcedure;
-            objInsertCmd.Parameters.Add("p_nombre", MySqlDbType.VarChar).Value = nombre;
-            objInsertCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = descripcion;
+            int row;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spInsertRedSocial";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
+
 
             try
             {
-                row = objInsertCmd.ExecuteNonQuery();
+                row = objSelectCmd.ExecuteNonQuery();
+
                 if (row == 1)
                 {
                     executed = true;
@@ -70,21 +73,24 @@ namespace Data
             return executed;
         }
 
-        public bool UpdateRol(int idrol, string nombre, string descripcion)
+        //Metodo para actulizar un RedesSociales
+        public bool updateRedsocial(int _id, string _nombre, int _descripcion)
         {
             bool executed = false;
-            int row = 0;
-            MySqlCommand objUpdateCmd = new MySqlCommand();
-            objUpdateCmd.Connection = objPer.openConnection();
-            objUpdateCmd.CommandText = "spUpdateRol";
-            objUpdateCmd.CommandType = CommandType.StoredProcedure;
-            objUpdateCmd.Parameters.Add("p_idrol", MySqlDbType.Int32).Value = idrol;
-            objUpdateCmd.Parameters.Add("p_nombre", MySqlDbType.VarChar).Value = nombre;
-            objUpdateCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = descripcion;
+            int row;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spUpdateRedSocial";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
 
             try
             {
-                row = objUpdateCmd.ExecuteNonQuery();
+                row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
                     executed = true;
@@ -98,19 +104,20 @@ namespace Data
             return executed;
         }
 
-        public bool DeleteRol(int idrol)
+        //Metodo para borrar una RedesSociales
+        public bool deleteRedsocial(int _id)
         {
             bool executed = false;
-            int row = 0;
-            MySqlCommand objDeleteCmd = new MySqlCommand();
-            objDeleteCmd.Connection = objPer.openConnection();
-            objDeleteCmd.CommandText = "spDeleteRol";
-            objDeleteCmd.CommandType = CommandType.StoredProcedure;
-            objDeleteCmd.Parameters.Add("p_idrol", MySqlDbType.Int32).Value = idrol;
+            int row;
 
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spDeleteRedSocial"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
             try
             {
-                row = objDeleteCmd.ExecuteNonQuery();
+                row = objSelectCmd.ExecuteNonQuery();
                 if (row == 1)
                 {
                     executed = true;

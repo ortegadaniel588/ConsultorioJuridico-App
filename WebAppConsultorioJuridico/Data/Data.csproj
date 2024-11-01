@@ -121,9 +121,24 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsignarredsocialDat.cs" />
+    <Compile Include="CasoDat.cs" />
+    <Compile Include="CitasDat.cs" />
+    <Compile Include="EmpresaDat.cs" />
+    <Compile Include="EspecialidadDat.cs" />
+    <Compile Include="EstadosDat.cs" />
+    <Compile Include="ExpedienteDat.cs" />
     <Compile Include="ExpedienteData.cs" />
+    <Compile Include="HorariosDat.cs" />
+    <Compile Include="PermisoDat.cs" />
     <Compile Include="Persistence.cs" />
+    <Compile Include="PersonasDat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RedsocialDat.cs" />
+    <Compile Include="RolDat.cs" />
+    <Compile Include="SeguimientoDat.cs" />
+    <Compile Include="TipoDat.cs" />
+    <Compile Include="UsuariosDat.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

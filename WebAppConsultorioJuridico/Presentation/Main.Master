@@ -27,7 +27,7 @@
             <a href="#">Empresa</a>
             <a href="#">Asignar Red Social</a>
             <a href="#">Redes Sociales</a>
-            <a href="#">Usuarios</a>
+            <a href="WFUsuario.aspx">Usuarios</a>
             <a href="#">Permisos</a>
             <a href="#">Rol</a>
             

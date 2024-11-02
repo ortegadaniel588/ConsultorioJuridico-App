@@ -28,7 +28,7 @@
             <a href="#">Asignar Red Social</a>
             <a href="#">Redes Sociales</a>
             <a href="#">Usuarios</a>
-            <a href="#">Permisos</a>
+            <a href="WFPermiso.aspx">Permisos</a>
             <a href="#">Rol</a>
             
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

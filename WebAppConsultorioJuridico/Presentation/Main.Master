@@ -29,7 +29,7 @@
             <a href="#">Redes Sociales</a>
             <a href="#">Usuarios</a>
             <a href="#">Permisos</a>
-            <a href="#">Rol</a>
+            <a href="WFRol.aspx">Rol</a>
             
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

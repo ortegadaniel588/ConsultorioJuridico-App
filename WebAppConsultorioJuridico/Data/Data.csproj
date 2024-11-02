@@ -128,7 +128,6 @@
     <Compile Include="EspecialidadDat.cs" />
     <Compile Include="EstadosDat.cs" />
     <Compile Include="ExpedienteDat.cs" />
-    <Compile Include="ExpedienteData.cs" />
     <Compile Include="HorariosDat.cs" />
     <Compile Include="PermisoDat.cs" />
     <Compile Include="Persistence.cs" />

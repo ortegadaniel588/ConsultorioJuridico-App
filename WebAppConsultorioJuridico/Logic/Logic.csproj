@@ -73,6 +73,7 @@
     <Compile Include="AsignarredsocialLog.cs" />
     <Compile Include="CasoLog.cs" />
     <Compile Include="CitasLog.cs" />
+    <Compile Include="EmpleadoLog.cs" />
     <Compile Include="EmpresaLog.cs" />
     <Compile Include="EspecialidadLog.cs" />
     <Compile Include="ExpedienteLog.cs" />

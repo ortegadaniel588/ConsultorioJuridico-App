@@ -67,6 +67,7 @@
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WFCaso.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Index.aspx.cs">
@@ -90,6 +91,13 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WFCaso.aspx.cs">
+      <DependentUpon>WFCaso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFCaso.aspx.designer.cs">
+      <DependentUpon>WFCaso.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Main.Master" />

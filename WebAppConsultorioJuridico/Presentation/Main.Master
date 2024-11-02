@@ -20,7 +20,7 @@
             <a href="#">Tipos</a>
             <a href="#">Expedientes</a>
             <a href="#">Seguimientos</a>
-            <a href="#">Horarios</a>
+            <a href="WFHorario.aspx">Horarios</a>
             <a href="#">Persomas</a>
             <a href="#">Empleado</a>
             <a href="#">Especilidades</a>

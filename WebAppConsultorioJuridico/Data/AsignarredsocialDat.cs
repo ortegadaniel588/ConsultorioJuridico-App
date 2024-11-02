@@ -11,7 +11,7 @@ namespace Data
     {
         Persistence objPer = new Persistence();
         //Metodo para mostrar todas las AsignarRedesSocial
-        public DataSet showCaso()
+        public DataSet showAsignarredsocial()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
@@ -25,7 +25,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo AsignarRedesSocial
-        public bool saveRedsocial(int _empresa_idempresa, int _redsocial_idredsocial, string _url)
+        public bool saveAsignarredsocial(int _empresa_idempresa, int _redsocial_idredsocial, string _url)
         {
             bool executed = false;
             int row;
@@ -59,7 +59,7 @@ namespace Data
         }
 
         //Metodo para actulizar un AsignarRedesSocial
-        public bool updateRedsocial(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
+        public bool updateAsignarredsocial(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
         {
             bool executed = false;
             int row;
@@ -91,7 +91,7 @@ namespace Data
         }
 
         //Metodo para borrar una AsignarRedesSocial
-        public bool deleteRedsocial(int _id)
+        public bool deleteAsignarredsocial(int _id)
         {
             bool executed = false;
             int row;

@@ -12,9 +12,9 @@ namespace Logic
     public class AsignarredsocialLog
     {
         AsignarredsocialDat objAsig = new AsignarredsocialDat();
-        public DataSet showRedsocial()
+        public DataSet showAsignarredsocial()
         {
-            return objAsig.showRedsocial();
+            return objAsig.showAsignarredsocial();
         }
         //Metodo para guardar un nuevo AsignarRedesSocial
         public bool saveAsignarredsocial(int _empresa_idempresa, int _redsocial_idredsocial, string _url)

@@ -21,7 +21,7 @@
             <a href="#">Expedientes</a>
             <a href="#">Seguimientos</a>
             <a href="#">Horarios</a>
-            <a href="#">Persomas</a>
+            <a href="WFPersona.aspx">Personas</a>
             <a href="#">Empleado</a>
             <a href="#">Especilidades</a>
             <a href="#">Empresa</a>

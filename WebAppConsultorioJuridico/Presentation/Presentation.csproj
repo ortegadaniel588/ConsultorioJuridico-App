@@ -68,7 +68,8 @@
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
     <Content Include="WFCita.aspx" />
-    <Content Include="WFHorario.aspx" />  </ItemGroup>
+    <Content Include="WFHorario.aspx" />  
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -98,7 +99,8 @@
     </Compile>
     <Compile Include="WFCita.aspx.designer.cs">
       <DependentUpon>WFCita.aspx</DependentUpon>
-    <Compile Include="WFHorario.aspx.cs">
+	</Compile>
+	<Compile Include="WFHorario.aspx.cs">
       <DependentUpon>WFHorario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

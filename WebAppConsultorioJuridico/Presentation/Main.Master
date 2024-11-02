@@ -14,13 +14,13 @@
         <div>
             <%--Aqui esta el menú--%>
             <a href="#">Inicio</a>
-            <a href="#">Citas</a>
+            <a href="WFCita.aspx">Citas</a>
             <a href="#">Caso</a>
             <a href="#">Estados</a>
             <a href="#">Tipos</a>
             <a href="#">Expedientes</a>
             <a href="#">Seguimientos</a>
-            <a href="#">Horarios</a>
+            <a href="WFHorario.aspx">Horarios</a>
             <a href="#">Persomas</a>
             <a href="#">Empleado</a>
             <a href="#">Especilidades</a>

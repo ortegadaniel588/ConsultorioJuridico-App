@@ -14,7 +14,7 @@
         <div>
             <%--Aqui esta el menú--%>
             <a href="#">Inicio</a>
-            <a href="#">Citas</a>
+            <a href="WFCita.aspx">Citas</a>
             <a href="#">Caso</a>
             <a href="#">Estados</a>
             <a href="#">Tipos</a>

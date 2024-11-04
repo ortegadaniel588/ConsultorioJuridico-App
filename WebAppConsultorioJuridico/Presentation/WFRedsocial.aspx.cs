@@ -21,7 +21,7 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                
+                showRedsocial();
             }
         }
 

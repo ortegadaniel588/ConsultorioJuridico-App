@@ -66,9 +66,9 @@ namespace Presentation
 
         protected void GVRedsocial_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TBId.Text = GVRedsocial.SelectedRow.Cells[2].Text;
-            TBNombre.Text = GVRedsocial.SelectedRow.Cells[3].Text;
-            TBDescripcion.Text = GVRedsocial.SelectedRow.Cells[4].Text;
+            TBId.Text = GVRedsocial.SelectedRow.Cells[0].Text;
+            TBNombre.Text = GVRedsocial.SelectedRow.Cells[1].Text;
+            TBDescripcion.Text = GVRedsocial.SelectedRow.Cells[2].Text;
         }
 
         protected void GVRedsocial_RowDeleting(object senderm, GridViewDeleteEventArgs e) 
@@ -77,11 +77,11 @@ namespace Presentation
             execute = objReds.deleteRedsocial(_idRedsocial);
             if (execute)
             {
-                LblMsj.Text = "La red social se elimino exitosamente";
+                LblMsj.Text = "Se eliminó exitosamente";
             }
             else
             {
-                LblMsj.Text = "Error al eliminar la red social";
+                LblMsj.Text = "Error al eliminar";
             }
         }
 

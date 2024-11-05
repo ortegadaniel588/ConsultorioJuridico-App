@@ -22,8 +22,10 @@
         <asp:GridView ID="GVRedsocial" runat="server" CssClass="table table-hover" OnSelectedIndexChanged="GVRedsocial_SelectedIndexChanged"
             DataKeyNames="idredsocial" OnRowDeleting="GVRedsocial_RowDeleting">
             <Columns>
+                <asp:BoundField DataField="_nombre" HeaderText="Nombre" />
+                <asp:BoundField DataField="_descripcion" HeaderText="_descripcion" />
                 <asp:CommandField ShowSelectButton="true" />
-                <asp:CommandField ShowDeleteButton="true" />
+                <asp:CommandField ShowDeleteButton="false" />
             </Columns>
 
         </asp:GridView>

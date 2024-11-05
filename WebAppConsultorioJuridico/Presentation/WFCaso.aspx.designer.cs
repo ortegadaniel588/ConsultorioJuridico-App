@@ -51,13 +51,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control DDLCaso.
+        /// Control DDLEpresa.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLCaso;
+        protected global::System.Web.UI.WebControls.DropDownList DDLEpresa;
 
         /// <summary>
         /// Control Label3.
@@ -69,13 +69,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control CLFechacierre.
+        /// Control TBFechacierre.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CLFechacierre;
+        protected global::System.Web.UI.WebControls.TextBox TBFechacierre;
 
         /// <summary>
         /// Control Label4.

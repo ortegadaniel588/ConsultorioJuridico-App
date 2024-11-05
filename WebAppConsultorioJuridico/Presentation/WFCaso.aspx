@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFCaso.aspx.cs" Inherits="Presentation.WFCaso" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -7,9 +8,9 @@
         <asp:Label ID="Label1" runat="server" Text="Ingrese el código"></asp:Label>
         <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
         <asp:Label ID="Label2" runat="server" Text="Seleccione la empresa"></asp:Label>
-        <asp:DropDownList ID="DDLCaso" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="DDLEpresa" runat="server"></asp:DropDownList>
         <asp:Label ID="Label3" runat="server" Text="Fecha de cierre"></asp:Label>
-        <asp:Calendar ID="CLFechacierre" runat="server"></asp:Calendar>
+        <asp:TextBox ID="TBFechacierre" runat="server"></asp:TextBox>
         <asp:Label ID="Label4" runat="server" Text="Ingrese el asunto"></asp:Label>
         <asp:TextBox ID="TBAsunto" runat="server"></asp:TextBox>
         <asp:Label ID="Label5" runat="server" Text="Selleccione el tipo"></asp:Label>
@@ -17,7 +18,7 @@
         <asp:Label ID="Label6" runat="server" Text="Seleccione el estado"></asp:Label>
         <asp:DropDownList ID="DDLEstado" runat="server"></asp:DropDownList>
         <asp:Label ID="Label7" runat="server" Text="Seleccione su complejidad"></asp:Label>
-            <asp:DropDownList ID="DDLComplejidad" runat="server">
+        <asp:DropDownList ID="DDLComplejidad" runat="server">
             <asp:ListItem Text="alta" Value="1"></asp:ListItem>
             <asp:ListItem Text="media" Value="2"></asp:ListItem>
             <asp:ListItem Text="baja" Value="3"></asp:ListItem>
@@ -32,8 +33,8 @@
         <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover" 
-            DataKeyNames="cas_id" OnRowDeleting="GVCaso_RowDeleting">
+        <asp:GridView ID="GridView1" runat="server" CssClass="table table-hover"
+            DataKeyNames="idcaso" OnRowDeleting="GVCaso_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="_id" HeaderText="id" />
                 <asp:BoundField DataField="_codigo" HeaderText="codigo" />
@@ -45,8 +46,10 @@
                 <asp:BoundField DataField="_estado" HeaderText="estado" />
                 <asp:BoundField DataField="_complejidad" HeaderText="complejidad" />
                 <asp:BoundField DataField="_empleado" HeaderText="empleado" />
+
+                <asp:CommandField ShowSelectButton="true" />
+                <asp:CommandField ShowDeleteButton="false" />
             </Columns>
         </asp:GridView>
     </div>
-
 </asp:Content>

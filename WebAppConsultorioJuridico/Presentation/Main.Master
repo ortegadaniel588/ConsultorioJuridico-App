@@ -4,37 +4,34 @@
 
 <html>
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Consultorio Juridico APP</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <%--Aqui esta el menú--%>
-            <a href="#">Inicio</a>
-            <a href="WFCita.aspx">Citas</a>
-            <a href="#">Caso</a>
-            <a href="#">Estados</a>
-            <a href="#">Tipos</a>
-            <a href="#">Expedientes</a>
-            <a href="#">Seguimientos</a>
-            <a href="#">Horarios</a>
-            <a href="WFPersona.aspx">Personas</a>
-            <a href="WFHorario.aspx">Horarios</a>
-            <a href="#">Empleado</a>
-            <a href="WFEspecialidad.aspx">Especilidades</a>
-            <a href="#">Empresa</a>
-            <a href="#">Asignar Red Social</a>
-            <a href="#">Redes Sociales</a>
-            <a href="WFPermiso.aspx">Permisos</a>
-            <a href="WFUsuario.aspx">Usuarios</a>
-            <a href="WFRol.aspx">Rol</a>
-            
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
+    <div>
+        <%--Aqui esta el menú--%>
+        <a href="Index.aspx">Inicio</a>
+        <a href="WFCita.aspx">Citas</a>
+        <a href="WFCaso.aspx">Caso</a>
+        <a href="WFEstado.aspx">Estados</a>
+        <a href="WFTipo.aspx">Tipos</a>
+        <a href="WFExpediente.aspx">Expedientes</a>
+        <a href="WFSeguimiento.aspx">Seguimientos</a>
+        <a href="WFPersona.aspx">Personas</a>
+        <a href="WFHorario.aspx">Horarios</a>
+        <a href="WFEmpleado.aspx">Empleado</a>
+        <a href="WFEspecialidad.aspx">Especilidades</a>
+        <a href="WFEmpresa.aspx">Empresa</a>
+        <a href="WFAsignarredsocial.aspx">Asignar Red Social</a>
+        <a href="WFRedsocial">Redes Sociales</a>
+        <a href="WFPermiso.aspx">Permisos</a>
+        <a href="WFUsuario.aspx">Usuarios</a>
+        <a href="WFRol.aspx">Rol</a>
+
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
 </body>
 </html>

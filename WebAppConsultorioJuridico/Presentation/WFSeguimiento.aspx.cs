@@ -33,13 +33,57 @@ namespace Presentation
             }
         }
 
-        private void showSeguimiento()
+        /*/private void showSeguimiento()
         {
             DataSet objData = new DataSet();
             objData = objSeg.showSeguimiento();
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
+        }*/
+                [WebMethod]
+        public static object ListSeguimientos()
+        {
+            SeguimientoLog objSeg = new SeguimientoLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objSeg.showSeguimiento();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var seguimientosList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un caso).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                seguimientosList.Add(new
+                {
+                    CasoID = row["idcaso"],
+                    Codigo = row["codigo"],
+                    Empresa = row["empresa_idempresa"],
+		    Fechaapertura = row["fechadeapertura"],
+		    Fechacierra = row["fechacierre"],
+                    Asunto = row["asunto"],
+                    Tipo = row["tipo_idtipo"],
+                    Estado = row["estado_idestado"],
+                    Complejidad = row["complejidad"],
+                    Empleado = row["empleado_idempleado"],
+                    
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = casosList };
         }
+
+        /* Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool DeleteCaso(int id)
+        {
+            // Crear una instancia de la clase de lógica de productos
+            CasoLog objCas = new CasoLog();
+
+            // Invocar al método para eliminar el producto y devolver el resultado
+            return objCas.deleteCaso(id);
+        }*/
         private void showCasoDDL()
         {
             DDLEmpresa.DataSource = objCas.showCasoDDL();

@@ -67,6 +67,7 @@
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WFPersona.aspx" />
     <Content Include="WFPermiso.aspx" />
     <Content Include="WFEspecialidad.aspx" />
     <Content Include="WFUsuario.aspx" />
@@ -97,6 +98,13 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WFPersona.aspx.cs">
+      <DependentUpon>WFPersona.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPersona.aspx.designer.cs">
+      <DependentUpon>WFPersona.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WFPermiso.aspx.cs">
       <DependentUpon>WFPermiso.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

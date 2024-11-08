@@ -8,7 +8,8 @@
     <form runat="server">    
 <div>
         <%--ID--%>
-        <asp:HiddenField ID="SeguimientoID" runat="server" />        <br />
+        <asp:HiddenField ID="SeguimientoID" runat="server" />        
+        <br />
         <%--Caso--%>
         <asp:Label ID="Label1" runat="server" Text="Seleccione el caso"></asp:Label>
         <asp:DropDownList ID="DDCaso_idcaso" runat="server" CssClass="form-select"></asp:DropDownList>
@@ -76,21 +77,18 @@
                     }
                 },
                 "columns": [
-                    { "data": "CasoID" },
-                    { "data": "Codigo" },
+                    { "data": "SeguimientoID" },
+                    { "data": "Caso" },
                     { "data": "Empresa" },
-                    { "data": "Fechaapertura" },
-                    { "data": "Fechacierra" },
-                    { "data": "Asunto" },
-                    { "data": "Tipo" },
-                    { "data": "Estado", "visible": false },
-                    { "data": "Complejidad" },
-                    { "data": "Empleado", "visible": false },
+                    { "data": "Fechaactualizacion" },
+                    { "data": "Proceso" },
+                    { "data": "Descripcion" },
+                    { "data": "Estado" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.CasoID}">Editar</button>
-                                  <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>`;
+                            return `<button class="edit-btn" data-id="${row.SeguimientoID}">Editar</button>
+                                  <button class="delete-btn" data-id="${row.SeguimientoID}">Eliminar</button>`;
                         }
                     }
                 ],
@@ -111,49 +109,45 @@
 
             });
 
-            // Editar un caso
+            // Editar un Seguimiento
             $('#seguimientosTable').on('click', '.edit-btn', function () {
                 //const id = $(this).data('id');
-                const rowData = $('#casosTable').DataTable().row($(this).parents('tr')).data();
+                const rowData = $('#seguimientosTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
                 loadCasoData(rowData);
             });
 
-            // Eliminar un caso
+            // Eliminar un Seguimiento
             $('#seguimientosTable').on('click', '.delete-btn', function () {
-                const id = $(this).data('id');// Obtener el ID del caso
-                if (confirm("¿Estás seguro de que deseas eliminar este caso?")) {
-                    deleteCaso(id);// Invoca a la función para eliminar el caso
+                const id = $(this).data('id');// Obtener el ID del seguimiento
+                if (confirm("¿Estás seguro de que deseas eliminar este seguimiento?")) {
+                    deleteSeguimiento(id);// Invoca a la función para eliminar el Seguimiento
                 }
             });
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
-        function loadCasoData(rowData) {
-            $('#<%= CasoID.ClientID %>').val(rowData.CasoID);
-            $('#<%= TBCodigo.ClientID %>').val(rowData.Codigo);
-            $('#<%= DDLEpresa.ClientID %>').val(rowData.Empresa);
-            $('#<%= TBFechacierre.ClientID %>').val(rowData.Fechacierra);
-            $('#<%= TBAsunto.ClientID %>').val(rowData.Asunto);
-            $('#<%= DDLTipo.ClientID %>').val(rowData.Tipo);
-            $('#<%= DDLEstado.ClientID %>').val(rowData.Estado);
-            $('#<%= DDLComplejidad.ClientID %>').val(rowData.Complejidad);
-            $('#<%= DDLEmpleado.ClientID %>').val(rowData.Empleado);
+        function loadSeguimientoData(rowData) {
+            $('#<%= SeguimientoID.ClientID %>').val(rowData.SeguimientoID);
+            $('#<%= TBFechaactualizacion.ClientID %>').val(rowData.Caso);
+            $('#<%= TBProceso.ClientID %>').val(rowData.Fechaactualizacion);
+            $('#<%= TBDescripcion.ClientID %>').val(rowData.Descripcion);
+            $('#<%= TBEstado.ClientID %>').val(rowData.Estado);
         }
 
-            // Función para eliminar un producto
-            /*function deleteCaso(id) {
+            // Función para eliminar un Seguimineto
+            /*function deleteSeguimineto(id) {
                 $.ajax({
                     type: "POST",
-                    url: "WFCaso.aspx/DeleteCaso",// Se invoca el WebMethod Eliminar un Producto
+                    url: "WFSeguimiento.aspx/DeleteSeguimiento",// Se invoca el WebMethod Eliminar un seguimiento
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify({ id: id }),
                     success: function (response) {
-                        $('#casosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
-                        alert("Producto eliminado exitosamente.");
+                        $('#seguimientosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
+                        alert("Seguimiento eliminado exitosamente.");
                     },
                     error: function () {
-                        alert("Error al eliminar el producto.");
+                        alert("Error al eliminar el seguimientos.");
                     }
                 });
             }*/

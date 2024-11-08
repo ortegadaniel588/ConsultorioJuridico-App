@@ -170,7 +170,7 @@
                 error: function () {
                     alert("Error al eliminar el producto.");
                 }
-            });*/
-        }
+            });
+        }*/
  </script>
 </asp:Content>

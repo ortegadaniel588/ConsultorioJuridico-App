@@ -7,39 +7,38 @@ using System.Web;
 
 namespace Data
 {
-    public class AsignarredsocialDat
+    public class EspecialidadDat
     {
         Persistence objPer = new Persistence();
-        //Metodo para mostrar todas las AsignarRedesSocial
-        public DataSet showAsignarredsocial()
+
+        //Metodo para mostrar todas las Especialidades
+        public DataSet showEspecialidad()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectAsignarRedesSociales";
+            objSelectCmd.CommandText = "spSelectEspecialidades";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
             objPer.closeConnection();
             return objData;
         }
-        //Metodo para guardar un nuevo AsignarRedesSocial
-        public bool saveAsignarredsocial(int _empresa_idempresa, int _redsocial_idredsocial, string _url)
+
+        //Metodo para guardar una nueva Especialidad
+        public bool saveEspecialidad(string _nombre, string _descripcion)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertAsignarRedSocial";
+            objSelectCmd.CommandText = "spInsertEspecialidad";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_empresa_idempresa", MySqlDbType.Int32).Value = _empresa_idempresa;
-            objSelectCmd.Parameters.Add("p_redsocial_idredsocial", MySqlDbType.Int32).Value = _redsocial_idredsocial;
-            objSelectCmd.Parameters.Add("p_url", MySqlDbType.VarString).Value = _url;
-            
-
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = _descripcion;
 
             try
             {
@@ -58,21 +57,20 @@ namespace Data
             return executed;
         }
 
-        //Metodo para actulizar un AsignarRedesSocial
-        public bool updateAsignarredsocial(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
+        //Metodo para actualizar una Especialidad
+        public bool updateEspecialidad(int _id, string _nombre, string _descripcion)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateAsignarRedSocial";
+            objSelectCmd.CommandText = "spUpdateEspecialidad";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_empresa_idempresa", MySqlDbType.Int32).Value = _empresa_idempresa;
-            objSelectCmd.Parameters.Add("p_redsocial_idredsocial", MySqlDbType.Int32).Value = _redsocial_idredsocial;
-            objSelectCmd.Parameters.Add("p_url", MySqlDbType.VarString).Value = _url;
+            objSelectCmd.Parameters.Add("p_idespecialidad", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = _descripcion;
 
             try
             {
@@ -90,17 +88,17 @@ namespace Data
             return executed;
         }
 
-        //Metodo para borrar una AsignarRedesSocial
-        public bool deleteAsignarredsocial(int _id)
+        //Metodo para borrar una Especialidad
+        public bool deleteEspecialidad(int _id)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteAsignarRedSocial"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spDeleteEspecialidad";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idespecialidad", MySqlDbType.Int32).Value = _id;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

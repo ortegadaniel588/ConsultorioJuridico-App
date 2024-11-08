@@ -12,6 +12,21 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
+        //Metodo para mostrar unicamente el id y el nombre Estado (Nomre  Estado)
+        public DataSet showCasoDDL()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectEstadoDDL";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
         // M�todo para mostrar todos los estados 
         public DataSet showEstados()
         {

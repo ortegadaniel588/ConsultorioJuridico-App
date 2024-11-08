@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,40 +7,54 @@ using System.Web;
 
 namespace Data
 {
-    public class AsignarredsocialDat
+    public class TipoDat
     {
         Persistence objPer = new Persistence();
-        //Metodo para mostrar todas las AsignarRedesSocial
-        public DataSet showAsignarredsocial()
+
+        //Metodo para mostrar unicamente el id y el nombre Empresa (Nomre consultorio)
+        public DataSet showTipoDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
+
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectAsignarRedesSociales";
+            objSelectCmd.CommandText = "spSelectTipoDDL";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
             objPer.closeConnection();
             return objData;
         }
-        //Metodo para guardar un nuevo AsignarRedesSocial
-        public bool saveAsignarredsocial(int _empresa_idempresa, int _redsocial_idredsocial, string _url)
+
+        //Metodo para mostrar todas las Tipos
+        public DataSet showTipo()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectTipo";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+        //Metodo para guardar un nuevo Caso
+        public bool saveTipo(string _nombre, string _descripcion)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertAsignarRedSocial";
+            objSelectCmd.CommandText = "spInsertTipo";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_empresa_idempresa", MySqlDbType.Int32).Value = _empresa_idempresa;
-            objSelectCmd.Parameters.Add("p_redsocial_idredsocial", MySqlDbType.Int32).Value = _redsocial_idredsocial;
-            objSelectCmd.Parameters.Add("p_url", MySqlDbType.VarString).Value = _url;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
             
-
-
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();
@@ -58,21 +72,20 @@ namespace Data
             return executed;
         }
 
-        //Metodo para actulizar un AsignarRedesSocial
-        public bool updateAsignarredsocial(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
+        //Metodo para actulizar un Caso
+        public bool updateTipo(int _id, string _nombre, string _descripcion)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateAsignarRedSocial";
+            objSelectCmd.CommandText = "spUpdateCaso";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_empresa_idempresa", MySqlDbType.Int32).Value = _empresa_idempresa;
-            objSelectCmd.Parameters.Add("p_redsocial_idredsocial", MySqlDbType.Int32).Value = _redsocial_idredsocial;
-            objSelectCmd.Parameters.Add("p_url", MySqlDbType.VarString).Value = _url;
+            objSelectCmd.Parameters.Add("p_idtipo", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
 
             try
             {
@@ -90,17 +103,17 @@ namespace Data
             return executed;
         }
 
-        //Metodo para borrar una AsignarRedesSocial
-        public bool deleteAsignarredsocial(int _id)
+        //Metodo para borrar una Caso
+        public bool deleteTipo(int _id)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteAsignarRedSocial"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spDeleteCaso"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idtipo", MySqlDbType.Int32).Value = _id;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

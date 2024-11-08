@@ -127,7 +127,7 @@
     <Compile Include="EmpleadoDat.cs" />
     <Compile Include="EmpresaDat.cs" />
     <Compile Include="EspecialidadDat.cs" />
-    <Compile Include="EstadosDat.cs" />
+    <Compile Include="EstadoDat.cs" />
     <Compile Include="ExpedienteDat.cs" />
     <Compile Include="HorariosDat.cs" />
     <Compile Include="PermisoDat.cs" />

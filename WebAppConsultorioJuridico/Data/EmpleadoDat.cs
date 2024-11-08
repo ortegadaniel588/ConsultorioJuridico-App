@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,18 +7,19 @@ using System.Web;
 
 namespace Data
 {
-    public class EspecialidadDat
+    public class EmpleadoDat
     {
         Persistence objPer = new Persistence();
 
-        //Metodo para mostrar todas las Especialidades
-        public DataSet showEspecialidad()
+        //Metodo para mostrar unicamente el id y el nombre del Empleado
+        public DataSet showEmpleadoDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
+
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectEspecialidades";
+            objSelectCmd.CommandText = "spSelectEmpleadoDDL";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -26,19 +27,34 @@ namespace Data
             return objData;
         }
 
-        //Metodo para guardar una nueva Especialidad
-        public bool saveEspecialidad(string _nombre, string _descripcion)
+        //Metodo para mostrar todos los Empleados
+        public DataSet showEmpleado()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectEmpleados";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+
+        //Metodo para guardar un nuevo Empleado
+        public bool saveEmpleado(int _usuario_id, int _especialidad_id)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertEspecialidad";
+            objSelectCmd.CommandText = "spInsertEmpleado";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_usuario_id", MySqlDbType.Int32).Value = _usuario_id;
+            objSelectCmd.Parameters.Add("p_especialidad_id", MySqlDbType.Int32).Value = _especialidad_id;
 
             try
             {
@@ -57,20 +73,20 @@ namespace Data
             return executed;
         }
 
-        //Metodo para actualizar una Especialidad
-        public bool updateEspecialidad(int _id, string _nombre, string _descripcion)
+        //Metodo para actualizar un Empleado
+        public bool updateEmpleado(int _id, int _usuario_id, int _especialidad_id)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateEspecialidad";
+            objSelectCmd.CommandText = "spUpdateEmpleado";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_idespecialidad", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_usuario_id", MySqlDbType.Int32).Value = _usuario_id;
+            objSelectCmd.Parameters.Add("p_especialidad_id", MySqlDbType.Int32).Value = _especialidad_id;
 
             try
             {
@@ -88,17 +104,17 @@ namespace Data
             return executed;
         }
 
-        //Metodo para borrar una Especialidad
-        public bool deleteEspecialidad(int _id)
+        //Metodo para borrar un Empleado
+        public bool deleteEmpleado(int _id)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteEspecialidad";
+            objSelectCmd.CommandText = "spDeleteEmpleado"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_idespecialidad", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

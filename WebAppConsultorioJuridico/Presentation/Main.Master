@@ -14,7 +14,7 @@
         <div>
             <%--Aqui esta el menú--%>
             <a href="#">Inicio</a>
-            <a href="#">Citas</a>
+            <a href="WFCita.aspx">Citas</a>
             <a href="#">Caso</a>
             <a href="#">Estados</a>
             <a href="#">Tipos</a>
@@ -22,14 +22,15 @@
             <a href="#">Seguimientos</a>
             <a href="#">Horarios</a>
             <a href="WFPersona.aspx">Personas</a>
+            <a href="WFHorario.aspx">Horarios</a>
             <a href="#">Empleado</a>
-            <a href="#">Especilidades</a>
+            <a href="WFEspecialidad.aspx">Especilidades</a>
             <a href="#">Empresa</a>
             <a href="#">Asignar Red Social</a>
             <a href="#">Redes Sociales</a>
-            <a href="#">Usuarios</a>
-            <a href="#">Permisos</a>
-            <a href="#">Rol</a>
+            <a href="WFPermiso.aspx">Permisos</a>
+            <a href="WFUsuario.aspx">Usuarios</a>
+            <a href="WFRol.aspx">Rol</a>
             
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

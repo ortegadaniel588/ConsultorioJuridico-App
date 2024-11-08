@@ -40,7 +40,7 @@ namespace Presentation
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
         }*/
-                [WebMethod]
+        [WebMethod]
         public static object ListSeguimientos()
         {
             SeguimientoLog objSeg = new SeguimientoLog();
@@ -51,38 +51,34 @@ namespace Presentation
             // Se crea una lista para almacenar los productos que se van a devolver.
             var seguimientosList = new List<object>();
 
-            // Se itera sobre cada fila del DataSet (que representa un caso).
+            // Se itera sobre cada fila del DataSet (que representa un seguimiento).
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 seguimientosList.Add(new
                 {
-                    CasoID = row["idcaso"],
-                    Codigo = row["codigo"],
-                    Empresa = row["empresa_idempresa"],
-		    Fechaapertura = row["fechadeapertura"],
-		    Fechacierra = row["fechacierre"],
-                    Asunto = row["asunto"],
-                    Tipo = row["tipo_idtipo"],
-                    Estado = row["estado_idestado"],
-                    Complejidad = row["complejidad"],
-                    Empleado = row["empleado_idempleado"],
+                    SeguimientoID = row["idcaso"],
+                    Caso = row["codigo"],
+                    Fechaactualizacion = row["empresa_idempresa"],
+		    Proceso = row["fechadeapertura"],
+		    Descripcion = row["fechacierre"],
+                    Estado = row["asunto"],
                     
                 });
             }
 
             // Devuelve un objeto en formato JSON que contiene la lista de productos.
-            return new { data = casosList };
+            return new { data = seguimientosList };
         }
 
         /* Comentado Eliminar por integridad de Datos
 	[WebMethod]
-        public static bool DeleteCaso(int id)
+        public static bool DeleteSeguimiento(int id)
         {
             // Crear una instancia de la clase de lógica de productos
-            CasoLog objCas = new CasoLog();
+            SeguimientoLog objSeg = new SeguimientoLog();
 
             // Invocar al método para eliminar el producto y devolver el resultado
-            return objCas.deleteCaso(id);
+            return objSeg.deleteCaso(id);
         }*/
         private void showCasoDDL()
         {

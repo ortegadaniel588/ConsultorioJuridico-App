@@ -12,8 +12,8 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
-        //Metodo para mostrar unicamente el id y el nombre Estado (Nomre  Estado)
-        public DataSet showCasoDDL()
+        //Metodo para mostrar unicamente el id y el nombre Estado (Nombre  Estado)
+        public DataSet showEstadoDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
@@ -28,7 +28,7 @@ namespace Data
             return objData;
         }
         // M�todo para mostrar todos los estados 
-        public DataSet showEstados()
+        public DataSet showEstado()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();

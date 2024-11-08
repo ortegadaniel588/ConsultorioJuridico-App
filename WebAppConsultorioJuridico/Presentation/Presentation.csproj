@@ -68,7 +68,12 @@
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
     <Content Include="WFPermiso.aspx" />
-  </ItemGroup>
+    <Content Include="WFEspecialidad.aspx" />
+    <Content Include="WFUsuario.aspx" />
+    <Content Include="WFRol.aspx" />
+    <Content Include="WFCita.aspx" />
+    <Content Include="WFHorario.aspx" />  
+   </ItemGroup>
   <ItemGroup>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -98,6 +103,41 @@
     </Compile>
     <Compile Include="WFPermiso.aspx.designer.cs">
       <DependentUpon>WFPermiso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFEspecialidad.aspx.cs">
+      <DependentUpon>WFEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFEspecialidad.aspx.designer.cs">
+      <DependentUpon>WFEspecialidad.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFUsuario.aspx.cs">
+      <DependentUpon>WFUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFUsuario.aspx.designer.cs">
+      <DependentUpon>WFUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFRol.aspx.cs">
+      <DependentUpon>WFRol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFRol.aspx.designer.cs">
+      <DependentUpon>WFRol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFCita.aspx.cs">
+      <DependentUpon>WFCita.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFCita.aspx.designer.cs">
+      <DependentUpon>WFCita.aspx</DependentUpon>
+	</Compile>
+	<Compile Include="WFHorario.aspx.cs">
+      <DependentUpon>WFHorario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFHorario.aspx.designer.cs">
+      <DependentUpon>WFHorario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

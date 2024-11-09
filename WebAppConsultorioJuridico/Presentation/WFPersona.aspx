@@ -1,126 +1,164 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFPersona.aspx.cs" Inherits="Presentation.WFPersona" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:TextBox ID="TBId" runat="server" Visible="false"></asp:TextBox>
-    <%--Nombres--%>
-    <asp:Label ID="Label1" runat="server" Text="Ingrese los Nombres"></asp:Label>
-    <asp:TextBox ID="TBNombres" runat="server"></asp:TextBox>
-    <br />
-    <%--Apellidos--%>
-    <asp:Label ID="Label2" runat="server" Text="Ingrese los Apellidos"></asp:Label>
-    <asp:TextBox ID="TBApellidos" runat="server"></asp:TextBox>
-    <br />
-    <%--Tipo de Documento--%>
-    <asp:Label ID="Label3" runat="server" Text="Seleccione el Tipo de Documento"></asp:Label>
-    <asp:DropDownList ID="DDLTBTipodocumento" runat="server">
-        <asp:ListItem Value="cedula">Cédula</asp:ListItem>
-        <asp:ListItem Value="pasaporte">Pasaporte</asp:ListItem>
-        <asp:ListItem Value="tarjeta de identidad">Tarjeta de Identidad</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    <%--Documento--%>
-    <asp:Label ID="Label4" runat="server" Text="Ingrese el Documento"></asp:Label>
-    <asp:TextBox ID="TBDocumento" runat="server"></asp:TextBox>
-    <br />
-    <%--Género--%>
-    <asp:Label ID="Label5" runat="server" Text="Seleccione el Género"></asp:Label>
-    <asp:DropDownList ID="DDLTBGénero" runat="server">
-        <asp:ListItem Value="masculino">Masculino</asp:ListItem>
-        <asp:ListItem Value="femenino">Femenino</asp:ListItem>
-        <asp:ListItem Value="prefiero no decir">Prefiero no decir</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    <%--Estado Civil--%>
-    <asp:Label ID="Label6" runat="server" Text="Seleccione el Estado Civil"></asp:Label>
-    <asp:DropDownList ID="DDLTBEstadoCivil" runat="server">
-        <asp:ListItem Value="soltero">Soltero</asp:ListItem>
-        <asp:ListItem Value="casado">Casado</asp:ListItem>
-        <asp:ListItem Value="viudo">Viudo</asp:ListItem>
-        <asp:ListItem Value="union libre">Unión Libre</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    <%--Lugar de Nacimiento--%>
-    <asp:Label ID="Label7" runat="server" Text="Ingrese el Lugar de Nacimiento"></asp:Label>
-    <asp:TextBox ID="TBLugarNacimiento" runat="server"></asp:TextBox>
-    <br />
-    <%--Fecha de Nacimiento--%>
-    <asp:Label ID="Label8" runat="server" Text="Seleccione la Fecha de Nacimiento"></asp:Label>
-    <asp:TextBox ID="TBFechaNacimiento" runat="server" TextMode="Date"></asp:TextBox>
-    <br />
-    <%--Teléfono--%>
-    <asp:Label ID="Label9" runat="server" Text="Ingrese el Teléfono"></asp:Label>
-    <asp:TextBox ID="TBTeléfono" runat="server"></asp:TextBox>
-    <br />
-    <%--Celular--%>
-    <asp:Label ID="Label10" runat="server" Text="Ingrese el Celular"></asp:Label>
-    <asp:TextBox ID="TBCelular" runat="server"></asp:TextBox>
-    <br />
-    <%--Correo--%>
-    <asp:Label ID="Label11" runat="server" Text="Ingrese el Correo"></asp:Label>
-    <asp:TextBox ID="TBCorreo" runat="server"></asp:TextBox>
-    <br />
-    <%--Dirección--%>
-    <asp:Label ID="Label12" runat="server" Text="Ingrese la Dirección"></asp:Label>
-    <asp:TextBox ID="TBDirección" runat="server"></asp:TextBox>
-    <br />
-    <%--Estado--%>
-    <asp:Label ID="Label13" runat="server" Text="Seleccione el Estado"></asp:Label>
-    <asp:DropDownList ID="DDLTBEstado" runat="server">
-        <asp:ListItem Value="1">1</asp:ListItem>
-        <asp:ListItem Value="2">2</asp:ListItem>
-        <asp:ListItem Value="3">3</asp:ListItem>
-        <asp:ListItem Value="4">4</asp:ListItem>
-        <asp:ListItem Value="5">5</asp:ListItem>
-        <asp:ListItem Value="6">6</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    <%--Ocupación--%>
-    <asp:Label ID="Label14" runat="server" Text="Ingrese la Ocupación"></asp:Label>
-    <asp:TextBox ID="TBOcupación" runat="server"></asp:TextBox>
-    <br />
-    <%--Nivel de Educación--%>
-    <asp:Label ID="Label15" runat="server" Text="Seleccione el Nivel de Educación"></asp:Label>
-    <asp:DropDownList ID="DDLTBNivelEducación" runat="server">
-        <asp:ListItem Value="ninguno">Ninguno</asp:ListItem>
-        <asp:ListItem Value="primaria">Primaria</asp:ListItem>
-        <asp:ListItem Value="secundaria">Secundaria</asp:ListItem>
-        <asp:ListItem Value="técnica">Técnica</asp:ListItem>
-        <asp:ListItem Value="técnológica">Técnológica</asp:ListItem>
-        <asp:ListItem Value="pregrado">Pregrado</asp:ListItem>
-        <asp:ListItem Value="posgrado">Posgrado</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    <%--Botones Guardar y Actualizar--%>
-    <div>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WFPersona.aspx.cs" Inherits="Presentation.WFPersona" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <div class="container">
+        <h2>Gestión de Personas</h2>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="hidden" id="TBId" runat="server" />
+                    
+                    <label for="TBNombres">Nombres:</label>
+                    <asp:TextBox ID="TBNombres" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBApellidos">Apellidos:</label>
+                    <asp:TextBox ID="TBApellidos" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBTipoDocumento">Tipo de Documento:</label>
+                    <asp:TextBox ID="TBTipoDocumento" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBDocumento">Número de Documento:</label>
+                    <asp:TextBox ID="TBDocumento" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBGenero">Género:</label>
+                    <asp:TextBox ID="TBGenero" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBEstadoCivil">Estado Civil:</label>
+                    <asp:TextBox ID="TBEstadoCivil" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBLugarNacimiento">Lugar de Nacimiento:</label>
+                    <asp:TextBox ID="TBLugarNacimiento" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBFechaNacimiento">Fecha de Nacimiento:</label>
+                    <asp:TextBox ID="TBFechaNacimiento" runat="server" CssClass="form-control" TextMode="Date"></asp:TextBox>
+                    
+                    <label for="TBTelefono">Teléfono:</label>
+                    <asp:TextBox ID="TBTelefono" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBCelular">Celular:</label>
+                    <asp:TextBox ID="TBCelular" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBCorreo">Correo Electrónico:</label>
+                    <asp:TextBox ID="TBCorreo" runat="server" CssClass="form-control" TextMode="Email"></asp:TextBox>
+                    
+                    <label for="TBDireccion">Dirección:</label>
+                    <asp:TextBox ID="TBDireccion" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBEstado">Estado:</label>
+                    <asp:TextBox ID="TBEstado" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBOcupacion">Ocupación:</label>
+                    <asp:TextBox ID="TBOcupacion" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <label for="TBNivelEducacion">Nivel de Educación:</label>
+                    <asp:TextBox ID="TBNivelEducacion" runat="server" CssClass="form-control"></asp:TextBox>
+                    
+                    <br />
+                    <asp:Button ID="BtnSave" runat="server" Text="Guardar" CssClass="btn btn-primary" OnClick="BtnSave_Click" />
+                    <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" CssClass="btn btn-success" OnClick="BtnUpdate_Click" />
+                    <br /><br />
+                    <asp:Label ID="LblMsg" runat="server" CssClass="text-info"></asp:Label>
+                </div>
+            </div>
+            
+            <div class="col-md-8">
+                <table id="tblPersonas" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Documento</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </div>
-    <br />
-    <%--Lista de Personas--%>
-    <div>
-        <asp:GridView ID="GVPersonas" runat="server" AutoGenerateColumns="False" OnRowCommand="GVPersonas_RowCommand">
-            <Columns>
-                <asp:BoundField DataField="idpersona" HeaderText="ID" />
-                <asp:BoundField DataField="nombres" HeaderText="Nombres" />
-                <asp:BoundField DataField="apellidos" HeaderText="Apellidos" />
-                <asp:BoundField DataField="tipodocumento" HeaderText="Tipo de Documento" />
-                <asp:BoundField DataField="documento" HeaderText="Documento" />
-                <asp:BoundField DataField="genero" HeaderText="Género" />
-                <asp:BoundField DataField="estadocivil" HeaderText="Estado Civil" />
-                <asp:BoundField DataField="lugarNacimiento" HeaderText="Lugar de Nacimiento" />
-                <asp:BoundField DataField="fechaNacimiento" HeaderText="Fecha de Nacimiento" />
-                <asp:BoundField DataField="telefono" HeaderText="Teléfono" />
-                <asp:BoundField DataField="celular" HeaderText="Celular" />
-                <asp:BoundField DataField="correo" HeaderText="Correo" />
-                <asp:BoundField DataField="direccion" HeaderText="Dirección" />
-                <asp:BoundField DataField="estado" HeaderText="Estado" />
-                <asp:BoundField DataField="ocupacion" HeaderText="Ocupación" />
-                <asp:BoundField DataField="nivelEducacion" HeaderText="Nivel de Educación" />
-                <asp:ButtonField ButtonType="Button" CommandName="Edit" Text="Editar" />
-                <asp:ButtonField ButtonType="Button" CommandName="Delete" Text="Eliminar" />
-            </Columns>
-        </asp:GridView>
-    </div>
+
+    <!-- Script para DataTable -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $("#tblPersonas").DataTable({
+                "ajax": {
+                    "url": "WFPersona.aspx/ListPersonas",
+                    "type": "POST",
+                    "datatype": "json",
+                    "contentType": "application/json; charset=utf-8",
+                    "dataSrc": function (json) {
+                        return json.d.data;
+                    }
+                },
+                "columns": [
+                    { "data": "idpersona" },
+                    { "data": "nombres" },
+                    { "data": "apellidos" },
+                    { "data": "documento" },
+                    { "data": "telefono" },
+                    { "data": "correo" },
+                    {
+                        "data": "idpersona",
+                        "render": function (data) {
+                            return '<button type="button" class="btn btn-primary btn-sm" onclick="EditPersona(' + data + ')"><i class="fas fa-edit"></i></button> ' +
+                                   '<button type="button" class="btn btn-danger btn-sm" onclick="DeletePersona(' + data + ')"><i class="fas fa-trash"></i></button>';
+                        }
+                    }
+                ]
+            });
+        });
+
+        function EditPersona(id) {
+            $.ajax({
+                type: "POST",
+                url: "WFPersona.aspx/GetPersona",
+                data: JSON.stringify({ id: id }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var persona = response.d;
+                    $("#MainContent_TBId").val(persona.idpersona);
+                    $("#MainContent_TBNombres").val(persona.nombres);
+                    $("#MainContent_TBApellidos").val(persona.apellidos);
+                    $("#MainContent_TBTipoDocumento").val(persona.tipodocumento);
+                    $("#MainContent_TBDocumento").val(persona.documento);
+                    $("#MainContent_TBGenero").val(persona.genero);
+                    $("#MainContent_TBEstadoCivil").val(persona.estadocivil);
+                    $("#MainContent_TBLugarNacimiento").val(persona.lugarNacimiento);
+                    $("#MainContent_TBFechaNacimiento").val(persona.fechaNacimiento.split('T')[0]);
+                    $("#MainContent_TBTelefono").val(persona.telefono);
+                    $("#MainContent_TBCelular").val(persona.celular);
+                    $("#MainContent_TBCorreo").val(persona.correo);
+                    $("#MainContent_TBDireccion").val(persona.direccion);
+                    $("#MainContent_TBEstado").val(persona.estado);
+                    $("#MainContent_TBOcupacion").val(persona.ocupacion);
+                    $("#MainContent_TBNivelEducacion").val(persona.nivelEducacion);
+                }
+            });
+        }
+
+        function DeletePersona(id) {
+            if (confirm("¿Está seguro que desea eliminar esta persona?")) {
+                $.ajax({
+                    type: "POST",
+                    url: "WFPersona.aspx/DeletePersona",
+                    data: JSON.stringify({ id: id }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d) {
+                            alert("Persona eliminada exitosamente");
+                            $("#tblPersonas").DataTable().ajax.reload();
+                        } else {
+                            alert("Error al eliminar la persona");
+                        }
+                    }
+                });
+            }
+        }
+    </script>
 </asp:Content>

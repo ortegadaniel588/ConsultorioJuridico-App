@@ -1,6 +1,10 @@
 ﻿using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -11,7 +15,9 @@ namespace Presentation
         PersonaLog objPersona = new PersonaLog();
 
         private int _idPersona;
-        private string _nombres, _apellidos, _tipodocumento, _documento, _genero, _estadocivil, _lugarNacimiento, _telefono, _celular, _correo, _direccion, _estado, _ocupacion, _nivelEducacion;
+        private string _nombres, _apellidos, _tipoDocumento, _documento, _genero,
+                      _estadoCivil, _lugarNacimiento, _telefono, _celular, _correo,
+                      _direccion, _estado, _ocupacion, _nivelEducacion;
         private DateTime _fechaNacimiento;
         private bool executed = false;
 
@@ -19,41 +25,97 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                ShowPersonas();
+                // Aquí se pueden invocar métodos si es necesario
             }
         }
 
-        private void ShowPersonas()
+        [WebMethod]
+        public static object ListPersonas()
         {
+            PersonaLog objPersona = new PersonaLog();
             DataSet ds = objPersona.ShowPersonas();
-            GVPersonas.DataSource = ds;
-            GVPersonas.DataBind();
+            var personasList = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                personasList.Add(new
+                {
+                    idpersona = row["idpersona"],
+                    nombres = row["nombres"],
+                    apellidos = row["apellidos"],
+                    tipodocumento = row["tipodocumento"],
+                    documento = row["documento"],
+                    genero = row["genero"],
+                    estadocivil = row["estadocivil"],
+                    lugarNacimiento = row["lugarNacimiento"],
+                    fechaNacimiento = row["fechaNacimiento"],
+                    telefono = row["telefono"],
+                    celular = row["celular"],
+                    correo = row["correo"],
+                    direccion = row["direccion"],
+                    estado = row["estado"],
+                    ocupacion = row["ocupacion"],
+                    nivelEducacion = row["nivelEducacion"]
+                });
+            }
+
+            return new { data = personasList };
+        }
+
+        [WebMethod]
+        public static bool DeletePersona(int id)
+        {
+            PersonaLog objPer = new PersonaLog();
+            return objPer.DeletePersona(id);
+        }
+
+        // Método para limpiar los TextBox
+        private void Clear()
+        {
+            TBId.Value = "";
+            TBNombres.Text = "";
+            TBApellidos.Text = "";
+            TBTipoDocumento.Text = "";
+            TBDocumento.Text = "";
+            TBGenero.Text = "";
+            TBEstadoCivil.Text = "";
+            TBLugarNacimiento.Text = "";
+            TBFechaNacimiento.Text = "";
+            TBTelefono.Text = "";
+            TBCelular.Text = "";
+            TBCorreo.Text = "";
+            TBDireccion.Text = "";
+            TBEstado.Text = "";
+            TBOcupacion.Text = "";
+            TBNivelEducacion.Text = "";
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _nombres = TBNombres.Text;
             _apellidos = TBApellidos.Text;
-            _tipodocumento = DDLTBTipodocumento.SelectedValue;
+            _tipoDocumento = TBTipoDocumento.Text;
             _documento = TBDocumento.Text;
-            _genero = DDLTBGénero.SelectedValue;
-            _estadocivil = DDLTBEstadoCivil.SelectedValue;
+            _genero = TBGenero.Text;
+            _estadoCivil = TBEstadoCivil.Text;
             _lugarNacimiento = TBLugarNacimiento.Text;
             _fechaNacimiento = Convert.ToDateTime(TBFechaNacimiento.Text);
-            _telefono = TBTeléfono.Text;
+            _telefono = TBTelefono.Text;
             _celular = TBCelular.Text;
             _correo = TBCorreo.Text;
-            _direccion = TBDirección.Text;
-            _estado = DDLTBEstado.SelectedValue;
-            _ocupacion = TBOcupación.Text;
-            _nivelEducacion = DDLTBNivelEducación.SelectedValue;
+            _direccion = TBDireccion.Text;
+            _estado = TBEstado.Text;
+            _ocupacion = TBOcupacion.Text;
+            _nivelEducacion = TBNivelEducacion.Text;
 
-            executed = objPersona.SavePersona(_nombres, _apellidos, _tipodocumento, _documento, _genero, _estadocivil, _lugarNacimiento, _fechaNacimiento, _telefono, _celular, _correo, _direccion, _estado, _ocupacion, _nivelEducacion);
+            executed = objPersona.SavePersona(_nombres, _apellidos, _tipoDocumento,
+                _documento, _genero, _estadoCivil, _lugarNacimiento, _fechaNacimiento,
+                _telefono, _celular, _correo, _direccion, _estado, _ocupacion, _nivelEducacion);
 
             if (executed)
             {
                 LblMsg.Text = "La persona se guardó exitosamente!";
-                ShowPersonas();
+                Clear();
             }
             else
             {
@@ -63,76 +125,42 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idPersona = Convert.ToInt32(TBId.Text);
+            if (string.IsNullOrEmpty(TBId.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado una persona para actualizar.";
+                return;
+            }
+
+            _idPersona = Convert.ToInt32(TBId.Value);
             _nombres = TBNombres.Text;
             _apellidos = TBApellidos.Text;
-            _tipodocumento = DDLTBTipodocumento.SelectedValue;
+            _tipoDocumento = TBTipoDocumento.Text;
             _documento = TBDocumento.Text;
-            _genero = DDLTBGénero.SelectedValue;
-            _estadocivil = DDLTBEstadoCivil.SelectedValue;
+            _genero = TBGenero.Text;
+            _estadoCivil = TBEstadoCivil.Text;
             _lugarNacimiento = TBLugarNacimiento.Text;
             _fechaNacimiento = Convert.ToDateTime(TBFechaNacimiento.Text);
-            _telefono = TBTeléfono.Text;
+            _telefono = TBTelefono.Text;
             _celular = TBCelular.Text;
             _correo = TBCorreo.Text;
-            _direccion = TBDirección.Text;
-            _estado = DDLTBEstado.SelectedValue;
-            _ocupacion = TBOcupación.Text;
-            _nivelEducacion = DDLTBNivelEducación.SelectedValue;
+            _direccion = TBDireccion.Text;
+            _estado = TBEstado.Text;
+            _ocupacion = TBOcupacion.Text;
+            _nivelEducacion = TBNivelEducacion.Text;
 
-            executed = objPersona.UpdatePersona(_idPersona, _nombres, _apellidos, _tipodocumento, _documento, _genero, _estadocivil, _lugarNacimiento, _fechaNacimiento, _telefono, _celular, _correo, _direccion, _estado, _ocupacion, _nivelEducacion);
+            executed = objPersona.UpdatePersona(_idPersona, _nombres, _apellidos,
+                _tipoDocumento, _documento, _genero, _estadoCivil, _lugarNacimiento,
+                _fechaNacimiento, _telefono, _celular, _correo, _direccion, _estado,
+                _ocupacion, _nivelEducacion);
 
             if (executed)
             {
                 LblMsg.Text = "La persona se actualizó exitosamente!";
-                ShowPersonas();
+                Clear();
             }
             else
             {
                 LblMsg.Text = "Error al actualizar";
-            }
-        }
-
-        protected void GVPersonas_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Edit")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVPersonas.Rows[index];
-                TBId.Text = row.Cells[0].Text;
-                TBNombres.Text = row.Cells[1].Text;
-                TBApellidos.Text = row.Cells[2].Text;
-                DDLTBTipodocumento.SelectedValue = row.Cells[3].Text;
-                TBDocumento.Text = row.Cells[4].Text;
-                DDLTBGénero.SelectedValue = row.Cells[5].Text;
-                DDLTBEstadoCivil.SelectedValue = row.Cells[6].Text;
-                TBLugarNacimiento.Text = row.Cells[7].Text;
-                TBFechaNacimiento.Text = row.Cells[8].Text;
-                TBTeléfono.Text = row.Cells[9].Text;
-                TBCelular.Text = row.Cells[10].Text;
-                TBCorreo.Text = row.Cells[11].Text;
-                TBDirección.Text = row.Cells[12].Text;
-                DDLTBEstado.SelectedValue = row.Cells[13].Text;
-                TBOcupación.Text = row.Cells[14].Text;
-                DDLTBNivelEducación.SelectedValue = row.Cells[15].Text;
-            }
-            else if (e.CommandName == "Delete")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVPersonas.Rows[index];
-                int idPersona = Convert.ToInt32(row.Cells[0].Text);
-
-                executed = objPersona.DeletePersona(idPersona);
-
-                if (executed)
-                {
-                    LblMsg.Text = "La persona se eliminó exitosamente!";
-                    ShowPersonas();
-                }
-                else
-                {
-                    LblMsg.Text = "Error al eliminar";
-                }
             }
         }
     }

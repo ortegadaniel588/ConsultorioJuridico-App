@@ -20,7 +20,7 @@ namespace Logic
                 
         public DataSet showEstado()
         {
-            return objEst.showEstados();
+            return objEst.showEstado();
         }
         //Metodo para guardar un nuevo Estado
         public bool saveEstado(string nombre,string descripcion)
@@ -29,9 +29,9 @@ namespace Logic
         }
 
         //Metodo para actulizar un Estado
-        public bool updateEstado(int idpermiso, string nombre, string descripcion)
+        public bool updateEstado(int idestado, string nombre, string descripcion)
         {
-            return objEst.updateEstado(idpermiso,nombre,descripcion);
+            return objEst.updateEstado(idestado,nombre,descripcion);
         }
 
         //Metodo para borrar un Estado

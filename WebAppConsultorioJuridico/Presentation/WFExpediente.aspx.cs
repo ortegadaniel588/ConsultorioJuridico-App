@@ -36,13 +36,57 @@ namespace Presentation
             }
         }
 
-        private void showExpediente()
+        /*private void showExpediente()
         {
             DataSet objData = new DataSet();
             objData = objExp.showExpediente();
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
+        }*/
+	[WebMethod]
+        public static object ListCasos()
+        {
+            ExpedienteLog objExp = new ExpedienteLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objExp.showExpediente();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var expedienteList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un caso).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                expedienteList.Add(new
+                {
+                    ExpedienteID = row["idexpediente"],
+		    Caso = row["caso_idcaso"],
+                    Codigo = row["codigo"],
+                    Fechacreacion = row["creacionfecha"],
+		    Accionrealizada = row["accionrealizada"],
+		    Razon = row["razon"],
+                    Relevancia = row["relevancia"],
+                    Evidencia = row["evidencia"],
+                    Comentario = row["comentario"],
+                    Estado = row["estado"],
+                    
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = expedienteList };
         }
+
+        /* Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool DeleteExpediente(int id)
+        {
+            // Crear una instancia de la clase de lógica de productos
+            ExpedienteLog objExp = new ExpedienteLog();
+
+            // Invocar al método para eliminar el producto y devolver el resultado
+            return objExp.deleteExpediente(id);
+        }*/
         private void showCasoDDL()
         {
             DDLEmpresa.DataSource = objCas.showCasoDDL();

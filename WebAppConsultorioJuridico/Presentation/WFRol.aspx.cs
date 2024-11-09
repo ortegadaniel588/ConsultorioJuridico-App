@@ -1,6 +1,8 @@
 ﻿using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,17 +20,46 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                ShowRoles();
+                // Aquí se pueden invocar métodos si es necesario
             }
         }
 
-        private void ShowRoles()
+        [WebMethod]
+        public static object ListRoles()
         {
+            RolLog objRol = new RolLog();
             DataSet ds = objRol.showRoles();
-            GVRoles.DataSource = ds;
-            GVRoles.DataBind();
+            var rolesList = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                rolesList.Add(new
+                {
+                    idrol = row["idrol"],
+                    nombre = row["nombre"],
+                    descripcion = row["descripcion"]
+                });
+            }
+
+            return new { data = rolesList };
         }
 
+        [WebMethod]
+        public static bool DeleteRole(int id)
+        {
+            RolLog objRol = new RolLog();
+            return objRol.deleteRol(id);
+        }
+
+        // Método para limpiar los TextBox
+        private void Clear()
+        {
+            TBId.Value = "";
+            TBNombre.Text = "";
+            TBDescripcion.Text = "";
+        }
+
+        // Eventos que se ejecutan cuando se da clic en los botones
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _nombre = TBNombre.Text;
@@ -39,7 +70,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El rol se guardó exitosamente!";
-                ShowRoles();
+                Clear();
             }
             else
             {
@@ -49,7 +80,12 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idRol = Convert.ToInt32(TBId.Text);
+            if (string.IsNullOrEmpty(TBId.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado un rol para actualizar.";
+                return;
+            }
+            _idRol = Convert.ToInt32(TBId.Value);
             _nombre = TBNombre.Text;
             _descripcion = TBDescripcion.Text;
 
@@ -58,41 +94,11 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El rol se actualizó exitosamente!";
-                ShowRoles();
+                Clear();
             }
             else
             {
                 LblMsg.Text = "Error al actualizar";
-            }
-        }
-
-        protected void GVRoles_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Edit")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVRoles.Rows[index];
-                TBId.Text = row.Cells[0].Text;
-                TBNombre.Text = row.Cells[1].Text;
-                TBDescripcion.Text = row.Cells[2].Text;
-            }
-            else if (e.CommandName == "Delete")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVRoles.Rows[index];
-                int idRol = Convert.ToInt32(row.Cells[0].Text);
-
-                executed = objRol.deleteRol(idRol);
-
-                if (executed)
-                {
-                    LblMsg.Text = "El rol se eliminó exitosamente!";
-                    ShowRoles();
-                }
-                else
-                {
-                    LblMsg.Text = "Error al eliminar";
-                }
             }
         }
     }

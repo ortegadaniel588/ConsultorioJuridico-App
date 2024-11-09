@@ -1,6 +1,10 @@
 ﻿using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,17 +22,46 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                ShowPermisos();
+                // Aquí se pueden invocar métodos si es necesario
             }
         }
 
-        private void ShowPermisos()
+        [WebMethod]
+        public static object ListPermissions()
         {
+            PermisoLog objPermiso = new PermisoLog();
             DataSet ds = objPermiso.ShowPermisos();
-            GVPermisos.DataSource = ds;
-            GVPermisos.DataBind();
+            var permissionsList = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                permissionsList.Add(new
+                {
+                    idpermiso = row["idpermiso"],
+                    nombre = row["nombre"],
+                    descripcion = row["descripcion"]
+                });
+            }
+
+            return new { data = permissionsList };
         }
 
+        [WebMethod]
+        public static bool DeletePermission(int id)
+        {
+            PermisoLog objPer = new PermisoLog();
+            return objPer.DeletePermiso(id);
+        }
+
+        // Método para limpiar los TextBox
+        private void Clear()
+        {
+            TBId.Value = "";
+            TBNombre.Text = "";
+            TBDescripcion.Text = "";
+        }
+
+        // Eventos que se ejecutan cuando se da clic en los botones
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _nombre = TBNombre.Text;
@@ -39,7 +72,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El permiso se guardó exitosamente!";
-                ShowPermisos();
+                Clear();
             }
             else
             {
@@ -49,7 +82,12 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idPermiso = Convert.ToInt32(TBId.Text);
+            if (string.IsNullOrEmpty(TBId.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado un producto para actualizar.";
+                return;
+            }
+            _idPermiso = Convert.ToInt32(TBId.Value);
             _nombre = TBNombre.Text;
             _descripcion = TBDescripcion.Text;
 
@@ -58,14 +96,14 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "El permiso se actualizó exitosamente!";
-                ShowPermisos();
+                Clear();
             }
             else
             {
                 LblMsg.Text = "Error al actualizar";
             }
         }
-
+        /*
         protected void GVPermisos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Edit")
@@ -87,13 +125,12 @@ namespace Presentation
                 if (executed)
                 {
                     LblMsg.Text = "El permiso se eliminó exitosamente!";
-                    ShowPermisos();
                 }
                 else
                 {
                     LblMsg.Text = "Error al eliminar";
                 }
             }
-        }
+        }*/
     }
 }

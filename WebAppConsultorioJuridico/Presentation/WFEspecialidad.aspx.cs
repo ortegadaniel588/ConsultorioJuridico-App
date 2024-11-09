@@ -1,6 +1,10 @@
 ﻿using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -18,17 +22,46 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                ShowEspecialidades();
+                // Aquí se pueden invocar métodos si es necesario
             }
         }
 
-        private void ShowEspecialidades()
+        [WebMethod]
+        public static object ListEspecialidades()
         {
+            EspecialidadLog objEsp = new EspecialidadLog();
             DataSet ds = objEsp.showEspecialidad();
-            GVEspecialidades.DataSource = ds;
-            GVEspecialidades.DataBind();
+            var especialidadesList = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                especialidadesList.Add(new
+                {
+                    idespecialidad = row["idespecialidad"],
+                    nombre = row["nombre"],
+                    descripcion = row["descripcion"]
+                });
+            }
+
+            return new { data = especialidadesList };
         }
 
+        [WebMethod]
+        public static bool DeleteEspecialidad(int id)
+        {
+            EspecialidadLog objEsp = new EspecialidadLog();
+            return objEsp.deleteEspecialidad(id);
+        }
+
+        // Método para limpiar los TextBox
+        private void Clear()
+        {
+            TBId.Text = "";
+            TBNombre.Text = "";
+            TBDescripcion.Text = "";
+        }
+
+        // Eventos que se ejecutan cuando se da clic en los botones
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _nombre = TBNombre.Text;
@@ -39,7 +72,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "La especialidad se guardó exitosamente!";
-                ShowEspecialidades();
+                Clear();
             }
             else
             {
@@ -58,7 +91,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsg.Text = "La especialidad se actualizó exitosamente!";
-                ShowEspecialidades();
+                Clear();
             }
             else
             {
@@ -87,7 +120,6 @@ namespace Presentation
                 if (executed)
                 {
                     LblMsg.Text = "La especialidad se eliminó exitosamente!";
-                    ShowEspecialidades();
                 }
                 else
                 {

@@ -79,7 +79,6 @@
                 "columns": [
                     { "data": "SeguimientoID" },
                     { "data": "Caso" },
-                    { "data": "Empresa" },
                     { "data": "Fechaactualizacion" },
                     { "data": "Proceso" },
                     { "data": "Descripcion" },

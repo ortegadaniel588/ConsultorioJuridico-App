@@ -23,14 +23,14 @@ namespace Logic
             return objTipo.SaveTipo(_nombre,_descripcion);
         }
 
-        public bool UpdateTipo(int _idtipo, string _nombre, string _descripcion)
+        public bool UpdateTipo(int _id, string _nombre, string _descripcion)
         {
-            return objTipo.UpdateTipo(_idtipo, _nombre,_descripcion);
+            return objTipo.UpdateTipo(_id, _nombre,_descripcion);
         }
 
-        public bool DeleteTipo(int _idtipo)
+        public bool DeleteTipo(int _id)
         {
-            return objUsuario.DeleteUsuario(_idtipo);
+            return objUsuario.DeleteUsuario(_id);
         }
     }
 }

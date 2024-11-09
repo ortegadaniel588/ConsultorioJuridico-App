@@ -127,9 +127,10 @@
 
         // Cargar los datos en los TextBox y DDL para actualizar
         function loadSeguimientoData(rowData) {
-            $('#<%= SeguimientoID.ClientID %>').val(rowData.SeguimientoID);
-            $('#<%= TBFechaactualizacion.ClientID %>').val(rowData.Caso);
-            $('#<%= TBProceso.ClientID %>').val(rowData.Fechaactualizacion);
+            $('#<%= SeguimientoID.ClientID %>').val(rowData.SeguimientoID );
+            $('#<%= DDCaso_idcaso.ClientID %>').val(rowData.Caso);
+            $('#<%= TBFechaactualizacion.ClientID %>').val(rowData.Fechaactualizacion);
+            $('#<%= TBProceso.ClientID %>').val(rowData.Proceso);
             $('#<%= TBDescripcion.ClientID %>').val(rowData.Descripcion);
             $('#<%= TBEstado.ClientID %>').val(rowData.Estado);
         }

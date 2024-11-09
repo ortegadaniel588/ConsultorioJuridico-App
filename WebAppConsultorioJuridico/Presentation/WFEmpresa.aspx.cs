@@ -32,13 +32,58 @@ namespace Presentation
             }
         }
 
-        private void showEmpresa()
+        /*private void showEmpresa()
         {
             DataSet objData = new DataSet();
             objData = objEmp.showEmpresa();
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
+        }*/
+
+	[WebMethod]
+        public static object ListCasos()
+        {
+            EmpresaLog objEmp = new EmpresaLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objEmp.showEmpresa();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var empresasList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un empresa).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                empresasList.Add(new
+                {
+                    EmpresaID = row["idempresa"],
+                    Numeronit = row["creacionfecha"],
+                    Nombre = row["numeronit"],
+		    Fechaapertura = row["nombre"],
+		    Mision = row["mision"],
+                    Vision = row["vision"],
+                    Dirrecion = row["dirrecion"],
+                    Telefono = row["telefono"],
+                    Telefono2 = row["telefono2"],
+                    Correo = row["correo"],
+                    
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = empresasList };
         }
+
+        /* Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool DeleteEmpresa(int id)
+        {
+            // Crear una instancia de la clase de lógica de productos
+            EmpresaLog objEmp = new EmpresaLog();
+
+            // Invocar al método para eliminar el producto y devolver el resultado
+            return objEmp.deleteEmpresa(id);
+        }*/
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {

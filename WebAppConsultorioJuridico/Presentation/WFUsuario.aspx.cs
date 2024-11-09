@@ -1,6 +1,8 @@
 ﻿using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,62 +11,74 @@ namespace Presentation
     public partial class WFUsuario : System.Web.UI.Page
     {
         UsuarioLog objUsuario = new UsuarioLog();
-        RolLog objRol = new RolLog(); // Asumiendo que tienes una clase para roles
-        PersonaLog objPersona = new PersonaLog(); // Asumiendo que tienes una clase para personas
 
-        private int _idUsuario, _rolId, _personaId;
+        private int _idUsuario;
         private string _usuario, _contrasena, _estado;
+        private int _rolId, _personaId;
         private bool executed = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ShowUsuarios();
-                ShowRolesDDL();
-                ShowPersonasDDL();
+                // Aquí se pueden invocar métodos si es necesario
             }
         }
 
-        private void ShowUsuarios()
+        [WebMethod]
+        public static object ListUsuarios()
         {
+            UsuarioLog objUsuario = new UsuarioLog();
             DataSet ds = objUsuario.ShowUsuarios();
-            GVUsuarios.DataSource = ds;
-            GVUsuarios.DataBind();
+            var usuariosList = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                usuariosList.Add(new
+                {
+                    idusuario = row["idusuario"],
+                    usuario = row["usuario"],
+                    contrasena = row["contrasena"],
+                    rolId = row["rolId"],
+                    personaId = row["personaId"],
+                    estado = row["estado"]
+                });
+            }
+
+            return new { data = usuariosList };
         }
 
-        private void ShowRolesDDL()
+        [WebMethod]
+        public static bool DeleteUsuario(int id)
         {
-            DDLRol.DataSource = objRol.showRolesDDL();
-            DDLRol.DataValueField = "idrol";
-            DDLRol.DataTextField = "nombre";
-            DDLRol.DataBind();
-            DDLRol.Items.Insert(0, "Seleccione");
+            UsuarioLog objUsu = new UsuarioLog();
+            return objUsu.DeleteUsuario(id);
         }
 
-        private void ShowPersonasDDL()
+        private void Clear()
         {
-            DDLPersona.DataSource = objPersona.ShowPersonasDDL();
-            DDLPersona.DataValueField = "idpersona";
-            DDLPersona.DataTextField = "nombres";
-            DDLPersona.DataBind();
-            DDLPersona.Items.Insert(0, "Seleccione");
+            TBId.Value = "";
+            TBUsuario.Text = "";
+            TBContrasena.Text = "";
+            TBRolId.Text = "";
+            TBPersonaId.Text = "";
+            TBEstado.Text = "";
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _usuario = TBUsuario.Text;
             _contrasena = TBContrasena.Text;
-            _rolId = Convert.ToInt32(DDLRol.SelectedValue);
-            _personaId = Convert.ToInt32(DDLPersona.SelectedValue);
-            _estado = DDLEstado.SelectedValue;
+            _rolId = Convert.ToInt32(TBRolId.Text);
+            _personaId = Convert.ToInt32(TBPersonaId.Text);
+            _estado = TBEstado.Text;
 
             executed = objUsuario.SaveUsuario(_usuario, _contrasena, _rolId, _personaId, _estado);
 
             if (executed)
             {
                 LblMsg.Text = "El usuario se guardó exitosamente!";
-                ShowUsuarios();
+                Clear();
             }
             else
             {
@@ -74,55 +88,28 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idUsuario = Convert.ToInt32(TBId.Text);
+            if (string.IsNullOrEmpty(TBId.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado un usuario para actualizar.";
+                return;
+            }
+            _idUsuario = Convert.ToInt32(TBId.Value);
             _usuario = TBUsuario.Text;
             _contrasena = TBContrasena.Text;
-            _rolId = Convert.ToInt32(DDLRol.SelectedValue);
-            _personaId = Convert.ToInt32(DDLPersona.SelectedValue);
-            _estado = DDLEstado.SelectedValue;
+            _rolId = Convert.ToInt32(TBRolId.Text);
+            _personaId = Convert.ToInt32(TBPersonaId.Text);
+            _estado = TBEstado.Text;
 
             executed = objUsuario.UpdateUsuario(_idUsuario, _usuario, _contrasena, _rolId, _personaId, _estado);
 
             if (executed)
             {
                 LblMsg.Text = "El usuario se actualizó exitosamente!";
-                ShowUsuarios();
+                Clear();
             }
             else
             {
                 LblMsg.Text = "Error al actualizar";
-            }
-        }
-
-        protected void GVUsuarios_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Edit")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVUsuarios.Rows[index];
-                TBId.Text = row.Cells[0].Text;
-                TBUsuario.Text = row.Cells[1].Text;
-                DDLRol.SelectedValue = row.Cells[2].Text;
-                DDLPersona.SelectedValue = row.Cells[3].Text;
-                DDLEstado.SelectedValue = row.Cells[4].Text;
-            }
-            else if (e.CommandName == "Delete")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVUsuarios.Rows[index];
-                int idUsuario = Convert.ToInt32(row.Cells[0].Text);
-
-                executed = objUsuario.DeleteUsuario(idUsuario);
-
-                if (executed)
-                {
-                    LblMsg.Text = "El usuario se eliminó exitosamente!";
-                    ShowUsuarios();
-                }
-                else
-                {
-                    LblMsg.Text = "Error al eliminar";
-                }
             }
         }
     }

@@ -67,14 +67,22 @@
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Web.config" />
+    <Content Include="WFAsignarredsocial.aspx" />
+    <Content Include="WFCaso.aspx" />
+    <Content Include="WFEmpresa.aspx" />
+    <Content Include="WFEstado.aspx" />
+    <Content Include="WFExpediente.aspx" />
     <Content Include="WFPersona.aspx" />
     <Content Include="WFPermiso.aspx" />
     <Content Include="WFEspecialidad.aspx" />
+    <Content Include="WFRedsocial.aspx" />
+    <Content Include="WFSeguimiento.aspx" />
+    <Content Include="WFTipo.aspx" />
     <Content Include="WFUsuario.aspx" />
     <Content Include="WFRol.aspx" />
     <Content Include="WFCita.aspx" />
-    <Content Include="WFHorario.aspx" />  
-   </ItemGroup>
+    <Content Include="WFHorario.aspx" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Index.aspx.cs">
       <DependentUpon>Index.aspx</DependentUpon>
@@ -98,6 +106,41 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WFAsignarredsocial.aspx.cs">
+      <DependentUpon>WFAsignarredsocial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAsignarredsocial.aspx.designer.cs">
+      <DependentUpon>WFAsignarredsocial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFCaso.aspx.cs">
+      <DependentUpon>WFCaso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFCaso.aspx.designer.cs">
+      <DependentUpon>WFCaso.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFEmpresa.aspx.cs">
+      <DependentUpon>WFEmpresa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFEmpresa.aspx.designer.cs">
+      <DependentUpon>WFEmpresa.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFEstado.aspx.cs">
+      <DependentUpon>WFEstado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFEstado.aspx.designer.cs">
+      <DependentUpon>WFEstado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFExpediente.aspx.cs">
+      <DependentUpon>WFExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFExpediente.aspx.designer.cs">
+      <DependentUpon>WFExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WFPersona.aspx.cs">
       <DependentUpon>WFPersona.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -119,6 +162,27 @@
     <Compile Include="WFEspecialidad.aspx.designer.cs">
       <DependentUpon>WFEspecialidad.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WFRedsocial.aspx.cs">
+      <DependentUpon>WFRedsocial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFRedsocial.aspx.designer.cs">
+      <DependentUpon>WFRedsocial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFSeguimiento.aspx.cs">
+      <DependentUpon>WFSeguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFSeguimiento.aspx.designer.cs">
+      <DependentUpon>WFSeguimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFTipo.aspx.cs">
+      <DependentUpon>WFTipo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFTipo.aspx.designer.cs">
+      <DependentUpon>WFTipo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WFUsuario.aspx.cs">
       <DependentUpon>WFUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -139,8 +203,8 @@
     </Compile>
     <Compile Include="WFCita.aspx.designer.cs">
       <DependentUpon>WFCita.aspx</DependentUpon>
-	</Compile>
-	<Compile Include="WFHorario.aspx.cs">
+    </Compile>
+    <Compile Include="WFHorario.aspx.cs">
       <DependentUpon>WFHorario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

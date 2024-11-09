@@ -1,6 +1,10 @@
 ﻿using Logic;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -9,9 +13,9 @@ namespace Presentation
     public partial class WFCita : System.Web.UI.Page
     {
         CitaLog objCita = new CitaLog();
-        HorarioLog objHorario = new HorarioLog(); // Asumiendo que tienes una clase para horarios
 
-        private int _idCita, _horarioId;
+        private int _idCita;
+        private int _horarioId;
         private string _asunto, _estado;
         private bool executed = false;
 
@@ -19,39 +23,60 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                ShowCitas();
-                ShowHorariosDDL();
+                // Aquí se pueden invocar métodos si es necesario
             }
         }
 
-        private void ShowCitas()
+        [WebMethod]
+        public static object ListCitas()
         {
+            CitaLog objCita = new CitaLog();
             DataSet ds = objCita.ShowCitas();
-            GVCitas.DataSource = ds;
-            GVCitas.DataBind();
+            var citasList = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                citasList.Add(new
+                {
+                    idcita = row["idcita"],
+                    horarioid = row["horarioid"],
+                    asunto = row["asunto"],
+                    estado = row["estado"]
+                });
+            }
+
+            return new { data = citasList };
         }
 
-        private void ShowHorariosDDL()
+        [WebMethod]
+        public static bool DeleteCita(int id)
         {
-            DDLHorarios.DataSource = objHorario.ShowHorariosDDL();
-            DDLHorarios.DataValueField = "idhorario";
-            DDLHorarios.DataTextField = "descripcion"; // Ajusta esto según el campo que quieras mostrar
-            DDLHorarios.DataBind();
-            DDLHorarios.Items.Insert(0, "Seleccione");
+            CitaLog objCita = new CitaLog();
+            return objCita.DeleteCita(id);
         }
 
+        // Método para limpiar los TextBox
+        private void Clear()
+        {
+            TBId.Value = "";
+            TBHorarioId.Text = "";
+            TBAsunto.Text = "";
+            TBEstado.Text = "";
+        }
+
+        // Eventos que se ejecutan cuando se da clic en los botones
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _horarioId = Convert.ToInt32(DDLHorarios.SelectedValue);
+            _horarioId = Convert.ToInt32(TBHorarioId.Text);
             _asunto = TBAsunto.Text;
-            _estado = DDLEstado.SelectedValue;
+            _estado = TBEstado.Text;
 
             executed = objCita.InsertCita(_horarioId, _asunto, _estado);
 
             if (executed)
             {
                 LblMsg.Text = "La cita se guardó exitosamente!";
-                ShowCitas();
+                Clear();
             }
             else
             {
@@ -61,52 +86,21 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idCita = Convert.ToInt32(TBId.Text);
-            _horarioId = Convert.ToInt32(DDLHorarios.SelectedValue);
+            _idCita = Convert.ToInt32(TBId.Value);
+            _horarioId = Convert.ToInt32(TBHorarioId.Text);
             _asunto = TBAsunto.Text;
-            _estado = DDLEstado.SelectedValue;
+            _estado = TBEstado.Text;
 
             executed = objCita.UpdateCita(_idCita, _horarioId, _asunto, _estado);
 
             if (executed)
             {
                 LblMsg.Text = "La cita se actualizó exitosamente!";
-                ShowCitas();
+                Clear();
             }
             else
             {
                 LblMsg.Text = "Error al actualizar";
-            }
-        }
-
-        protected void GVCitas_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Edit")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVCitas.Rows[index];
-                TBId.Text = row.Cells[0].Text;
-                DDLHorarios.SelectedValue = row.Cells[1].Text;
-                TBAsunto.Text = row.Cells[2].Text;
-                DDLEstado.SelectedValue = row.Cells[3].Text;
-            }
-            else if (e.CommandName == "Delete")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVCitas.Rows[index];
-                int idCita = Convert.ToInt32(row.Cells[0].Text);
-
-                executed = objCita.DeleteCita(idCita);
-
-                if (executed)
-                {
-                    LblMsg.Text = "La cita se eliminó exitosamente!";
-                    ShowCitas();
-                }
-                else
-                {
-                    LblMsg.Text = "Error al eliminar";
-                }
             }
         }
     }

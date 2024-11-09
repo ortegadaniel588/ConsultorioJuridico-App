@@ -21,7 +21,7 @@ namespace Presentation
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBId;
+        protected global::System.Web.UI.WebControls.HiddenField TBId;
 
         /// <summary>
         /// Control Label1.
@@ -33,13 +33,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control DDLHorarios.
+        /// Control TBHorarioId.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLHorarios;
+        protected global::System.Web.UI.WebControls.TextBox TBHorarioId;
 
         /// <summary>
         /// Control Label2.
@@ -69,13 +69,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control DDLEstado.
+        /// Control TBEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLEstado;
+        protected global::System.Web.UI.WebControls.TextBox TBEstado;
 
         /// <summary>
         /// Control BtnSave.
@@ -103,14 +103,5 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblMsg;
-
-        /// <summary>
-        /// Control GVCitas.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GVCitas;
     }
 }

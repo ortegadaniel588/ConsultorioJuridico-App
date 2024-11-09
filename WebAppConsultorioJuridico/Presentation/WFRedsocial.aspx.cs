@@ -25,13 +25,51 @@ namespace Presentation
             }
         }
 
-        private void showRedsocial() 
+        /*private void showRedsocial() 
         {
             DataSet objData = new DataSet();
             objData = objReds.showRedsocial();
             GVRedsocial.DataSource = objData;
             GVRedsocial.DataBind();
+        }*/
+
+	[WebMethod]
+        public static object ListRedesSociales()
+        {
+            RedsocialLog objCas = new RedsocialLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objRed.showRedsocial();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var redessocialesList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un caso).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                redessocialesList.Add(new
+                {
+                    RedsocialID = row["idredsocial"],
+                    Nombre = row["nombre"],
+                    Descripcion = row["descripcion"],
+                    
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = redessocialesList};
         }
+
+        /* Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool DeleteRedsocial(int id)
+        {
+            // Crear una instancia de la clase de lógica de productos
+            RedsocialLog objRed = new RedsocialLog();
+
+            // Invocar al método para eliminar el producto y devolver el resultado
+            return objRed.deleteRedsocial(id);
+        }*/
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {

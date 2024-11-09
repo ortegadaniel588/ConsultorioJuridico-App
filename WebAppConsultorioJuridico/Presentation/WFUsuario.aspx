@@ -1,50 +1,125 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsuario.aspx.cs" Inherits="Presentation.WFUsuario" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:TextBox ID="TBId" runat="server" Visible="false"></asp:TextBox>
-    <%--Usuario--%>
-    <asp:Label ID="Label1" runat="server" Text="Ingrese el Usuario"></asp:Label>
-    <asp:TextBox ID="TBUsuario" runat="server"></asp:TextBox>
-    <br />
-    <%--Contraseña--%>
-    <asp:Label ID="Label2" runat="server" Text="Ingrese la Contraseña"></asp:Label>
-    <asp:TextBox ID="TBContrasena" runat="server" TextMode="Password"></asp:TextBox>
-    <br />
-    <%--Rol--%>
-    <asp:Label ID="Label3" runat="server" Text="Seleccione el Rol"></asp:Label>
-    <asp:DropDownList ID="DDLRol" runat="server"></asp:DropDownList>
-    <br />
-    <%--Persona--%>
-    <asp:Label ID="Label4" runat="server" Text="Seleccione la Persona"></asp:Label>
-    <asp:DropDownList ID="DDLPersona" runat="server"></asp:DropDownList>
-    <br />
-    <%--Estado--%>
-    <asp:Label ID="Label5" runat="server" Text="Seleccione el Estado"></asp:Label>
-    <asp:DropDownList ID="DDLEstado" runat="server">
-        <asp:ListItem Value="activo">Activo</asp:ListItem>
-        <asp:ListItem Value="inactivo">Inactivo</asp:ListItem>
-    </asp:DropDownList>
-    <br />
-    <%--Botones Guardar y Actualizar--%>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
+    <input type="hidden" id="TBId" runat="server" />
+    
+    <div>
+        <table>
+            <tr>
+                <td>Usuario:</td>
+                <td>
+                    <asp:TextBox ID="TBUsuario" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Contraseña:</td>
+                <td>
+                    <asp:TextBox ID="TBContrasena" runat="server" TextMode="Password"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Rol ID:</td>
+                <td>
+                    <asp:TextBox ID="TBRolId" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Persona ID:</td>
+                <td>
+                    <asp:TextBox ID="TBPersonaId" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td>Estado:</td>
+                <td>
+                    <asp:TextBox ID="TBEstado" runat="server"></asp:TextBox>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
     <div>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
         <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+        <asp:Label ID="LblMsg" runat="server"></asp:Label>
     </div>
-    <br />
-    <%--Lista de Usuarios--%>
+
     <div>
-        <asp:GridView ID="GVUsuarios" runat="server" AutoGenerateColumns="False" OnRowCommand="GVUsuarios_RowCommand">
-            <Columns>
-                <asp:BoundField DataField="id" HeaderText="ID" />
-                <asp:BoundField DataField="usuario" HeaderText="Usuario" />
-                <asp:BoundField DataField="rol" HeaderText="Rol" />
-                <asp:BoundField DataField="persona" HeaderText="Persona" />
-                <asp:BoundField DataField="estado" HeaderText="Estado" />
-                <asp:ButtonField ButtonType="Button" CommandName="Edit" Text="Editar" />
-                <asp:ButtonField ButtonType="Button" CommandName="Delete" Text="Eliminar" />
-            </Columns>
-        </asp:GridView>
+        <table id="DTUsuarios">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Contraseña</th>
+                    <th>Rol ID</th>
+                    <th>Persona ID</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DTUsuarios').DataTable({
+                "ajax": {
+                    "url": "WFUsuario.aspx/ListUsuarios",
+                    "type": "POST",
+                    "datatype": "json",
+                    "contentType": "application/json; charset=utf-8"
+                },
+                "columns": [
+                    { "data": "idusuario" },
+                    { "data": "usuario" },
+                    { "data": "contrasena" },
+                    { "data": "rolId" },
+                    { "data": "personaId" },
+                    { "data": "estado" },
+                    {
+                        "data": "idusuario",
+                        "render": function (data) {
+                            return "<button type='button' onclick='editUsuario(" + data + ")'>Editar</button> " +
+                                "<button type='button' onclick='deleteUsuario(" + data + ")'>Eliminar</button>";
+                        }
+                    }
+                ]
+            });
+        });
+
+        function editUsuario(id) {
+            var table = $('#DTUsuarios').DataTable();
+            var data = table.rows().data();
+            var usuarioData = data.filter(function (item) { return item.idusuario == id; })[0];
+
+            $('#<%= TBId.ClientID %>').val(usuarioData.idusuario);
+            $('#<%= TBUsuario.ClientID %>').val(usuarioData.usuario);
+            $('#<%= TBContrasena.ClientID %>').val(usuarioData.contrasena);
+            $('#<%= TBRolId.ClientID %>').val(usuarioData.rolId);
+            $('#<%= TBPersonaId.ClientID %>').val(usuarioData.personaId);
+            $('#<%= TBEstado.ClientID %>').val(usuarioData.estado);
+        }
+
+        function deleteUsuario(id) {
+            if (confirm('¿Está seguro de eliminar este usuario?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "WFUsuario.aspx/DeleteUsuario",
+                    data: JSON.stringify({ id: id }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.d) {
+                            alert('Usuario eliminado exitosamente');
+                            $('#DTUsuarios').DataTable().ajax.reload();
+                        } else {
+                            alert('Error al eliminar el usuario');
+                        }
+                    },
+                    error: function (error) {
+                        alert('Error al procesar la solicitud');
+                    }
+                });
+            }
+        }
+    </script>
 </asp:Content>

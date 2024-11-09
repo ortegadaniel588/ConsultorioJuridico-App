@@ -32,13 +32,52 @@ namespace Presentation
             }
         }
 
-        private void showAsignarredsocial()
+        /*private void showAsignarredsocial()
         {
             DataSet objData = new DataSet();
             objData = objAsig.showAsignarredsocial();
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
+        }*/
+
+        [WebMethod]
+        public static object ListAsignarredessociales()
+        {
+            AsignarredsocialLog objAsig = new AsignarredsocialLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objAsig.showAsignarredsocial();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var asignarredessocialesList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un caso).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                asignarredessocialesList.Add(new
+                {
+                    AsignarredsocialID = row["idasignarredsocial"],
+                    Empresa = row["empresa_idempresa"],
+                    Redsocial = row["redsocial_idredsocial"],
+		    Url = row["url"],
+                    
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = asignarredessocialesList };
         }
+
+        /* Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool DeleteAsignarredsocial(int id)
+        {
+            // Crear una instancia de la clase de lógica de asignarredsocial
+            AsignarredsocialLog objAsig = new AsignarredsocialLog();
+
+            // Invocar al método para eliminar el asignar red social y devolver el resultado
+            return objAsig.deleteAsignarredsocial(id);
+        }*/
         private void showEmpresaDDL()
         {
             DDLEmpresa.DataSource = objEmp.showEmpresaDDL();

@@ -34,7 +34,7 @@ namespace Data
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectEstados";
+            objSelectCmd.CommandText = "spSelectEstado";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -73,7 +73,7 @@ namespace Data
         }
 
         // M�todo para actualizar un Estado existente
-        public bool updateEstado(int idpermiso, string nombre, string descripcion)
+        public bool updateEstado(int idestado, string nombre, string descripcion)
         {
             bool executed = false;
             int row;
@@ -83,7 +83,7 @@ namespace Data
             objUpdateCmd.CommandText = "spUpdateEstado";
             objUpdateCmd.CommandType = CommandType.StoredProcedure;
 
-            objUpdateCmd.Parameters.Add("p_idestado", MySqlDbType.Int32).Value = idpermiso;
+            objUpdateCmd.Parameters.Add("p_idestado", MySqlDbType.Int32).Value = idestado;
             objUpdateCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = nombre;
             objUpdateCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = descripcion;
 

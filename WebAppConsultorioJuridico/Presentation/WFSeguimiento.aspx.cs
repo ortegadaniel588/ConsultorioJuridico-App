@@ -33,13 +33,53 @@ namespace Presentation
             }
         }
 
-        private void showSeguimiento()
+        /*/private void showSeguimiento()
         {
             DataSet objData = new DataSet();
             objData = objSeg.showSeguimiento();
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
+        }*/
+        [WebMethod]
+        public static object ListSeguimientos()
+        {
+            SeguimientoLog objSeg = new SeguimientoLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objSeg.showSeguimiento();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var seguimientosList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un seguimiento).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                seguimientosList.Add(new
+                {
+                    SeguimientoID = row["idcaso"],
+                    Caso = row["codigo"],
+                    Fechaactualizacion = row["empresa_idempresa"],
+		    Proceso = row["fechadeapertura"],
+		    Descripcion = row["fechacierre"],
+                    Estado = row["asunto"],
+                    
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = seguimientosList };
         }
+
+        /* Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool DeleteSeguimiento(int id)
+        {
+            // Crear una instancia de la clase de lógica de productos
+            SeguimientoLog objSeg = new SeguimientoLog();
+
+            // Invocar al método para eliminar el producto y devolver el resultado
+            return objSeg.deleteCaso(id);
+        }*/
         private void showCasoDDL()
         {
             DDLEmpresa.DataSource = objCas.showCasoDDL();

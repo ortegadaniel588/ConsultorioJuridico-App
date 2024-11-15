@@ -15,9 +15,10 @@ namespace Data
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
+
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectExpedientes";
+            objSelectCmd.CommandText = "spSelectExpendientes";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
@@ -25,18 +26,18 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo Expediente
-        public bool saveExpediente(string _codigo, int _caso_idcaso, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
+        public bool saveExpediente(int _caso_idcaso, string _codigo, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertExpediente";
+            objSelectCmd.CommandText = "spInsertExpendiente";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
+            objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_accionrealizada", MySqlDbType.VarString).Value = _accionrealizada;
             objSelectCmd.Parameters.Add("p_razon", MySqlDbType.VarString).Value = _razon;
             objSelectCmd.Parameters.Add("p_relevancia", MySqlDbType.VarString).Value = _relevancia;
@@ -62,19 +63,19 @@ namespace Data
         }
 
         //Metodo para actulizar un Expediente
-        public bool updateExpediente(int _id, string _codigo, int _caso_idcaso, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
+        public bool updateExpediente(int _id, int _caso_idcaso, string _codigo,  string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateExpediente";
+            objSelectCmd.CommandText = "spUpdateExpendiente";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             objSelectCmd.Parameters.Add("p_idexpendiente", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
+            objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
             objSelectCmd.Parameters.Add("p_accionrealizada", MySqlDbType.VarString).Value = _accionrealizada;
             objSelectCmd.Parameters.Add("p_razon", MySqlDbType.VarString).Value = _razon;
             objSelectCmd.Parameters.Add("p_relevancia", MySqlDbType.VarString).Value = _relevancia;
@@ -106,7 +107,7 @@ namespace Data
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteExpediente"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spDeleteExpendiente"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
             try

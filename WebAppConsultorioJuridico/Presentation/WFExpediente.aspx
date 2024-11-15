@@ -15,11 +15,8 @@
             <br />
             <%--Código--%>
             <asp:Label ID="Label2" runat="server" Text="Ingrese el código"></asp:Label>
+
             <asp:TextBox ID="TBCodigo" runat="server" Visible="false"></asp:TextBox>
-            <br />
-            <%--Fecha de creación--%>
-            <asp:Label ID="Label3" runat="server" Text="Seleccione la fecha"></asp:Label>
-            <asp:TextBox ID="TBCracionfecha" runat="server" Visible="false"></asp:TextBox>
             <br />
             <%--Acción realizada--%>
             <asp:Label ID="Label4" runat="server" Text="Ingrese la acción realizada"></asp:Label>
@@ -101,7 +98,8 @@
                 },
                 "columns": [
                     { "data": "ExpedienteID" },
-                    { "data": "Caso", "visible": false  },
+                    { "data": "FKCaso", "visible": false },
+                    { "data": "Caso"},
                     { "data": "Codigo" },
                     { "data": "Fechacreacion" },
                     { "data": "Accionrealizada" },
@@ -157,7 +155,6 @@
             $('#<%= ExpedienteID.ClientID %>').val(rowData.CasoID);
             $('#<%= DDCaso_idcaso.ClientID %>').val(rowData.Codigo);
             $('#<%= TBCodigo.ClientID %>').val(rowData.Empresa);
-            $('#<%= TBCracionfecha.ClientID %>').val(rowData.Fechacierra);
             $('#<%= TBAccionrealizada.ClientID %>').val(rowData.Asunto);
             $('#<%= TBRazon.ClientID %>').val(rowData.Tipo);
             $('#<%= TBRelevancia.ClientID %>').val(rowData.Estado);

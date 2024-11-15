@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -33,7 +34,7 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                showCaso();
+                //showCaso();
                 showEmpresaDDL();
                 showEstadoDDL();
                 showTipoDDL();

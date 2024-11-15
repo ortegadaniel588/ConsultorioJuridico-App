@@ -17,15 +17,15 @@ namespace Logic
             return objExp.showExpediente();
         }
         //Metodo para guardar un nuevo Expediente
-        public bool saveExpediente(string _codigo, int _caso_idcaso, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
+        public bool saveExpediente(int _caso_idcaso, string _codigo, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
         {
-            return objExp.saveExpediente( _codigo, _caso_idcaso, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
+            return objExp.saveExpediente(_caso_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
         }
 
         //Metodo para actulizar un Expediente
-        public bool updateExpediente(int _id, string _codigo, int _caso_idcaso, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
+        public bool updateExpediente(int _id, int _caso_idcaso, string _codigo, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
         {
-            return objExp.updateExpediente(_id, _codigo, _caso_idcaso, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
+            return objExp.updateExpediente(_id, _caso_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
         }
 
         //Metodo para borrar una Expediente

@@ -18,6 +18,11 @@ namespace Logic
             return objEmp.showEmpresa();
         }
 
+        public DataSet showEmpresaDDL()
+        {
+            return objEmp.showEmpresaDDL();
+        }
+
         public DataSet saveEmpresa(string _numeronit, string _nombre, string _mision, string _vision, string _dirrecion, string _telefono, string _telefono2, string _correo)
         {
             return objEmp.showEmpresa();

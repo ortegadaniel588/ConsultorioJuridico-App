@@ -42,7 +42,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo Caso
-        public bool saveCaso(string _codigo, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool saveCaso(string _codigo, string _nombre, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -53,6 +53,7 @@ namespace Data
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
             objSelectCmd.Parameters.Add("p_empresa_id", MySqlDbType.Int32).Value = _empresa_id;
             objSelectCmd.Parameters.Add("p_fechacierre", MySqlDbType.DateTime).Value = _fechacierre;
             objSelectCmd.Parameters.Add("p_asunto", MySqlDbType.VarString).Value = _asunto;
@@ -79,7 +80,7 @@ namespace Data
         }
 
         //Metodo para actulizar un Caso
-        public bool updateCaso(int _id, string _codigo, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool updateCaso(int _id, string _codigo, string _nombre, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -91,6 +92,7 @@ namespace Data
 
             objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
             objSelectCmd.Parameters.Add("p_codigo", MySqlDbType.VarString).Value = _codigo;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
             objSelectCmd.Parameters.Add("p_empresa_id", MySqlDbType.Int32).Value = _empresa_id;
             objSelectCmd.Parameters.Add("p_fechacierre", MySqlDbType.DateTime).Value = _fechacierre;
             objSelectCmd.Parameters.Add("p_asunto", MySqlDbType.VarString).Value = _asunto;

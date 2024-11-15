@@ -12,30 +12,33 @@
             <asp:HiddenField ID="CasoID" runat="server" />
             <asp:Label ID="Label1" runat="server" Text="Ingrese el código"></asp:Label>
             <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
+            <%--NOMBRE--%>
+            <asp:Label ID="Label2" runat="server" Text="Ingrese el nombre"></asp:Label>
+            <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
             <%--EMPRESA--%>
-            <asp:Label ID="Label2" runat="server" Text="Seleccione la empresa"></asp:Label>
+            <asp:Label ID="Label3" runat="server" Text="Seleccione la empresa"></asp:Label>
             <asp:DropDownList ID="DDLEpresa" runat="server"></asp:DropDownList>
             <%--FCIERRE--%>
-            <asp:Label ID="Label3" runat="server" Text="Fecha de cierre"></asp:Label>
-            <asp:TextBox ID="TBFechacierre" runat="server"></asp:TextBox>
+            <asp:Label ID="Label4" runat="server" Text="Fecha de cierre"></asp:Label>
+            <asp:TextBox ID="TBFechacierre" runat="server" TextMode="DateTime"></asp:TextBox>
             <%--ASUNTO--%>
-            <asp:Label ID="Label4" runat="server" Text="Ingrese el asunto"></asp:Label>
+            <asp:Label ID="Label5" runat="server" Text="Ingrese el asunto"></asp:Label>
             <asp:TextBox ID="TBAsunto" runat="server"></asp:TextBox>
             <%--TIPO--%>
-            <asp:Label ID="Label5" runat="server" Text="Selleccione el tipo"></asp:Label>
+            <asp:Label ID="Label6" runat="server" Text="Selleccione el tipo"></asp:Label>
             <asp:DropDownList ID="DDLTipo" runat="server"></asp:DropDownList>
             <%--ESTADO--%>
-            <asp:Label ID="Label6" runat="server" Text="Seleccione el estado"></asp:Label>
+            <asp:Label ID="Label7" runat="server" Text="Seleccione el estado"></asp:Label>
             <asp:DropDownList ID="DDLEstado" runat="server"></asp:DropDownList>
             <%--COMPLEJIDAD--%>
-            <asp:Label ID="Label7" runat="server" Text="Seleccione su complejidad"></asp:Label>
+            <asp:Label ID="Label8" runat="server" Text="Seleccione su complejidad"></asp:Label>
             <asp:DropDownList ID="DDLComplejidad" runat="server">
                 <asp:ListItem Text="alta" Value="1"></asp:ListItem>
                 <asp:ListItem Text="media" Value="2"></asp:ListItem>
                 <asp:ListItem Text="baja" Value="3"></asp:ListItem>
             </asp:DropDownList>
             <%--EMPLEADO--%>
-            <asp:Label ID="Label8" runat="server" Text="Seleccione un abogado"></asp:Label>
+            <asp:Label ID="Label9" runat="server" Text="Seleccione un abogado"></asp:Label>
             <asp:DropDownList ID="DDLEmpleado" runat="server"></asp:DropDownList>
 
         </div>
@@ -56,13 +59,17 @@
             <tr>
                 <th>ID</th>
                 <th>Código</th>
+                <th>Nombre</th>
                 <th>Empresa</th>
                 <th>Fecha apertura</th>
                 <th>Fecha cierre</th>
                 <th>Asunto</th>
+                <th>FkTipo</th>
                 <th>Tipo</th>
+                <th>FkEstado</th>
                 <th>Estado</th>
                 <th>Complejidad</th>
+                <th>FkEmpleado</th>
                 <th>Empleado</th>
             </tr>
         </thead>
@@ -93,14 +100,18 @@
                 "columns": [
                     { "data": "CasoID" },
                     { "data": "Codigo" },
+                    { "data": "Nombre" },
                     { "data": "Empresa" },
                     { "data": "Fechaapertura" },
                     { "data": "Fechacierra" },
                     { "data": "Asunto" },
+                    { "data": "FkTipo", "visible": false },
                     { "data": "Tipo" },
-                    { "data": "Estado", "visible": false },
+                    { "data": "FkEstado", "visible": false },
+                    { "data": "Estado"},
                     { "data": "Complejidad" },
-                    { "data": "Empleado", "visible": false },
+                    { "data": "FkEmpleado", "visible": false },
+                    { "data": "Empleado"},
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -147,6 +158,7 @@
         function loadCasoData(rowData) {
             $('#<%= CasoID.ClientID %>').val(rowData.CasoID);
             $('#<%= TBCodigo.ClientID %>').val(rowData.Codigo);
+            $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
             $('#<%= DDLEpresa.ClientID %>').val(rowData.Empresa);
             $('#<%= TBFechacierre.ClientID %>').val(rowData.Fechacierra);
             $('#<%= TBAsunto.ClientID %>').val(rowData.Asunto);
@@ -172,5 +184,5 @@
                 }
             });
         }*/
- </script>
+    </script>
 </asp:Content>

@@ -15,6 +15,7 @@
         <br />
         <%--Nombre--%>
         <asp:Label ID="Label2" runat="server" Text="Ingresa el nombre"></asp:Label>
+        
         <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
         <br />
         <%--Misión--%>
@@ -27,7 +28,7 @@
         <br />
         <%--Dirreción--%>
         <asp:Label ID="Label6" runat="server" Text="Ingresa la dirreción"></asp:Label>
-        <asp:TextBox ID="TBdirrecion" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBDireccion" runat="server" ></asp:TextBox>
         <br />
         <%--Teléfono--%>
         <asp:Label ID="Label7" runat="server" Text="Ingresa el teléfono"></asp:Label>
@@ -92,15 +93,14 @@
                 },
                 "columns": [
                     { "data": "EmpresaID" },
-                    { "data": "Caso", "visible": false },
-                    { "data": "Codigo" },
-                    { "data": "Fechacreacion" },
-                    { "data": "Accionrealizada" },
-                    { "data": "Razon" },
-                    { "data": "Relevancia" },
-                    { "data": "Evidencia" },
-                    { "data": "Comentario" },
-                    { "data": "Estado" },
+                    { "data": "Numeronit"},
+                    { "data": "Nombre" },
+                    { "data": "Mision" },
+                    { "data": "Vision" },
+                    { "data": "Direccion" },
+                    { "data": "Telefono" },
+                    { "data": "Telefono2" },
+                    { "data": "Correo" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -148,7 +148,6 @@
             $('#<%= EmpresaID.ClientID %>').val(rowData.EmpresaID);
             $('#<%= TBNumeronit.ClientID %>').val(rowData.Numeronit);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
-            $('#<%= TBMision.ClientID %>').val(rowData.Fechaapertura);
             $('#<%= TBVision.ClientID %>').val(rowData.Mision);
             $('#<%= TBdirrecion.ClientID %>').val(rowData.Vision);
             $('#<%= TBdirrecion.ClientID %>').val(rowData.Dirrecion);

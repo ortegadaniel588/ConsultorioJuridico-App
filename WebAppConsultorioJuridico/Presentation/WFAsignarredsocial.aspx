@@ -15,6 +15,7 @@
             <asp:DropDownList ID="DDLEmpresa_idempresa" runat="server" CssClass="form-select"></asp:DropDownList>
             <br />
             <%--Redsocial_idredsocial--%>
+            
             <asp:Label ID="Label2" runat="server" Text="Seleccione la red social"></asp:Label>
             <asp:DropDownList ID="DDLRedsocial_idredsocial" runat="server" CssClass="form-select"></asp:DropDownList>
             <br />

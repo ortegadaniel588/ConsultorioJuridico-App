@@ -21,7 +21,7 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                showRedsocial();
+                //showRedsocial();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Presentation
 	[WebMethod]
         public static object ListRedesSociales()
         {
-            RedsocialLog objCas = new RedsocialLog();
+            RedsocialLog objRed = new RedsocialLog();
 
             // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
             var dataSet = objRed.showRedsocial();
@@ -88,7 +88,14 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _id = Convert.ToInt32(TBId.Text);
+            // Verifica si se ha seleccionado un producto para actualizar
+            if (string.IsNullOrEmpty(RedsocialID.Value))
+            {
+                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                return;
+            }
+
+            _id = Convert.ToInt32(RedsocialID.Value);
             _nombre = TBNombre.Text;
             _descripcion = TBDescripcion.Text;
             execute = objReds.saveRedsocial(_nombre, _descripcion);
@@ -101,28 +108,6 @@ namespace Presentation
                 LblMsj.Text = "Error al actualizar";
             }
         }
-
-        protected void GVRedsocial_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            TBId.Text = GVRedsocial.SelectedRow.Cells[0].Text;
-            TBNombre.Text = GVRedsocial.SelectedRow.Cells[1].Text;
-            TBDescripcion.Text = GVRedsocial.SelectedRow.Cells[2].Text;
-        }
-
-        protected void GVRedsocial_RowDeleting(object senderm, GridViewDeleteEventArgs e) 
-        {
-            int _idRedsocial = Convert.ToInt32(GVRedsocial.DataKeys[e.RowIndex].Values[0]);
-            execute = objReds.deleteRedsocial(_idRedsocial);
-            if (execute)
-            {
-                LblMsj.Text = "Se eliminó exitosamente";
-            }
-            else
-            {
-                LblMsj.Text = "Error al eliminar";
-            }
-        }
-
 
     }
 }

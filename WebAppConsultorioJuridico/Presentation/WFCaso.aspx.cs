@@ -171,6 +171,11 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(CasoID.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado un producto para actualizar.";
+                return;
+            }
             _id = Convert.ToInt32(CasoID.Value);
             _codigo = TBCodigo.Text;
             _nombre = TBNombre.Text;

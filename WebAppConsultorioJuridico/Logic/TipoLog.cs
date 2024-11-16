@@ -1,6 +1,11 @@
 ﻿using Data;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data;
+using System.Linq;
+using System.Runtime.Remoting;
+using System.Web;
 
 namespace Logic
 {
@@ -8,29 +13,31 @@ namespace Logic
     {
         TipoDat objTipo = new TipoDat();
 
-        public DataSet ShowTipoDDL()
+        public DataSet showTipoDDL()
         {
-            return objTipo.showTipoDDL();
+            return objTipo.showTipo();
         }
 
-        public DataSet ShowTipo()
+        public DataSet showTipo()
         {
-            return objTipo.ShowTipo();
+            return objTipo.showTipo();
         }
 
-        public bool SaveTipo(string _nombre, string _descripcion)
+        public bool saveTipo(string nombre, string descripcion)
         {
-            return objTipo.SaveTipo(_nombre,_descripcion);
+            return objTipo.saveTipo(nombre,descripcion);
         }
 
-        public bool UpdateTipo(int _id, string _nombre, string _descripcion)
+        public bool updateTipo(int idtipo, string nombre, string descripcion)
         {
-            return objTipo.UpdateTipo(_id, _nombre,_descripcion);
+
+            return objTipo.updateTipo(idtipo,nombre,descripcion);
         }
 
-        public bool DeleteTipo(int _id)
+        public bool deleteTipo(int idtipo)
         {
-            return objUsuario.DeleteUsuario(_id);
+
+            return objTipo.deleteTipo(idtipo);
         }
     }
 }

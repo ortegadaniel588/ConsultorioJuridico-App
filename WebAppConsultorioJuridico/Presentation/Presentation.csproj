@@ -69,14 +69,19 @@
   <ItemGroup>
     <Content Include="Index.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="resources\css\datatables.css" />
+    <Content Include="resources\css\datatables.min.css" />
+    <Content Include="resources\js\datatables.js" />
+    <Content Include="resources\js\datatables.min.js" />
     <Content Include="Web.config" />
+    <Content Include="WFPermissionsRoles.aspx" />
     <Content Include="WFAsignarredsocial.aspx" />
     <Content Include="WFCaso.aspx" />
     <Content Include="WFEmpresa.aspx" />
     <Content Include="WFEstado.aspx" />
     <Content Include="WFExpediente.aspx" />
     <Content Include="WFPersona.aspx" />
-    <Content Include="WFPermiso.aspx" />
+    <Content Include="WFPermission.aspx" />
     <Content Include="WFEspecialidad.aspx" />
     <Content Include="WFRedsocial.aspx" />
     <Content Include="WFSeguimiento.aspx" />
@@ -109,6 +114,13 @@
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WFPermissionsRoles.aspx.cs">
+      <DependentUpon>WFPermissionsRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPermissionsRoles.aspx.designer.cs">
+      <DependentUpon>WFPermissionsRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WFAsignarredsocial.aspx.cs">
       <DependentUpon>WFAsignarredsocial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -151,12 +163,12 @@
     <Compile Include="WFPersona.aspx.designer.cs">
       <DependentUpon>WFPersona.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WFPermiso.aspx.cs">
-      <DependentUpon>WFPermiso.aspx</DependentUpon>
+    <Compile Include="WFPermission.aspx.cs">
+      <DependentUpon>WFPermission.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WFPermiso.aspx.designer.cs">
-      <DependentUpon>WFPermiso.aspx</DependentUpon>
+    <Compile Include="WFPermission.aspx.designer.cs">
+      <DependentUpon>WFPermission.aspx</DependentUpon>
     </Compile>
     <Compile Include="WFEspecialidad.aspx.cs">
       <DependentUpon>WFEspecialidad.aspx</DependentUpon>
@@ -230,6 +242,7 @@
       <Project>{6e4a4cb7-66ff-4f65-a9aa-4e9c2afacbd5}</Project>
       <Name>Logic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

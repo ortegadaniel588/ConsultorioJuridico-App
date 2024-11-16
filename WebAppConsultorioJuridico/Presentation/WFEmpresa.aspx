@@ -15,6 +15,7 @@
         <br />
         <%--Nombre--%>
         <asp:Label ID="Label2" runat="server" Text="Ingresa el nombre"></asp:Label>
+        
         <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
         <br />
         <%--Misión--%>
@@ -148,7 +149,6 @@
             $('#<%= EmpresaID.ClientID %>').val(rowData.EmpresaID);
             $('#<%= TBNumeronit.ClientID %>').val(rowData.Numeronit);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
-            $('#<%= TBMision.ClientID %>').val(rowData.Fechaapertura);
             $('#<%= TBVision.ClientID %>').val(rowData.Mision);
             $('#<%= TBdirrecion.ClientID %>').val(rowData.Vision);
             $('#<%= TBdirrecion.ClientID %>').val(rowData.Dirrecion);

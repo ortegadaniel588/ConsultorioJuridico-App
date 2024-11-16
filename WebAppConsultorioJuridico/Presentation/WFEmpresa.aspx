@@ -28,7 +28,7 @@
         <br />
         <%--Dirreción--%>
         <asp:Label ID="Label6" runat="server" Text="Ingresa la dirreción"></asp:Label>
-        <asp:TextBox ID="TBdirrecion" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBDireccion" runat="server" ></asp:TextBox>
         <br />
         <%--Teléfono--%>
         <asp:Label ID="Label7" runat="server" Text="Ingresa el teléfono"></asp:Label>
@@ -93,15 +93,14 @@
                 },
                 "columns": [
                     { "data": "EmpresaID" },
-                    { "data": "Caso", "visible": false },
-                    { "data": "Codigo" },
-                    { "data": "Fechacreacion" },
-                    { "data": "Accionrealizada" },
-                    { "data": "Razon" },
-                    { "data": "Relevancia" },
-                    { "data": "Evidencia" },
-                    { "data": "Comentario" },
-                    { "data": "Estado" },
+                    { "data": "Numeronit"},
+                    { "data": "Nombre" },
+                    { "data": "Mision" },
+                    { "data": "Vision" },
+                    { "data": "Direccion" },
+                    { "data": "Telefono" },
+                    { "data": "Telefono2" },
+                    { "data": "Correo" },
                     {
                         "data": null,
                         "render": function (data, type, row) {

@@ -18,7 +18,7 @@ namespace Presentation
         private string _nombre;
         private string _mision;
         private string _vision;
-        private string _dirrecion;
+        private string _direccion;
         private string _telefono;
         private string _telefono2;
         private string _correo;
@@ -61,7 +61,7 @@ namespace Presentation
                     Nombre = row["nombre"],
 		            Mision = row["mision"],
                     Vision = row["vision"],
-                    Dirrecion = row["dirrecion"],
+                    Direccion = row["direccion"],
                     Telefono = row["telefono"],
                     Telefono2 = row["telefono2"],
                     Correo = row["correo"],
@@ -90,11 +90,11 @@ namespace Presentation
             _nombre = TBNombre.Text;
             _mision = TBNombre.Text;
             _vision = TBMision.Text;
-            _dirrecion = TBVision.Text;
-            _telefono = TBdirrecion.Text;
+            _direccion = TBVision.Text;
+            _telefono = TBDireccion.Text;
             _telefono2 = TBTlefono.Text;
             _correo = TBTelefono2.Text;
-            execute = objEmp.saveEmpresa(_numeronit, _nombre, _mision, _vision, _dirrecion, _telefono, _telefono2, _correo);
+            execute = objEmp.saveEmpresa(_numeronit, _nombre, _mision, _vision, _direccion, _telefono, _telefono2, _correo);
             if (execute)
             {
                 LblMsj.Text = "Se guardo exitosamente";
@@ -107,16 +107,22 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _id = Convert.ToInt32(TBid.Text);
+            // Verifica si se ha seleccionado un producto para actualizar
+            if (string.IsNullOrEmpty(EmpresaID.Value))
+            {
+                LblMsg.Text = "No se ha seleccionado un producto para actualizar.";
+                return;
+            }
+            _id = Convert.ToInt32(EmpresaID.Value);
             _numeronit = TBnumeronit.Text;
             _nombre = TBnombre.Text;
             _mision = TBmision.Text;
             _vision = TBvision.Text;
-            _dirrecion = TBdirrecion.Text;
+            _direccion = TBDireccion.Text;
             _telefono = TBTlefono.Text;
             _telefono2 = TBTelefono2.Text;
             _correo = TBCorreo.Text;
-            execute = objEmp.updateEmpresa(_id, _numeronit, _nombre, _mision, _vision, _dirrecion, _telefono, _telefono2, _correo);
+            execute = objEmp.updateEmpresa(_id, _numeronit, _nombre, _mision, _vision, _direccion, _telefono, _telefono2, _correo);
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";

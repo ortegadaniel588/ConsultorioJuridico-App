@@ -23,14 +23,14 @@ namespace Logic
             return objEmp.showEmpresaDDL();
         }
 
-        public DataSet saveEmpresa(string _numeronit, string _nombre, string _mision, string _vision, string _dirrecion, string _telefono, string _telefono2, string _correo)
+        public DataSet saveEmpresa(string _numeronit, string _nombre, string _mision, string _vision, string _direccion, string _telefono, string _telefono2, string _correo)
         {
             return objEmp.showEmpresa();
         }
 
-        public bool updateEmpresa(int _id, string _numeronit, string _nombre, string _mision, string _vision, string _dirrecion, string _telefono, string _telefono2, string _correo)
+        public bool updateEmpresa(int _id, string _numeronit, string _nombre, string _mision, string _vision, string _direccion, string _telefono, string _telefono2, string _correo)
         {
-            return objEmp.updateEmpresa(_id, _numeronit, _nombre, _mision, _vision, _dirrecion, _telefono, _telefono2, _correo);
+            return objEmp.updateEmpresa(_id, _numeronit, _nombre, _mision, _vision, _direccion, _telefono, _telefono2, _correo);
         }
 
         public bool deleteEmpresa(int _id)

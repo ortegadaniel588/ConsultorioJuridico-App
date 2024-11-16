@@ -23,7 +23,7 @@ namespace Data
             return objData;
         }
 
-        public DataSet ShowPersonas()
+        public DataSet showPersonas()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
@@ -38,7 +38,7 @@ namespace Data
             return objData;
         }
 
-        public bool SavePersona(string nombres, string apellidos, string tipodocumento, string documento, string genero, string estadocivil, string lugarNacimiento, DateTime fechaNacimiento, string telefono, string celular, string correo, string direccion, string estado, string ocupacion, string nivelEducacion)
+        public bool savePersona(string nombres, string apellidos, string tipodocumento, string documento, string genero, string estadocivil, string lugarNacimiento, DateTime fechaNacimiento, string telefono, string telefono2, string correo, string direccion, string estrato, string ocupacion, string nivelEducacion)
         {
             bool executed = false;
             int row = 0;
@@ -55,12 +55,13 @@ namespace Data
             objInsertCmd.Parameters.Add("p_lugarNacimiento", MySqlDbType.VarChar).Value = lugarNacimiento;
             objInsertCmd.Parameters.Add("p_fechaNacimiento", MySqlDbType.Date).Value = fechaNacimiento;
             objInsertCmd.Parameters.Add("p_telefono", MySqlDbType.VarChar).Value = telefono;
-            objInsertCmd.Parameters.Add("p_celular", MySqlDbType.VarChar).Value = celular;
+            objInsertCmd.Parameters.Add("p_telefono2", MySqlDbType.VarChar).Value = telefono2;
             objInsertCmd.Parameters.Add("p_correo", MySqlDbType.VarChar).Value = correo;
             objInsertCmd.Parameters.Add("p_direccion", MySqlDbType.VarChar).Value = direccion;
-            objInsertCmd.Parameters.Add("p_estado", MySqlDbType.Enum).Value = estado;
+            objInsertCmd.Parameters.Add("p_estrato", MySqlDbType.Enum).Value = estrato;
             objInsertCmd.Parameters.Add("p_ocupacion", MySqlDbType.VarChar).Value = ocupacion;
-            objInsertCmd.Parameters.Add("p_nivelEducacion", MySqlDbType.Enum).Value = nivelEducacion;
+            objInsertCmd.Parameters.Add("p_nivelescolaridad", MySqlDbType.Enum).Value = nivelEducacion;
+
 
             try
             {
@@ -78,7 +79,7 @@ namespace Data
             return executed;
         }
 
-        public bool UpdatePersona(int idpersona, string nombres, string apellidos, string tipodocumento, string documento, string genero, string estadocivil, string lugarNacimiento, DateTime fechaNacimiento, string telefono, string celular, string correo, string direccion, string estado, string ocupacion, string nivelEducacion)
+        public bool updatePersona(int idpersona, string nombres, string apellidos, string tipodocumento, string documento, string genero, string estadocivil, string lugarNacimiento, DateTime fechaNacimiento, string telefono, string telefono2, string correo, string direccion, string estrato, string ocupacion, string nivelEducacion)
         {
             bool executed = false;
             int row = 0;
@@ -96,12 +97,12 @@ namespace Data
             objUpdateCmd.Parameters.Add("p_lugarNacimiento", MySqlDbType.VarChar).Value = lugarNacimiento;
             objUpdateCmd.Parameters.Add("p_fechaNacimiento", MySqlDbType.Date).Value = fechaNacimiento;
             objUpdateCmd.Parameters.Add("p_telefono", MySqlDbType.VarChar).Value = telefono;
-            objUpdateCmd.Parameters.Add("p_celular", MySqlDbType.VarChar).Value = celular;
+            objUpdateCmd.Parameters.Add("p_telefono2", MySqlDbType.VarChar).Value = telefono2;
             objUpdateCmd.Parameters.Add("p_correo", MySqlDbType.VarChar).Value = correo;
             objUpdateCmd.Parameters.Add("p_direccion", MySqlDbType.VarChar).Value = direccion;
-            objUpdateCmd.Parameters.Add("p_estado", MySqlDbType.Enum).Value = estado;
+            objUpdateCmd.Parameters.Add("p_estrato", MySqlDbType.Enum).Value = estrato;
             objUpdateCmd.Parameters.Add("p_ocupacion", MySqlDbType.VarChar).Value = ocupacion;
-            objUpdateCmd.Parameters.Add("p_nivelEducacion", MySqlDbType.Enum).Value = nivelEducacion;
+            objUpdateCmd.Parameters.Add("p_nivelescolaridad", MySqlDbType.Enum).Value = nivelEducacion;
 
             try
             {

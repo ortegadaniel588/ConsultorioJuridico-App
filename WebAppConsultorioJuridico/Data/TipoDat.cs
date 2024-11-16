@@ -11,7 +11,7 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
-        //Metodo para mostrar unicamente el id y el nombre Empresa (Nomre consultorio)
+        //Metodo para mostrar unicamente el id y el nombre Empresa (Nombre consultorio)
         public DataSet showTipoDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
@@ -27,7 +27,7 @@ namespace Data
             return objData;
         }
 
-        //Metodo para mostrar todas las Tipos
+        //Metodo para mostrar todos los Tipos
         public DataSet showTipo()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
@@ -41,8 +41,8 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
-        //Metodo para guardar un nuevo Caso
-        public bool saveTipo(string _nombre, string _descripcion)
+        //Metodo para guardar un nuevo Tipo
+        public bool saveTipo(string nombre, string descripcion)
         {
             bool executed = false;
             int row;
@@ -52,8 +52,8 @@ namespace Data
             objSelectCmd.CommandText = "spInsertTipo";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = descripcion;
             
             try
             {
@@ -72,20 +72,20 @@ namespace Data
             return executed;
         }
 
-        //Metodo para actulizar un Caso
-        public bool updateTipo(int _id, string _nombre, string _descripcion)
+        //Metodo para actulizar un Tipo
+        public bool updateTipo(int idtipo, string nombre, string descripcion)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateCaso";
+            objSelectCmd.CommandText = "spUpdateTipo";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_idtipo", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_idtipo", MySqlDbType.Int32).Value = idtipo;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = descripcion;
 
             try
             {
@@ -103,17 +103,17 @@ namespace Data
             return executed;
         }
 
-        //Metodo para borrar una Caso
-        public bool deleteTipo(int _id)
+        //Metodo para borrar un Tipo
+        public bool deleteTipo(int idtipo)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteCaso"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spDeleteTipo"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_idtipo", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idtipo", MySqlDbType.Int32).Value = idtipo;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

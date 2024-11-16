@@ -1,26 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFRedsocial.aspx.cs" Inherits="Presentation.WFRedsocial" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <%--Estilos--%>
+    <%--Estilos--%>
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div>
-  
-            <asp:HiddenField ID="RedsocialID" runat="server" />
-        <%--Nombre--%> 
+
+        <asp:HiddenField ID="RedsocialID" runat="server" />
+        <%--Nombre--%>
         <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
         <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox><br />
-        <%--Descripción--%> 
+        <%--Descripción--%>
         <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
         <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
     </div>
+    
     <div>
         <%--Botones Guardar y Actualizar--%>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
         <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
         <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
     </div>
-<%--lista de productos--%>
+    <%--lista de productos--%>
     <h2>Lista de los redsocial</h2>
     <table id="redessocialesTable" class="display" style="width: 100%">
         <thead>

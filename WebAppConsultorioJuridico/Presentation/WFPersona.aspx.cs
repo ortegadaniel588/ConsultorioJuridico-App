@@ -16,8 +16,8 @@ namespace Presentation
 
         private int _idPersona;
         private string _nombres, _apellidos, _tipoDocumento, _documento, _genero,
-                      _estadoCivil, _lugarNacimiento, _telefono, _celular, _correo,
-                      _direccion, _estado, _ocupacion, _nivelEducacion;
+                      _estadoCivil, _lugarNacimiento, _telefono1, _telefono2, _correo,
+                      _direccion, _estrato, _ocupacion, _nivelEducacion;
         private DateTime _fechaNacimiento;
         private bool executed = false;
 
@@ -33,7 +33,7 @@ namespace Presentation
         public static object ListPersonas()
         {
             PersonaLog objPersona = new PersonaLog();
-            DataSet ds = objPersona.ShowPersonas();
+            DataSet ds = objPersona.showPersonas();
             var personasList = new List<object>();
 
             foreach (DataRow row in ds.Tables[0].Rows)
@@ -50,12 +50,12 @@ namespace Presentation
                     lugarNacimiento = row["lugarNacimiento"],
                     fechaNacimiento = row["fechaNacimiento"],
                     telefono = row["telefono"],
-                    celular = row["celular"],
+                    telefono2 = row["telefono2"],
                     correo = row["correo"],
                     direccion = row["direccion"],
-                    estado = row["estado"],
+                    estrato = row["estrato"],
                     ocupacion = row["ocupacion"],
-                    nivelEducacion = row["nivelEducacion"]
+                    nivelescolaridad = row["nivelescolaridad"]
                 });
             }
 
@@ -72,45 +72,45 @@ namespace Presentation
         // Método para limpiar los TextBox
         private void Clear()
         {
-            TBId.Value = "";
-            TBNombres.Text = "";
-            TBApellidos.Text = "";
-            TBTipoDocumento.Text = "";
-            TBDocumento.Text = "";
-            TBGenero.Text = "";
-            TBEstadoCivil.Text = "";
-            TBLugarNacimiento.Text = "";
-            TBFechaNacimiento.Text = "";
-            TBTelefono.Text = "";
-            TBCelular.Text = "";
-            TBCorreo.Text = "";
-            TBDireccion.Text = "";
-            TBEstado.Text = "";
-            TBOcupacion.Text = "";
-            TBNivelEducacion.Text = "";
+            HFPersonaID.Value = "";
+            TBNames.Text = "";
+            TBLastNames.Text = "";
+            DDLDocumentTypes.SelectedIndex = 0;
+            TBDocument.Text = "";
+            DDLGender.SelectedIndex = 0;
+            DDLMaritalStatus.SelectedIndex = 0;
+            TBBirthPlace.Text = "";
+            TBBirthDate.Text = "";
+            TBPhone1.Text = "";
+            TBPhone2.Text = "";
+            TBEmail.Text = "";
+            TBAddress.Text = "";
+            DDLSocioeconomicStatus.SelectedIndex = 0;
+            TBOccupation.Text = "";
+            DDLEducationLevel.SelectedIndex = 0;
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _nombres = TBNombres.Text;
-            _apellidos = TBApellidos.Text;
-            _tipoDocumento = TBTipoDocumento.Text;
-            _documento = TBDocumento.Text;
-            _genero = TBGenero.Text;
-            _estadoCivil = TBEstadoCivil.Text;
-            _lugarNacimiento = TBLugarNacimiento.Text;
-            _fechaNacimiento = Convert.ToDateTime(TBFechaNacimiento.Text);
-            _telefono = TBTelefono.Text;
-            _celular = TBCelular.Text;
-            _correo = TBCorreo.Text;
-            _direccion = TBDireccion.Text;
-            _estado = TBEstado.Text;
-            _ocupacion = TBOcupacion.Text;
-            _nivelEducacion = TBNivelEducacion.Text;
+            _nombres = TBNames.Text;
+            _apellidos = TBLastNames.Text;
+            _tipoDocumento = DDLDocumentTypes.SelectedValue;
+            _documento = TBDocument.Text;
+            _genero = DDLGender.SelectedValue;
+            _estadoCivil = DDLMaritalStatus.SelectedValue;
+            _lugarNacimiento = TBBirthPlace.Text;
+            _fechaNacimiento = Convert.ToDateTime(TBBirthDate.Text);
+            _telefono1 = TBPhone1.Text;
+            _telefono2 = TBPhone2.Text;
+            _correo = TBEmail.Text;
+            _direccion = TBAddress.Text;
+            _estrato = DDLSocioeconomicStatus.SelectedValue;
+            _ocupacion = TBOccupation.Text;
+            _nivelEducacion = DDLEducationLevel.SelectedValue;
 
-            executed = objPersona.SavePersona(_nombres, _apellidos, _tipoDocumento,
+            executed = objPersona.savePersona(_nombres, _apellidos, _tipoDocumento,
                 _documento, _genero, _estadoCivil, _lugarNacimiento, _fechaNacimiento,
-                _telefono, _celular, _correo, _direccion, _estado, _ocupacion, _nivelEducacion);
+                _telefono1, _telefono2, _correo, _direccion, _estrato, _ocupacion, _nivelEducacion);
 
             if (executed)
             {
@@ -125,32 +125,32 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TBId.Value))
+            if (string.IsNullOrEmpty(HFPersonaID.Value))
             {
                 LblMsg.Text = "No se ha seleccionado una persona para actualizar.";
                 return;
             }
 
-            _idPersona = Convert.ToInt32(TBId.Value);
-            _nombres = TBNombres.Text;
-            _apellidos = TBApellidos.Text;
-            _tipoDocumento = TBTipoDocumento.Text;
-            _documento = TBDocumento.Text;
-            _genero = TBGenero.Text;
-            _estadoCivil = TBEstadoCivil.Text;
-            _lugarNacimiento = TBLugarNacimiento.Text;
-            _fechaNacimiento = Convert.ToDateTime(TBFechaNacimiento.Text);
-            _telefono = TBTelefono.Text;
-            _celular = TBCelular.Text;
-            _correo = TBCorreo.Text;
-            _direccion = TBDireccion.Text;
-            _estado = TBEstado.Text;
-            _ocupacion = TBOcupacion.Text;
-            _nivelEducacion = TBNivelEducacion.Text;
+            _idPersona = Convert.ToInt32(HFPersonaID.Value);
+            _nombres = TBNames.Text;
+            _apellidos = TBLastNames.Text;
+            _tipoDocumento = DDLDocumentTypes.SelectedValue;
+            _documento = TBDocument.Text;
+            _genero = DDLGender.SelectedValue;
+            _estadoCivil = DDLMaritalStatus.SelectedValue;
+            _lugarNacimiento = TBBirthPlace.Text;
+            _fechaNacimiento = Convert.ToDateTime(TBBirthDate.Text);
+            _telefono1 = TBPhone1.Text;
+            _telefono2 = TBPhone2.Text;
+            _correo = TBEmail.Text;
+            _direccion = TBAddress.Text;
+            _estrato = DDLSocioeconomicStatus.SelectedValue;
+            _ocupacion = TBOccupation.Text;
+            _nivelEducacion = DDLEducationLevel.SelectedValue;
 
-            executed = objPersona.UpdatePersona(_idPersona, _nombres, _apellidos,
+            executed = objPersona.updatePersona(_idPersona, _nombres, _apellidos,
                 _tipoDocumento, _documento, _genero, _estadoCivil, _lugarNacimiento,
-                _fechaNacimiento, _telefono, _celular, _correo, _direccion, _estado,
+                _fechaNacimiento, _telefono1, _telefono2, _correo, _direccion, _estrato,
                 _ocupacion, _nivelEducacion);
 
             if (executed)

@@ -22,12 +22,13 @@ namespace Presentation
         private string _proceso;
         private string _descripcion;
         private string _estado;
+        private bool executed = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                showSeguimiento();
+                //showSeguimiento();
                 showCasoDDL();
 
             }
@@ -59,8 +60,8 @@ namespace Presentation
                     SeguimientoID = row["idcaso"],
                     Caso = row["codigo"],
                     Fechaactualizacion = row["empresa_idempresa"],
-		    Proceso = row["fechadeapertura"],
-		    Descripcion = row["fechacierre"],
+		            Proceso = row["fechadeapertura"],
+		            Descripcion = row["fechacierre"],
                     Estado = row["asunto"],
                     
                 });
@@ -82,24 +83,24 @@ namespace Presentation
         }*/
         private void showCasoDDL()
         {
-            DDLEmpresa.DataSource = objCas.showCasoDDL();
-            DDLEmpresa.DataValueField = "idcaso";
-            DDLEmpresa.DataValueField = "codigo";
-            DDLEmpresa.DataBind();
-            DDLEmpresa.Items.Insert(0, "Seleccione");
+            DDCaso_idcaso.DataSource = objCas.showCasoDDL();
+            DDCaso_idcaso.DataValueField = "idcaso";
+            DDCaso_idcaso.DataValueField = "nombre";
+            DDCaso_idcaso.DataBind();
+            DDCaso_idcaso.Items.Insert(0, "Seleccione");
         }
 
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
 
-            _caso_id = Convert.ToInt32(DDCaso_idcaso.Text);
+            _caso_id = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _fecha_actualizacion = TBFechaactualizacion.Text;
             _proceso = TBProceso.Text;
             _descripcion = TBDescripcion.Text;
             _estado = TBEstado.Text;
-            execute = objCas.saveSeguimiento(_caso_id, _fecha_actualizacion, _proceso, _estado);
-            if (execute)
+            executed = objCas.saveSeguimiento(_caso_id, _fecha_actualizacion, _proceso, _estado);
+            if (executed)
             {
                 LblMsj.Text = "Se guardo exitosamente";
             }
@@ -111,14 +112,20 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _id = Convert.ToInt32(TBid.Text);
-            _caso_id = Convert.ToInt32(DDCaso_idcaso.Text);
+            // Verifica si se ha seleccionado un producto para actualizar
+            if (string.IsNullOrEmpty(SeguimientoID.Value))
+            {
+                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                return;
+            }
+            _id = Convert.ToInt32(SeguimientoID.Value);
+            _caso_id = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _fecha_actualizacion = TBFechaactualizacion.Text;
             _proceso = TBProceso.Text;
             _descripcion = TBDescripcion.Text;
             _estado = TBEstado.Text;
-            execute = objCas.updateSeguimiento(_id, _caso_id, _fecha_actualizacion, _proceso, _estado);
-            if (execute)
+            executed = objSeg.updateSeguimiento(_id, _caso_id, _fecha_actualizacion, _proceso, _estado);
+            if (executed)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
             }
@@ -128,45 +135,5 @@ namespace Presentation
             }
         }
 
-        protected void GVSeguimiento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            TBid.Text = GVSeguimiento.SelectedRow.Cells[0].Text;
-            DDCaso_idcaso.SelectedValue = GVSeguimiento.SelectedRow.Cells[1].Text;
-            TBFechaactualizacion.Text = GVSeguimiento.SelectedRow.Cells[2].Text;
-            TBProceso.Text = GVSeguimiento.SelectedRow.Cells[3].Text;
-            TBDescripcion.Text = GVSeguimiento.SelectedRow.Cells[4].Text;
-            TBEstado.Text = GVSeguimiento.SelectedRow.Cells[5].Text;
-
-        }
-
-        protected void GVSeguimiento_RowDeleting(object senderm, GridViewDeleteEventArgs e)
-        {
-            int _id = Convert.ToInt32(GVSeguimiento.DataKeys[e.RowIndex].Values[0]);
-            execute = objSeg.deleteSeguimiento(_id);
-            if (execute)
-            {
-                LblMsj.Text = "Se elimino exitosamente";
-            }
-            else
-            {
-                LblMsj.Text = "Error al eliminar";
-            }
-        }
-
-        protected void Seguimiento_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.Header)
-            {
-                e.Row.Cells[0].Vsible = false;
-                e.Row.Cells[1].Vsible = false;
-
-            }
-            if (e.Row.RowType == DataControlRowType.DataRow)
-            {
-                e.Row.Cells[0].Vsible = false;
-                e.Row.Cells[1].Vsible = false;
-            }
-        }
     }
 }

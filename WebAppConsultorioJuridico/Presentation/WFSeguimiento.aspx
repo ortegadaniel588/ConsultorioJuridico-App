@@ -15,8 +15,9 @@
         <asp:DropDownList ID="DDCaso_idcaso" runat="server" CssClass="form-select"></asp:DropDownList>
         <br />
         <%--Fechaactu de actualización--%>
+        
         <asp:Label ID="Label2" runat="server" Text="Ingrese la fecha de actualización"></asp:Label>
-        <asp:TextBox ID="TBFechaactualizacion" runat="server" Visible="false"></asp:TextBox>
+        <asp:TextBox ID="TBFechaactualizacion" runat="server" Visible="false" TextMode="DateTime"></asp:TextBox>
         <br />
         <%--Proceso--%>
         <asp:Label ID="Label3" runat="server" Text="Ingrese el proceso"></asp:Label>
@@ -66,7 +67,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFCaso.aspx/ListCasos",// Se invoca el WebMethod Listar Productos
+                    "url": "WFSeguimiento.aspx/ListSeguimientos",// Se invoca el WebMethod Listar Productos
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
@@ -113,7 +114,7 @@
                 //const id = $(this).data('id');
                 const rowData = $('#seguimientosTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadCasoData(rowData);
+                loadSeguimientoData(rowData);
             });
 
             // Eliminar un Seguimiento

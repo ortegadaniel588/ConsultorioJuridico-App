@@ -1,7 +1,10 @@
 ﻿using Logic;
+using SimpleCrypto;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,102 +13,151 @@ namespace Presentation
 {
     public partial class WFUsuario : System.Web.UI.Page
     {
-        UsuarioLog objUsuario = new UsuarioLog();
+        //Crear los objetos
+        RolLog objRol = new RolLog();
+        PersonaLog objPer = new PersonaLog();
+        UsuarioLog objUse = new UsuarioLog();
 
-        private int _idUsuario;
-        private string _usuario, _contrasena, _estado;
-        private int _rolId, _personaId;
+        private int _id, _fkrol, _fkpersona;
+        private string _mail, _password, _salt, _state, _encryptedPassword;
+        private DateTime _date;
         private bool executed = false;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                // Aquí se pueden invocar métodos si es necesario
+                //Se asigna la fecha actual al TextBox en formato "yyyy-MM-dd".
+                TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                //Aqui se invocan todos los metodos
+                showRolesDDL();
+                showPersonaDDL();
             }
+
         }
-
+        // Metodo web para mostrar todos los usuarios
         [WebMethod]
-        public static object ListUsuarios()
+        public static object ListUsers()
         {
-            UsuarioLog objUsuario = new UsuarioLog();
-            DataSet ds = objUsuario.ShowUsuarios();
-            var usuariosList = new List<object>();
+            UsuarioLog objUse = new UsuarioLog();
 
-            foreach (DataRow row in ds.Tables[0].Rows)
+            // Se obtiene un DataSet que contiene la lista de usuarios desde la base de datos.
+            var dataSet = objUse.showUsers();
+
+            // Se crea una lista para almacenar los usuarios que se van a devolver.
+            var usersList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un usuario).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
             {
-                usuariosList.Add(new
+                usersList.Add(new
                 {
-                    idusuario = row["idusuario"],
-                    usuario = row["usuario"],
-                    contrasena = row["contrasena"],
-                    rolId = row["rolId"],
-                    personaId = row["personaId"],
-                    estado = row["estado"]
+                    UserID = row["usu_id"],
+                    Mail = row["usu_correo"],
+                    Password = row["usu_contrasena"],
+                    Salt = row["usu_salt"],
+                    State = row["usu_estado"],
+                    Date = Convert.ToDateTime(row["usu_fecha_creacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    FkRol = row["tbl_rol_rol_id"],
+                    NameRol = row["rol_nombre"],
+                    FkEmployee = row["tbl_empleado_emp_id"],
+                    NameEmployee = row["emp_nombres"]
                 });
             }
 
-            return new { data = usuariosList };
+            // Devuelve un objeto en formato JSON que contiene la lista de usuarios.
+            return new { data = usersList };
         }
 
-        [WebMethod]
-        public static bool DeleteUsuario(int id)
+        //Metodo para mostrar los roles en el DDL
+        private void showRolesDDL()
         {
-            UsuarioLog objUsu = new UsuarioLog();
-            return objUsu.DeleteUsuario(id);
+            DDLRol.DataSource = objRol.showRolesDDL();
+            DDLRol.DataValueField = "rol_id";//Nombre de la llave primaria
+            DDLRol.DataTextField = "rol_nombre";
+            DDLRol.DataBind();
+            DDLRol.Items.Insert(0, "Seleccione");
         }
-
-        private void Clear()
+        //Metodo para mostrar los empleados en el DDL
+        private void showPersonaDDL()
         {
-            TBId.Value = "";
-            TBUsuario.Text = "";
+            DDLPersona.DataSource = objPer.showPersonasDDL();
+            DDLPersona.DataValueField = "idpersona";//Nombre de la llave primaria
+            DDLPersona.DataTextField = "nombre_completo";
+            DDLPersona.DataBind();
+            DDLPersona.Items.Insert(0, "Seleccione");
+        }
+        //Metodo para limpiar los TextBox y los DDL
+        private void clear()
+        {
+            HFUserId.Value = "";
+            TBMail.Text = "";
             TBContrasena.Text = "";
-            TBRolId.Text = "";
-            TBPersonaId.Text = "";
-            TBEstado.Text = "";
+            DDLState.SelectedIndex = 0;
+            TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            DDLRol.SelectedIndex = 0;
+            DDLPersona.SelectedIndex = 0;
         }
-
+        // Evento que se ejecuta cuando se da clic en el boton guardar
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _usuario = TBUsuario.Text;
-            _contrasena = TBContrasena.Text;
-            _rolId = Convert.ToInt32(TBRolId.Text);
-            _personaId = Convert.ToInt32(TBPersonaId.Text);
-            _estado = TBEstado.Text;
+            /*
+             * PBKDF2: Password-Based Key Derivation Function 2, es un algoritmo para proteger contraseñas,
+             * ya que es seguro contra ataques de fuerza bruta, genera un hash mediante múltiples iteraciones
+             */
+            ICryptoService cryptoService = new PBKDF2();
 
-            executed = objUsuario.SaveUsuario(_usuario, _contrasena, _rolId, _personaId, _estado);
+            _mail = TBMail.Text;
+            _password = TBContrasena.Text;
+            _salt = cryptoService.GenerateSalt();// Se generar un salt único para esa contraseña.
+            _encryptedPassword = cryptoService.Compute(_password);// Se generar un hash de la contraseña.
+
+            _state = DDLState.SelectedValue;
+            _date = DateTime.Parse(TBDate.Text);
+            _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
+            _fkpersona = Convert.ToInt32(DDLPersona.SelectedValue);
+
+            executed = objUse.saveUsers(_mail, _encryptedPassword, _salt, _state, _date, _fkrol, _fkpersona);
 
             if (executed)
             {
-                LblMsg.Text = "El usuario se guardó exitosamente!";
-                Clear();
+                LblMsg.Text = "El usuario se guardo exitosamente!";
+                clear();//Se invoca el metodo para limpiar los campos 
             }
             else
             {
                 LblMsg.Text = "Error al guardar";
             }
-        }
 
+        }
+        // Evento que se ejecuta cuando se da clic en el boton actualizar
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(TBId.Value))
+            // Verifica si se ha seleccionado un usuario para actualizar
+            if (string.IsNullOrEmpty(HFUserId.Value))
             {
                 LblMsg.Text = "No se ha seleccionado un usuario para actualizar.";
                 return;
             }
-            _idUsuario = Convert.ToInt32(TBId.Value);
-            _usuario = TBUsuario.Text;
-            _contrasena = TBContrasena.Text;
-            _rolId = Convert.ToInt32(TBRolId.Text);
-            _personaId = Convert.ToInt32(TBPersonaId.Text);
-            _estado = TBEstado.Text;
 
-            executed = objUsuario.UpdateUsuario(_idUsuario, _usuario, _contrasena, _rolId, _personaId, _estado);
+            ICryptoService cryptoService = new PBKDF2();
+
+            _id = Convert.ToInt32(HFUserId.Value);
+            _mail = TBMail.Text;
+            _password = TBContrasena.Text;
+            _salt = cryptoService.GenerateSalt();// Se generar un salt único para esa contraseña.
+            _encryptedPassword = cryptoService.Compute(_password);// Se generar un hash de la contraseña.
+
+            _state = DDLState.SelectedValue;
+            _date = DateTime.Parse(TBDate.Text);
+            _fkrol = Convert.ToInt32(DDLRol.SelectedValue);
+            _fkpersona = Convert.ToInt32(DDLPersona.SelectedValue);
+
+            executed = objUse.updateUsers(_id, _mail, _encryptedPassword, _salt, _state, _date, _fkrol, _fkpersona);
 
             if (executed)
             {
-                LblMsg.Text = "El usuario se actualizó exitosamente!";
-                Clear();
+                LblMsg.Text = "El usuario se actualizo exitosamente!";
+                clear();//Se invoca el metodo para limpiar los campos 
             }
             else
             {

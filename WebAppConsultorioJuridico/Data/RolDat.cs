@@ -11,6 +11,7 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
+        //Metodo para mostrar unicamente el id y el nombre de los Roles, en el DropDownList
         public DataSet showRolesDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
@@ -24,102 +25,6 @@ namespace Data
             objAdapter.Fill(objData);
             objPer.closeConnection();
             return objData;
-        }
-
-        public DataSet showRoles()
-        {
-            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
-            DataSet objData = new DataSet();
-
-            MySqlCommand objSelectCmd = new MySqlCommand();
-            objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectRoles";
-            objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objAdapter.SelectCommand = objSelectCmd;
-            objAdapter.Fill(objData);
-            objPer.closeConnection();
-            return objData;
-        }
-
-        public bool saveRol(string nombre, string descripcion)
-        {
-            bool executed = false;
-            int row = 0;
-            MySqlCommand objInsertCmd = new MySqlCommand();
-            objInsertCmd.Connection = objPer.openConnection();
-            objInsertCmd.CommandText = "spInsertRol";
-            objInsertCmd.CommandType = CommandType.StoredProcedure;
-            objInsertCmd.Parameters.Add("p_nombre", MySqlDbType.VarChar).Value = nombre;
-            objInsertCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = descripcion;
-
-            try
-            {
-                row = objInsertCmd.ExecuteNonQuery();
-                if (row == 1)
-                {
-                    executed = true;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error " + e.ToString());
-            }
-            objPer.closeConnection();
-            return executed;
-        }
-
-        public bool updateRol(int idrol, string nombre, string descripcion)
-        {
-            bool executed = false;
-            int row = 0;
-            MySqlCommand objUpdateCmd = new MySqlCommand();
-            objUpdateCmd.Connection = objPer.openConnection();
-            objUpdateCmd.CommandText = "spUpdateRol";
-            objUpdateCmd.CommandType = CommandType.StoredProcedure;
-            objUpdateCmd.Parameters.Add("p_idrol", MySqlDbType.Int32).Value = idrol;
-            objUpdateCmd.Parameters.Add("p_nombre", MySqlDbType.VarChar).Value = nombre;
-            objUpdateCmd.Parameters.Add("p_descripcion", MySqlDbType.MediumText).Value = descripcion;
-
-            try
-            {
-                row = objUpdateCmd.ExecuteNonQuery();
-                if (row == 1)
-                {
-                    executed = true;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error " + e.ToString());
-            }
-            objPer.closeConnection();
-            return executed;
-        }
-
-        public bool deleteRol(int idrol)
-        {
-            bool executed = false;
-            int row = 0;
-            MySqlCommand objDeleteCmd = new MySqlCommand();
-            objDeleteCmd.Connection = objPer.openConnection();
-            objDeleteCmd.CommandText = "spDeleteRol";
-            objDeleteCmd.CommandType = CommandType.StoredProcedure;
-            objDeleteCmd.Parameters.Add("p_idrol", MySqlDbType.Int32).Value = idrol;
-
-            try
-            {
-                row = objDeleteCmd.ExecuteNonQuery();
-                if (row == 1)
-                {
-                    executed = true;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Error " + e.ToString());
-            }
-            objPer.closeConnection();
-            return executed;
         }
     }
 }

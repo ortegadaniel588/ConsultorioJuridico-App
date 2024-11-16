@@ -129,6 +129,7 @@
     <Compile Include="ExpedienteDat.cs" />
     <Compile Include="HorariosDat.cs" />
     <Compile Include="PermisoDat.cs" />
+    <Compile Include="PermisoRolDat.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="PersonasDat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,6 +147,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

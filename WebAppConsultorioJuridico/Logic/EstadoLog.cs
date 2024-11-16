@@ -15,7 +15,7 @@ namespace Logic
 
         public DataSet ShowEstadoDDL()
         {
-            return objEstado.showEstadoDDL();
+            return objEst.showEstadoDDL();
         }
                 
         public DataSet showEstado()

@@ -13,7 +13,7 @@ namespace Logic
     {
         EstadoDat objEst = new EstadoDat();
 
-        public DataSet ShowEstadoDDL()
+        public DataSet showEstadoDDL()
         {
             return objEstado.showEstadoDDL();
         }

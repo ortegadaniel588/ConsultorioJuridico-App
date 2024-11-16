@@ -131,6 +131,22 @@ namespace Presentation
             DDLEstado.Items.Insert(0, "Seleccione");
         }
 
+        //Metodo para limpiar los TextBox y los DDL
+        private void clear()
+        {
+            CasoID.Value = "";
+            TBCodigo.Text = "";
+            TBNombre.Text = "";
+            DDLEpresa.Text = "";
+            TBFechacierre.Text = "";
+            TBAsunto.Text = "";
+            DDLTipo.SelectedIndex = 0;
+            DDLEstado.SelectedIndex = 0;
+            DDLComplejidad.Text = "";
+            DDLEmpleado.SelectedIndex = "";
+
+        }
+
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _codigo = TBCodigo.Text;

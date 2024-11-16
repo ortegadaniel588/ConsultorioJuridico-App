@@ -15,6 +15,7 @@
             <%--NOMBRE--%>
             <asp:Label ID="Label2" runat="server" Text="Ingrese el nombre"></asp:Label>
             <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
+            
             <%--EMPRESA--%>
             <asp:Label ID="Label3" runat="server" Text="Seleccione la empresa"></asp:Label>
             <asp:DropDownList ID="DDLEpresa" runat="server"></asp:DropDownList>

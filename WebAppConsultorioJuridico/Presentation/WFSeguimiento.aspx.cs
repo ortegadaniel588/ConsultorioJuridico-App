@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,8 +17,8 @@ namespace Presentation
         CasoLog objCas = new CasoLog();
 
 
-        private string _id;
-        private string _caso_id;
+        private int _id;
+        private int _caso_id;
         private string _fecha_actualizacion;
         private string _proceso;
         private string _descripcion;
@@ -99,7 +100,7 @@ namespace Presentation
             _proceso = TBProceso.Text;
             _descripcion = TBDescripcion.Text;
             _estado = TBEstado.Text;
-            executed = objCas.saveSeguimiento(_caso_id, _fecha_actualizacion, _proceso, _estado);
+            executed = objSeg.saveSeguimiento(_caso_id, _fecha_actualizacion, _proceso, _descripcion, _estado);
             if (executed)
             {
                 LblMsj.Text = "Se guardo exitosamente";
@@ -124,7 +125,7 @@ namespace Presentation
             _proceso = TBProceso.Text;
             _descripcion = TBDescripcion.Text;
             _estado = TBEstado.Text;
-            executed = objSeg.updateSeguimiento(_id, _caso_id, _fecha_actualizacion, _proceso, _estado);
+            executed = objSeg.updateSeguimiento(_id, _caso_id, _fecha_actualizacion, _proceso, _descripcion, _estado);
             if (executed)
             {
                 LblMsj.Text = "Se actualizo exitosamente";

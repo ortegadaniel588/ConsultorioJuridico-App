@@ -16,7 +16,7 @@ namespace Presentation
         CasoLog objCas = new CasoLog();
 
 
-        private string _id;
+        private int _id;
         private int _caso_idcaso;
         private string _codigo;
         private string _accionrealizada;
@@ -102,14 +102,14 @@ namespace Presentation
         private void clear()
         {
             ExpedienteID.Value = "";
-            DDCaso_idcaso.SelectedValue = "";
+            DDCaso_idcaso.SelectedIndex = 0;
             TBCodigo.Text = "";
             TBAccionrealizada.Text = "";
             TBRazon.Text = "";
             TBRelevancia.Text = "";
             TBEvidencia.Text = "";
             TBComentario.Text = "";
-            DDLEstado.Text = "";
+            DDLEstado.SelectedIndex = 0;
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)

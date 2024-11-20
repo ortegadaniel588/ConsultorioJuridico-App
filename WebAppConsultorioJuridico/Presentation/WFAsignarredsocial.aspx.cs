@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -17,8 +18,8 @@ namespace Presentation
 
 
         private int _id;
-        private string _empresa_idempresa;
-        private string _redsocial_idredsocial;
+        private int _empresa_idempresa;
+        private int _redsocial_idredsocial;
         private string _url;
         private bool execute = false;
         protected void Page_Load(object sender, EventArgs e)
@@ -96,10 +97,21 @@ namespace Presentation
             DDLRedsocial_idredsocial.Items.Insert(0, "Seleccione");
         }
 
+        //Metodo para limpiar los TextBox y los DDL
+        private void clear()
+        {
+            AsignarredsocialID.Value = "";
+            DDLEmpresa_idempresa.SelectedIndex = 0;
+            DDLRedsocial_idredsocial.SelectedIndex = 0;
+            TBUrl.Text = "";
+
+
+        }
+
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.SelectedValue);
-            _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.SelectedValue);
+            _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.Text);
+            _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.Text);
             _url = TBUrl.Text;
             execute = objAsig.saveAsignarredsocial(_empresa_idempresa, _redsocial_idredsocial, _url);
             if (execute)
@@ -125,7 +137,7 @@ namespace Presentation
             _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.Text);
             _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.Text);
             _url = TBUrl.Text;
-            execute = objAsig.updateAsignarredsocial(_empresa_idempresa, _redsocial_idredsocial, _url);
+            execute = objAsig.updateAsignarredsocial(_id, _empresa_idempresa, _redsocial_idredsocial, _url);
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";

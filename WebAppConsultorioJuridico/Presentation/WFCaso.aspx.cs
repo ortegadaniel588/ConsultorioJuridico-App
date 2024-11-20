@@ -137,13 +137,13 @@ namespace Presentation
             CasoID.Value = "";
             TBCodigo.Text = "";
             TBNombre.Text = "";
-            DDLEpresa.Text = "";
+            DDLEpresa.SelectedIndex = 0;
             TBFechacierre.Text = "";
             TBAsunto.Text = "";
             DDLTipo.SelectedIndex = 0;
             DDLEstado.SelectedIndex = 0;
-            DDLComplejidad.Text = "";
-            DDLEmpleado.SelectedIndex = "";
+            DDLComplejidad.SelectedIndex = 0;
+            DDLEmpleado.SelectedIndex = 0;
 
         }
 
@@ -173,7 +173,7 @@ namespace Presentation
         {
             if (string.IsNullOrEmpty(CasoID.Value))
             {
-                LblMsg.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
                 return;
             }
             _id = Convert.ToInt32(CasoID.Value);

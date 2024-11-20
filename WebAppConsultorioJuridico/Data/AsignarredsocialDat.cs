@@ -59,7 +59,7 @@ namespace Data
         }
 
         //Metodo para actulizar un AsignarRedesSocial
-        public bool updateAsignarredsocial(int _id, string _empresa_idempresa, int _redsocial_idredsocial, string _url)
+        public bool updateAsignarredsocial(int _id, int _empresa_idempresa, int _redsocial_idredsocial, string _url)
         {
             bool executed = false;
             int row;

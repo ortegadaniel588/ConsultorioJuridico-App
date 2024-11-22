@@ -14,7 +14,7 @@ namespace Presentation
 {   
     public partial class Default : System.Web.UI.Page
     {
-        UsuariosLog objUserLog = new UsuariosLog();
+        UsuarioLog objUserLog = new UsuarioLog();
         User objUser = new User();
 
         private string _usuario;    

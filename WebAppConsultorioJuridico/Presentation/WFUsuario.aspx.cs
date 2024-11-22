@@ -16,7 +16,7 @@ namespace Presentation
         //Crear los objetos
         RolLog objRol = new RolLog();
         PersonaLog objPer = new PersonaLog();
-        UsuarioLog objUse = new UsuarioLog();
+        UsuariosLog objUse = new UsuariosLog();
 
         private int _id, _fkrol, _fkpersona;
         private string _mail, _password, _salt, _state, _encryptedPassword;
@@ -38,7 +38,7 @@ namespace Presentation
         [WebMethod]
         public static object ListUsers()
         {
-            UsuarioLog objUse = new UsuarioLog();
+            UsuariosLog objUse = new UsuariosLog();
 
             // Se obtiene un DataSet que contiene la lista de usuarios desde la base de datos.
             var dataSet = objUse.showUsers();

@@ -10,7 +10,7 @@ using Model;
 
 namespace Logic
 {
-    public class UsuarioLog
+    public class UsuariosLog
     {
         UsuariosDat objUse = new UsuariosDat();
 

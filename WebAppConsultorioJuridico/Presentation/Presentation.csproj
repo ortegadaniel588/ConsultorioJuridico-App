@@ -119,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
-    <Content Include="ILLink\ILLink.Descriptors.LibraryBuild.xml" />
     <Content Include="resources\loading.gif" />
     <Content Include="WFEmpresa.aspx" />
     <Content Include="WFEspecialidad.aspx" />

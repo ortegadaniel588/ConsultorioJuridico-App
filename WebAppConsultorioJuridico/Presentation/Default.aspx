@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Presentation.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Presentation.Default" %>
 
 <!DOCTYPE html>
 
@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
         <!-- Imagen de cargando... -->
         <div id="loadingGif" style="display: none;">
-            <img src="resources/images/loading-7528_128.gif" alt="Cargando..." />
+            <img src="resources/images/loading.gif" alt="Cargando..." />
         </div>
         <div>
             <asp:Label ID="Label2" runat="server" Text="">Iniciar Sesion</asp:Label><br />

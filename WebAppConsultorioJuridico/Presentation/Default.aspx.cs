@@ -9,14 +9,15 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 namespace Presentation
-{
+{   
     public partial class Default : System.Web.UI.Page
     {
         UsuariosLog objUserLog = new UsuariosLog();
         User objUser = new User();
 
-        private string _usuario;
+        private string _usuario;    
         private string _contrasena;
         protected void Page_Load(object sender, EventArgs e)
         {

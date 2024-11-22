@@ -1,10 +1,5 @@
 ﻿using Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Presentation
 {
@@ -30,7 +25,7 @@ namespace Presentation
             if (objUser == null)
             {
                 // Redirige a la página de inicio de sesión si el usuario no está autenticado
-                Response.Redirect("WFDefault.aspx");
+                Response.Redirect("Default.aspx");
                 return;
             }
             // Obtener el rol del usuario

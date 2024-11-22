@@ -49,6 +49,7 @@
     <Reference Include="SimpleCrypto, Version=26.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SimpleCrypto.0.3.30.26\lib\SimpleCrypto.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -62,14 +63,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
-    <Content Include="Index.aspx" />
-    <Content Include="Inicio.aspx" />
+    <Content Include="resources\loading.gif" />
+    <Content Include="WFInicio.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="resources\css\datatables.css" />
     <Content Include="resources\css\datatables.min.css" />
@@ -79,39 +79,31 @@
     <Content Include="WFPermissionsRoles.aspx" />
     <Content Include="WFAsignarredsocial.aspx" />
     <Content Include="WFCaso.aspx" />
-    <Content Include="WFEmpresa.aspx" />
     <Content Include="WFEstado.aspx" />
     <Content Include="WFExpediente.aspx" />
     <Content Include="WFPersona.aspx" />
     <Content Include="WFPermission.aspx" />
-    <Content Include="WFEspecialidad.aspx" />
     <Content Include="WFRedsocial.aspx" />
     <Content Include="WFSeguimiento.aspx" />
     <Content Include="WFTipo.aspx" />
     <Content Include="WFUsuario.aspx" />
-    <Content Include="WFRol.aspx" />
     <Content Include="WFCita.aspx" />
     <Content Include="WFHorario.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="WFInicio.aspx.cs">
+      <DependentUpon>WFInicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio.aspx.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
-      <DependentUpon>Inicio.aspx</DependentUpon>
+    <Compile Include="WFInicio.aspx.designer.cs">
+      <DependentUpon>WFInicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -149,13 +141,6 @@
     <Compile Include="WFCaso.aspx.designer.cs">
       <DependentUpon>WFCaso.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WFEmpresa.aspx.cs">
-      <DependentUpon>WFEmpresa.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WFEmpresa.aspx.designer.cs">
-      <DependentUpon>WFEmpresa.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WFEstado.aspx.cs">
       <DependentUpon>WFEstado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,13 +169,6 @@
     <Compile Include="WFPermission.aspx.designer.cs">
       <DependentUpon>WFPermission.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WFEspecialidad.aspx.cs">
-      <DependentUpon>WFEspecialidad.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WFEspecialidad.aspx.designer.cs">
-      <DependentUpon>WFEspecialidad.aspx</DependentUpon>
-    </Compile>
     <Compile Include="WFRedsocial.aspx.cs">
       <DependentUpon>WFRedsocial.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -218,13 +196,6 @@
     </Compile>
     <Compile Include="WFUsuario.aspx.designer.cs">
       <DependentUpon>WFUsuario.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="WFRol.aspx.cs">
-      <DependentUpon>WFRol.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WFRol.aspx.designer.cs">
-      <DependentUpon>WFRol.aspx</DependentUpon>
     </Compile>
     <Compile Include="WFCita.aspx.cs">
       <DependentUpon>WFCita.aspx</DependentUpon>
@@ -256,7 +227,10 @@
       <Project>{6e4a4cb7-66ff-4f65-a9aa-4e9c2afacbd5}</Project>
       <Name>Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj" />
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{e58fefbf-3add-490a-a70e-8d3cab6d094f}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFEmpresa.aspx.cs" Inherits="Presentation.WFEmpresa" %>
+﻿
+<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFEmpresa.aspx.cs" Inherits="Presentation.WFEmpresa" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--Estilos--%>
@@ -61,6 +62,7 @@
             <tr>
                 <th>EmpresaID</th>
                 <th>Número nit</th>
+
                 <th>Nombre</th>
                 <th>Misión</th>
                 <th>Visión</th>
@@ -148,9 +150,9 @@
             $('#<%= EmpresaID.ClientID %>').val(rowData.EmpresaID);
             $('#<%= TBNumeronit.ClientID %>').val(rowData.Numeronit);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
-            $('#<%= TBVision.ClientID %>').val(rowData.Mision);
-            $('#<%= TBdirrecion.ClientID %>').val(rowData.Vision);
-            $('#<%= TBdirrecion.ClientID %>').val(rowData.Dirrecion);
+            $('#<%= TBMision.ClientID %>').val(rowData.Mision);
+            $('#<%= TBVision.ClientID %>').val(rowData.Vision);
+            $('#<%= TBDireccion.ClientID %>').val(rowData.Dirrecion);
             $('#<%= TBTlefono.ClientID %>').val(rowData.Telefono);
             $('#<%= TBTelefono2.ClientID %>').val(rowData.Telefono2);
             $('#<%= TBCorreo.ClientID %>').val(rowData.Correo);

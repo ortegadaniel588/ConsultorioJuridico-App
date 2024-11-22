@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -110,14 +111,14 @@ namespace Presentation
             // Verifica si se ha seleccionado un producto para actualizar
             if (string.IsNullOrEmpty(EmpresaID.Value))
             {
-                LblMsg.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
                 return;
             }
             _id = Convert.ToInt32(EmpresaID.Value);
-            _numeronit = TBnumeronit.Text;
-            _nombre = TBnombre.Text;
-            _mision = TBmision.Text;
-            _vision = TBvision.Text;
+            _numeronit = TBNumeronit.Text;
+            _nombre = TBNombre.Text;
+            _mision = TBMision.Text;
+            _vision = TBVision.Text;
             _direccion = TBDireccion.Text;
             _telefono = TBTlefono.Text;
             _telefono2 = TBTelefono2.Text;

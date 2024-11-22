@@ -23,9 +23,9 @@ namespace Logic
             return objEmp.showEmpresaDDL();
         }
 
-        public DataSet saveEmpresa(string _numeronit, string _nombre, string _mision, string _vision, string _direccion, string _telefono, string _telefono2, string _correo)
+        public bool saveEmpresa(string _numeronit, string _nombre, string _mision, string _vision, string _direccion, string _telefono, string _telefono2, string _correo)
         {
-            return objEmp.showEmpresa();
+            return objEmp.saveEmpresa(_numeronit, _nombre, _mision, _vision, _direccion, _telefono, _telefono2, _correo);
         }
 
         public bool updateEmpresa(int _id, string _numeronit, string _nombre, string _mision, string _vision, string _direccion, string _telefono, string _telefono2, string _correo)

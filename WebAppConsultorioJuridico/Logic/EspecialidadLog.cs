@@ -13,6 +13,11 @@ namespace Logic
     {
         EspecialidadDat objEsp = new EspecialidadDat();
 
+        public DataSet showPersonasDDL()
+        {
+            return objEsp.showEspecialidadDDL();
+        }
+
         //Método para mostrar todas las Especialidades
         public DataSet showEspecialidad()
         {

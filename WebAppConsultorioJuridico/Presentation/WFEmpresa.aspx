@@ -1,4 +1,4 @@
-﻿
+
 <%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFEmpresa.aspx.cs" Inherits="Presentation.WFEmpresa" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -133,14 +133,14 @@
                 //const id = $(this).data('id');
                 const rowData = $('#expedienteTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadEmpresaData(rowData);
+                loadCasoData(rowData);
             });
 
             // Eliminar un caso
             $('#empresaTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 if (confirm("¿Estás seguro de que deseas eliminar este empresa?")) {
-                    deleteEmpresa(id);// Invoca a la función para eliminar el caso
+                    deleteCaso(id);// Invoca a la función para eliminar el caso
                 }
             });
         });

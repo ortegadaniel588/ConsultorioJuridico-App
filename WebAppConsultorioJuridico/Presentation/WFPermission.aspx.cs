@@ -56,9 +56,9 @@ namespace Presentation
             {
                 permissionsList.Add(new
                 {
-                    PermisoID = row["per_id"],
-                    NamePermiso = row["per_nombre"],
-                    Description = row["per_descripcion"],
+                    PermisoID = row["idpermiso"],
+                    NamePermiso = row["nombre"],
+                    Description = row["descripcion"],
                 });
             }
             // Devuelve un objeto en formato JSON que contiene la lista de permisos roles.
@@ -127,7 +127,7 @@ namespace Presentation
                     }
                 }
             }
-            else if (userRole == "Gerente")
+            else if (userRole == "Abogado")
             {
                 //LblMsg.Text = "Bienvenido, Gerente!";
 

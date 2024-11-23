@@ -12,6 +12,7 @@ namespace Logic
     public class TipoLog
     {
         TipoDat objTipo = new TipoDat();
+        // Metodo para cargar los roles en el DDL
 
         public DataSet showTipoDDL()
         {

@@ -1,4 +1,3 @@
-
 <%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFEmpresa.aspx.cs" Inherits="Presentation.WFEmpresa" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -16,32 +15,32 @@
         <br />
         <%--Nombre--%>
         <asp:Label ID="Label2" runat="server" Text="Ingresa el nombre"></asp:Label>
-        
+
         <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
         <br />
         <%--Misión--%>
         <asp:Label ID="Label3" runat="server" Text="Ingresa la misión"></asp:Label>
-        <asp:TextBox ID="TBMision" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBMision" runat="server"></asp:TextBox>
         <br />
         <%--Visión--%>
         <asp:Label ID="Label5" runat="server" Text="Ingresa la visión"></asp:Label>
-        <asp:TextBox ID="TBVision" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBVision" runat="server"></asp:TextBox>
         <br />
         <%--Dirreción--%>
         <asp:Label ID="Label6" runat="server" Text="Ingresa la dirreción"></asp:Label>
-        <asp:TextBox ID="TBDireccion" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBDireccion" runat="server"></asp:TextBox>
         <br />
         <%--Teléfono--%>
         <asp:Label ID="Label7" runat="server" Text="Ingresa el teléfono"></asp:Label>
-        <asp:TextBox ID="TBTlefono" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBTlefono" runat="server"></asp:TextBox>
         <br />
         <%--Teléfono2--%>
         <asp:Label ID="Label8" runat="server" Text="Ingresa el teléfono2"></asp:Label>
-        <asp:TextBox ID="TBTelefono2" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBTelefono2" runat="server"></asp:TextBox>
         <br />
         <%--Correo--%>
         <asp:Label ID="Label9" runat="server" Text="Ingresa el correo"></asp:Label>
-        <asp:TextBox ID="TBCorreo" runat="server" ></asp:TextBox>
+        <asp:TextBox ID="TBCorreo" runat="server"></asp:TextBox>
 
 
     </div>
@@ -95,7 +94,7 @@
                 },
                 "columns": [
                     { "data": "EmpresaID" },
-                    { "data": "Numeronit"},
+                    { "data": "Numeronit" },
                     { "data": "Nombre" },
                     { "data": "Mision" },
                     { "data": "Vision" },
@@ -133,14 +132,14 @@
                 //const id = $(this).data('id');
                 const rowData = $('#expedienteTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadCasoData(rowData);
+                loadEmpresaData(rowData);
             });
 
             // Eliminar un caso
             $('#empresaTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 if (confirm("¿Estás seguro de que deseas eliminar este empresa?")) {
-                    deleteCaso(id);// Invoca a la función para eliminar el caso
+                    deleteEmpresa(id);// Invoca a la función para eliminar el caso
                 }
             });
         });

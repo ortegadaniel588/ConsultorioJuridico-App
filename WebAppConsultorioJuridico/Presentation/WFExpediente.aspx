@@ -61,6 +61,7 @@
     <h2>Lista de los Casos</h2>
     <table id="expedienteTable" class="display" style="width: 100%">
         <thead>
+           
             <tr>
                 <th>casoID</th>
                 <th>Caso</th>

@@ -83,7 +83,7 @@
 
             });
 
-            Editar un Estado
+            //Editar un Estado
             $('#EstadoTable').on('click', '.edit-btn', function () {
                 //const id = $(this).data('id');
                 const rowData = $('#EstadoTable').DataTable().row($(this).parents('tr')).data();
@@ -91,7 +91,7 @@
                 loadEstadoData(rowData);
             });
 
-            Eliminar un Estado
+            //Eliminar un Estado
             $('#EstadoTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del Estado
                 if (confirm("¿Estás seguro de que deseas eliminar este Estado?")) {
@@ -107,7 +107,7 @@
             $('#<%= TBDescripcion.ClientID %>').val(rowData.Descripcion);
         }
 
-        Función para eliminar un Estado
+        //Función para eliminar un Estado
         function deleteEstado(idestado) {
             $.ajax({
                 type: "POST",
@@ -122,6 +122,6 @@
                     alert("Error al eliminar el Estado.");
                 }
             });
-        }*/
+        }
     </script>
 </asp:Content>

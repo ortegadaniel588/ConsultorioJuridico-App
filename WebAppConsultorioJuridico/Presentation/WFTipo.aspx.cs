@@ -32,7 +32,7 @@ namespace Presentation
             objData = objTipo.showTipo();
             GVTipo.DataSource = objData;
             GVTipo.DataBind();
-        }*/
+        }
 
         [WebMethod]
         public static object ListTipo()
@@ -61,7 +61,7 @@ namespace Presentation
             return new { data = TipoList };
         }
 
-        Comentado Eliminar por integridad de Datos
+        //Comentado Eliminar por integridad de Datos
 	[WebMethod]
         public static bool deleteTipo(int idtipo)
         {
@@ -70,7 +70,7 @@ namespace Presentation
 
             // Invocar al método para eliminar el Tipo y devolver el resultado
             return objTipo.deleteTipo(idtipo);
-        }*/
+        }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {

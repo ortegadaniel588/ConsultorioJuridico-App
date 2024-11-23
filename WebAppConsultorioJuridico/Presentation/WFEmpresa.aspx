@@ -133,14 +133,14 @@
                 //const id = $(this).data('id');
                 const rowData = $('#expedienteTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadCasoData(rowData);
+                loadEmpresaData(rowData);
             });
 
             // Eliminar un caso
             $('#empresaTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 if (confirm("¿Estás seguro de que deseas eliminar este empresa?")) {
-                    deleteCaso(id);// Invoca a la función para eliminar el caso
+                    deleteEmpresa(id);// Invoca a la función para eliminar el caso
                 }
             });
         });

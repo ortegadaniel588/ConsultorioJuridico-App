@@ -138,20 +138,20 @@
                 //const id = $(this).data('id');
                 const rowData = $('#expedienteTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadCasoData(rowData);
+                loadExpedienteData(rowData);
             });
 
             // Eliminar un caso
             $('#expedienteTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 if (confirm("¿Estás seguro de que deseas eliminar este expediente?")) {
-                    deleteCaso(id);// Invoca a la función para eliminar el caso
+                    deleteExpediente(id);// Invoca a la función para eliminar el caso
                 }
             });
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
-        function loadCasoData(rowData) {
+        function loadExpedienteData(rowData) {
             $('#<%= ExpedienteID.ClientID %>').val(rowData.CasoID);
             $('#<%= DDCaso_idcaso.ClientID %>').val(rowData.Codigo);
             $('#<%= TBCodigo.ClientID %>').val(rowData.Empresa);

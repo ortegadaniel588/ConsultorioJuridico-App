@@ -51,9 +51,8 @@
         </div>
         <br />
     </form>
-    <%--    lista de productos--%>
 
-    <%--lista de productos--%>
+    <%--lista de Casos--%>
     <h2>Lista de los Casos</h2>
     <table id="casosTable" class="display" style="width: 100%">
         <thead>
@@ -62,6 +61,7 @@
                 <th>Código</th>
                 <th>Nombre</th>
                 <th>Empresa</th>
+                
                 <th>Fecha apertura</th>
                 <th>Fecha cierre</th>
                 <th>Asunto</th>

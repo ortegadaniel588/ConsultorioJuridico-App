@@ -20,34 +20,8 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                showCountUsers();
             }
             validatePermissionRol();
-        }
-
-        [WebMethod]
-        public static object ListCountProductsCategories()
-        {
-            ProductsLog objProd = new ProductsLog();
-
-            // Se obtiene un DataSet que contiene la lista de productos que existen por categoria
-            var dataSet = objProd.showCountProductsCategories();
-
-            // Se crea una lista para almacenar las cantidades que de productos x categorias 
-            var prodCatList = new List<object>();
-
-            // Se itera sobre cada fila del DataSet.
-            foreach (DataRow row in dataSet.Tables[0].Rows)
-            {
-                prodCatList.Add(new
-                {
-                    CategoryName = row["Categoria"],
-                    TotalProducts = row["TotalProductos"],
-                });
-            }
-
-            // Devuelve un objeto en formato JSON que contiene la lista de productos x categorias.
-            return new { data = prodCatList };
         }
 
         // Metodo para validar permisos roles
@@ -180,10 +154,6 @@ namespace Presentation
                 Response.Redirect("WFInicio.aspx");
             }
         }
-        private void showCountUsers()
-        {
-            int count = objUsu.showCountUsers();
-            LblCantUsu.Text = count.ToString();
-        }
+
     }
 }

@@ -35,9 +35,6 @@
         <a href="WFPermiso.aspx">Permisos</a>
         <a href="WFUsuario.aspx">Usuarios</a>
         <a href="WFRol.aspx">Rol</a>
-
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        </asp:ContentPlaceHolder>
     </div>-->
 
         <!-- Navbar -->

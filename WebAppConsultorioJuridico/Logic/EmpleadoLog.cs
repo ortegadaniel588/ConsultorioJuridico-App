@@ -13,31 +13,31 @@ namespace Logic
     {
         EmpleadoDat objEmp = new EmpleadoDat();
 
-        //Método para mostrar todos los Empleados
-        public DataSet showEmpleado()
-        {
-            return objEmp.showEmpleado();
-        }
-
-        //Método para mostrar lista desplegable de Empleados
+        // Método para mostrar lista desplegable de Empleados
         public DataSet showEmpleadoDDL()
         {
             return objEmp.showEmpleadoDDL();
         }
 
-        //Método para guardar un nuevo Empleado
+        // Método para mostrar todos los Empleados
+        public DataSet showEmpleado()
+        {
+            return objEmp.showEmpleados();
+        }
+
+        // Método para guardar un nuevo Empleado
         public bool saveEmpleado(int _usuario_id, int _especialidad_id)
         {
             return objEmp.saveEmpleado(_usuario_id, _especialidad_id);
         }
 
-        //Método para actualizar un Empleado
+        // Método para actualizar un Empleado
         public bool updateEmpleado(int _id, int _usuario_id, int _especialidad_id)
         {
             return objEmp.updateEmpleado(_id, _usuario_id, _especialidad_id);
         }
 
-        //Método para eliminar un Empleado
+        // Método para eliminar un Empleado
         public bool deleteEmpleado(int _id)
         {
             return objEmp.deleteEmpleado(_id);

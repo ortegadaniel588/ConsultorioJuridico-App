@@ -88,20 +88,20 @@
                 //const id = $(this).data('id');
                 const rowData = $('#redessocialesTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadCasoData(rowData);
+                loadRedsocialData(rowData);
             });
 
             // Eliminar un caso
             $('#redessocialesTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 if (confirm("¿Estás seguro de que deseas eliminar este caso?")) {
-                    deleteCaso(id);// Invoca a la función para eliminar el caso
+                    deleteRedsocial(id);// Invoca a la función para eliminar el caso
                 }
             });
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
-        function loadCasoData(rowData) {
+        function loadRedsocialData(rowData) {
             $('#<%= RedsocialID.ClientID %>').val(rowData.RedsocialID);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
             $('#<%= TBDescripcion.ClientID %>').val(rowData.Descripcion);

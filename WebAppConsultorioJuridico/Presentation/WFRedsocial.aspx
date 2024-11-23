@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFRedsocial.aspx.cs" Inherits="Presentation.WFRedsocial" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFRedsocial.aspx.cs" Inherits="Presentation.WFRedsocial" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--Estilos--%>
@@ -88,20 +88,20 @@
                 //const id = $(this).data('id');
                 const rowData = $('#redessocialesTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadRedsocialData(rowData);
+                loadCasoData(rowData);
             });
 
             // Eliminar un caso
             $('#redessocialesTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 if (confirm("¿Estás seguro de que deseas eliminar este caso?")) {
-                    deleteRedsocial(id);// Invoca a la función para eliminar el caso
+                    deleteCaso(id);// Invoca a la función para eliminar el caso
                 }
             });
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
-        function loadRedsocialData(rowData) {
+        function loadCasoData(rowData) {
             $('#<%= RedsocialID.ClientID %>').val(rowData.RedsocialID);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
             $('#<%= TBDescripcion.ClientID %>').val(rowData.Descripcion);

@@ -5,8 +5,7 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-
+    <form id="FrmTipo" runat="server">
         <asp:HiddenField ID="TipoID" runat="server" />
         <%--Nombre--%>
         <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
@@ -14,14 +13,13 @@
         <%--Descripción--%>
         <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
         <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
-    </div>
-    
-    <div>
-        <%--Botones Guardar y Actualizar--%>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
-        <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
-    </div>
+        <div>
+            <%--Botones Guardar y Actualizar--%>
+            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
+            <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
+        </div>
+    </form>
     <%--lista de Tipos--%>
     <h2>Lista de Tipos</h2>
     <table id="TipoTable" class="display" style="width: 100%">
@@ -88,14 +86,14 @@
                 //const id = $(this).data('id');
                 const rowData = $('#TipoTable').DataTable().row($(this).parents('tr')).data();
                 //alert(JSON.stringify(rowData, null, 2));
-                loadCasoData(rowData);
+                loadTipoData(rowData);
             });
 
             // Eliminar un Tipo
             $('#TipoTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del tipo
                 if (confirm("¿Estás seguro de que deseas eliminar este tipo?")) {
-                    deleteCaso(id);// Invoca a la función para eliminar el tipo
+                    deleteTipo(id);// Invoca a la función para eliminar el tipo
                 }
             });
         });
@@ -122,6 +120,6 @@
                     alert("Error al eliminar el Tipo.");
                 }
             });
-        }*/
+        }
     </script>
 </asp:Content>

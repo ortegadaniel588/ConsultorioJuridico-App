@@ -5,8 +5,7 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
-
+    <form id="FrmEstado" runat="server">
         <asp:HiddenField ID="EstadoID" runat="server" />
         <%--Nombre--%>
         <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
@@ -14,14 +13,13 @@
         <%--Descripción--%>
         <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
         <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
-    </div>
     
-    <div>
         <%--Botones Guardar y Actualizar--%>
         <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
         <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
         <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
-    </div>
+    </form>
+
     <%--lista de productos--%>
     <h2>Lista de los estados</h2>
     <table id="EstadoTable" class="display" style="width: 100%">

@@ -13,8 +13,7 @@ namespace Presentation
     public partial class WFTipo : System.Web.UI.Page
     {
         TipoLog objTipo = new TipoLog();
-        private string nombre;
-        private string descripcion;
+        private string nombre, descripcion;
         private int idtipo;
         private bool execute = false;
 
@@ -22,17 +21,8 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                showTipo();
             }
         }
-
-        private void showTipo() 
-        {
-            DataSet objData = new DataSet();
-            objData = objTipo.showTipo();
-            GVTipo.DataSource = objData;
-            GVTipo.DataBind();
-        }*/
 
         [WebMethod]
         public static object ListTipo()
@@ -61,8 +51,7 @@ namespace Presentation
             return new { data = TipoList };
         }
 
-        Comentado Eliminar por integridad de Datos
-	[WebMethod]
+        [WebMethod]
         public static bool deleteTipo(int idtipo)
         {
             // Crear una instancia de la clase de lógica de productos
@@ -70,7 +59,7 @@ namespace Presentation
 
             // Invocar al método para eliminar el Tipo y devolver el resultado
             return objTipo.deleteTipo(idtipo);
-        }*/
+        }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
@@ -99,7 +88,7 @@ namespace Presentation
             idtipo = Convert.ToInt32(TipoID.Value);
             nombre = TBNombre.Text;
             descripcion = TBDescripcion.Text;
-            execute = objTipo.saveTipo(_nombre, _descripcion);
+            execute = objTipo.updateTipo(idtipo, nombre, descripcion);
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";

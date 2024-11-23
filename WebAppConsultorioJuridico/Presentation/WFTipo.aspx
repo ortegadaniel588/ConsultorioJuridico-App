@@ -122,6 +122,6 @@
                     alert("Error al eliminar el Tipo.");
                 }
             });
-        }*/
+        }
     </script>
 </asp:Content>

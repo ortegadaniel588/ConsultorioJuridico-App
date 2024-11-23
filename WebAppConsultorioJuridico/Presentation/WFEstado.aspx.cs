@@ -22,16 +22,7 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                showEstado();
             }
-        }
-
-        private void showEstado() 
-        {
-            DataSet objData = new DataSet();
-            objData = objEst.showEstado();
-            GVEstado.DataSource = objData;
-            GVEstado.DataBind();
         }
 
         [WebMethod]
@@ -62,7 +53,7 @@ namespace Presentation
         }
 
         //Comentado Eliminar por integridad de Datos
-	[WebMethod]
+        [WebMethod]
         public static bool deleteEstado(int id)
         {
             // Crear una instancia de la clase de lógica de productos
@@ -99,7 +90,7 @@ namespace Presentation
             idestado = Convert.ToInt32(EstadoID.Value);
             nombre = TBNombre.Text;
             descripcion = TBDescripcion.Text;
-            execute = objEst.saveEstado(nombre, descripcion);
+            execute = objEst.updateEstado(idestado, nombre, descripcion);
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";

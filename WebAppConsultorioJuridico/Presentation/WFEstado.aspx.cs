@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Runtime.Remoting;
 using System.Web;
-using System.Web.Security;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,93 +12,103 @@ namespace Presentation
 {
     public partial class WFEstado : System.Web.UI.Page
     {
-        //Crear los objetos
         EstadoLog objEst = new EstadoLog();
-        
-        private int _idestado;
-        private string _nombre, _descripcion;
-        private bool executed = false;
+        private string nombre;
+        private string descripcion;
+        private int idestado;
+        private bool execute = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
                 showEstado();
             }
         }
 
-        private void showEstado()
+        private void showEstado() 
         {
-            DataSet ds = objEst.showEstado();
-            GVEstado.DataSource = ds;
+            DataSet objData = new DataSet();
+            objData = objEst.showEstado();
+            GVEstado.DataSource = objData;
             GVEstado.DataBind();
+        }
+
+        [WebMethod]
+        public static object ListEstado()
+        {
+            EstadoLog objEst = new EstadoLog();
+
+            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            var dataSet = objEst.showEstado();
+
+            // Se crea una lista para almacenar los productos que se van a devolver.
+            var EstadoList = new List<object>();
+
+            // Se itera sobre cada fila del DataSet (que representa un Estado).
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                EstadoList.Add(new
+                {
+                    EstadoID = row["idestado"],
+                    Nombre = row["nombre"],
+                    Descripcion = row["descripcion"],
+
+                });
+            }
+
+            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            return new { data = EstadoList };
+        }
+
+        //Comentado Eliminar por integridad de Datos
+	[WebMethod]
+        public static bool deleteEstado(int id)
+        {
+            // Crear una instancia de la clase de lógica de productos
+            EstadoLog objEst = new EstadoLog();
+
+            // Invocar al método para eliminar el producto y devolver el resultado
+            return objEst.deleteEstado(id);
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _nombre = TBNombre.Text;
-            _descripcion = TBDescripcion.Text;
-
-            executed = objEst.saveEstado(_nombre, _descripcion);
-
-            if (executed)
+            nombre = TBNombre.Text;
+            descripcion = TBDescripcion.Text;
+            execute = objEst.saveEstado(nombre, descripcion);
+            if (execute)
             {
-                LblMsg.Text = "El Estado se guardó exitosamente!";
-                showEstado();
+                LblMsj.Text = "Se guardo exitosamente";
             }
             else
             {
-                LblMsg.Text = "Error al guardar";
+                LblMsj.Text = "Error al guardar";
             }
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idestado = Convert.ToInt32(TBId.Text);
-            _nombre = TBNombre.Text;
-            _descripcion = TBDescripcion.Text;
-
-            executed = objEst.updateEstado(_idestado, _nombre, _descripcion);
-
-            if (executed)
+            // Verifica si se ha seleccionado un producto para actualizar
+            if (string.IsNullOrEmpty(EstadoID.Value))
             {
-                LblMsg.Text = "El Estado se actualizó exitosamente!";
-                showEstado();
+                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                return;
+            }
+
+            idestado = Convert.ToInt32(EstadoID.Value);
+            nombre = TBNombre.Text;
+            descripcion = TBDescripcion.Text;
+            execute = objEst.saveEstado(nombre, descripcion);
+            if (execute)
+            {
+                LblMsj.Text = "Se actualizo exitosamente";
             }
             else
             {
-                LblMsg.Text = "Error al actualizar";
+                LblMsj.Text = "Error al actualizar";
             }
         }
 
-        protected void GVEstado_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName == "Edit")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVEstado.Rows[index];
-                TBId.Text = row.Cells[0].Text;
-                TBNombre.Text = row.Cells[1].Text;
-                TBDescripcion.Text = row.Cells[2].Text;
-            }
-            else if (e.CommandName == "Delete")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GVEstado.Rows[index];
-                int idestado = Convert.ToInt32(row.Cells[0].Text);
-
-                executed = objEst.deleteEstado(idestado);
-
-                if (executed)
-                {
-                    LblMsg.Text = "El Estado se eliminó exitosamente!";
-                    showEstado();
-                }
-                else
-                {
-                    LblMsg.Text = "Error al eliminar";
-                }
-            }
-        }
     }
 }

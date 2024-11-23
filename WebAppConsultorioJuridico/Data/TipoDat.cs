@@ -11,7 +11,7 @@ namespace Data
     {
         Persistence objPer = new Persistence();
 
-        //Metodo para mostrar unicamente el id y el nombre Empresa (Nombre consultorio)
+        //Metodo para mostrar unicamente el id y el nombre Empresa  (Nombre consultorio)
         public DataSet showTipoDDL()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();

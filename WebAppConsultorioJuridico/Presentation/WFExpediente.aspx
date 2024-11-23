@@ -1,9 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFExpediente.aspx.cs" Inherits="Presentation.WFExpediente" %>
+﻿<%@ Page Title="Gestión de Expedientes" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFExpediente.aspx.cs" Inherits="Presentation.WFExpediente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <%--Estilos--%>
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="card m-1">
         <div class="card-header">
@@ -23,11 +24,7 @@
                         <%--Código--%>
                         <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese el código"></asp:Label>
                         <asp:TextBox ID="TBCodigo" CssClass="form-control" runat="server"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RFVCodigo" 
-                            runat="server" 
-                            ControlToValidate="TBCodigo" 
-                            ErrorMessage="El código es obligatorio." 
-                            ForeColor="Red" />
+                        <asp:RequiredFieldValidator ID="RFVCodigo" runat="server" ControlToValidate="TBCodigo" ErrorMessage="El código es obligatorio." ForeColor="Red" />
                     </div>
                     <div class="col-4">
                         <%--Estado--%>
@@ -77,6 +74,7 @@
                             <th>Razón</th>
                             <th>Evidencia</th>
                             <th>Estado</th>
+                            <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>

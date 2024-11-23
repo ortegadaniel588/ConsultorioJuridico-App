@@ -245,7 +245,7 @@
         <!-- Main Content -->
         <div class="main p-3">
             <div class="text-center">
-                <h1>Bienvenido a la Ferreteria la 67
+                <h1>Bienvenido al Consultorio juridico
                 </h1>
             </div>
             <%-- Aqui va los elementos de los demas formularios --%>

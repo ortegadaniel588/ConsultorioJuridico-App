@@ -5,23 +5,25 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div>
+    <form id="FrmTipo" runat="server">
+        <div>
+            <asp:HiddenField ID="RedsocialID" runat="server" />
+            <%--Nombre--%>
+            <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
+            <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox><br />
+            <%--Descripción--%>
+            <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
+            <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
+        </div>
 
-        <asp:HiddenField ID="RedsocialID" runat="server" />
-        <%--Nombre--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
-        <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox><br />
-        <%--Descripción--%>
-        <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
-        <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
-    </div>
-    
-    <div>
-        <%--Botones Guardar y Actualizar--%>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
-        <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
-    </div>
+        <div>
+            <%--Botones Guardar y Actualizar--%>
+            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
+            <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
+        </div>
+    </form>
+
     <%--lista de productos--%>
     <h2>Lista de los redsocial</h2>
     <table id="redessocialesTable" class="display" style="width: 100%">
@@ -30,6 +32,7 @@
                 <th>RedsocialID</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
@@ -44,14 +47,14 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFRedsocial.aspx/ListRedessociales",// Se invoca el WebMethod Listar Productos
+                    "url": "WFRedsocial.aspx/ListRedessociales",// Se invoca el WebMethod Listar Social
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
                         return JSON.stringify(d);// Convierte los datos a JSON
                     },
                     "dataSrc": function (json) {
-                        return json.d.data;// Obtiene la lista de productos del resultado
+                        return json.d.data;// Obtiene la lista de redes socilaes del resultado
                     }
                 },
                 "columns": [
@@ -83,7 +86,7 @@
 
             });
 
-            // Editar un caso
+            // Editar una red social
             $('#redessocialesTable').on('click', '.edit-btn', function () {
                 //const id = $(this).data('id');
                 const rowData = $('#redessocialesTable').DataTable().row($(this).parents('tr')).data();
@@ -91,11 +94,11 @@
                 loadRedsocialData(rowData);
             });
 
-            // Eliminar un caso
+            // Eliminar una red social
             $('#redessocialesTable').on('click', '.delete-btn', function () {
-                const id = $(this).data('id');// Obtener el ID del caso
-                if (confirm("¿Estás seguro de que deseas eliminar este caso?")) {
-                    deleteRedsocial(id);// Invoca a la función para eliminar el caso
+                const id = $(this).data('id');// Obtener el ID de la red social
+                if (confirm("¿Estás seguro de que deseas eliminar esta red social?")) {
+                    deleteRedsocial(id);// Invoca a la función para eliminar la red social
                 }
             });
         });
@@ -107,21 +110,21 @@
             $('#<%= TBDescripcion.ClientID %>').val(rowData.Descripcion);
         }
 
-        // Función para eliminar un producto
-        /*function deleteCaso(id) {
+        // Función para eliminar un la redsocial
+        function deleteRedsocial(id) {
             $.ajax({
                 type: "POST",
-                url: "WFCaso.aspx/DeleteCaso",// Se invoca el WebMethod Eliminar un Producto
+                url: "WFRedsocial.aspx/deleteRedsocial",// Se invoca el WebMethod Eliminar una red social
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
-                    $('#casosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
-                    alert("Producto eliminado exitosamente.");
+                    $('#redessocialesTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
+                    alert("Red social eliminado exitosamente.");
                 },
                 error: function () {
-                    alert("Error al eliminar el producto.");
+                    alert("Error al eliminar la red social.");
                 }
             });
-        }*/
+        }
     </script>
 </asp:Content>

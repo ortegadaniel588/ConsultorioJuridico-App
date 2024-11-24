@@ -35,7 +35,7 @@ namespace Presentation
         }*/
 
 	[WebMethod]
-        public static object ListRedesSociales()
+        public static object ListRedessociales()
         {
             RedsocialLog objRed = new RedsocialLog();
 
@@ -61,16 +61,27 @@ namespace Presentation
             return new { data = redessocialesList};
         }
 
-        /* Comentado Eliminar por integridad de Datos
-	[WebMethod]
-        public static bool DeleteRedsocial(int id)
+        //Metodo para limpiar los TextBox y los DDL
+        private void clear()
+        {
+            RedsocialID.Value = "";
+            TBNombre.Text = "";
+            TBDescripcion.Text = "";
+
+
+
+        }
+
+        // Comentado Eliminar por integridad de Datos
+        [WebMethod]
+        public static bool deleteRedsocial(int id)
         {
             // Crear una instancia de la clase de lógica de productos
             RedsocialLog objRed = new RedsocialLog();
 
             // Invocar al método para eliminar el producto y devolver el resultado
             return objRed.deleteRedsocial(id);
-        }*/
+        }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
@@ -89,20 +100,21 @@ namespace Presentation
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            // Verifica si se ha seleccionado un producto para actualizar
+            // Verifica si se ha seleccionado un tipo para actualizar
             if (string.IsNullOrEmpty(RedsocialID.Value))
             {
-                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsj.Text = "No se ha seleccionado un Tipo para actualizar.";
                 return;
             }
 
             _id = Convert.ToInt32(RedsocialID.Value);
             _nombre = TBNombre.Text;
             _descripcion = TBDescripcion.Text;
-            execute = objReds.saveRedsocial(_nombre, _descripcion);
+            execute = objReds.updateRedsocial(_id, _nombre, _descripcion);
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

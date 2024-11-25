@@ -74,8 +74,27 @@ namespace Presentation
             return new { data = empresasList };
         }
 
+        private void clear()
+        {
+            EmpresaID.Value = "";
+            TBNumeronit.Text = "";
+            TBNombre.Text = "";
+            TBMision.Text = "";
+            TBVision.Text = "";
+            TBDireccion.Text = "";
+            TBTelefono.Text = "";
+            TBTelefono2.Text = "";
+            TBCorreo.Text = "";
+
+
+
+        }
+
+
+
+
         //Comentado Eliminar por integridad de Datos
-	[WebMethod]
+        [WebMethod]
         public static bool deleteEmpresa(int id)
         {
             // Crear una instancia de la clase de lógica de productos
@@ -127,6 +146,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

@@ -42,7 +42,7 @@ namespace Presentation
         }*/
 
         [WebMethod]
-        public static object ListAsignarredessociales()
+        public static object listAsignarredessociales()
         {
             AsignarredsocialLog objAsig = new AsignarredsocialLog();
 
@@ -58,10 +58,12 @@ namespace Presentation
                 asignarredessocialesList.Add(new
                 {
                     AsignarredsocialID = row["idasignarredsocial"],
-                    Empresa = row["empresa_idempresa"],
-                    Redsocial = row["redsocial_idredsocial"],
-		            Url = row["url"],
-                    
+                    FkEmpresa = row["empresa_idempresa"],
+                    FKRedsocial = row["redsocial_idredsocial"],
+                    Url = row["url"],
+                    EmpresaNombre = row["empresa_nombre"], // Nombre de la empresa
+                    RedsocialNombre = row["redsocial_nombre"] // Nombre de la red social
+
                 });
             }
 
@@ -69,8 +71,9 @@ namespace Presentation
             return new { data = asignarredessocialesList };
         }
 
-        /* Comentado Eliminar por integridad de Datos
-	[WebMethod]
+
+        //Comentado Eliminar por integridad de Datos
+	    [WebMethod]
         public static bool DeleteAsignarredsocial(int id)
         {
             // Crear una instancia de la clase de lógica de asignarredsocial
@@ -78,12 +81,12 @@ namespace Presentation
 
             // Invocar al método para eliminar el asignar red social y devolver el resultado
             return objAsig.deleteAsignarredsocial(id);
-        }*/
+        }
         private void showEmpresaDDL()
         {
             DDLEmpresa_idempresa.DataSource = objEmp.showEmpresaDDL();
-            DDLEmpresa_idempresa.DataValueField = "idempresa";
-            DDLEmpresa_idempresa.DataValueField = "nombre";
+            DDLEmpresa_idempresa.DataValueField = "idempresa";  // ID numérico
+            DDLEmpresa_idempresa.DataTextField = "nombre";      // Nombre visible
             DDLEmpresa_idempresa.DataBind();
             DDLEmpresa_idempresa.Items.Insert(0, "Seleccione");
         }
@@ -91,8 +94,8 @@ namespace Presentation
         private void showRedsocialDDL()
         {
             DDLRedsocial_idredsocial.DataSource = objRed.showRedsocialDDL();
-            DDLRedsocial_idredsocial.DataValueField = "idredsocial";
-            DDLRedsocial_idredsocial.DataValueField = "nombre";
+            DDLRedsocial_idredsocial.DataValueField = "idredsocial";  // ID numérico
+            DDLRedsocial_idredsocial.DataTextField = "nombre";
             DDLRedsocial_idredsocial.DataBind();
             DDLRedsocial_idredsocial.Items.Insert(0, "Seleccione");
         }
@@ -110,18 +113,22 @@ namespace Presentation
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.Text);
-            _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.Text);
-            _url = TBUrl.Text;
-            execute = objAsig.saveAsignarredsocial(_empresa_idempresa, _redsocial_idredsocial, _url);
-            if (execute)
+            if (Page.IsValid)
             {
-                LblMsj.Text = "Se guardo exitosamente";
+                _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.SelectedValue);
+                _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.SelectedValue);
+                _url = TBUrl.Text;
+                execute = objAsig.saveAsignarredsocial(_empresa_idempresa, _redsocial_idredsocial, _url);
+                if (execute)
+                {
+                    LblMsj.Text = "Se guardo exitosamente";
+                }
+                else
+                {
+                    LblMsj.Text = "Error al guardar";
+                }
             }
-            else
-            {
-                LblMsj.Text = "Error al guardar";
-            }
+            
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
@@ -141,6 +148,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

@@ -151,13 +151,13 @@ namespace Presentation
         {
             _codigo = TBCodigo.Text;
             _nombre = TBNombre.Text;
-            _empresa = Convert.ToInt32(DDLEpresa.Text);
+            _empresa = Convert.ToInt32(DDLEpresa.SelectedValue);
             _fechacierre = TBFechacierre.Text;
             _asunto = TBAsunto.Text;
-            _tipo = Convert.ToInt32(DDLTipo.Text);
-            _estado = Convert.ToInt32(DDLEstado.Text);
+            _tipo = Convert.ToInt32(DDLTipo.SelectedValue);
+            _estado = Convert.ToInt32(DDLEstado.SelectedValue);
             _complejidad = DDLComplejidad.Text;
-            _empleado = Convert.ToInt32(DDLEmpleado.Text);
+            _empleado = Convert.ToInt32(DDLEmpleado.SelectedValue);
             execute = objCas.saveCaso(_codigo, _nombre, _empresa, _fechacierre, _asunto, _tipo, _estado, _complejidad, _empleado);
             if (execute)
             {
@@ -190,6 +190,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

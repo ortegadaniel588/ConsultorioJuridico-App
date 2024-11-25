@@ -15,6 +15,15 @@ namespace Presentation
     {
 
         /// <summary>
+        /// Control FrmEmpresa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm FrmEmpresa;
+
+        /// <summary>
         /// Control EmpresaID.
         /// </summary>
         /// <remarks>
@@ -123,13 +132,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label7;
 
         /// <summary>
-        /// Control TBTlefono.
+        /// Control TBTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBTlefono;
+        protected global::System.Web.UI.WebControls.TextBox TBTelefono;
 
         /// <summary>
         /// Control Label8.

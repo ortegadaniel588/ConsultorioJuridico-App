@@ -42,7 +42,7 @@ namespace Presentation
         }*/
 
 	[WebMethod]
-        public static object ListEmpresas()
+        public static object listEmpresas()
         {
             EmpresaLog objEmp = new EmpresaLog();
 
@@ -74,27 +74,46 @@ namespace Presentation
             return new { data = empresasList };
         }
 
-        /* Comentado Eliminar por integridad de Datos
-	[WebMethod]
-        public static bool DeleteEmpresa(int id)
+        private void clear()
+        {
+            EmpresaID.Value = "";
+            TBNumeronit.Text = "";
+            TBNombre.Text = "";
+            TBMision.Text = "";
+            TBVision.Text = "";
+            TBDireccion.Text = "";
+            TBTelefono.Text = "";
+            TBTelefono2.Text = "";
+            TBCorreo.Text = "";
+
+
+
+        }
+
+
+
+
+        //Comentado Eliminar por integridad de Datos
+        [WebMethod]
+        public static bool deleteEmpresa(int id)
         {
             // Crear una instancia de la clase de lógica de productos
             EmpresaLog objEmp = new EmpresaLog();
 
-            // Invocar al método para eliminar el producto y devolver el resultado
+            // Invocar al método para eliminar empresa y devolver el resultado
             return objEmp.deleteEmpresa(id);
-        }*/
+        }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             _numeronit = TBNumeronit.Text;
             _nombre = TBNombre.Text;
-            _mision = TBNombre.Text;
-            _vision = TBMision.Text;
-            _direccion = TBVision.Text;
-            _telefono = TBDireccion.Text;
-            _telefono2 = TBTlefono.Text;
-            _correo = TBTelefono2.Text;
+            _mision = TBMision.Text;
+            _vision = TBVision.Text;
+            _direccion = TBDireccion.Text;
+            _telefono = TBTelefono.Text;
+            _telefono2 = TBTelefono2.Text;
+            _correo = TBCorreo.Text;
             execute = objEmp.saveEmpresa(_numeronit, _nombre, _mision, _vision, _direccion, _telefono, _telefono2, _correo);
             if (execute)
             {
@@ -120,13 +139,14 @@ namespace Presentation
             _mision = TBMision.Text;
             _vision = TBVision.Text;
             _direccion = TBDireccion.Text;
-            _telefono = TBTlefono.Text;
+            _telefono = TBTelefono.Text;
             _telefono2 = TBTelefono2.Text;
             _correo = TBCorreo.Text;
             execute = objEmp.updateEmpresa(_id, _numeronit, _nombre, _mision, _vision, _direccion, _telefono, _telefono2, _correo);
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

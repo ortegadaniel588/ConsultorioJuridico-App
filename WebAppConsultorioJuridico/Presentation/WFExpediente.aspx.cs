@@ -61,10 +61,11 @@ namespace Presentation
             {
                 expedienteList.Add(new
                 {
-                    ExpedienteID = row["idexpediente"],
-		            Caso = row["caso_idcaso"],
+                    ExpedienteID = row["idexpendiente"],
+                    FKCaso = row["caso_idcaso"],
+                    Caso = row["caso_nombre"],
                     Codigo = row["codigo"],
-                    Fechacreacion = row["creacionfecha"],
+                    Fechacreacion = row["cracionfecha"],
 		            Accionrealizada = row["accionrealizada"],
 		            Razon = row["razon"],
                     Relevancia = row["relevancia"],
@@ -79,8 +80,8 @@ namespace Presentation
             return new { data = expedienteList };
         }
 
-        /* Comentado Eliminar por integridad de Datos
-	[WebMethod]
+        // Comentado Eliminar por integridad de Datos
+	    [WebMethod]
         public static bool DeleteExpediente(int id)
         {
             // Crear una instancia de la clase de lógica de productos
@@ -88,12 +89,12 @@ namespace Presentation
 
             // Invocar al método para eliminar el producto y devolver el resultado
             return objExp.deleteExpediente(id);
-        }*/
+        }
         private void showCasoDDL()
         {
             DDCaso_idcaso.DataSource = objCas.showCasoDDL();
             DDCaso_idcaso.DataValueField = "idcaso";
-            DDCaso_idcaso.DataValueField = "nombre";
+            DDCaso_idcaso.DataTextField = "nombre";
             DDCaso_idcaso.DataBind();
             DDCaso_idcaso.Items.Insert(0, "Seleccione");
         }
@@ -106,7 +107,7 @@ namespace Presentation
             TBCodigo.Text = "";
             TBAccionrealizada.Text = "";
             TBRazon.Text = "";
-            TBRelevancia.Text = "";
+            DDLRelevancia.SelectedIndex = 0;
             TBEvidencia.Text = "";
             TBComentario.Text = "";
             DDLEstado.SelectedIndex = 0;
@@ -114,14 +115,14 @@ namespace Presentation
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.Text);
+            _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _codigo = TBCodigo.Text;
             _accionrealizada = TBAccionrealizada.Text;
             _razon = TBRazon.Text;
-            _relevancia = TBRazon.Text;
-            _evidencia = TBRelevancia.Text;
-            _comentario = TBEvidencia.Text;
-            _estado = TBComentario.Text;
+            _relevancia = DDLRelevancia.Text;
+            _evidencia = TBEvidencia.Text;
+            _comentario = TBComentario.Text;
+            _estado = DDLEstado.Text;
             executed = objEsp.saveExpediente(_caso_idcaso, _codigo,  _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
             if (executed)
             {
@@ -146,15 +147,16 @@ namespace Presentation
             _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.Text);
             _codigo = TBCodigo.Text;
             _accionrealizada = TBAccionrealizada.Text;
-            _razon = TBAccionrealizada.Text;
-            _relevancia = TBRazon.Text;
-            _evidencia = TBRelevancia.Text;
-            _comentario = TBEvidencia.Text;
-            _estado = TBComentario.Text;
+            _razon = TBRazon.Text;
+            _relevancia = DDLRelevancia.Text;
+            _evidencia = TBEvidencia.Text;
+            _comentario = TBComentario.Text;
+            _estado = DDLEstado.Text;
             executed = objEsp.updateExpediente(_id, _caso_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
             if (executed)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

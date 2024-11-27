@@ -124,7 +124,6 @@
     <Content Include="resources\images\loading-7528_128.gif" />
     <Content Include="resources\images\loading-7528_256.gif" />
     <Content Include="resources\js\sidebar.js" />
-    <Content Include="resources\loading.gif" />
     <Content Include="WFEmpresa.aspx" />
     <Content Include="WFEspecialidad.aspx" />
     <Content Include="WFInicio.aspx" />

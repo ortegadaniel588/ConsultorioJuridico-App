@@ -1,8 +1,9 @@
 ﻿using Logic;
 using System;
 using System.Data;
+using System.Web.Services;
+using System.Collections.Generic;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace Presentation
 {
@@ -10,87 +11,138 @@ namespace Presentation
     {
         HorarioLog objHorario = new HorarioLog();
         EmpleadoLog objEmpleado = new EmpleadoLog();
-
-        private int _idHorario, _fkEmpleado;
-        private DateTime _fecha;
-        private TimeSpan _horaInicio, _horaFin;
-        private string _estado;
-        private bool executed = false;
+        public bool _showEditButton { get; set; } = true;
+        public bool _showDeleteButton { get; set; } = true;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                ShowHorarios();
                 ShowEmpleadosDDL();
-                ShowEstadosDDL();
+                BtnUpdate.Visible = false;
             }
-        }
-
-        private void ShowHorarios()
-        {
-            DataSet ds = objHorario.ShowHorarios();
-            GVHorarios.DataSource = ds;
-            GVHorarios.DataBind();
         }
 
         private void ShowEmpleadosDDL()
         {
             DDLEmpleados.DataSource = objEmpleado.showEmpleadoDDL();
-            DDLEmpleados.DataValueField = "emp_id";
-            DDLEmpleados.DataTextField = "emp_nombre";
+            DDLEmpleados.DataValueField = "idempleado";  
+            DDLEmpleados.DataTextField = "nombre";       
             DDLEmpleados.DataBind();
             DDLEmpleados.Items.Insert(0, "Seleccione");
         }
 
-        private void ShowEstadosDDL()
+        [WebMethod]
+        public static object ListHorarios()
         {
-            DDLEstado.Items.Add(new ListItem("Activo", "Activo"));
-            DDLEstado.Items.Add(new ListItem("Inactivo", "Inactivo"));
-            DDLEstado.Items.Insert(0, "Seleccione");
+            HorarioLog objHor = new HorarioLog();
+            DataSet ds = objHor.ShowHorarios();
+            List<object> horarios = new List<object>();
+
+            foreach (DataRow row in ds.Tables[0].Rows)
+            {
+                horarios.Add(new
+                {
+                    id = row["idhorario"],                    // Cambiado de id_horario
+                    empleadoId = row["empleado_idempleado"],  // Cambiado de fk_empleado
+                    empleado = ObtenerNombreEmpleado(Convert.ToInt32(row["empleado_idempleado"])),
+                    fecha = Convert.ToDateTime(row["fecha"]).ToString("yyyy-MM-dd"),
+                    horaInicio = ((TimeSpan)row["horainicio"]).ToString(@"hh\:mm"), // Cambiado de hora_inicio
+                    horaFin = ((TimeSpan)row["horafin"]).ToString(@"hh\:mm")        // Cambiado de hora_fin
+                });
+            }
+
+            return new { data = horarios };
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            _fkEmpleado = Convert.ToInt32(DDLEmpleados.SelectedValue);
-            _fecha = Convert.ToDateTime(TBFecha.Text);
-            _horaInicio = TimeSpan.Parse(TBHoraInicio.Text);
-            _horaFin = TimeSpan.Parse(TBHoraFin.Text);
-            _estado = DDLEstado.SelectedValue;
-
-            executed = objHorario.InsertHorario(_fkEmpleado, _fecha, _horaInicio, _horaFin);
-
-            if (executed)
+            try
             {
-                LblMsg.Text = "El horario se guardó exitosamente!";
-                ShowHorarios();
+                int empleadoId = Convert.ToInt32(DDLEmpleados.SelectedValue);
+                DateTime fecha = Convert.ToDateTime(TBFecha.Text);
+                TimeSpan horaInicio = TimeSpan.Parse(TBHoraInicio.Text);
+                TimeSpan horaFin = TimeSpan.Parse(TBHoraFin.Text);
+
+                bool result = objHorario.InsertHorario(empleadoId, fecha, horaInicio, horaFin);
+
+                if (result)
+                {
+                    LblMsg.Text = "Horario guardado exitosamente!";
+                    Clear();
+                }
+                else
+                {
+                    LblMsg.Text = "Error al guardar el horario";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                LblMsg.Text = "Error al guardar";
+                LblMsg.Text = "Error: " + ex.Message;
             }
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
-            _idHorario = Convert.ToInt32(TBId.Text);
-            _fkEmpleado = Convert.ToInt32(DDLEmpleados.SelectedValue);
-            _fecha = Convert.ToDateTime(TBFecha.Text);
-            _horaInicio = TimeSpan.Parse(TBHoraInicio.Text);
-            _horaFin = TimeSpan.Parse(TBHoraFin.Text);
-            _estado = DDLEstado.SelectedValue;
-
-            executed = objHorario.UpdateHorario(_idHorario, _fkEmpleado, _fecha, _horaInicio, _horaFin);
-
-            if (executed)
+            try
             {
-                LblMsg.Text = "El horario se actualizó exitosamente!";
-                ShowHorarios();
+                int idHorario = Convert.ToInt32(HFHorarioID.Value);
+                int empleadoId = Convert.ToInt32(DDLEmpleados.SelectedValue);
+                DateTime fecha = Convert.ToDateTime(TBFecha.Text);
+                TimeSpan horaInicio = TimeSpan.Parse(TBHoraInicio.Text);
+                TimeSpan horaFin = TimeSpan.Parse(TBHoraFin.Text);
+
+                bool result = objHorario.UpdateHorario(idHorario, empleadoId, fecha, horaInicio, horaFin);
+
+                if (result)
+                {
+                    LblMsg.Text = "Horario actualizado exitosamente!";
+                    Clear();
+                }
+                else
+                {
+                    LblMsg.Text = "Error al actualizar el horario";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                LblMsg.Text = "Error al actualizar";
+                LblMsg.Text = "Error: " + ex.Message;
             }
+        }
+
+        [WebMethod]
+        public static bool DeleteHorario(int id)
+        {
+            try
+            {
+                HorarioLog objHor = new HorarioLog();
+                return objHor.DeleteHorario(id);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void Clear()
+        {
+            HFHorarioID.Value = "";
+            DDLEmpleados.SelectedIndex = 0;
+            TBFecha.Text = "";
+            TBHoraInicio.Text = "";
+            TBHoraFin.Text = "";
+            BtnSave.Visible = true;
+            BtnUpdate.Visible = false;
+            LblMsg.Text = "";
+        }
+
+        private static string ObtenerNombreEmpleado(int empleadoId)
+        {
+            EmpleadoLog objEmpleado = new EmpleadoLog();
+            DataSet ds = objEmpleado.showEmpleadoDDL();
+            
+            DataRow[] rows = ds.Tables[0].Select($"idempleado = {empleadoId}");
+            return rows.Length > 0 ? rows[0]["nombre"].ToString() : "No disponible";
         }
     }
 }

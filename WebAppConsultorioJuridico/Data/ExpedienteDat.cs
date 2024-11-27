@@ -109,7 +109,7 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spDeleteExpendiente"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idexpendiente", MySqlDbType.Int32).Value = _id;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

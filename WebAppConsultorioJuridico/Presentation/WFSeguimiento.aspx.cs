@@ -1,4 +1,5 @@
 ﻿using Logic;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,7 +20,7 @@ namespace Presentation
 
         private int _id;
         private int _caso_id;
-        private string _fecha_actualizacion;
+        private DateTime _fecha_actualizacion;
         private string _proceso;
         private string _descripcion;
         private string _estado;
@@ -47,10 +48,10 @@ namespace Presentation
         {
             SeguimientoLog objSeg = new SeguimientoLog();
 
-            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
+            // Se obtiene un DataSet que contiene la lista de seguimiento desde la base de datos.
             var dataSet = objSeg.showSeguimiento();
 
-            // Se crea una lista para almacenar los productos que se van a devolver.
+            // Se crea una lista para almacenar los seguimiento que se van a devolver.
             var seguimientosList = new List<object>();
 
             // Se itera sobre cada fila del DataSet (que representa un seguimiento).
@@ -58,37 +59,51 @@ namespace Presentation
             {
                 seguimientosList.Add(new
                 {
-                    SeguimientoID = row["idcaso"],
-                    Caso = row["codigo"],
-                    Fechaactualizacion = row["empresa_idempresa"],
-		            Proceso = row["fechadeapertura"],
-		            Descripcion = row["fechacierre"],
-                    Estado = row["asunto"],
-                    
+                    SeguimientoID = row["idseguimiento"],
+                    FKCaso = row["caso_idcaso"],
+                    Casocode = row["caso_codigo"],
+                    Fechaactualizacion = Convert.ToDateTime(row["fechaactualizacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    Proceso = row["proceso"],
+		            Descripcion = row["descripcion"],
+                    Estado = row["estado"],
+                    Asunto= row["asunto"],
+                    Fechaapertura = row["fechadeapertura"],
+                    Fechacierre = row["fechacierre"],
+
                 });
             }
 
-            // Devuelve un objeto en formato JSON que contiene la lista de productos.
+            // Devuelve un objeto en formato JSON que contiene la lista de seguimiento.
             return new { data = seguimientosList };
         }
 
-        /* Comentado Eliminar por integridad de Datos
-	[WebMethod]
+        // Comentado Eliminar por integridad de Datos
+	    [WebMethod]
         public static bool DeleteSeguimiento(int id)
         {
-            // Crear una instancia de la clase de lógica de productos
+            // Crear una instancia de la clase de lógica de seguimiento
             SeguimientoLog objSeg = new SeguimientoLog();
 
-            // Invocar al método para eliminar el producto y devolver el resultado
-            return objSeg.deleteCaso(id);
-        }*/
+            // Invocar al método para eliminar el seguimiento y devolver el resultado
+            return objSeg.deleteSeguimiento(id);
+        }
         private void showCasoDDL()
         {
             DDCaso_idcaso.DataSource = objCas.showCasoDDL();
             DDCaso_idcaso.DataValueField = "idcaso";
-            DDCaso_idcaso.DataValueField = "nombre";
+            DDCaso_idcaso.DataTextField = "nombre";
             DDCaso_idcaso.DataBind();
             DDCaso_idcaso.Items.Insert(0, "Seleccione");
+        }
+
+        private void clear()
+        {
+            SeguimientoID.Value = "";
+            DDCaso_idcaso.SelectedIndex = 0;
+            TBFechaactualizacion.Text = "";
+            TBProceso.Text = "";
+            TBDescripcion.Text = "";
+            TBEstado.Text = "";
         }
 
 
@@ -96,7 +111,7 @@ namespace Presentation
         {
 
             _caso_id = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
-            _fecha_actualizacion = TBFechaactualizacion.Text;
+            _fecha_actualizacion = DateTime.Parse(TBFechaactualizacion.Text);
             _proceso = TBProceso.Text;
             _descripcion = TBDescripcion.Text;
             _estado = TBEstado.Text;
@@ -121,7 +136,7 @@ namespace Presentation
             }
             _id = Convert.ToInt32(SeguimientoID.Value);
             _caso_id = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
-            _fecha_actualizacion = TBFechaactualizacion.Text;
+            _fecha_actualizacion = DateTime.Parse(TBFechaactualizacion.Text);
             _proceso = TBProceso.Text;
             _descripcion = TBDescripcion.Text;
             _estado = TBEstado.Text;
@@ -129,6 +144,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

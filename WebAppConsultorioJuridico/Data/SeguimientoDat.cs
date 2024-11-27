@@ -26,7 +26,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo Seguimiento
-        public bool saveSeguimiento(int _caso_id, string _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
+        public bool saveSeguimiento(int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
         {
             bool executed = false;
             int row;
@@ -60,7 +60,7 @@ namespace Data
         }
 
         //Metodo para actulizar un Seguimiento
-        public bool updateSeguimiento(int _id, int _caso_id, string _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
+        public bool updateSeguimiento(int _id, int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
         {
             bool executed = false;
             int row;

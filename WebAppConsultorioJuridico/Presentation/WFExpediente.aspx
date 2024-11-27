@@ -16,19 +16,20 @@
             <%--Código--%>
             <asp:Label ID="Label2" runat="server" Text="Ingrese el código"></asp:Label>
 
-            <asp:TextBox ID="TBCodigo" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
             <br />
             <%--Acción realizada--%>
             <asp:Label ID="Label4" runat="server" Text="Ingrese la acción realizada"></asp:Label>
-            <asp:TextBox ID="TBAccionrealizada" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="TBAccionrealizada" runat="server"></asp:TextBox>
             <br />
             <%--Razón--%>
             <asp:Label ID="Label5" runat="server" Text="Ingrese la razón"></asp:Label>
-            <asp:TextBox ID="TBRazon" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="TBRazon" runat="server"></asp:TextBox>
             <br />
             <%--Relevancia--%>
             <asp:Label ID="Label3" runat="server" Text="Seleccione la relevancia"></asp:Label>
             <asp:DropDownList ID="DDLRelevancia" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Seleccione la relevancia" Value="0" Selected="True"></asp:ListItem>
                 <asp:ListItem Text="alta" Value="1"></asp:ListItem>
                 <asp:ListItem Text="media" Value="2"></asp:ListItem>
                 <asp:ListItem Text="baja" Value="3"></asp:ListItem>
@@ -36,7 +37,7 @@
             <br />
             <%--Evidencia--%>
             <asp:Label ID="Label7" runat="server" Text="Ingrese la evidencia"></asp:Label>
-            <asp:TextBox ID="TBEvidencia" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="TBEvidencia" runat="server"></asp:TextBox>
 
             <br />
             <%--Comentario--%>
@@ -47,6 +48,7 @@
 
             <asp:Label ID="Label9" runat="server" Text="Seleccione el estado"></asp:Label>
             <asp:DropDownList ID="DDLEstado" runat="server" CssClass="form-select">
+                <asp:ListItem Text="Seleccione el estado" Value="0" Selected="True"></asp:ListItem>
                 <asp:ListItem Text="pendiente" Value="1"></asp:ListItem>
                 <asp:ListItem Text="en progreso" Value="2"></asp:ListItem>
                 <asp:ListItem Text="finalizada" Value="3"></asp:ListItem>
@@ -56,8 +58,8 @@
         </div>
 
         <div>
-            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click"/>
-            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click"/>
+            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
             <br />
             <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label>
         </div>
@@ -68,10 +70,10 @@
     <h2>Lista de los EXpedientes</h2>
     <table id="expedienteTable" class="display" style="width: 100%">
         <thead>
-           
+
             <tr>
                 <th>casoID</th>
-                <th>Caso</th>
+                <th>FKCaso</th>
                 <th>Caso</th>
                 <th>Codigo</th>
                 <th>Fecha creación</th>
@@ -96,7 +98,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFExpediente.aspx/ListExpedientes",// Se invoca el WebMethod Listar Productos
+                    "url": "WFExpediente.aspx/ListExpedientes",// Se invoca el WebMethod Listar Expediente
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
@@ -109,15 +111,15 @@
                 "columns": [
                     { "data": "ExpedienteID" },
                     { "data": "FKCaso", "visible": false },
-                    { "data": "Caso"},
+                    { "data": "Caso" },
                     { "data": "Codigo" },
                     { "data": "Fechacreacion" },
                     { "data": "Accionrealizada" },
                     { "data": "Razon" },
                     { "data": "Relevancia" },
-                    { "data": "Evidencia"},
+                    { "data": "Evidencia" },
                     { "data": "Comentario" },
-                    { "data": "Estado"},
+                    { "data": "Estado" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -143,7 +145,7 @@
 
             });
 
-            // Editar un caso
+            // Editar un expediente
             $('#expedienteTable').on('click', '.edit-btn', function () {
                 //const id = $(this).data('id');
                 const rowData = $('#expedienteTable').DataTable().row($(this).parents('tr')).data();
@@ -151,7 +153,7 @@
                 loadExpedienteData(rowData);
             });
 
-            // Eliminar un caso
+            // Eliminar un expediente
             $('#expedienteTable').on('click', '.delete-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del expediente
                 if (confirm("¿Estás seguro de que deseas eliminar este expediente?")) {
@@ -173,11 +175,11 @@
             $('#<%= DDLEstado.ClientID %>').val(rowData.Estado);
         }
 
-        // Función para eliminar un producto
+        // Función para eliminar un Expediente
         function deleteExpediente(id) {
             $.ajax({
                 type: "POST",
-                url: "WFExpediente.aspx/DeleteExpediente",// Se invoca el WebMethod Eliminar un Producto
+                url: "WFExpediente.aspx/DeleteExpediente",// Se invoca el WebMethod Eliminar un Expediente
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {

@@ -16,6 +16,7 @@ namespace Presentation
         CasoLog objCas = new CasoLog();
 
 
+
         private int _id;
         private int _caso_idcaso;
         private string _codigo;
@@ -34,7 +35,6 @@ namespace Presentation
             {
                 //showExpediente();
                 showCasoDDL();
-
             }
         }
 
@@ -45,7 +45,7 @@ namespace Presentation
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
         }*/
-	[WebMethod]
+	   [WebMethod]
         public static object ListExpedientes()
         {
             ExpedienteLog objExp = new ExpedienteLog();
@@ -56,7 +56,7 @@ namespace Presentation
             // Se crea una lista para almacenar los productos que se van a devolver.
             var expedienteList = new List<object>();
 
-            // Se itera sobre cada fila del DataSet (que representa un caso).
+            // Se itera sobre cada fila del DataSet (que representa un Expediente).
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
                 expedienteList.Add(new
@@ -98,6 +98,7 @@ namespace Presentation
             DDCaso_idcaso.DataBind();
             DDCaso_idcaso.Items.Insert(0, "Seleccione");
         }
+
 
         //Metodo para limpiar los TextBox y los DDL
         private void clear()

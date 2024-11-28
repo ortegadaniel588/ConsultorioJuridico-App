@@ -59,8 +59,8 @@ namespace Presentation
                     Date = Convert.ToDateTime(row["usu_fecha_creacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
                     FkRol = row["tbl_rol_rol_id"],
                     NameRol = row["rol_nombre"],
-                    FkEmployee = row["tbl_empleado_emp_id"],
-                    NameEmployee = row["emp_nombres"]
+                    FkPersona = row["persona_idpersona"],
+                    NamePersona = row["nombres"] + " " + row["apellidos"] 
                 });
             }
 

@@ -1,129 +1,166 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeFile="WFUsuario.aspx.cs" Inherits="Presentation.WFUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <%--Estilos--%>
     <link href="resources/css/dataTables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server">
-        <%--Id--%>
-        <asp:HiddenField ID="HFUserId" runat="server" />
-        <%--Correo--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese el correo"></asp:Label>
-        <asp:TextBox ID="TBMail" runat="server" TextMode="Email"></asp:TextBox><br />
-        <%--Contraseña--%>
-        <asp:Label ID="Label2" runat="server" Text="Ingrese la contraseña"></asp:Label>
-        <asp:TextBox ID="TBContrasena" runat="server"
-            TextMode="Password"></asp:TextBox><br />
-        <%--Estados--%>
-        <asp:Label ID="Label3" runat="server" Text="Estado"></asp:Label>
-        <asp:DropDownList ID="DDLState" runat="server">
-            <asp:ListItem Value="0">Seleccione</asp:ListItem>
-            <asp:ListItem Value="Activo">Activo</asp:ListItem>
-            <asp:ListItem Value="Inactivo">Inactivo</asp:ListItem>
-        </asp:DropDownList><br />
-        <%-- Fecha--%>
-        <asp:Label ID="Label4" runat="server" Text="Fecha de creación"></asp:Label>
-        <asp:TextBox ID="TBDate" runat="server" TextMode="Date"></asp:TextBox>
-        <br />
-        <%--Rol--%>
-        <asp:Label ID="Label5" runat="server" Text="Rol"></asp:Label>
-        <asp:DropDownList ID="DDLRol" runat="server"></asp:DropDownList>
-        <br />
-        <%--Empleado--%>
-        <asp:Label ID="Label6" runat="server" Text="Persona"></asp:Label>
-        <asp:DropDownList ID="DDLPersona" runat="server"></asp:DropDownList>
-        <br />
-        <%--Botones--%>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-        <br />
-        <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
-    </form>
-    <%--Lista de Productos--%>
-    <h2>Lista de Usuarios</h2>
-    <table id="usersTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Correo</th>
-                <th>Contraseña</th>
-                <th>Salt</th>
-                <th>Estado</th>
-                <th>Fecha de Creación</th>
-                <th>FkRol</th>
-                <th>Rol</th>
-                <th>FkPersona</th>
-                <th>Persona</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <script src="resources/js/datatables.min.js" type="text/javascript"></script>
-    <%--Usuarios--%>
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Usuarios
+        </div>
+        <div class="card-body">
+            <form runat="server">
+                <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
+                <asp:HiddenField ID="HFUserId" runat="server" />
+                
+                <div class="row m-1">
+                    <div class="col-4">
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Correo:"></asp:Label>
+                        <asp:TextBox ID="TBMail" CssClass="form-control" runat="server" TextMode="Email"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVMail" 
+                            runat="server" 
+                            ControlToValidate="TBMail" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Ingrese un correo">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Contraseña:"></asp:Label>
+                        <asp:TextBox ID="TBContrasena" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVPassword" 
+                            runat="server" 
+                            ControlToValidate="TBContrasena" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Ingrese una contraseña">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Estado:"></asp:Label>
+                        <asp:DropDownList ID="DDLState" CssClass="form-control" runat="server">
+                            <asp:ListItem Value="">Seleccione</asp:ListItem>
+                            <asp:ListItem Value="Activo">Activo</asp:ListItem>
+                            <asp:ListItem Value="Inactivo">Inactivo</asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVState" 
+                            runat="server" 
+                            ControlToValidate="DDLState" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Seleccione un estado">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col-4">
+                        <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de creación:"></asp:Label>
+                        <asp:TextBox ID="TBDate" CssClass="form-control" runat="server" TextMode="Date"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVDate" 
+                            runat="server" 
+                            ControlToValidate="TBDate" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Seleccione una fecha">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Rol:"></asp:Label>
+                        <asp:DropDownList ID="DDLRol" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVRol" 
+                            runat="server" 
+                            ControlToValidate="DDLRol" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Seleccione un rol">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Persona:"></asp:Label>
+                        <asp:DropDownList ID="DDLPersona" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVPersona" 
+                            runat="server" 
+                            ControlToValidate="DDLPersona" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Seleccione una persona">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col">
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" 
+                            OnClick="BtnSave_Click" OnClientClick="if(!confirm('¿Desea guardar este usuario?')) return false;" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" 
+                            OnClick="BtnUpdate_Click" OnClientClick="if(!confirm('¿Desea actualizar este usuario?')) return false;" />
+                        <asp:Label ID="LblMsg" CssClass="form-label text-success" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card m-1">
+        <div class="card-header">
+            Lista de Usuarios
+        </div>
+        <div class="card-body">
+            <table id="usersTable" class="table table-hover display" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                        <th>Rol</th>
+                        <th>Persona</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <script src="resources/js/datatables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#usersTable').DataTable({
-                "processing": true,
-                "serverSide": false,
                 "ajax": {
-                    "url": "WFUsers.aspx/ListUsers",// Se invoca el WebMethod Listar Usuarios
+                    "url": "WFUsuario.aspx/ListUsers",
                     "type": "POST",
                     "contentType": "application/json",
-                    "data": function (d) {
-                        return JSON.stringify(d);// Convierte los datos a JSON
-                    },
-                    "dataSrc": function (json) {
-                        return json.d.data;// Obtiene la lista de productos del resultado
-                    }
+                    "dataType": "json",
+                    "dataSrc": "d.data"
                 },
                 "columns": [
                     { "data": "UserID" },
                     { "data": "Mail" },
-                    { "data": "Password" },
-                    { "data": "Salt" },
                     { "data": "State" },
                     { "data": "Date" },
-                    { "data": "FkRol", "visible": false },
                     { "data": "NameRol" },
-                    { "data": "FkEmployee", "visible": false },
-                    { "data": "NameEmployee" },
+                    { "data": "NamePersona" },
                     {
                         "data": null,
-                        "render": function (row) {
-                            //alert(JSON.stringify(row, null, 2));
-                            return `<button class="edit-btn" data-id="${row.UserID}">Editar</button>`;
+                        "render": function (data, type, row) {
+                            return `<button type="button" class="btn btn-info btn-sm edit-btn" data-id="${row.UserID}">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>`;
                         }
                     }
                 ],
                 "language": {
-                    "lengthMenu": "Mostrar _MENU_ registros por página",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                    "search": "Buscar:",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
                 }
-
             });
 
-            // Editar un producto
             $('#usersTable').on('click', '.edit-btn', function () {
-                //const id = $(this).data('id');
-                const rowData = $('#usersTable').DataTable().row($(this).parents('tr')).data();
-                //alert(JSON.stringify(rowData, null, 2));
+                var rowData = $('#usersTable').DataTable().row($(this).parents('tr')).data();
                 loadUsersData(rowData);
             });
         });
 
-        // Cargar los datos en los TextBox y DDL para actualizar
         function loadUsersData(rowData) {
             $('#<%= HFUserId.ClientID %>').val(rowData.UserID);
             $('#<%= TBMail.ClientID %>').val(rowData.Mail);
@@ -131,6 +168,8 @@
             $('#<%= TBDate.ClientID %>').val(rowData.Date);
             $('#<%= DDLRol.ClientID %>').val(rowData.FkRol);
             $('#<%= DDLPersona.ClientID %>').val(rowData.FkPersona);
+            $('#<%= BtnSave.ClientID %>').hide();
+            $('#<%= BtnUpdate.ClientID %>').show();
         }
     </script>
 </asp:Content>

@@ -33,13 +33,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control TBHorarioId.
+        /// Control DDLHorarios.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBHorarioId;
+        protected global::System.Web.UI.WebControls.DropDownList DDLHorarios;
+
+        /// <summary>
+        /// Control RFVHorario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVHorario;
 
         /// <summary>
         /// Control Label2.
@@ -60,6 +69,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBAsunto;
 
         /// <summary>
+        /// Control RFVAsunto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVAsunto;
+
+        /// <summary>
         /// Control Label3.
         /// </summary>
         /// <remarks>
@@ -69,13 +87,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// Control TBEstado.
+        /// Control DDLEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBEstado;
+        protected global::System.Web.UI.WebControls.DropDownList DDLEstado;
+
+        /// <summary>
+        /// Control RFVEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVEstado;
 
         /// <summary>
         /// Control BtnSave.

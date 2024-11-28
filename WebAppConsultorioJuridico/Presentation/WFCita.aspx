@@ -3,89 +3,110 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server">
-        <%--ID--%>
-        <asp:HiddenField ID="TBId" runat="server" />
-        <%--Horario ID--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese el Horario ID"></asp:Label>
-        <asp:TextBox ID="TBHorarioId" runat="server"></asp:TextBox>
-        <br />
-        <%--Asunto--%>
-        <asp:Label ID="Label2" runat="server" Text="Ingrese el Asunto"></asp:Label>
-        <asp:TextBox ID="TBAsunto" runat="server"></asp:TextBox>
-        <br />
-        <%--Estado--%>
-        <asp:Label ID="Label3" runat="server" Text="Ingrese el Estado"></asp:Label>
-        <asp:TextBox ID="TBEstado" runat="server"></asp:TextBox>
-        <br />
-        <%--Botones Guardar y Actualizar--%>
-        <div>
-            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-            <asp:Label ID="LblMsg" runat="server" Text=""></asp:Label>
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Citas
         </div>
-        <br />
-    </form>
+        <div class="card-body">
+            <form runat="server">
+                <asp:HiddenField ID="TBId" runat="server" />
+                
+                <div class="row m-1">
+                    <div class="col-4">
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Horario:"></asp:Label>
+                        <asp:DropDownList ID="DDLHorarios" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVHorario" 
+                            runat="server" 
+                            ControlToValidate="DDLHorarios" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Seleccione un horario">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Asunto:"></asp:Label>
+                        <asp:TextBox ID="TBAsunto" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVAsunto" 
+                            runat="server" 
+                            ControlToValidate="TBAsunto" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Ingrese el asunto">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Estado:"></asp:Label>
+                        <asp:DropDownList ID="DDLEstado" CssClass="form-control" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFVEstado" 
+                            runat="server" 
+                            ControlToValidate="DDLEstado" 
+                            ForeColor="Red" 
+                            Display="Dynamic" 
+                            ErrorMessage="Seleccione un estado">
+                        </asp:RequiredFieldValidator>
+                    </div>
+                </div>
 
-    <%--Lista de Citas--%>
-    <div>
-        <table id="citasTable" class="display">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Horario ID</th>
-                    <th>Asunto</th>
-                    <th>Estado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+                <div class="row m-1">
+                    <div class="col">
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsg" CssClass="form-label text-success" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <script src="resources/js/datatables.min.js" type="text/javascript"></script>
+
+    <div class="card m-1">
+        <div class="card-header">
+            Lista de Citas
+        </div>
+        <div class="card-body">
+            <table id="citasTable" class="table table-hover display" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Horario</th>
+                        <th>Asunto</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+    <script src="resources/js/datatables.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#citasTable').DataTable({
-                "processing": true,
-                "serverSide": false,
                 "ajax": {
-                    "url": "WFCita.aspx/ListCitas", // Se invoca el WebMethod Listar Citas
+                    "url": "WFCita.aspx/ListCitas",
                     "type": "POST",
                     "contentType": "application/json",
-                    "data": function (d) {
-                        return JSON.stringify(d); // Convierte los datos a JSON
-                    },
-                    "dataSrc": function (json) {
-                        return json.d.data; // Obtiene la lista 
-                    }
+                    "dataType": "json",
+                    "dataSrc": "d.data"
                 },
                 "columns": [
-                    { "data": "idcita" },
-                    { "data": "horarioid" },
+                    { "data": "id" },
+                    { "data": "horario" },
                     { "data": "asunto" },
                     { "data": "estado" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.idcita}">Editar</button>
-                                    <button class="delete-btn" data-id="${row.idcita}">Eliminar</button>`;
+                            return `<button type="button" class="btn btn-info btn-sm edit-btn" data-id="${row.id}">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-sm delete-btn" data-id="${row.id}">
+                                        <i class="fas fa-trash"></i> Eliminar
+                                    </button>`;
                         }
-                    }          
+                    }
                 ],
                 "language": {
-                    "lengthMenu": "Mostrar _MENU_ registros por página",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando página _PAGE_ de _PAGES_",
-                    "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                    "search": "Buscar:",
-                    "paginate": {
-                        "first": "Primero",
-                        "last": "Último",
-                        "next": "Siguiente",
-                        "previous": "Anterior"
-                    }
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
                 }
             });
 
@@ -95,34 +116,33 @@
             });
 
             $('#citasTable').on('click', '.delete-btn', function () {
-                const id = $(this).data('id'); // Obtener el ID de la cita
-                if (confirm("¿Estás seguro de que deseas eliminar esta cita?")) {
-                    deleteCita(id); // Invoca a la función para eliminar la cita
+                if (confirm('¿Está seguro de eliminar esta cita?')) {
+                    deleteCita($(this).data('id'));
                 }
             });
         });
 
-        // Cargar los datos en los TextBox para actualizar
         function loadCitaData(rowData) {
-            $('#<%= TBId.ClientID %>').val(rowData.idcita);
-            $('#<%= TBHorarioId.ClientID %>').val(rowData.horarioid);
+            $('#<%= TBId.ClientID %>').val(rowData.id);
+            $('#<%= DDLHorarios.ClientID %>').val(rowData.horarioId);
             $('#<%= TBAsunto.ClientID %>').val(rowData.asunto);
-            $('#<%= TBEstado.ClientID %>').val(rowData.estado);
+            $('#<%= DDLEstado.ClientID %>').val(rowData.estado);
+            $('#<%= BtnSave.ClientID %>').hide();
+            $('#<%= BtnUpdate.ClientID %>').show();
         }
 
-        // Función para eliminar una cita
         function deleteCita(id) {
             $.ajax({
                 type: "POST",
-                url: "WFCita.aspx/DeleteCita", // Se invoca el WebMethod Eliminar una Cita
-                contentType: "application/json; charset=utf-8",
+                url: "WFCita.aspx/DeleteCita",
                 data: JSON.stringify({ id: id }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
                 success: function (response) {
-                    $('#citasTable').DataTable().ajax.reload(); // Recargar la tabla después de eliminar
-                    alert("Cita eliminada exitosamente.");
-                },
-                error: function () {
-                    alert("Error al eliminar la cita.");
+                    if (response.d) {
+                        $('#citasTable').DataTable().ajax.reload();
+                        alert('Cita eliminada correctamente');
+                    }
                 }
             });
         }

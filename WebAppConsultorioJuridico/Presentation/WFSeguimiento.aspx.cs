@@ -67,8 +67,8 @@ namespace Presentation
 		            Descripcion = row["descripcion"],
                     Estado = row["estado"],
                     Asunto= row["asunto"],
-                    Fechaapertura = row["fechadeapertura"],
-                    Fechacierre = row["fechacierre"],
+                    Fechaapertura = Convert.ToDateTime(row["fechadeapertura"]).ToString("yyyy-MM-dd"),// Formato de fecha específico
+                    Fechacierre = Convert.ToDateTime(row["fechacierre"]).ToString("yyyy-MM-dd"),// Formato de fecha específico
 
                 });
             }
@@ -119,6 +119,7 @@ namespace Presentation
             if (executed)
             {
                 LblMsj.Text = "Se guardo exitosamente";
+                clear();
             }
             else
             {
@@ -131,7 +132,7 @@ namespace Presentation
             // Verifica si se ha seleccionado un producto para actualizar
             if (string.IsNullOrEmpty(SeguimientoID.Value))
             {
-                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsj.Text = "No se ha seleccionado un segumiento para actualizar.";
                 return;
             }
             _id = Convert.ToInt32(SeguimientoID.Value);

@@ -118,6 +118,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se guardo exitosamente";
+                clear();
             }
             else
             {

@@ -23,7 +23,7 @@ namespace Presentation
         private string _codigo;
         private string _nombre;
         private int _empresa;
-        private string _fechacierre;
+        private DateTime _fechacierre;
         private string _asunto;
         private int _tipo;
         private int _estado;
@@ -70,14 +70,19 @@ namespace Presentation
                     CasoID = row["idcaso"],
                     Codigo = row["codigo"],
                     Nombre = row["nombre"],
-                    Empresa = row["empresa_idempresa"],
-	        	    Fechacierra = row["fechacierre"],
+                    FKEmpresa = row["empresa_idempresa"],
+                    Empresa = row["nombre_empresa"],
+                    Fechaapertura = Convert.ToDateTime(row["fechadeapertura"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    Fechacierra = Convert.ToDateTime(row["fechacierre"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
                     Asunto = row["asunto"],
-                    Tipo = row["tipo_idtipo"],
-                    Estado = row["estado_idestado"],
+                    FKTipo = row["tipo_idtipo"],
+                    Tipo = row["nombre_tipo"],
+                    FKEstado = row["estado_idestado"],
+                    Estado = row["nombre_estado"],
                     Complejidad = row["complejidad"],
-                    Empleado = row["empleado_idempleado"],
-                    
+                    FKEmpleado = row["idempleado"],
+                    Empleado = row["nombre_persona"],
+
                 });
             }
 
@@ -85,8 +90,8 @@ namespace Presentation
             return new { data = casosList };
         }
 
-        /* Comentado Eliminar por integridad de Datos
-	[WebMethod]
+        //Comentado Eliminar por integridad de Datos
+	    [WebMethod]
         public static bool DeleteCaso(int id)
         {
             // Crear una instancia de la clase de lógica de productos
@@ -94,12 +99,13 @@ namespace Presentation
 
             // Invocar al método para eliminar el producto y devolver el resultado
             return objCas.deleteCaso(id);
-        }*/
+        }
+
         private void showEmpresaDDL()
         {
             DDLEpresa.DataSource = objEmp.showEmpresaDDL();
             DDLEpresa.DataValueField = "idempresa";
-            DDLEpresa.DataValueField = "nombre";
+            DDLEpresa.DataTextField = "nombre";
             DDLEpresa.DataBind();
             DDLEpresa.Items.Insert(0, "Seleccione");
         }
@@ -108,27 +114,27 @@ namespace Presentation
         {
             DDLEstado.DataSource = objEst.showEstadoDDL();
             DDLEstado.DataValueField = "idestado";
-            DDLEstado.DataValueField = "nombre";
+            DDLEstado.DataTextField = "nombre";
             DDLEstado.DataBind();
             DDLEstado.Items.Insert(0, "Seleccione");
         }
 
         private void showTipoDDL()
         {
-            DDLEstado.DataSource = objTip.showTipoDDL();
-            DDLEstado.DataValueField = "idtipo";
-            DDLEstado.DataValueField = "nombre";
-            DDLEstado.DataBind();
-            DDLEstado.Items.Insert(0, "Seleccione");
+            DDLTipo.DataSource = objTip.showTipoDDL();
+            DDLTipo.DataValueField = "idtipo";
+            DDLTipo.DataTextField = "nombre";
+            DDLTipo.DataBind();
+            DDLTipo.Items.Insert(0, "Seleccione");
         }
 
         private void showEmpleadoDDL()
         {
-            DDLEstado.DataSource = objEmpl.showEmpleadoDDL();
-            DDLEstado.DataValueField = "idempleado";
-            DDLEstado.DataValueField = "usuario_idusuario";
-            DDLEstado.DataBind();
-            DDLEstado.Items.Insert(0, "Seleccione");
+            DDLEmpleado.DataSource = objEmpl.showEmpleadoDDL();
+            DDLEmpleado.DataValueField = "idempleado";
+            DDLEmpleado.DataTextField = "nombre";
+            DDLEmpleado.DataBind();
+            DDLEmpleado.Items.Insert(0, "Seleccione");
         }
 
         //Metodo para limpiar los TextBox y los DDL
@@ -144,7 +150,6 @@ namespace Presentation
             DDLEstado.SelectedIndex = 0;
             DDLComplejidad.SelectedIndex = 0;
             DDLEmpleado.SelectedIndex = 0;
-
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
@@ -152,7 +157,12 @@ namespace Presentation
             _codigo = TBCodigo.Text;
             _nombre = TBNombre.Text;
             _empresa = Convert.ToInt32(DDLEpresa.SelectedValue);
-            _fechacierre = TBFechacierre.Text;
+            if (!string.IsNullOrWhiteSpace(TBFechacierre.Text))
+            {
+                _fechacierre = DateTime.Parse(TBFechacierre.Text);
+            }
+            
+            
             _asunto = TBAsunto.Text;
             _tipo = Convert.ToInt32(DDLTipo.SelectedValue);
             _estado = Convert.ToInt32(DDLEstado.SelectedValue);
@@ -162,6 +172,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se guardo exitosamente";
+                clear();
             }
             else
             {
@@ -180,7 +191,7 @@ namespace Presentation
             _codigo = TBCodigo.Text;
             _nombre = TBNombre.Text;
             _empresa = Convert.ToInt32(DDLEpresa.SelectedValue);
-            _fechacierre = TBFechacierre.Text;
+            _fechacierre = DateTime.Parse(TBFechacierre.Text);
             _asunto = TBAsunto.Text;
             _tipo = Convert.ToInt32(DDLTipo.SelectedValue);
             _estado = Convert.ToInt32(DDLEstado.SelectedValue);

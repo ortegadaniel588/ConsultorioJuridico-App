@@ -100,7 +100,7 @@ namespace Presentation
         {
             SeguimientoID.Value = "";
             DDCaso_idcaso.SelectedIndex = 0;
-            TBFechaactualizacion.Text = "";
+            TBFechaactualizacion.Text = DateTime.Now.ToString("yyyy-MM-dd");
             TBProceso.Text = "";
             TBDescripcion.Text = "";
             TBEstado.Text = "";

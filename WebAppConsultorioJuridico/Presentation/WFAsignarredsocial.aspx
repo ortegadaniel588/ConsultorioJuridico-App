@@ -8,10 +8,10 @@
     <form runat="server">
         <div>
             <%--Asignarredsocial ID--%>
-            <asp:HiddenField ID="AsignarredsocialID" runat="server" />
+            <asp:HiddenField ID="AsignarredsocialID" runat="server"/>
             <br />
             <%--Empresa_idempresa--%>
-            <asp:Label ID="Label1" runat="server" Text="Seleccione la empresa"></asp:Label>
+            <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Seleccione la empresa"></asp:Label>
             <asp:DropDownList ID="DDLEmpresa_idempresa" CssClass="form-select" runat="server"></asp:DropDownList>
             <asp:RequiredFieldValidator ID="RFVEmpresa" runat="server"
                 ControlToValidate="DDLEmpresa_idempresa"
@@ -22,8 +22,8 @@
             <br />
             <%--Redsocial_idredsocial--%>
 
-            <asp:Label ID="Label2" runat="server" Text="Seleccione la red social"></asp:Label>
-            <asp:DropDownList ID="DDLRedsocial_idredsocial" runat="server" CssClass="form-select"></asp:DropDownList>
+            <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Seleccione la red social"></asp:Label>
+            <asp:DropDownList ID="DDLRedsocial_idredsocial" CssClass="form-select" runat="server"></asp:DropDownList>
             <asp:RequiredFieldValidator ID="RFVRedsocial" runat="server"
                 ControlToValidate="DDLRedsocial_idredsocial"
                 InitialValue=""
@@ -32,7 +32,7 @@
             </asp:RequiredFieldValidator>
             <br />
             <%--Url--%>
-            <asp:Label ID="Label3" runat="server" Text="Ingrese la url del perfil"></asp:Label>
+            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Ingrese la url del perfil"></asp:Label>
             <asp:TextBox ID="TBUrl" runat="server"></asp:TextBox>
             <br />
         </div>

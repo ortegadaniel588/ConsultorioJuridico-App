@@ -11,25 +11,50 @@
             <asp:HiddenField ID="SeguimientoID" runat="server" />
             <br />
             <%--Caso--%>
-            <asp:Label ID="Label1" runat="server" Text="Seleccione el caso"></asp:Label>
+            <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Seleccione el caso"></asp:Label>
             <asp:DropDownList ID="DDCaso_idcaso" runat="server" CssClass="form-select"></asp:DropDownList>
             <br />
             <%--Fechaactu de actualización--%>
 
-            <asp:Label ID="Label2" runat="server" Text="Ingrese la fecha de actualización"></asp:Label>
+            <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la fecha de actualización"></asp:Label>
             <asp:TextBox ID="TBFechaactualizacion" runat="server" TextMode="Date"></asp:TextBox>
+            <%--Valida que el TextBox este lleno--%>
+            <asp:RequiredFieldValidator ID="RFVCode"
+                runat="server"
+                ControlToValidate="TBFechaactualizacion"
+                ForeColor="Red"
+                Display="Dynamic"
+                ErrorMessage="Este campo es obligatorio.">
+            </asp:RequiredFieldValidator>
+
 
             <br />
             <%--Proceso--%>
-            <asp:Label ID="Label3" runat="server" Text="Ingrese el proceso"></asp:Label>
+            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Ingrese el proceso"></asp:Label>
             <asp:TextBox ID="TBProceso" runat="server"></asp:TextBox>
+            <%--Valida que el TextBox este lleno--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
+                runat="server"
+                ControlToValidate="TBProceso"
+                ForeColor="Red"
+                Display="Dynamic"
+                ErrorMessage="Este campo es obligatorio.">
+            </asp:RequiredFieldValidator>
             <br />
             <%--Descripción--%>
-            <asp:Label ID="Label4" runat="server" Text="Ingrese la descripción"></asp:Label>
+            <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Ingrese la descripción"></asp:Label>
             <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox>
+            <%--Valida que el TextBox este lleno--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
+                runat="server"
+                ControlToValidate="TBDescripcion"
+                ForeColor="Red"
+                Display="Dynamic"
+                ErrorMessage="Este campo es obligatorio.">
+            </asp:RequiredFieldValidator>
             <br />
             <%--Estado--%>
-            <asp:Label ID="Label5" runat="server" Text="Ingrese el estado" ></asp:Label>
+            <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingrese el estado"></asp:Label>
             <asp:DropDownList ID="TBEstado" runat="server" CssClass="form-select">
                 <asp:ListItem Value="0">Seleccione</asp:ListItem>
                 <asp:ListItem Text="Iniciado" Value="iniciado"></asp:ListItem>
@@ -41,6 +66,13 @@
                 <asp:ListItem Text="Ejecutado" Value="ejecutado"></asp:ListItem>
 
             </asp:DropDownList>
+            <%--Valida que el DropDownList este seleccionado con algun valor--%>
+            <asp:RequiredFieldValidator ID="RFVCategory" runat="server"
+                ControlToValidate="TBEstado"
+                InitialValue=""
+                ErrorMessage="Debes seleccionar una Categoria."
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
             <br />
         </div>
 

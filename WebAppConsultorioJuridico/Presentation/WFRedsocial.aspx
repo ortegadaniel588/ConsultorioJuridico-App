@@ -9,10 +9,10 @@
         <div>
             <asp:HiddenField ID="RedsocialID" runat="server" />
             <%--Nombre--%>
-            <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
+            <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el nombre"></asp:Label>
             <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox><br />
             <%--Descripción--%>
-            <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
+            <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la descripción"></asp:Label>
             <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
         </div>
 

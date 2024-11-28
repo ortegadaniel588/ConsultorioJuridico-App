@@ -10,36 +10,36 @@
             <asp:HiddenField ID="EmpresaID" runat="server" />
             <br />
             <%--Número nit--%>
-            <asp:Label ID="Label1" runat="server" Text="Ingresa el número nit"></asp:Label>
+            <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingresa el número nit"></asp:Label>
             <asp:TextBox ID="TBNumeronit" runat="server" />
             <br />
             <%--Nombre--%>
-            <asp:Label ID="Label2" runat="server" Text="Ingresa el nombre"></asp:Label>
+            <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingresa el nombre"></asp:Label>
 
             <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
             <br />
             <%--Misión--%>
-            <asp:Label ID="Label3" runat="server" Text="Ingresa la misión"></asp:Label>
+            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Ingresa la misión"></asp:Label>
             <asp:TextBox ID="TBMision" runat="server"></asp:TextBox>
             <br />
             <%--Visión--%>
-            <asp:Label ID="Label5" runat="server" Text="Ingresa la visión"></asp:Label>
+            <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingresa la visión"></asp:Label>
             <asp:TextBox ID="TBVision" runat="server"></asp:TextBox>
             <br />
             <%--Direccion--%>
-            <asp:Label ID="Label6" runat="server" Text="Ingresa la dirreción"></asp:Label>
+            <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Ingresa la dirreción"></asp:Label>
             <asp:TextBox ID="TBDireccion" runat="server"></asp:TextBox>
             <br />
             <%--Teléfono--%>
-            <asp:Label ID="Label7" runat="server" Text="Ingresa el teléfono"></asp:Label>
+            <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Ingresa el teléfono"></asp:Label>
             <asp:TextBox ID="TBTelefono" runat="server"></asp:TextBox>
             <br />
             <%--Teléfono2--%>
-            <asp:Label ID="Label8" runat="server" Text="Ingresa el teléfono2"></asp:Label>
+            <asp:Label ID="Label8" CssClass="form-label" runat="server" Text="Ingresa el teléfono2"></asp:Label>
             <asp:TextBox ID="TBTelefono2" runat="server"></asp:TextBox>
             <br />
             <%--Correo--%>
-            <asp:Label ID="Label9" runat="server" Text="Ingresa el correo"></asp:Label>
+            <asp:Label ID="Label9" CssClass="form-label" runat="server" Text="Ingresa el correo"></asp:Label>
             <asp:TextBox ID="TBCorreo" runat="server"></asp:TextBox>
 
 

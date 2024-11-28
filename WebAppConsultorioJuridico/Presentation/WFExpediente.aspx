@@ -10,49 +10,49 @@
             <asp:HiddenField ID="ExpedienteID" runat="server" />
             <br />
             <%--Caso--%>
-            <asp:Label ID="Label1" runat="server" Text="Seleccione el caso"></asp:Label>
+            <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Seleccione el caso"></asp:Label>
             <asp:DropDownList ID="DDCaso_idcaso" runat="server" CssClass="form-select"></asp:DropDownList>
             <br />
             <%--Código--%>
-            <asp:Label ID="Label2" runat="server" Text="Ingrese el código"></asp:Label>
+            <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese el código"></asp:Label>
 
             <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
             <br />
             <%--Acción realizada--%>
-            <asp:Label ID="Label4" runat="server" Text="Ingrese la acción realizada"></asp:Label>
+            <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Ingrese la acción realizada"></asp:Label>
             <asp:TextBox ID="TBAccionrealizada" runat="server"></asp:TextBox>
             <br />
             <%--Razón--%>
-            <asp:Label ID="Label5" runat="server" Text="Ingrese la razón"></asp:Label>
+            <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingrese la razón"></asp:Label>
             <asp:TextBox ID="TBRazon" runat="server"></asp:TextBox>
             <br />
             <%--Relevancia--%>
-            <asp:Label ID="Label3" runat="server" Text="Seleccione la relevancia"></asp:Label>
-            <asp:DropDownList ID="DDLRelevancia" runat="server" CssClass="form-select">
-                <asp:ListItem Text="Seleccione la relevancia" Value="0" Selected="True"></asp:ListItem>
-                <asp:ListItem Text="alta" Value="1"></asp:ListItem>
-                <asp:ListItem Text="media" Value="2"></asp:ListItem>
-                <asp:ListItem Text="baja" Value="3"></asp:ListItem>
+            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione la relevancia"></asp:Label>
+            <asp:DropDownList ID="DDLRelevancia" CssClass="form-select" runat="server">
+                <asp:ListItem Value="0">Seleccione</asp:ListItem>
+                <asp:ListItem Text="Alta" Value="alta"></asp:ListItem>
+                <asp:ListItem Text="Media" Value="media"></asp:ListItem>
+                <asp:ListItem Text="Baja" Value="baja"></asp:ListItem>
             </asp:DropDownList>
             <br />
             <%--Evidencia--%>
-            <asp:Label ID="Label7" runat="server" Text="Ingrese la evidencia"></asp:Label>
+            <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Ingrese la evidencia"></asp:Label>
             <asp:TextBox ID="TBEvidencia" runat="server"></asp:TextBox>
 
             <br />
             <%--Comentario--%>
-            <asp:Label ID="Label8" runat="server" Text="Ingrese un comentario"></asp:Label>
+            <asp:Label ID="Label8" CssClass="form-label" runat="server" Text="Ingrese un comentario"></asp:Label>
             <asp:TextBox ID="TBComentario" runat="server"></asp:TextBox>
             <br />
             <%--Estado--%>
 
-            <asp:Label ID="Label9" runat="server" Text="Seleccione el estado"></asp:Label>
+            <asp:Label ID="Label9" CssClass="form-label" runat="server" Text="Seleccione el estado"></asp:Label>
             <asp:DropDownList ID="DDLEstado" runat="server" CssClass="form-select">
                 <asp:ListItem Text="Seleccione el estado" Value="0" Selected="True"></asp:ListItem>
-                <asp:ListItem Text="pendiente" Value="1"></asp:ListItem>
-                <asp:ListItem Text="en progreso" Value="2"></asp:ListItem>
-                <asp:ListItem Text="finalizada" Value="3"></asp:ListItem>
-                <asp:ListItem Text="cancelada" Value="3"></asp:ListItem>
+                <asp:ListItem Text="Pendiente" Value="pendiente"></asp:ListItem>
+                <asp:ListItem Text="En progreso" Value="en progreso"></asp:ListItem>
+                <asp:ListItem Text="Finalizada" Value="finalizada"></asp:ListItem>
+                <asp:ListItem Text="Cancelada" Value="cancelada"></asp:ListItem>
             </asp:DropDownList>
             <br />
         </div>

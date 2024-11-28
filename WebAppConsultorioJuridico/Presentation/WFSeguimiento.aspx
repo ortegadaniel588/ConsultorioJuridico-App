@@ -70,7 +70,7 @@
             <asp:RequiredFieldValidator ID="RFVCategory" runat="server"
                 ControlToValidate="TBEstado"
                 InitialValue=""
-                ErrorMessage="Debes seleccionar una Categoria."
+                ErrorMessage="Debes seleccionar un estado."
                 ForeColor="Red">
             </asp:RequiredFieldValidator>
             <br />

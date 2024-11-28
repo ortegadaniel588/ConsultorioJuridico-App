@@ -12,56 +12,134 @@
             <asp:HiddenField ID="CasoID" runat="server" />
             <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el código"></asp:Label>
             <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
+            <%--Valida que el TextBox este lleno--%>
+            <asp:RequiredFieldValidator ID="RFVCode"
+                runat="server"
+                ControlToValidate="TBCodigo"
+                ForeColor="Red"
+                Display="Dynamic"
+                ErrorMessage="Este campo es obligatorio.">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--NOMBRE--%>
             <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese el nombre"></asp:Label>
             <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
-            
+            <%--Valida que el TextBox este lleno--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
+                runat="server"
+                ControlToValidate="TBNombre"
+                ForeColor="Red"
+                Display="Dynamic"
+                ErrorMessage="Este campo es obligatorio.">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--EMPRESA--%>
-            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione la empresa"></asp:Label>
+            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione el consultorio"></asp:Label>
             <asp:DropDownList ID="DDLEpresa" CssClass="form-select" runat="server"></asp:DropDownList>
+            <%--Valida que el DropDownList este seleccionado con algun valor--%>
+            <asp:RequiredFieldValidator ID="RFEmpresa" runat="server"
+                ControlToValidate="DDLEpresa"
+                InitialValue="0"
+                ErrorMessage="Debes seleccionar el consultorio."
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--FCIERRE--%>
             <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de cierre"></asp:Label>
-            <asp:TextBox ID="TBFechacierre" runat="server" TextMode="DateTime"></asp:TextBox>
+            <asp:TextBox ID="TBFechacierre" runat="server" TextMode="Date"></asp:TextBox>
+            <br />
+
             <%--ASUNTO--%>
             <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingrese el asunto"></asp:Label>
-            <asp:TextBox ID="TBAsunto" runat="server"></asp:TextBox>
+            <asp:TextBox ID="TBAsunto" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <%--Valida que el TextBox este lleno--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
+                runat="server"
+                ControlToValidate="TBAsunto"
+                ForeColor="Red"
+                Display="Dynamic"
+                ErrorMessage="Este campo es obligatorio.">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--TIPO--%>
-            <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Selleccione el tipo"></asp:Label>
+            <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Seleccione el tipo"></asp:Label>
             <asp:DropDownList ID="DDLTipo" CssClass="form-select" runat="server"></asp:DropDownList>
+
+            <%--Valida que el DropDownList este seleccionado con algun valor--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                ControlToValidate="DDLTipo"
+                InitialValue="0"
+                ErrorMessage="Debes seleccionar el tipo."
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--ESTADO--%>
             <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Seleccione el estado"></asp:Label>
             <asp:DropDownList ID="DDLEstado" CssClass="form-select" runat="server"></asp:DropDownList>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
+                ControlToValidate="DDLEstado"
+                InitialValue="0"
+                ErrorMessage="Debes seleccionar la complejidad."
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--COMPLEJIDAD--%>
             <asp:Label ID="Label8" CssClass="form-label" runat="server" Text="Seleccione su complejidad"></asp:Label>
-            <asp:DropDownList ID="DDLComplejidad" runat="server">
-                <asp:ListItem Text="alta" Value="1"></asp:ListItem>
-                <asp:ListItem Text="media" Value="2"></asp:ListItem>
-                <asp:ListItem Text="baja" Value="3"></asp:ListItem>
+            <asp:DropDownList ID="DDLComplejidad" CssClass="form-select" runat="server">
+                <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>
+                <asp:ListItem Text="Alta" Value="alta"></asp:ListItem>
+                <asp:ListItem Text="Media" Value="media"></asp:ListItem>
+                <asp:ListItem Text="Baja" Value="baja"></asp:ListItem>
             </asp:DropDownList>
+            <%--Valida que el DropDownList este seleccionado con algun valor--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
+                ControlToValidate="DDLComplejidad"
+                InitialValue=""
+                ErrorMessage="Debes seleccionar la complejidad."
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
+            <br />
+
             <%--EMPLEADO--%>
             <asp:Label ID="Label9" CssClass="form-label" runat="server" Text="Seleccione un abogado"></asp:Label>
-            <asp:DropDownList ID="DDLEmpleado" runat="server"></asp:DropDownList>
+            <asp:DropDownList ID="DDLEmpleado" CssClass="form-select" runat="server"></asp:DropDownList>
+            <%--Valida que el DropDownList este seleccionado con algun valor--%>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
+                ControlToValidate="DDLEmpleado"
+                InitialValue=""
+                ErrorMessage="Debes seleccionar un abogado"
+                ForeColor="Red">
+            </asp:RequiredFieldValidator>
+            <br />
 
         </div>
+
         <%--Botone guradar y actualizar--%>
         <div>
-            <asp:Button ID="BtnSave" runat="server" Text="Button" />
-            <asp:Button ID="BtnUpdate" runat="server" Text="Button" />
+            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
             <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label>
         </div>
         <br />
+
     </form>
 
     <%--lista de Casos--%>
-    <h2>Lista de los Casos</h2>
+    <h2>Lista de casos</h2>
     <table id="casosTable" class="display" style="width: 100%">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Código</th>
                 <th>Nombre</th>
+                <th>FKEmpresa</th>
                 <th>Empresa</th>
-                
                 <th>Fecha apertura</th>
                 <th>Fecha cierre</th>
                 <th>Asunto</th>
@@ -71,12 +149,14 @@
                 <th>Estado</th>
                 <th>Complejidad</th>
                 <th>FkEmpleado</th>
-                <th>Empleado</th>
+                <th>Abogado</th>
+                <th>Opciones</th>
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
+
     <div>
     </div>
 
@@ -84,35 +164,36 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#productsTable').DataTable({
+            $('#casosTable').DataTable({
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFCaso.aspx/ListCasos",// Se invoca el WebMethod Listar Productos
+                    "url": "WFCaso.aspx/ListCasos",// Se invoca el WebMethod Listar casos
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
                         return JSON.stringify(d);// Convierte los datos a JSON
                     },
                     "dataSrc": function (json) {
-                        return json.d.data;// Obtiene la lista de productos del resultado
+                        return json.d.data;// Obtiene la lista de caso del resultado
                     }
                 },
                 "columns": [
                     { "data": "CasoID" },
                     { "data": "Codigo" },
                     { "data": "Nombre" },
+                    { "data": "FKEmpresa", "visible": false },
                     { "data": "Empresa" },
                     { "data": "Fechaapertura" },
                     { "data": "Fechacierra" },
                     { "data": "Asunto" },
-                    { "data": "FkTipo", "visible": false },
+                    { "data": "FKTipo", "visible": false },
                     { "data": "Tipo" },
-                    { "data": "FkEstado", "visible": false },
-                    { "data": "Estado"},
+                    { "data": "FKEstado", "visible": false },
+                    { "data": "Estado" },
                     { "data": "Complejidad" },
-                    { "data": "FkEmpleado", "visible": false },
-                    { "data": "Empleado"},
+                    { "data": "FKEmpleado", "visible": false },
+                    { "data": "Empleado" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
@@ -160,30 +241,30 @@
             $('#<%= CasoID.ClientID %>').val(rowData.CasoID);
             $('#<%= TBCodigo.ClientID %>').val(rowData.Codigo);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
-            $('#<%= DDLEpresa.ClientID %>').val(rowData.Empresa);
+            $('#<%= DDLEpresa.ClientID %>').val(rowData.FKEmpresa);
             $('#<%= TBFechacierre.ClientID %>').val(rowData.Fechacierra);
             $('#<%= TBAsunto.ClientID %>').val(rowData.Asunto);
-            $('#<%= DDLTipo.ClientID %>').val(rowData.Tipo);
-            $('#<%= DDLEstado.ClientID %>').val(rowData.Estado);
+            $('#<%= DDLTipo.ClientID %>').val(rowData.FKTipo);
+            $('#<%= DDLEstado.ClientID %>').val(rowData.FKEstado);
             $('#<%= DDLComplejidad.ClientID %>').val(rowData.Complejidad);
-            $('#<%= DDLEmpleado.ClientID %>').val(rowData.Empleado);
+            $('#<%= DDLEmpleado.ClientID %>').val(rowData.FKEmpleado);
         }
 
-        // Función para eliminar un producto
-        /*function deleteCaso(id) {
+        // Función para eliminar un caso
+        function deleteCaso(id) {
             $.ajax({
                 type: "POST",
-                url: "WFCaso.aspx/DeleteCaso",// Se invoca el WebMethod Eliminar un Producto
+                url: "WFCaso.aspx/DeleteCaso",// Se invoca el WebMethod Eliminar un caso
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
                     $('#casosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
-                    alert("Producto eliminado exitosamente.");
+                    alert("Caso eliminado exitosamente.");
                 },
                 error: function () {
-                    alert("Error al eliminar el producto.");
+                    alert("Error al eliminar el caso.");
                 }
             });
-        }*/
+        }
     </script>
 </asp:Content>

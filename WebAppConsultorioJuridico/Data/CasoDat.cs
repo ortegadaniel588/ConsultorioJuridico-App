@@ -42,7 +42,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo Caso
-        public bool saveCaso(string _codigo, string _nombre, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool saveCaso(string _codigo, string _nombre, int _empresa_id, DateTime _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -80,7 +80,7 @@ namespace Data
         }
 
         //Metodo para actulizar un Caso
-        public bool updateCaso(int _id, string _codigo, string _nombre, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool updateCaso(int _id, string _codigo, string _nombre, int _empresa_id, DateTime _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;

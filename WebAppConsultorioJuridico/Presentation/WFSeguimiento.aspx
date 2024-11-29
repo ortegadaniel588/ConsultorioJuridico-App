@@ -10,7 +10,7 @@
         Gestión de Seguimientos
     </div>
     <div class="card-body">
-        <form runat="server">
+        <form id="FrmSeguimiento" runat="server">
             <%--ID--%>
             <asp:HiddenField ID="SeguimientoID" runat="server" />
             
@@ -57,7 +57,7 @@
                     <asp:DropDownList ID="TBEstado" runat="server" CssClass="form-select">
                         <asp:ListItem Value="0">Seleccione</asp:ListItem>
                         <asp:ListItem Text="Iniciado" Value="iniciado"></asp:ListItem>
-                        <asp:ListItem Text="En trámite" Value="en trámite"></asp:ListItem>
+                        <asp:ListItem Text="En trámite" Value="en tramite"></asp:ListItem>
                         <asp:ListItem Text="Suspendido" Value="suspendido"></asp:ListItem>
                         <asp:ListItem Text="Archivado" Value="archivado"></asp:ListItem>
                         <asp:ListItem Text="Resuelto" Value="resuelto"></asp:ListItem>

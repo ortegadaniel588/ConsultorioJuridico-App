@@ -227,7 +227,7 @@ namespace Presentation
                         case "MOSTRAR":
                             PanelAdmin.Visible = true;
                             break;
-                        case "ELIMINAR"
+                        case "ELIMINAR":
                             PanelAdmin.Visible = true;
                             _showDeleteButton = true;
                             break;

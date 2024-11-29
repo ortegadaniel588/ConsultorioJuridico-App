@@ -145,7 +145,7 @@ namespace Presentation
                     }
                 }
             }
-            else if (userRole == "Gerente")
+            else if (userRole == "Abogado")
             {
                 //LblMsg.Text = "Bienvenido, Gerente!";
 

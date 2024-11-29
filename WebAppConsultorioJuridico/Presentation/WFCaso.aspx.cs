@@ -39,10 +39,10 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                /*BtnSave.Visible = false;
+                BtnSave.Visible = false;
                 BtnUpdate.Visible = false;
                 FrmCaso.Visible = false;
-                PanelAdmin.Visible = false;*/
+                PanelAdmin.Visible = false;
                 //showCaso();
                 showEmpresaDDL();
                 showEstadoDDL();
@@ -50,7 +50,7 @@ namespace Presentation
                 showEmpleadoDDL();
 
             }
-            //validatePermissionRol();
+            validatePermissionRol();
         }
         /*Se elimino este mtodo para añadir el datatable JavaScrit*/
         /*private void showCaso()
@@ -162,13 +162,13 @@ namespace Presentation
                     }
                 }
             }
-            else if (userRole == "Gerente")
+            else if (userRole == "Abogado")
             {
                 //LblMsg.Text = "Bienvenido, Gerente!";
 
                 masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                //masterPage.linkPermission.Visible = false; // Se oculta el enlace Permiso 
-                //masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkPermissions.Visible = false; // Se oculta el enlace Permiso 
+                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -202,12 +202,12 @@ namespace Presentation
                 }
 
             }
-            else if (userRole == "Secretaria")
+            else if (userRole == "Secretario")
             {
                 //LblMsg.Text = "Bienvenido, Secretaria!";
                 masterPage.linkUser.Visible = false;
-                //masterPage.linkPermission.Visible = false;
-                //masterPage.linkPermissionRol.Visible = false;
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -227,7 +227,7 @@ namespace Presentation
                         case "MOSTRAR":
                             PanelAdmin.Visible = true;
                             break;
-                        case "ELIMINAR":
+                        case "ELIMINAR"
                             PanelAdmin.Visible = true;
                             _showDeleteButton = true;
                             break;

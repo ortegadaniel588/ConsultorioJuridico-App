@@ -60,13 +60,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBFechaactualizacion;
 
         /// <summary>
-        /// Control RFVCode.
+        /// Control RFVFecha.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVCode;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVFecha;
 
         /// <summary>
         /// Control Label3.
@@ -87,13 +87,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBProceso;
 
         /// <summary>
-        /// Control RequiredFieldValidator1.
+        /// Control RFVProceso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVProceso;
 
         /// <summary>
         /// Control Label4.
@@ -114,13 +114,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBDescripcion;
 
         /// <summary>
-        /// Control RequiredFieldValidator2.
+        /// Control RFVDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVDescripcion;
 
         /// <summary>
         /// Control Label5.
@@ -141,13 +141,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList TBEstado;
 
         /// <summary>
-        /// Control RFVCategory.
+        /// Control RFVEstado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVCategory;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVEstado;
 
         /// <summary>
         /// Control BtnSave.
@@ -175,5 +175,14 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblMsj;
+
+        /// <summary>
+        /// Control PanelAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAdmin;
     }
 }

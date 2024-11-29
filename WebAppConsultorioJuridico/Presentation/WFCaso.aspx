@@ -6,159 +6,130 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server">
-        <div>
-            <%--CODIGO--%>
-            <asp:HiddenField ID="CasoID" runat="server" />
-            <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el código"></asp:Label>
-            <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
-            <%--Valida que el TextBox este lleno--%>
-            <asp:RequiredFieldValidator ID="RFVCode"
-                runat="server"
-                ControlToValidate="TBCodigo"
-                ForeColor="Red"
-                Display="Dynamic"
-                ErrorMessage="Este campo es obligatorio.">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--NOMBRE--%>
-            <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese el nombre"></asp:Label>
-            <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
-            <%--Valida que el TextBox este lleno--%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator4"
-                runat="server"
-                ControlToValidate="TBNombre"
-                ForeColor="Red"
-                Display="Dynamic"
-                ErrorMessage="Este campo es obligatorio.">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--EMPRESA--%>
-            <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione el consultorio"></asp:Label>
-            <asp:DropDownList ID="DDLEpresa" CssClass="form-select" runat="server"></asp:DropDownList>
-            <%--Valida que el DropDownList este seleccionado con algun valor--%>
-            <asp:RequiredFieldValidator ID="RFEmpresa" runat="server"
-                ControlToValidate="DDLEpresa"
-                InitialValue="0"
-                ErrorMessage="Debes seleccionar el consultorio."
-                ForeColor="Red">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--FCIERRE--%>
-            <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de cierre"></asp:Label>
-            <asp:TextBox ID="TBFechacierre" runat="server" TextMode="Date"></asp:TextBox>
-            <br />
-
-            <%--ASUNTO--%>
-            <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingrese el asunto"></asp:Label>
-            <asp:TextBox ID="TBAsunto" runat="server" TextMode="MultiLine"></asp:TextBox>
-            <%--Valida que el TextBox este lleno--%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator6"
-                runat="server"
-                ControlToValidate="TBAsunto"
-                ForeColor="Red"
-                Display="Dynamic"
-                ErrorMessage="Este campo es obligatorio.">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--TIPO--%>
-            <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Seleccione el tipo"></asp:Label>
-            <asp:DropDownList ID="DDLTipo" CssClass="form-select" runat="server"></asp:DropDownList>
-
-            <%--Valida que el DropDownList este seleccionado con algun valor--%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
-                ControlToValidate="DDLTipo"
-                InitialValue="0"
-                ErrorMessage="Debes seleccionar el tipo."
-                ForeColor="Red">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--ESTADO--%>
-            <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Seleccione el estado"></asp:Label>
-            <asp:DropDownList ID="DDLEstado" CssClass="form-select" runat="server"></asp:DropDownList>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server"
-                ControlToValidate="DDLEstado"
-                InitialValue="0"
-                ErrorMessage="Debes seleccionar la complejidad."
-                ForeColor="Red">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--COMPLEJIDAD--%>
-            <asp:Label ID="Label8" CssClass="form-label" runat="server" Text="Seleccione su complejidad"></asp:Label>
-            <asp:DropDownList ID="DDLComplejidad" CssClass="form-select" runat="server">
-                <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>
-                <asp:ListItem Text="Alta" Value="alta"></asp:ListItem>
-                <asp:ListItem Text="Media" Value="media"></asp:ListItem>
-                <asp:ListItem Text="Baja" Value="baja"></asp:ListItem>
-            </asp:DropDownList>
-            <%--Valida que el DropDownList este seleccionado con algun valor--%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-                ControlToValidate="DDLComplejidad"
-                InitialValue=""
-                ErrorMessage="Debes seleccionar la complejidad."
-                ForeColor="Red">
-            </asp:RequiredFieldValidator>
-            <br />
-
-            <%--EMPLEADO--%>
-            <asp:Label ID="Label9" CssClass="form-label" runat="server" Text="Seleccione un abogado"></asp:Label>
-            <asp:DropDownList ID="DDLEmpleado" CssClass="form-select" runat="server"></asp:DropDownList>
-            <%--Valida que el DropDownList este seleccionado con algun valor--%>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server"
-                ControlToValidate="DDLEmpleado"
-                InitialValue=""
-                ErrorMessage="Debes seleccionar un abogado"
-                ForeColor="Red">
-            </asp:RequiredFieldValidator>
-            <br />
-
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Casos
         </div>
+        <div class="card-body">
+            <form id="FrmCaso" runat="server">
+                <%-- ID del Caso --%>
+                <asp:HiddenField ID="CasoID" runat="server" />
 
-        <%--Botone guradar y actualizar--%>
-        <div>
-            <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-            <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-            <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <%-- Código --%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el Código"></asp:Label>
+                        <asp:TextBox ID="TBCodigo" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVCode" runat="server" ControlToValidate="TBCodigo" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Nombre --%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese el Nombre"></asp:Label>
+                        <asp:TextBox ID="TBNombre" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TBNombre" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Consultorio --%>
+                        <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione el Consultorio"></asp:Label>
+                        <asp:DropDownList ID="DDLEpresa" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFEmpresa" runat="server" ControlToValidate="DDLEpresa" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar el consultorio."></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col-4">
+                        <%-- Fecha de Cierre --%>
+                        <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de Cierre"></asp:Label>
+                        <asp:TextBox ID="TBFechacierre" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-4">
+                        <%-- Asunto --%>
+                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingrese el Asunto"></asp:Label>
+                        <asp:TextBox ID="TBAsunto" CssClass="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TBAsunto" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Tipo --%>
+                        <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Seleccione el Tipo"></asp:Label>
+                        <asp:DropDownList ID="DDLTipo" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DDLTipo" InitialValue="0" ErrorMessage="Debes seleccionar el tipo." ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col-4">
+                        <%-- Estado --%>
+                        <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Seleccione el Estado"></asp:Label>
+                        <asp:DropDownList ID="DDLEstado" CssClass="form-select" runat="server">
+                            <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DDLEstado" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar la complejidad."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Complejidad --%>
+                        <asp:Label ID="Label8" CssClass="form-label" runat="server" Text="Seleccione la Complejidad"></asp:Label>
+                        <asp:DropDownList ID="DDLComplejidad" CssClass="form-select" runat="server">
+                            <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Alta" Value="alta"></asp:ListItem>
+                            <asp:ListItem Text="Media" Value="media"></asp:ListItem>
+                            <asp:ListItem Text="Baja" Value="baja"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DDLComplejidad" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar la complejidad."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Abogado --%>
+                        <asp:Label ID="Label9" CssClass="form-label" runat="server" Text="Seleccione un Abogado"></asp:Label>
+                        <asp:DropDownList ID="DDLEmpleado" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DDLEmpleado" InitialValue="" ForeColor="Red" ErrorMessage="Debes seleccionar un abogado."></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col">
+                        <%-- Botones Guardar y Actualizar --%>
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsj" CssClass="form-label" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
         </div>
-        <br />
-
-    </form>
-
-    <%--lista de Casos--%>
-    <h2>Lista de casos</h2>
-    <table id="casosTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>FKEmpresa</th>
-                <th>Empresa</th>
-                <th>Fecha apertura</th>
-                <th>Fecha cierre</th>
-                <th>Asunto</th>
-                <th>FkTipo</th>
-                <th>Tipo</th>
-                <th>FkEstado</th>
-                <th>Estado</th>
-                <th>Complejidad</th>
-                <th>FkEmpleado</th>
-                <th>Abogado</th>
-                <th>Opciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-
-    <div>
     </div>
+
+    <div class="card m-1">
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Casos
+            </div>
+            <div class="table-responsive">
+                <table id="casosTable" class="table table-hover display" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>FKEmpresa</th>
+                            <th>Empresa</th>
+                            <th>Fecha Apertura</th>
+                            <th>Fecha Cierre</th>
+                            <th>Asunto</th>
+                            <th>FkTipo</th>
+                            <th>Tipo</th>
+                            <th>FkEstado</th>
+                            <th>Estado</th>
+                            <th>Complejidad</th>
+                            <th>FkEmpleado</th>
+                            <th>Abogado</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </asp:Panel>
+    </div>
+
 
     <script src="resources/js/datatables.min.js"></script>
 

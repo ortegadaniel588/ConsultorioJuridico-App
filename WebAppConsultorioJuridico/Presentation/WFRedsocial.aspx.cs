@@ -26,13 +26,13 @@ namespace Presentation
         {
             if (!Page.IsPostBack)
             {
-                /*BtnSave.Visible = false;
+                BtnSave.Visible = false;
                 BtnUpdate.Visible = false;
                 FrmRdsocial.Visible = false;
-                PanelAdmin.Visible = false;*/
+                PanelAdmin.Visible = false;
                 //showRedsocial();
             }
-            //validatePermissionRol();
+            validatePermissionRol();
         }
 
         /*private void showRedsocial() 
@@ -143,13 +143,13 @@ namespace Presentation
                     }
                 }
             }
-            else if (userRole == "Gerente")
+            else if (userRole == "Abogado")
             {
                 //LblMsg.Text = "Bienvenido, Gerente!";
 
                 masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                //masterPage.linkPermission.Visible = false; // Se oculta el enlace Permiso 
-                //masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkPermissions.Visible = false; // Se oculta el enlace Permiso 
+                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -183,12 +183,12 @@ namespace Presentation
                 }
 
             }
-            else if (userRole == "Secretaria")
+            else if (userRole == "Secretario")
             {
                 //LblMsg.Text = "Bienvenido, Secretaria!";
                 masterPage.linkUser.Visible = false;
-                //masterPage.linkPermission.Visible = false;
-                //masterPage.linkPermissionRol.Visible = false;
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {

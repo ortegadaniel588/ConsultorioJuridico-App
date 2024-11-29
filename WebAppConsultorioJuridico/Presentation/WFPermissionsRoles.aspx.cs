@@ -92,7 +92,7 @@ namespace Presentation
 
             if (userRole == "Administrador")
             {
-                //LblMsg.Text = "Bienvenido, Administrador!";
+                LblMsg.Text = "Bienvenido, Administrador!";
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -117,13 +117,13 @@ namespace Presentation
                     }
                 }
             }
-            else if (userRole == "Gerente")
+            else if (userRole == "Abogado")
             {
-                //LblMsg.Text = "Bienvenido, Gerente!";
+                LblMsg.Text = "Bienvenido, Gerente!";
 
                 masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -149,12 +149,12 @@ namespace Presentation
                 }
 
             }
-            else if (userRole == "Secretaria")
+            else if (userRole == "Secretario")
             {
-                //LblMsg.Text = "Bienvenido, Secretaria!";
+                LblMsg.Text = "Bienvenido, Secretaria!";
                 masterPage.linkUser.Visible = false;
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -213,7 +213,7 @@ namespace Presentation
             TBDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
         //Eventos que se ejecutan cuando se da clic en los botones
-        protected void BtnGuardar_Click(object sender, EventArgs e)
+        protected void BtnSave_Click(object sender, EventArgs e)
         {
             _fkRol = Convert.ToInt32(DDLRoles.SelectedValue);
             _fkPermiso = Convert.ToInt32(DDLPermisos.SelectedValue);
@@ -231,7 +231,7 @@ namespace Presentation
                 LblMsg.Text = "Error al guardar";
             }
         }
-        protected void BtnActualizar_Click(object sender, EventArgs e)
+        protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un permiso rol para actualizar
             if (string.IsNullOrEmpty(HFRolPermisoID.Value))

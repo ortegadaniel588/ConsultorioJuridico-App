@@ -65,8 +65,8 @@ namespace Presentation
                     FKCaso = row["caso_idcaso"],
                     Caso = row["caso_nombre"],
                     Codigo = row["codigo"],
-                    Fechacreacion = row["cracionfecha"],
-		            Accionrealizada = row["accionrealizada"],
+                    Fechacreacion = Convert.ToDateTime(row["cracionfecha"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    Accionrealizada = row["accionrealizada"],
 		            Razon = row["razon"],
                     Relevancia = row["relevancia"],
                     Evidencia = row["evidencia"],

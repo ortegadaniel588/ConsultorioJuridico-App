@@ -59,10 +59,10 @@ namespace Presentation
                 {
                     AsignarredsocialID = row["idasignarredsocial"],
                     FkEmpresa = row["empresa_idempresa"],
-                    FKRedsocial = row["redsocial_idredsocial"],
-                    Url = row["url"],
                     EmpresaNombre = row["empresa_nombre"], // Nombre de la empresa
-                    RedsocialNombre = row["redsocial_nombre"] // Nombre de la red social
+                    FKRedsocial = row["redsocial_idredsocial"],
+                    RedsocialNombre = row["redsocial_nombre"], // Nombre de la red social
+                    Url = row["url"]
 
                 });
             }
@@ -122,6 +122,7 @@ namespace Presentation
                 if (execute)
                 {
                     LblMsj.Text = "Se guardo exitosamente";
+                    clear();
                 }
                 else
                 {

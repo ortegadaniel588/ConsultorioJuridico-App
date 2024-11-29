@@ -103,7 +103,7 @@ namespace Presentation
             TBFechaactualizacion.Text = DateTime.Now.ToString("yyyy-MM-dd");
             TBProceso.Text = "";
             TBDescripcion.Text = "";
-            TBEstado.Text = "";
+            TBEstado.SelectedIndex = 0;
         }
 
 

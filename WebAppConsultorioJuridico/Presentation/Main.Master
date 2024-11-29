@@ -70,7 +70,7 @@
         </li>
         <li class="sidebar-item">
             <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
-                <i class="lni lni-layers-1"></i>
+                <i class="lni lni-vector-nodes-7"></i>
                 Estados
 
             </a>

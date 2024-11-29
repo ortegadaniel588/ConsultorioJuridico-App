@@ -51,6 +51,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLRoles;
 
         /// <summary>
+        /// Control RFVRoles.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVRoles;
+
+        /// <summary>
         /// Control Label2.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDLPermisos;
+
+        /// <summary>
+        /// Control RFVPermisos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPermisos;
 
         /// <summary>
         /// Control Label4.
@@ -87,22 +105,31 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBDate;
 
         /// <summary>
-        /// Control BtnGuardar.
+        /// Control RFVDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGuardar;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVDate;
 
         /// <summary>
-        /// Control BtnActualizar.
+        /// Control BtnSave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnActualizar;
+        protected global::System.Web.UI.WebControls.Button BtnSave;
+
+        /// <summary>
+        /// Control BtnUpdate.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnUpdate;
 
         /// <summary>
         /// Control LblMsg.

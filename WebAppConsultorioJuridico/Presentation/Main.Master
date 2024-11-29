@@ -16,28 +16,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <!--<div>
-        <%--Aqui esta el menú--%>
-        <a href="Index.aspx">Inicio</a>
-        <a href="WFCita.aspx">Citas</a>
-        <a href="WFCaso.aspx">Caso</a>
-        <a href="WFEstado.aspx">Estados</a>
-        <a href="WFTipo.aspx">Tipos</a>
-        <a href="WFExpediente.aspx">Expedientes</a>
-        <a href="WFSeguimiento.aspx">Seguimientos</a>
-        <a href="WFPersona.aspx">Personas</a>
-        <a href="WFHorario.aspx">Horarios</a>
-        <a href="WFEmpleado.aspx">Empleado</a>
-        <a href="WFEspecialidad.aspx">Especilidades</a>
-        <a href="WFEmpresa.aspx">Empresa</a>
-        <a href="WFAsignarredsocial.aspx">Asignar Red Social</a>
-        <a href="WFRedsocial">Redes Sociales</a>
-        <a href="WFPermiso.aspx">Permisos</a>
-        <a href="WFUsuario.aspx">Usuarios</a>
-        <a href="WFRol.aspx">Rol</a>
-    </div>-->
 
-        <!-- Navbar -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-white navbar-light">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -58,7 +38,7 @@
         </div>
     </nav>
 
-    
+
     <div class="wrapper">
 
         <!-- Sidebar -->
@@ -68,119 +48,98 @@
                     <i class="lni lni-dashboard-square-1"></i>
                 </button>
                 <div class="sidebar-logo">
-                    <a href="WFInicio.aspx">Inicio</a>
+                    <a id="linkInicio" runat="server" href="WFInicio.aspx">Inicio</a>
                 </div>
             </div>
+
             <ul class="sidebar-nav">
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-user-multiple-4"></i>
-                        <span>Empleados</span>
+                    <a id="linkCasos" runat="server" href="WFCaso.aspx" class="sidebar-link">
+                        <i class="lni lni-folder"></i>
+                        <span>Casos</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
-                    <a id="linkCita" runat="server" href="WFCita.aspx" class="sidebar-link">
-                        <i class="lni lni-cart-1"></i>
-                        <span>Productos</span>
+                    <a id="linkExpedientes" runat="server" href="WFExpediente.aspx" class="sidebar-link">
+                        <i class="lni lni-files"></i>
+                        <span>Expedientes</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a id="linkCaso" runat="server" href="WFCaso.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Categorias</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a id="linkExpediente" runat="server" href="WFExpediente.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li>
+
                 <li class="sidebar-item">
                     <a id="linkSeguimiento" runat="server" href="WFSeguimiento.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                        <i class="lni lni-graph"></i>
+                        <span>Seguimiento</span>
                     </a>
-                </li> 
+                </li>
+
                 <li class="sidebar-item">
-                    <a id="linkPersona" runat="server" href="WFPersona.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                    <a id="linkCitas" runat="server" href="WFCita.aspx" class="sidebar-link">
+                        <i class="lni lni-calendar"></i>
+                        <span>Citas</span>
                     </a>
-                </li>  
+                </li>
+
                 <li class="sidebar-item">
-                    <a id="linkHorario" runat="server" href="WFHorario.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                    <a id="linkHorarios" runat="server" href="WFHorario.aspx" class="sidebar-link">
+                        <i class="lni lni-timer"></i>
+                        <span>Horarios</span>
                     </a>
-                </li> 
+                </li>
+
                 <li class="sidebar-item">
-                    <a id="linkEmpleado" runat="server" href="WFEmpleado.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                    <a id="linkPersonas" runat="server" href="WFPersona.aspx" class="sidebar-link">
+                        <i class="lni lni-users"></i>
+                        <span>Personas</span>
                     </a>
-                </li>  
-                <li class="sidebar-item">
-                    <a id="linkEspecialidad" runat="server" href="WFEspecialidad.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li>    
+                </li>
+
                 <li class="sidebar-item">
                     <a id="linkEmpresa" runat="server" href="WFEmpresa.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                        <i class="lni lni-apartment"></i>
+                        <span>Empresa</span>
                     </a>
-                </li> 
+                </li>
+
                 <li class="sidebar-item">
-                    <a id="linkAsignarredsocial" runat="server" href="WFAsignarredsocial.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                    <a id="linkEspecialidad" runat="server" href="WFEspecialidad.aspx" class="sidebar-link">
+                        <i class="lni lni-graduation"></i>
+                        <span>Especialidades</span>
                     </a>
-                </li> 
+                </li>
+
+                <li class="sidebar-item">
+                    <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
+                        <i class="lni lni-radio-button"></i>
+                        <span>Estados</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
+                        <i class="lni lni-grid-alt"></i>
+                        <span>Tipos</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item">
                     <a id="linkRedsocial" runat="server" href="WFRedsocial.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
+                        <i class="lni lni-network"></i>
+                        <span>Redes Sociales</span>
                     </a>
-                </li>          
-                <li class="sidebar-item">
-                    <a id="linkPermiso" runat="server" href="WFPermiso.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li> 
-                <li class="sidebar-item">
-                    <a id="linkUsuario" runat="server" href="WFUsuario.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li> 
-                <li class="sidebar-item">
-                    <a id="linkRol" runat="server" href="WFRol.aspx" class="sidebar-link">
-                        <i class="lni lni-agenda"></i>
-                        <span>Proveedores</span>
-                    </a>
-                </li> 
-
-
-
+                </li>
 
                 <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
+                    <a id="linkAsignarRedsocial" runat="server" href="WFAsignarredsocial.aspx" class="sidebar-link">
+                        <i class="lni lni-link"></i>
+                        <span>Asignar Redes</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a id="linkSecurity" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
+                        data-bs-toggle="collapse" data-bs-target="#auth" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-shield-2-check"></i>
                         <span>Seguridad</span>
                     </a>
@@ -189,53 +148,17 @@
                             <a id="linkUser" runat="server" href="WFUsuario.aspx" class="sidebar-link">Usuarios</a>
                         </li>
                         <li class="sidebar-item">
-                            <a href="WFRol.aspx" class="sidebar-link">Roles</a>
+                            <a id="linkPermissions" runat="server" href="WFPermission.aspx" class="sidebar-link">Permisos</a>
                         </li>
                         <li class="sidebar-item">
-                            <a id="linkPermission" runat="server" href="WFPermission.aspx" class="sidebar-link">Permisos</a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a id="linkPermissionRol" runat="server" href="WFPermissionsRoles.aspx" class="sidebar-link">Permisos Roles</a>
+                            <a id="linkPermissionsRoles" runat="server" href="WFPermissionsRoles.aspx" class="sidebar-link">Permisos Roles</a>
                         </li>
                     </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
-                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
-                        <i class="lni lni-layout-9"></i>
-                        <span>Multi Level</span>
-                    </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">Two Links
-                            </a>
-                            <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-message-3-text"></i>
-                        <span>Notification</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
-                        <i class="lni lni-gear-1"></i>
-                        <span>Setting</span>
-                    </a>
                 </li>
             </ul>
+
             <div class="sidebar-footer">
-                <a id="linkCloseSession" runat="server" href="Logout.aspx" class="sidebar-link">
+                <a href="Logout.aspx" class="sidebar-link">
                     <i class="lni lni-exit"></i>
                     <span>Cerrar sesión</span>
                 </a>

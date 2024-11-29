@@ -16,7 +16,7 @@ namespace Presentation
         //Crear los objetos
         PermisoLog objPer = new PermisoLog();
 
-        private int _id;
+        //private int _id;
         private string _name, _description;
         private bool executed = false;
 
@@ -56,9 +56,9 @@ namespace Presentation
             {
                 permissionsList.Add(new
                 {
-                    PermisoID = row["idpermiso"],
-                    NamePermiso = row["nombre"],
-                    Description = row["descripcion"],
+                    PermisoID = row["per_id"],
+                    NamePermiso = row["per_nombre"],
+                    Description = row["per_descripcion"],
                 });
             }
             // Devuelve un objeto en formato JSON que contiene la lista de permisos roles.
@@ -129,11 +129,11 @@ namespace Presentation
             }
             else if (userRole == "Abogado")
             {
-                //LblMsg.Text = "Bienvenido, Gerente!";
+                LblMsg.Text = "Bienvenido, Abogado!";
 
                 masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -167,12 +167,12 @@ namespace Presentation
                 }
 
             }
-            else if (userRole == "Secretaria")
+            else if (userRole == "Secretario")
             {
-                //LblMsg.Text = "Bienvenido, Secretaria!";
+                LblMsg.Text = "Bienvenido, Secretario!";
                 masterPage.linkUser.Visible = false;
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
 
                 foreach (var permiso in objUser.Permisos)
                 {

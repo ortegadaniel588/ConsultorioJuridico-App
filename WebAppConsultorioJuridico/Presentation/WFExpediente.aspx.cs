@@ -100,6 +100,12 @@ namespace Presentation
             return objExp.deleteExpediente(id);
         }
 
+        [WebMethod]
+        public static void AsignarExpediente(int id)
+        {
+            System.Diagnostics.Debug.WriteLine("IDcaso: " + id);
+        }
+
         private void validatePermissionRol()
         {
             // Se Obtiene el usuario actual desde la sesión

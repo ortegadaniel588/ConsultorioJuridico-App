@@ -169,7 +169,8 @@
                         "data": null,
                         "render": function (data, type, row) {
                             return `<button class="edit-btn" data-id="${row.CasoID}">Editar</button>
-                              <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>`;
+                              <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>
+                              <button class="expediente-btn" data-id="${row.CasoID}">Expedientes</button>`;
                         }
                     }
                 ],
@@ -205,6 +206,12 @@
                     deleteCaso(id);// Invoca a la función para eliminar el caso
                 }
             });
+            // Extraer id caso para asignar un expediente
+            $('#casosTable').on('click', '.expediente-btn', function () {
+                const id = $(this).data('id');// Obtener el ID del caso
+                asignarExpediente(id);// Invoca a la función para eliminar el caso
+
+            });
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
@@ -236,6 +243,28 @@
                     alert("Error al eliminar el caso.");
                 }
             });
+
         }
+
+        // Función para eliminar un caso
+        function asignarExpediente(id) {
+            $.ajax({
+                type: "POST",
+                url: "WFExpediente.aspx/AsignarExpediente",// Se invoca el WebMethod Eliminar un caso
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: id }),
+                success: function (response) {
+                    $('#casosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
+                    alert("expediente asignado");
+                },
+                error: function () {
+                    alert("Error al eliminar el caso.");
+                }
+            });
+
+        }
+
+
+            
     </script>
 </asp:Content>

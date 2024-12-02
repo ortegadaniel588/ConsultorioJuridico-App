@@ -54,29 +54,35 @@
 
             <ul class="sidebar-nav">
 
-<li class="sidebar-item">
-    <a id="linkCasos" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
-        data-bs-toggle="collapse" data-bs-target="#authCasos" aria-expanded="false" aria-controls="authCasos">
-        <i class="lni lni-briefcase-1"></i>
-        <span>Casos</span>
-    </a>
-    <ul id="authCasos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-        <li class="sidebar-item">
-            <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
-                <i class="lni lni-layers-1"></i>
-                Tipos
+                <li class="sidebar-item">
+                    <a id="linkCasos" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
+                        data-bs-toggle="collapse" data-bs-target="#authCasos" aria-expanded="false" aria-controls="authCasos">
+                        <i class="lni lni-briefcase-1"></i>
+                        <span>Casos</span>
+                    </a>
+                    <ul id="authCasos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a id="A1" runat="server" href="WFCaso.aspx" class="sidebar-link">
+                                <i class="lni lni-briefcase-1"></i>
+                                Casos
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
+                                <i class="lni lni-layers-1"></i>
+                                Tipos
 
-            </a>
-        </li>
-        <li class="sidebar-item">
-            <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
-                <i class="lni lni-vector-nodes-7"></i>
-                Estados
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
+                                <i class="lni lni-vector-nodes-7"></i>
+                                Estados
 
-            </a>
-        </li>
-    </ul>
-</li>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
 

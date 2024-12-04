@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WFAsignarExpediente.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Logout.aspx" />
     <Content Include="resources\css\stylesidebar.css" />
@@ -148,6 +149,13 @@
     <Content Include="WFHorario.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WFAsignarExpediente.aspx.cs">
+      <DependentUpon>WFAsignarExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAsignarExpediente.aspx.designer.cs">
+      <DependentUpon>WFAsignarExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

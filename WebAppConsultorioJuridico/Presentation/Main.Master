@@ -95,6 +95,13 @@
                 </li>
 
                 <li class="sidebar-item">
+                    <a id="linkAsignarExpedientes" runat="server" href="WFAsignarExpediente.aspx" class="sidebar-link">
+                        <i class="lni lni-folder-1"></i>
+                        <span>Asignar Expedientes</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a id="linkSeguimiento" runat="server" href="WFSeguimiento.aspx" class="sidebar-link">
                         <i class="lni lni-search-text"></i>
                         <span>Seguimiento</span>

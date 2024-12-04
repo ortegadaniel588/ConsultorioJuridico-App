@@ -9,6 +9,7 @@ namespace Presentation
         public HtmlAnchor linkInicio;
         public HtmlAnchor linkCasos;
         public HtmlAnchor linkExpedientes;
+        public HtmlAnchor linkAsignarExpedientes;
         public HtmlAnchor linkSeguimiento;
         public HtmlAnchor linkCitas;
         public HtmlAnchor linkHorarios;

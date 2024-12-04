@@ -246,22 +246,23 @@
 
         }
 
-        // Función para eliminar un caso
+        // Función para asignar un expediente
         function asignarExpediente(id) {
             $.ajax({
                 type: "POST",
-                url: "WFExpediente.aspx/AsignarExpediente",// Se invoca el WebMethod Eliminar un caso
+                url: "WFAsignarExpediente.aspx/extraerIdCaso", // Se invoca el WebMethod extraer id caso
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
-                    $('#casosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
-                    alert("expediente asignado");
+                    $('#casosTable').DataTable().ajax.reload(); // Recargar la tabla después de extraer id
+                    // Redirigir usando la URL que recibimos del servidor
+                    // Asegúrate de que la URL esté correctamente especificada
+                    window.location.href = "WFAsignarExpediente.aspx"; // Redirige a la página deseada
                 },
                 error: function () {
-                    alert("Error al eliminar el caso.");
+                    alert("Error al asignar el expediente.");
                 }
             });
-
         }
 
 

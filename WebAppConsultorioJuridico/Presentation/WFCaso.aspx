@@ -170,7 +170,7 @@
                         "render": function (data, type, row) {
                             return `<button class="edit-btn" data-id="${row.CasoID}">Editar</button>
                               <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>
-                              <button class="expediente-btn" data-id="${row.CasoID}">Expedientes</button>`;
+                              <button class="expediente-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Expedientes</button>`;
                         }
                     }
                 ],
@@ -209,9 +209,11 @@
             // Extraer id caso para asignar un expediente
             $('#casosTable').on('click', '.expediente-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
-                asignarExpediente(id);// Invoca a la función para eliminar el caso
+                const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
+                asignarExpediente(id, nombre);// Invoca a la función para eliminar el caso
 
             });
+
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
@@ -247,12 +249,12 @@
         }
 
         // Función para asignar un expediente
-        function asignarExpediente(id) {
+        function asignarExpediente(id, nombre) {
             $.ajax({
                 type: "POST",
                 url: "WFAsignarExpediente.aspx/extraerIdCaso", // Se invoca el WebMethod extraer id caso
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ id: id }),
+                data: JSON.stringify({ id: id, nombre: nombre }),
                 success: function (response) {
                     $('#casosTable').DataTable().ajax.reload(); // Recargar la tabla después de extraer id
                     // Redirigir usando la URL que recibimos del servidor

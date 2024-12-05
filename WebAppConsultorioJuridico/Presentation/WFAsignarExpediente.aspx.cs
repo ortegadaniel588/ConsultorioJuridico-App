@@ -1,5 +1,6 @@
 ﻿using Logic;
 using Model;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,7 +21,7 @@ namespace Presentation
 
 
         private int _id;
-        private static int _caso_idcaso;
+        private int _caso_idcaso;
         private string _codigo;
         private string _accionrealizada;
         private string _razon;
@@ -28,7 +29,8 @@ namespace Presentation
         private string _evidencia;
         private string _comentario;
         private string _estado;
-        private int _idcaso;
+        private static string _nombre_caso;
+        private static int _idcaso;
 
         private bool executed = false;
 
@@ -45,6 +47,7 @@ namespace Presentation
                 PanelAdmin.Visible = false;
                 //showExpediente();
                 showCasoDDL();
+                LBNombrecaso.Text = _nombre_caso;
             }
             validatePermissionRol();
         }
@@ -103,11 +106,20 @@ namespace Presentation
         }
 
         [WebMethod]
-        public static int extraerIdCaso(int id)
+        public static int extraerIdCaso(int id, string nombre)
         {
             // Escribir el ID en la consola para fines de depuración
-            _caso_idcaso = id;
-            System.Diagnostics.Debug.WriteLine("IDcaso: " + id);
+            _idcaso = id;
+
+            if (nombre != null)
+            {
+                _nombre_caso = nombre;
+
+            }
+            else {
+                _nombre_caso = "";
+            }
+            System.Diagnostics.Debug.WriteLine("IDcaso: " + id + " Nombre: " + nombre);
             return id;
 
         }
@@ -255,8 +267,8 @@ namespace Presentation
             DDCaso_idcaso.DataValueField = "idcaso";
             DDCaso_idcaso.DataTextField = "nombre";
             DDCaso_idcaso.DataBind();
-            DDCaso_idcaso.SelectedIndex = _caso_idcaso;
-            DDCaso_idcaso2.Se
+            DDCaso_idcaso.SelectedValue = "" + _idcaso;
+            //DDCaso_idcaso.Items.Insert(0, _nombre_caso);
         }
 
 
@@ -264,7 +276,7 @@ namespace Presentation
         private void clear()
         {
             ExpedienteID.Value = "";
-            DDCaso_idcaso.SelectedIndex = 0;
+            //DDCaso_idcaso.SelectedIndex = 0;
             TBCodigo.Text = "";
             TBAccionrealizada.Text = "";
             TBRazon.Text = "";
@@ -276,7 +288,7 @@ namespace Presentation
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            //_caso_idcaso = extraerIdCaso();
+            //_caso_idcaso = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _codigo = TBCodigo.Text;
             _accionrealizada = TBAccionrealizada.Text;
             _razon = TBRazon.Text;
@@ -284,14 +296,16 @@ namespace Presentation
             _evidencia = TBEvidencia.Text;
             _comentario = TBComentario.Text;
             _estado = DDLEstado.Text;
-            executed = objEsp.saveExpediente(_caso_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
+            executed = objEsp.saveExpediente(_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
             if (executed)
             {
+                LblMsj.Style["color"] = "green";
                 LblMsj.Text = "Se guardo exitosamente";
                 clear();
             }
             else
             {
+                LblMsj.Style["color"] = "red";
                 LblMsj.Text = "Error al guardar";
             }
         }
@@ -305,9 +319,9 @@ namespace Presentation
                 LblMsj.Text = "No se ha seleccionado un expediente para actualizar.";
                 return;
             }
-
+            
             _id = Convert.ToInt32(ExpedienteID.Value);
-            _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.Text);
+            _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _codigo = TBCodigo.Text;
             _accionrealizada = TBAccionrealizada.Text;
             _razon = TBRazon.Text;
@@ -316,15 +330,19 @@ namespace Presentation
             _comentario = TBComentario.Text;
             _estado = DDLEstado.Text;
             executed = objEsp.updateExpediente(_id, _caso_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
+            
             if (executed)
             {
+                LblMsj.Style["color"] = "green";
                 LblMsj.Text = "Se actualizo exitosamente";
                 clear();
             }
             else
             {
+                LblMsj.Style["color"] = "red";
                 LblMsj.Text = "Error al actualizar";
             }
+            
         }
     }
 }

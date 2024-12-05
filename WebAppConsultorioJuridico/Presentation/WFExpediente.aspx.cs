@@ -297,7 +297,7 @@ namespace Presentation
             }
 
             _id = Convert.ToInt32(ExpedienteID.Value);
-            _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.Text);
+            _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _codigo = TBCodigo.Text;
             _accionrealizada = TBAccionrealizada.Text;
             _razon = TBRazon.Text;

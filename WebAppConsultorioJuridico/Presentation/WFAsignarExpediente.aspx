@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="card m-1">
     <div class="card-header">
-        Gestión de Expedientes 
+        Gestión de Expediente caso: <asp:Label ID="LBNombrecaso" runat="server" Text=""></asp:Label>
     </div>
     <div class="card-body">
         <form id="FrmAsignarExpediente" runat="server">
@@ -15,10 +15,9 @@
             <div class="row m-1">
                 <div class="col-6">
                     <%--Caso--%>
-                    <!--<asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Seleccione el caso"></asp:Label>-->
-                    <!--<asp:DropDownList ID="DDCaso_idcaso" runat="server" CssClass="form-select"></asp:DropDownList>-->
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="DDCaso_idcaso" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar la complejidad."></asp:RequiredFieldValidator>
-
+                    <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Caso selecionado" ></asp:Label>
+                    <asp:DropDownList ID="DDCaso_idcaso" runat="server" CssClass="form-select" style="pointer-events: none;"></asp:DropDownList>
+                    
                 </div>
                 <div class="col-6">
                     <%--Código--%>
@@ -134,6 +133,9 @@
 <script src="resources/js/datatables.min.js"></script>
 
 <script type="text/javascript">
+    document.getElementById('<%= DDCaso_idcaso.ClientID %>').setAttribute('readonly', true);
+    document.getElementById('<%= DDCaso_idcaso.ClientID %>').style.backgroundColor = '#e9ecef';
+
     $(document).ready(function () {
         $('#expedienteTable').DataTable({
             "processing": true,

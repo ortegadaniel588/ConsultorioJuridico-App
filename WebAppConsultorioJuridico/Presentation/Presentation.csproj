@@ -125,6 +125,7 @@
     <Content Include="resources\images\loading-7528_128.gif" />
     <Content Include="resources\images\loading-7528_256.gif" />
     <Content Include="resources\js\sidebar.js" />
+    <Content Include="WFAsignarSeguimiento.aspx" />
     <Content Include="WFEmpresa.aspx" />
     <Content Include="WFEspecialidad.aspx" />
     <Content Include="WFInicio.aspx" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFAsignarSeguimiento.aspx.cs">
+      <DependentUpon>WFAsignarSeguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAsignarSeguimiento.aspx.designer.cs">
+      <DependentUpon>WFAsignarSeguimiento.aspx</DependentUpon>
     </Compile>
     <Compile Include="WFEmpresa.aspx.cs">
       <DependentUpon>WFEmpresa.aspx</DependentUpon>

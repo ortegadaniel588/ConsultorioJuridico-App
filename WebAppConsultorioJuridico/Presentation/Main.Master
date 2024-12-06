@@ -107,6 +107,12 @@
                         <span>Seguimiento</span>
                     </a>
                 </li>
+                <!--<li class="sidebar-item">
+                    <a id="linkWFAsignarSeguimiento" runat="server" href="WFAsignarSeguimiento.aspx" class="sidebar-link">
+                        <i class="lni lni-search-text"></i>
+                        <span>Seguimiento</span>
+                    </a>
+                </li>-->
 
                 <li class="sidebar-item">
                     <a id="linkCitas" runat="server" href="WFCita.aspx" class="sidebar-link">

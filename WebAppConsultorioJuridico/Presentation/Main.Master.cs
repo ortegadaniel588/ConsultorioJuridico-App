@@ -21,6 +21,8 @@ namespace Presentation
         public HtmlAnchor linkRedsocial;
         public HtmlAnchor linkAsignarRedsocial;
         public HtmlAnchor linkWFAsignarSeguimiento;
+        public HtmlAnchor linkWFCasoHasPersona;
+        public HtmlAnchor linkWFAsignarPersona;
 
 
         // Enlaces de seguridad

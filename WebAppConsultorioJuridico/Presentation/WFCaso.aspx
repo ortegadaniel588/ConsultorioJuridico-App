@@ -171,7 +171,8 @@
                             return `<button class="edit-btn" data-id="${row.CasoID}">Editar</button>
                               <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>
                               <button class="expediente-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Expedientes</button>
-                              <button class="seguimineto-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Seguimiento</button>`;
+                              <button class="seguimineto-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Seguimiento</button>
+                              <button class="implicado-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Implicados</button>`;
                         }
                     }
                 ],
@@ -217,6 +218,13 @@
 
             // Extraer id caso para asignar un segumineto
             $('#casosTable').on('click', '.seguimineto-btn', function () {
+                const id = $(this).data('id');// Obtener el ID del caso
+                const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
+                asignarSeguimiento(id, nombre);// Invoca a la función para eliminar el caso
+
+            });
+            // Extraer id caso para asignar un implicado
+            $('#casosTable').on('click', '.implicado-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
                 asignarSeguimiento(id, nombre);// Invoca a la función para eliminar el caso
@@ -289,7 +297,26 @@
                     window.location.href = "WFAsignarSeguimiento.aspx"; // Redirige a la página deseada
                 },
                 error: function () {
-                    alert("Error al asignar el expediente.");
+                    alert("Error al asignar el seguimiento.");
+                }
+            });
+        }
+
+        // Función para asignar un expediente
+        function asignarImplicado(id, nombre) {
+            $.ajax({
+                type: "POST",
+                url: "WFAsignarPersona.aspx/extraerIdCaso", // Se invoca el WebMethod extraer id caso
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: id, nombre: nombre }),
+                success: function (response) {
+                    $('#casosTable').DataTable().ajax.reload(); // Recargar la tabla después de extraer id
+                    // Redirigir usando la URL que recibimos del servidor
+                    // Asegúrate de que la URL esté correctamente especificada
+                    window.location.href = "WFAsignarPersona.aspx"; // Redirige a la página deseada
+                },
+                error: function () {
+                    alert("Error al asignar el implicado.");
                 }
             });
         }

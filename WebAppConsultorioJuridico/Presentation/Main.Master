@@ -68,6 +68,20 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a id="linkWFCasoHasPersona" runat="server" href="WFCasoHasPersona.aspx" class="sidebar-link">
+                                <i class="lni lni-user-multiple-4"></i>
+                                Implicados
+
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkWFAsignarPersona" runat="server" href="WFAsignarPersona.aspx" class="sidebar-link">
+                                <i class="lni lni-user-multiple-4"></i>
+                                Implicados
+
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
                                 <i class="lni lni-layers-1"></i>
                                 Tipos

@@ -1,0 +1,118 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+
+namespace Data
+{
+    public class CasoHasPersonaDat
+    {
+        Persistence objPer = new Persistence();
+        //Metodo para mostrar todas las caso has persona
+        public DataSet showCasoHasPersona()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCasoHasPersonas";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+        //Metodo para guardar un nuevo AsignarRedesSocial
+        public bool saveCasoHasPersona(int _caso_idcaso, int _persona_idpersona)
+        {
+            bool executed = false;
+            int row;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spInsertCasoHasPersona";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+            objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
+            objSelectCmd.Parameters.Add("p_persona_idpersona", MySqlDbType.Int32).Value = _persona_idpersona;
+
+
+
+            try
+            {
+                row = objSelectCmd.ExecuteNonQuery();
+
+                if (row == 1)
+                {
+                    executed = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error " + e.ToString());
+            }
+            objPer.closeConnection();
+            return executed;
+        }
+
+        //Metodo para actulizar un AsignarRedesSocial
+        public bool updateCasoHasPersona(int _id, int _caso_idcaso, int _persona_idpersona)
+        {
+            bool executed = false;
+            int row;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spUpdateCasoHasPersona";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
+            objSelectCmd.Parameters.Add("p_persona_idpersona", MySqlDbType.Int32).Value = _persona_idpersona;
+
+            try
+            {
+                row = objSelectCmd.ExecuteNonQuery();
+                if (row == 1)
+                {
+                    executed = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error " + e.ToString());
+            }
+            objPer.closeConnection();
+            return executed;
+        }
+
+        //Metodo para borrar una AsignarRedesSocial
+        public bool deleteCasoHasPersona(int _id)
+        {
+            bool executed = false;
+            int row;
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spDeleteCasoHasPersona"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            try
+            {
+                row = objSelectCmd.ExecuteNonQuery();
+                if (row == 1)
+                {
+                    executed = true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error " + e.ToString());
+            }
+            objPer.closeConnection();
+            return executed;
+        }
+    }
+}

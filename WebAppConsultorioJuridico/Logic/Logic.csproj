@@ -88,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AsignarredsocialLog.cs" />
+    <Compile Include="CasoHasPersonaLog.cs" />
     <Compile Include="CasoLog.cs" />
     <Compile Include="CitasLog.cs" />
     <Compile Include="EmpleadoLog.cs" />

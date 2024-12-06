@@ -20,6 +20,8 @@ namespace Presentation
         public HtmlAnchor linkTipo;
         public HtmlAnchor linkRedsocial;
         public HtmlAnchor linkAsignarRedsocial;
+        public HtmlAnchor linkWFAsignarSeguimiento;
+
 
         // Enlaces de seguridad
         public HtmlAnchor linkSecurity;

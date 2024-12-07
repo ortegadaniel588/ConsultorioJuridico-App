@@ -227,7 +227,7 @@
             $('#casosTable').on('click', '.implicado-btn', function () {
                 const id = $(this).data('id');// Obtener el ID del caso
                 const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
-                asignarSeguimiento(id, nombre);// Invoca a la función para eliminar el caso
+                asignarImplicado(id, nombre);// Invoca a la función para eliminar el caso
 
             });
 

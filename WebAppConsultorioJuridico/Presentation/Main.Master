@@ -67,20 +67,20 @@
                                 Casos
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a id="linkWFCasoHasPersona" runat="server" href="WFCasoHasPersona.aspx" class="sidebar-link">
+                        <!--<li class="sidebar-item">
+                            <a id="linkWFCasoHasPersona2" runat="server" href="WFCasoHasPersona.aspx" class="sidebar-link">
                                 <i class="lni lni-user-multiple-4"></i>
                                 Implicados
 
                             </a>
-                        </li>
-                        <li class="sidebar-item">
+                        </li>-->
+                        <!--<li class="sidebar-item">
                             <a id="linkWFAsignarPersona" runat="server" href="WFAsignarPersona.aspx" class="sidebar-link">
                                 <i class="lni lni-user-multiple-4"></i>
                                 Implicados
 
                             </a>
-                        </li>
+                        </li>-->
                         <li class="sidebar-item">
                             <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
                                 <i class="lni lni-layers-1"></i>
@@ -118,15 +118,23 @@
                 <li class="sidebar-item">
                     <a id="linkSeguimiento" runat="server" href="WFSeguimiento.aspx" class="sidebar-link">
                         <i class="lni lni-search-text"></i>
-                        <span>Seguimiento</span>
+                        <span>Seguimientos</span>
                     </a>
                 </li>
+
                 <!--<li class="sidebar-item">
                     <a id="linkWFAsignarSeguimiento" runat="server" href="WFAsignarSeguimiento.aspx" class="sidebar-link">
                         <i class="lni lni-search-text"></i>
                         <span>Seguimiento</span>
                     </a>
                 </li>-->
+                <li class="sidebar-item">
+                    <a id="linkWFCasoHasPersona" runat="server" href="WFCasoHasPersona.aspx" class="sidebar-link">
+                        <i class="lni lni-target-user"></i>
+                        <span>Implicados</span>
+                    </a>
+                </li>
+
 
                 <li class="sidebar-item">
                     <a id="linkCitas" runat="server" href="WFCita.aspx" class="sidebar-link">
@@ -152,7 +160,7 @@
                 <li class="sidebar-item">
                     <a id="linkEmpresa" runat="server" href="WFEmpresa.aspx" class="sidebar-link">
                         <i class="lni lni-buildings-1"></i>
-                        <span>Consultorio</span>
+                        <span>Consultorios</span>
                     </a>
                 </li>
 
@@ -173,7 +181,7 @@
                 <li class="sidebar-item">
                     <a id="linkAsignarRedsocial" runat="server" href="WFAsignarredsocial.aspx" class="sidebar-link">
                         <i class="lni lni-plus"></i>
-                        <span>Asignar Redes</span>
+                        <span>Asignar Red social</span>
                     </a>
                 </li>
 

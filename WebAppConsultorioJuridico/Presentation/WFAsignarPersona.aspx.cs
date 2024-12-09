@@ -61,7 +61,7 @@ namespace Presentation
             CasoHasPersonaLog objCp = new CasoHasPersonaLog();
 
             // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
-            var dataSet = objCp.showCasoHasPersona();
+            var dataSet = objCp.showCasoHasPersonaByIdCaso(_idcaso);
 
             // Se crea una lista para almacenar los productos que se van a devolver.
             var casohaspersonaList = new List<object>();
@@ -73,9 +73,23 @@ namespace Presentation
                 {
                     CasoHasPersonaID = row["idcaso_has_persona"],
                     FkCaso = row["caso_idcaso"],
-                    Caso = row["caso_nombre"], // Nombre de la empresa
-                    FKPersona = row["persona_idpersona"],
-                    Persona = row["persona_nombre"] // Nombre de la red social
+                    Caso = row["caso_nombre"], // Nombre del caso
+                    FKPersona = row["idpersona"], // ID de la persona asociada
+                    Nombres = row["nombres"],
+                    Apellidos = row["apellidos"],
+                    TipoDocumento = row["tipodocumento"],
+                    Documento = row["documento"],
+                    Genero = row["genero"],
+                    EstadoCivil = row["estadocivil"],
+                    LugarNacimiento = row["lugar_nacimiento"],
+                    FechaNacimiento = Convert.ToDateTime(row["fecha_nacimiento"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    Telefono = row["telefono"],
+                    TelefonoAlternativo = row["telefono_alternativo"],
+                    Correo = row["correo"],
+                    Direccion = row["direccion"],
+                    Estrato = row["estrato"],
+                    Ocupacion = row["ocupacion"],
+                    NivelEscolaridad = row["nivel_escolaridad"]
 
                 });
             }

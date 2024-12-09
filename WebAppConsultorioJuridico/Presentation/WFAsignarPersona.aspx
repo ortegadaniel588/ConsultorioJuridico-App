@@ -7,7 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="card m-1">
         <div class="card-header">
-            Asignación de implicados caso: <asp:Label ID="LBNombrecaso" runat="server" Text=""></asp:Label>
+            Asignación de implicados caso:
+            <asp:Label ID="LBNombrecaso" runat="server" Text=""></asp:Label>
         </div>
         <div class="card-body">
             <form id="FrmAsignarPersona" runat="server">
@@ -16,8 +17,8 @@
                 <div class="row m-1">
                     <div class="col-6">
                         <%--Caso--%>
-                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Seleccione el caso"></asp:Label>
-                        <asp:DropDownList ID="DDLCaso_idcaso" CssClass="form-select" runat="server" style="pointer-events: none;"></asp:DropDownList>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Caso seleccionado"></asp:Label>
+                        <asp:DropDownList ID="DDLCaso_idcaso" CssClass="form-select" runat="server" Style="pointer-events: none;"></asp:DropDownList>
                         <%--Valida que se seleccione una empresa--%>
                         <asp:RequiredFieldValidator ID="RFVCaso_idcaso" runat="server" ControlToValidate="DDLCaso_idcaso" InitialValue="" ErrorMessage="Debes seleccionar un implicado." ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
@@ -56,7 +57,21 @@
                             <th>FkCaso</th>
                             <th>Caso</th>
                             <th>FKPersona</th>
-                            <th>Implicado</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Tipo Doc</th>
+                            <th>Documento</th>
+                            <th>Género</th>
+                            <th>Estado Civil</th>
+                            <th>Lugar Nacimiento</th>
+                            <th>Fecha Nacimiento</th>
+                            <th>Teléfono</th>
+                            <th>Teléfono Alternativo</th>
+                            <th>Correo</th>
+                            <th>Dirección</th>
+                            <th>Estrato</th>
+                            <th>Ocupación</th>
+                            <th>Nivel Escolaridad</th>
                             <th>Opciones</th>
                         </tr>
                     </thead>
@@ -79,7 +94,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFCasoHasPersona.aspx/listCasoHasPersona",// Se invoca el WebMethod Listar Productos
+                    "url": "WFAsignarPersona.aspx/listCasoHasPersona",// Se invoca el WebMethod Listar Productos
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
@@ -92,9 +107,23 @@
                 "columns": [
                     { "data": "CasoHasPersonaID" },
                     { "data": "FkCaso", "visible": false },
-                    { "data": "Caso" }, // Agregar columna para mostrar el nombre de la empresa
+                    { "data": "Caso", "visible": false }, // Columna para mostrar el nombre del caso
                     { "data": "FKPersona", "visible": false },
-                    { "data": "Persona" },
+                    { "data": "Nombres" },
+                    { "data": "Apellidos" },
+                    { "data": "TipoDocumento", "visible": true },
+                    { "data": "Documento", "visible": true },
+                    { "data": "Genero", "visible": true },
+                    { "data": "EstadoCivil", "visible": true },
+                    { "data": "LugarNacimiento", "visible": true },
+                    { "data": "FechaNacimiento" },
+                    { "data": "Telefono", "visible": true },
+                    { "data": "TelefonoAlternativo", "visible": true },
+                    { "data": "Correo", "visible": true },
+                    { "data": "Direccion", "visible": true },
+                    { "data": "Estrato", "visible": true },
+                    { "data": "Ocupacion", "visible": true },
+                    { "data": "NivelEscolaridad", "visible": true },
                     {
                         "data": null,
                         "render": function (data, type, row) {

@@ -17,6 +17,12 @@ namespace Logic
         {
             return objCp.showCasoHasPersona();
         }
+
+        public DataSet showCasoHasPersonaByIdCaso(int _id)
+        {
+            return objCp.showCasoHasPersonaByIdCaso(_id);
+        }
+
         //Metodo para guardar un nuevo AsignarRedesSocial
         public bool saveCasoHasPersona(int _caso_idcaso, int _persona_idpersona)
         {

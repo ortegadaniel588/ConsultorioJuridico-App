@@ -166,8 +166,8 @@
                 {
                     "data": null,
                     "render": function (data, type, row) {
-                        return `<button class="edit-btn" data-id="${row.ExpedienteID}">Editar</button>
-                          <button class="delete-btn" data-id="${row.ExpedienteID}">Eliminar</button>`;
+                        return `<button class="btn btn-link btn-lg px-0 edit-btn" data-id="${row.ExpedienteID}" style="color:#fd7e14" title="Editar" ><i class="lni lni-pencil-1"></i></button>
+                          <button class="btn btn-link btn-lg text-danger px-0 delete-btn" data-id="${row.ExpedienteID}" title="Eliminar"><i class="lni lni-trash-3"></i></button>`;
                     }
                 }
             ],

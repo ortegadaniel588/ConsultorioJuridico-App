@@ -106,6 +106,7 @@
                             <th>Teléfono</th>
                             <th>Teléfono2</th>
                             <th>Correo</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,8 +147,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.EmpresaID}">Editar</button>
-                              <button class="delete-btn" data-id="${row.EmpresaID}">Eliminar</button>`;
+                            return `<button class="btn btn-link btn-lg px-0 edit-btn" data-id="${row.EmpresaID}" style="color:#fd7e14" title="Editar"><i class="lni lni-pencil-1"></i></button>
+                              <button class="btn btn-link btn-lg text-danger px-0 delete-btn" data-id="${row.EmpresaID}" title="Eliminar"><i class="lni lni-trash-3"></i></button>`;
                         }
                     }
                 ],

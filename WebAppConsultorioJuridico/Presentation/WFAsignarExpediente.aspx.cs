@@ -65,7 +65,7 @@ namespace Presentation
             ExpedienteLog objExp = new ExpedienteLog();
 
             // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
-            var dataSet = objExp.showExpediente();
+            var dataSet = objExp.showExpedienteByIdCaso(_idcaso);
 
             // Se crea una lista para almacenar los productos que se van a devolver.
             var expedienteList = new List<object>();

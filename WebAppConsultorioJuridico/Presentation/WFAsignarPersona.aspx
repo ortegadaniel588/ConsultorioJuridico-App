@@ -128,7 +128,7 @@
                         "data": null,
                         "render": function (data, type, row) {
                             return `<button class="edit-btn" data-id="${row.CasoHasPersonaID}">Editar</button>
-                              <button class="delete-btn" data-id="${row.CasoHasPersonaID}">Eliminar</button>`;
+                              <button class="btn btn-link btn-lg text-danger px-0 delete-btn" data-id="${row.CasoHasPersonaID}">Eliminar</button>`;
                         }
                     }
                 ],

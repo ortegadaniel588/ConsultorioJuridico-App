@@ -102,7 +102,7 @@
                 Lista de Casos
             </div>
             <div class="table-responsive">
-                <table id="casosTable" class="table table-hover display" style="width: 100%">
+                <table id="casosTable" class="table table-hover display table-sm" style="width: 100%">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -168,11 +168,25 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.CasoID}">Editar</button>
-                              <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>
-                              <button class="expediente-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Expedientes</button>
-                              <button class="seguimineto-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Seguimiento</button>
-                              <button class="implicado-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}">Implicados</button>`;
+                            return `
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-link btn-lg text-primary px-0 expediente-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}" title="Expediente">
+                                            <i class="lni lni-folder-1"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg text-success px-0 seguimineto-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}" title="Seguimiento">
+                                            <i class="lni lni-search-text"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg px-0 implicado-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}" title="Implicados" style="color:#6f42c1">
+                                            <i class="lni lni-target-user"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg px-0 edit-btn" data-id="${row.CasoID}" title="Editar" style="color:#fd7e14">
+                                            <i class="lni lni-pencil-1"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg text-danger px-0 delete-btn" data-id="${row.CasoID}" title="Eliminar">
+                                            <i class="lni lni-trash-3"></i>
+                                        </button>
+                                    </div>
+                                `;
                         }
                     }
                 ],
@@ -322,6 +336,6 @@
         }
 
 
-            
+
     </script>
 </asp:Content>

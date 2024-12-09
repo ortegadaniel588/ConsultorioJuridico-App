@@ -121,7 +121,7 @@
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFSeguimiento.aspx/ListSeguimientos",// Se invoca el WebMethod Listar Productos
+                    "url": "WFAsignarSeguimiento.aspx/ListSeguimientos",// Se invoca el WebMethod Listar Productos
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {

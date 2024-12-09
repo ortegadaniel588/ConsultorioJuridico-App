@@ -60,7 +60,7 @@ namespace Presentation
             SeguimientoLog objSeg = new SeguimientoLog();
 
             // Se obtiene un DataSet que contiene la lista de seguimiento desde la base de datos.
-            var dataSet = objSeg.showSeguimiento();
+            var dataSet = objSeg.showSeguimientoByIdCaso(_idcaso);
 
             // Se crea una lista para almacenar los seguimiento que se van a devolver.
             var seguimientosList = new List<object>();

@@ -25,6 +25,47 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+
+        public DataSet showSeguimientoByIdCaso(int _id)
+        {
+            // Instancias necesarias para la conexión y manejo de datos
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+            MySqlCommand objSelectCmd = new MySqlCommand();
+
+            try
+            {
+                // Abrir la conexión
+                objSelectCmd.Connection = objPer.openConnection();
+
+                // Configurar el comando con el procedimiento almacenado
+                objSelectCmd.CommandText = "spSelectSeguimientoByIdCaso"; // Nombre del procedimiento
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+                // Agregar el parámetro del procedimiento almacenado
+                objSelectCmd.Parameters.AddWithValue("p_idCaso", _id);
+
+                // Asociar el comando al adaptador
+                objAdapter.SelectCommand = objSelectCmd;
+
+                // Llenar el DataSet con los datos obtenidos
+                objAdapter.Fill(objData);
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores en caso de ocurrir
+                throw new Exception("Error al obtener los datos: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión en cualquier caso
+                objPer.closeConnection();
+            }
+
+            // Devolver el conjunto de datos llenado
+            return objData;
+        }
+
         //Metodo para guardar un nuevo Seguimiento
         public bool saveSeguimiento(int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
         {

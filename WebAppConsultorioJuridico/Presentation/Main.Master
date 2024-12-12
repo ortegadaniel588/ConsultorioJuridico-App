@@ -54,52 +54,13 @@
 
             <ul class="sidebar-nav">
 
+
                 <li class="sidebar-item">
-                    <a id="linkCasos" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
-                        data-bs-toggle="collapse" data-bs-target="#authCasos" aria-expanded="false" aria-controls="authCasos">
+                    <a id="linkCasos" runat="server" href="WFCaso.aspx" class="sidebar-link">
                         <i class="lni lni-briefcase-1"></i>
                         <span>Casos</span>
                     </a>
-                    <ul id="authCasos" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a id="A1" runat="server" href="WFCaso.aspx" class="sidebar-link">
-                                <i class="lni lni-briefcase-1"></i>
-                                Casos
-                            </a>
-                        </li>
-                        <!--<li class="sidebar-item">
-                            <a id="linkWFCasoHasPersona2" runat="server" href="WFCasoHasPersona.aspx" class="sidebar-link">
-                                <i class="lni lni-user-multiple-4"></i>
-                                Implicados
-
-                            </a>
-                        </li>-->
-                        <!--<li class="sidebar-item">
-                            <a id="linkWFAsignarPersona" runat="server" href="WFAsignarPersona.aspx" class="sidebar-link">
-                                <i class="lni lni-user-multiple-4"></i>
-                                Implicados
-
-                            </a>
-                        </li>-->
-                        <li class="sidebar-item">
-                            <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
-                                <i class="lni lni-layers-1"></i>
-                                Tipos
-
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
-                                <i class="lni lni-vector-nodes-7"></i>
-                                Estados
-
-                            </a>
-                        </li>
-                    </ul>
                 </li>
-
-
-
 
                 <li class="sidebar-item">
                     <a id="linkExpedientes" runat="server" href="WFExpediente.aspx" class="sidebar-link">
@@ -157,12 +118,12 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a id="linkEmpresa" runat="server" href="WFEmpresa.aspx" class="sidebar-link">
+                <!--<li class="sidebar-item">
+                    <a id="linkEmpresa2" runat="server" href="WFEmpresa.aspx" class="sidebar-link">
                         <i class="lni lni-buildings-1"></i>
                         <span>Consultorios</span>
                     </a>
-                </li>
+                </li>-->
 
                 <li class="sidebar-item">
                     <a id="linkEspecialidad" runat="server" href="WFEspecialidad.aspx" class="sidebar-link">
@@ -171,19 +132,6 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a id="linkRedsocial" runat="server" href="WFRedsocial.aspx" class="sidebar-link">
-                        <i class="lni lni-facebook"></i>
-                        <span>Redes Sociales</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-item">
-                    <a id="linkAsignarRedsocial" runat="server" href="WFAsignarredsocial.aspx" class="sidebar-link">
-                        <i class="lni lni-plus"></i>
-                        <span>Asignar Red social</span>
-                    </a>
-                </li>
 
                 <li class="sidebar-item">
                     <a id="linkSecurity" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
@@ -209,6 +157,49 @@
                             <a id="linkPermissionsRoles" runat="server" href="WFPermissionsRoles.aspx" class="sidebar-link">
                                 <i class="lni lni-refresh-user-1"></i>
                                 Permisos Roles
+
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <%--Configuración--%>
+                <li class="sidebar-item">
+                    <a id="Config" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
+                        data-bs-toggle="collapse" data-bs-target="#config" aria-expanded="false" aria-controls="auth">
+                        <i class="lni lni-gear-1"></i>
+                        <span>Configuración</span>     
+                    </a>
+                    <ul id="config" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a id="linkEmpresa" runat="server" href="WFEmpresa.aspx" class="sidebar-link">
+                                <i class="lni lni-buildings-1"></i>
+                                Consultorios
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkAsignarRedsocial" runat="server" href="WFAsignarredsocial.aspx" class="sidebar-link">
+                                <i class="lni lni-plus"></i>
+                                Asignar Red social
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkRedsocial" runat="server" href="WFRedsocial.aspx" class="sidebar-link">
+                                <i class="lni lni-facebook"></i>
+                                Redes Sociales
+
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkEstado" runat="server" href="WFEstado.aspx" class="sidebar-link">
+                                <i class="lni lni-vector-nodes-7"></i>
+                                Estado de casos
+
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a id="linkTipo" runat="server" href="WFTipo.aspx" class="sidebar-link">
+                                <i class="lni lni-layers-1"></i>
+                                Tipo de casos
 
                             </a>
                         </li>

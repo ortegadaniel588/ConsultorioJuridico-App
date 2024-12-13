@@ -39,5 +39,16 @@ namespace Logic
         {
             return objCas.deleteCaso(_id);
         }
+        // Método para mostrar cuantos productos existen por categoria.
+        public DataSet showCountCasosEstados()
+        {
+            return objCas.showCountCasosEstados();
+        }
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountCasos()
+        {
+            return objCas.showCountCasos();
+        }
+
     }
 }

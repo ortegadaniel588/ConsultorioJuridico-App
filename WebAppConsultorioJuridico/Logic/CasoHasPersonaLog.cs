@@ -40,5 +40,10 @@ namespace Logic
         {
             return objCp.deleteCasoHasPersona(_id);
         }
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountClientes()
+        {
+            return objCp.showCountClientes();
+        }
     }
 }

@@ -15,13 +15,41 @@ namespace Presentation
     {
         //Crear los objetos
         UsuariosLog objUsu = new UsuariosLog();
+        EmpleadoLog objEmp = new EmpleadoLog();
+        CasoHasPersonaLog objCp = new CasoHasPersonaLog();
+        CasoLog objCas = new CasoLog();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                showCountUsers();
+                showCountEmpleados();   
+                showCountClientes();
+                showCountCasos();
             }
             validatePermissionRol();
+        }
+
+        [WebMethod]
+        public static object ListCountCasosEstados()
+        {
+            CasoLog objCas = new CasoLog();
+            // Se obtiene un DataSet que contiene la lista de casos que existen por estado
+            var dataSet = objCas.showCountCasosEstados();
+            // Se crea una lista para almacenar las cantidades que de productos x categorias 
+            var casosEstadoList = new List<object>();
+            // Se itera sobre cada fila del DataSet.
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                casosEstadoList.Add(new
+                {
+                    EstadoName = row["Nombre"],
+                    TotalCasos = row["TotalCasos"],
+                });
+            }
+            // Devuelve un objeto en formato JSON que contiene la lista de productos x categorias.
+            return new { data = casosEstadoList };
         }
 
         // Metodo para validar permisos roles
@@ -126,6 +154,28 @@ namespace Presentation
                 LblMsg.Text = "Rol no reconocido.";
                 Response.Redirect("WFInicio.aspx");
             }
+        }
+        private void showCountUsers()
+        {
+            int count = objUsu.showCountUsers();
+            LblCantUsu.Text = count.ToString();
+        }
+
+        private void showCountEmpleados()
+        {
+            int count = objEmp.showCountEmpleados();
+            LblCantEmp.Text = count.ToString();
+        }
+        private void showCountClientes()
+        {
+            int count = objCp.showCountClientes();
+            LblCantClient.Text = count.ToString();
+        }
+
+        private void showCountCasos()
+        {
+            int count = objCas.showCountCasos();
+            LblCantCasos.Text = count.ToString();
         }
 
     }

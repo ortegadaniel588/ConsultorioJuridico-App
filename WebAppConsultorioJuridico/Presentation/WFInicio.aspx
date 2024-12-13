@@ -14,7 +14,7 @@
                                 <h5 class="card-title">Total Usuarios</h5>
                             </div>
                             <div class="card-footer bg-transparent border-success text-center">
-                                <a class="small-box-footer" href="WFUsers.aspx">Mas info
+                                <a class="small-box-footer" href="WFUsuario.aspx">Mas info
                                     <i class="lni lni-chevron-right-circle"></i>
                                 </a>
                             </div>
@@ -24,10 +24,10 @@
                         <div class="card border-success mb-3" style="max-width: 18rem;">
                             <div class="card-body text-success">
                                 <asp:Label ID="LblCantEmp" runat="server" Text="" CssClass="fs-4 fw-bold"></asp:Label>
-                                <h5 class="card-title">Total Empleados</h5>
+                                <h5 class="card-title">Total Abogados</h5>
                             </div>
                             <div class="card-footer bg-transparent border-success text-center">
-                                <a class="small-box-footer" href="#">Mas info
+                                <a class="small-box-footer" href="WFEmpleado.aspx">Mas info
                                     <i class="lni lni-chevron-right-circle"></i>
                                 </a>
                             </div>
@@ -36,11 +36,11 @@
                     <div class="col">
                         <div class="card border-success mb-3" style="max-width: 18rem;">
                             <div class="card-body text-success">
-                                <asp:Label ID="LblCantProd" runat="server" Text="" CssClass="fs-4 fw-bold"></asp:Label>
-                                <h5 class="card-title">Total Productos</h5>
+                                <asp:Label ID="LblCantClient" runat="server" Text="" CssClass="fs-4 fw-bold"></asp:Label>
+                                <h5 class="card-title">Total Clientes</h5>
                             </div>
                             <div class="card-footer bg-transparent border-success text-center">
-                                <a class="small-box-footer" href="WFProducts.aspx">Mas info
+                                <a class="small-box-footer" href="WFCasoHasPersona.aspx">Mas info
                                     <i class="lni lni-chevron-right-circle"></i>
                                 </a>
                             </div>
@@ -49,11 +49,11 @@
                     <div class="col">
                         <div class="card border-success mb-3" style="max-width: 18rem;">
                             <div class="card-body text-success">
-                                <asp:Label ID="LblCantProv" runat="server" Text="" CssClass="fs-4 fw-bold"></asp:Label>
-                                <h5 class="card-title">Total Proveedores</h5>
+                                <asp:Label ID="LblCantCasos" runat="server" Text="" CssClass="fs-4 fw-bold"></asp:Label>
+                                <h5 class="card-title">Total Casos</h5>
                             </div>
                             <div class="card-footer bg-transparent border-success text-center">
-                                <a class="small-box-footer" href="WFProviders.aspx">Mas info
+                                <a class="small-box-footer" href="WFCaso.aspx">Mas info
                                     <i class="lni lni-chevron-right-circle"></i>
                                 </a>
                             </div>
@@ -66,7 +66,7 @@
                         <div class="card border-info mb-3">
                             <div class="card-header">
                                 <i class="lni lni-bar-chart-4"></i>
-                                Cantidad de productos por categoria
+                                Cantidad de casos por estado
                             </div>
                             <div class="card-body">
                                 <div id="piechart" style="width: 100%; height: 100%; min-height: 400px;"></div>
@@ -92,7 +92,7 @@
                 // Función para obtener datos desde el WebMethod
                 function fetchDataAndDrawChart() {
                     $.ajax({
-                        url: 'WFInicio.aspx/ListCountProductsCategories', // Ajustar con el nombre de tu archivo ASPX
+                        url: 'WFInicio.aspx/ListCountCasosEstados', // Ajustar con el nombre de tu archivo ASPX
                         type: 'POST',
                         contentType: 'application/json; charset=utf-8',
                         dataType: 'json',
@@ -102,12 +102,12 @@
 
                             // Crear la tabla de datos para Google Charts
                             var data = new google.visualization.DataTable();
-                            data.addColumn('string', 'Categoría');
-                            data.addColumn('number', 'TotalProductos');
+                            data.addColumn('string', 'Nombre');
+                            data.addColumn('number', 'TotalCasos');
 
                             // Llenar la tabla con los datos del WebMethod
                             rawData.forEach(function (item) {
-                                data.addRow([item.CategoryName, parseInt(item.TotalProducts)]);
+                                data.addRow([item.EstadoName, parseInt(item.TotalCasos)]);
                             });
 
                             // Configuración del gráfico

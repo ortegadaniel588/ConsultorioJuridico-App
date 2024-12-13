@@ -156,5 +156,23 @@ namespace Data
             return executed;
         }
 
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountClientes()
+        {
+            int totalClientes;
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCountClientes";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            // Agregar el parámetro de salida
+            objSelectCmd.Parameters.Add(new MySqlParameter("@total_clientes", MySqlDbType.Int32));
+            objSelectCmd.Parameters["@total_clientes"].Direction = ParameterDirection.Output;
+            // Ejecutar el comando
+            objSelectCmd.ExecuteNonQuery();
+            // Obtener el valor del parámetro de salida
+            totalClientes = Convert.ToInt32(objSelectCmd.Parameters["@total_clientes"].Value);
+            return totalClientes;
+        }
+
     }
 }

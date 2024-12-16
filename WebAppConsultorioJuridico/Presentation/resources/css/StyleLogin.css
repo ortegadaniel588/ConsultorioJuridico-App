@@ -1,0 +1,101 @@
+﻿/* Variables globales */
+:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #34495E;
+    --accent-color: #C0392B;
+    --accent-light: #E74C3C;
+    --light-gray: #ECF0F1;
+    --box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    --transition-speed: 0.3s;
+}
+
+/* Contenedor principal */
+.login-container {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tarjeta de login */
+.login-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    width: 400px;
+    transition: transform var(--transition-speed) ease;
+}
+
+    .login-card:hover {
+        transform: translateY(-5px);
+    }
+
+/* Título */
+.login-title {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Campos de formulario */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 62, 80, 0.25);
+}
+
+/* Botón de login */
+.btn-login {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    transition: all var(--transition-speed) ease;
+    color: var(--light-gray);
+    width: 100%;
+    border-radius: 8px;
+}
+
+    .btn-login:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--box-shadow);
+    }
+
+    .btn-login:active {
+        transform: translateY(0);
+    }
+
+/* Overlay de carga */
+.loading-overlay {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Enlaces */
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition-speed) ease;
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+    .forgot-password:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+    }

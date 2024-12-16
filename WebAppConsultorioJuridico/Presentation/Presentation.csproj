@@ -118,6 +118,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\css\StyleLogin.css" />
+    <Content Include="resources\css\variables.css" />
+    <Content Include="resources\images\logo.png" />
     <Content Include="WFAsignarExpediente.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Logout.aspx" />

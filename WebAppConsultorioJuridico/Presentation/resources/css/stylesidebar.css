@@ -1,5 +1,14 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #34495E;
+    --accent-color: #C0392B;
+    --text-light: #ECF0F1;
+    --hover-color: rgba(255, 255, 255, 0.075);
+}
+
+/* Reset y estilos base */
 ::after,
 ::before {
     box-sizing: border-box;
@@ -24,27 +33,78 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Navbar */
+.navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 60px;
+    padding: 0.5rem 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1001;
+}
+
+    .navbar .container-fluid {
+        display: flex;
+        align-items: center;
+    }
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+}
+
+    .navbar-logo img {
+        height: 35px;
+        width: auto;
+        margin-right: 0.75rem;
+    }
+
+.navbar .container-fluid .navbar-brand,
+.navbar-brand {
+    color: var(--text-light) !important;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.navbar .nav-link {
+    color: var(--text-light) !important;
+    transition: color 0.25s ease;
+}
+
+    .navbar .nav-link:hover {
+        color: var(--accent-color) !important;
+    }
+
+/* Layout principal */
 .wrapper {
     display: flex;
-}
-
-.main {
-    min-height: 100vh;
-    width: 100%;
+    padding-top: 60px;
+    height: 100%;
     overflow: hidden;
-    transition: all 0.35s ease-in-out;
-    background-color: #fafbfe;
 }
 
+/* Sidebar */
 #sidebar {
     width: 70px;
     min-width: 70px;
     z-index: 1000;
     transition: all .25s ease-in-out;
-    background-color: #0e2238;
+    background-color: var(--primary-color);
     display: flex;
     flex-direction: column;
+    position: relative; /* Cambiado de fixed a relative */
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+    #sidebar::-webkit-scrollbar {
+        display: none;
+    }
 
     #sidebar.expand {
         width: 260px;
@@ -60,7 +120,7 @@ body {
 
     .toggle-btn i {
         font-size: 1.5rem;
-        color: #FFF;
+        color: var(--text-light);
     }
 
 .sidebar-logo {
@@ -68,7 +128,7 @@ body {
 }
 
     .sidebar-logo a {
-        color: #FFF;
+        color: var(--text-light);
         font-size: 1.15rem;
         font-weight: 600;
     }
@@ -85,21 +145,25 @@ body {
 
 a.sidebar-link {
     padding: .625rem 1.625rem;
-    color: #FFF;
+    color: var(--text-light);
     display: block;
     font-size: 0.9rem;
     white-space: nowrap;
     border-left: 3px solid transparent;
+    position: relative;
+    z-index: 1;
 }
 
 .sidebar-link i {
     font-size: 1.1rem;
     margin-right: .75rem;
+    position: relative;
+    z-index: 2;
 }
 
 a.sidebar-link:hover {
-    background-color: rgba(255, 255, 255, .075);
-    border-left: 3px solid #3b7ddd;
+    background-color: var(--secondary-color);
+    border-left: 3px solid var(--accent-color);
 }
 
 .sidebar-item {
@@ -110,10 +174,11 @@ a.sidebar-link:hover {
     position: absolute;
     top: 0;
     left: 70px;
-    background-color: #0e2238;
+    background-color: var(--primary-color);
     padding: 0;
     min-width: 15rem;
     display: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar:not(.expand) .sidebar-item:hover .has-dropdown + .sidebar-dropdown {
@@ -139,4 +204,47 @@ a.sidebar-link:hover {
 #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
     transform: rotate(45deg);
     transition: all .2s ease-out;
+}
+
+/* Main Content */
+.main {
+    padding: 1rem;
+    width: calc(100% - 70px); /* Ajuste para evitar el espacio en blanco */
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+    transition: margin-left 0.35s ease-in-out, width 0.35s ease-in-out;
+    background-color: #fafbfe;
+}
+
+#sidebar.expand ~ .main {
+    width: calc(100% - 260px); /* Ajuste para evitar el espacio en blanco */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-logo img {
+        height: 30px;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .main {
+        margin-left: 0;
+        width: 100%; /* Ajuste para evitar el espacio en blanco */
+    }
+
+    #sidebar {
+        left: -70px;
+    }
+
+        #sidebar.expand {
+            left: 0;
+        }
+
+            #sidebar.expand ~ .main {
+                margin-left: 0;
+                width: 100%; /* Ajuste para evitar el espacio en blanco */
+            }
 }

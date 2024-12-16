@@ -5,7 +5,6 @@ namespace Presentation
 {
     public partial class Main : System.Web.UI.MasterPage
     {
-
         // Enlaces principales
         public HtmlAnchor linkInicio;
         public HtmlAnchor linkCasos;
@@ -31,6 +30,7 @@ namespace Presentation
         public HtmlAnchor linkUser;
         public HtmlAnchor linkPermission;
         public HtmlAnchor linkPermissionRol;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {

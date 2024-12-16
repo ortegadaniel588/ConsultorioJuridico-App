@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Services;
 using System.Web.UI;
@@ -11,17 +12,16 @@ using System.Web.UI.WebControls;
 
 namespace Presentation
 {
-    public partial class WFAsignarredsocial : System.Web.UI.Page
+    public partial class WFCasoHasPersona : System.Web.UI.Page
     {
-        AsignarredsocialLog objAsig = new AsignarredsocialLog();
-        EmpresaLog objEmp = new EmpresaLog();  
-        RedsocialLog objRed = new RedsocialLog();
-
+        CasoHasPersonaLog objCp = new CasoHasPersonaLog();
+        CasoLog objCas = new CasoLog();
+        PersonaLog objPer = new PersonaLog();
+        
 
         private int _id;
-        private int _empresa_idempresa;
-        private int _redsocial_idredsocial;
-        private string _url;
+        private int _caso_idcaso;
+        private int _persona_idpersona;
         private bool execute = false;
 
         public bool _showEditButton { get; set; } = false;
@@ -33,11 +33,12 @@ namespace Presentation
             {
                 BtnSave.Visible = false;
                 BtnUpdate.Visible = false;
-                FrmAsignarRedSocial.Visible = false;
+                FrmCasoHasPersona.Visible = false;
                 PanelAdmin.Visible = false;
                 //showAsignarredsocial();
-                showEmpresaDDL();
-                showRedsocialDDL();
+                showCasoDDL();
+                showPersonaDDL();
+                
 
             }
             validatePermissionRol();
@@ -52,45 +53,44 @@ namespace Presentation
         }*/
 
         [WebMethod]
-        public static object listAsignarredessociales()
+        public static object listCasoHasPersona()
         {
-            AsignarredsocialLog objAsig = new AsignarredsocialLog();
+            CasoHasPersonaLog objCp = new CasoHasPersonaLog();
 
             // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
-            var dataSet = objAsig.showAsignarredsocial();
+            var dataSet = objCp.showCasoHasPersona();
 
             // Se crea una lista para almacenar los productos que se van a devolver.
-            var asignarredessocialesList = new List<object>();
+            var casohaspersonaList = new List<object>();
 
             // Se itera sobre cada fila del DataSet (que representa un caso).
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
-                asignarredessocialesList.Add(new
+                casohaspersonaList.Add(new
                 {
-                    AsignarredsocialID = row["idasignarredsocial"],
-                    FkEmpresa = row["empresa_idempresa"],
-                    EmpresaNombre = row["empresa_nombre"], // Nombre de la empresa
-                    FKRedsocial = row["redsocial_idredsocial"],
-                    RedsocialNombre = row["redsocial_nombre"], // Nombre de la red social
-                    Url = row["url"]
-
+                    CasoHasPersonaID = row["idcaso_has_persona"],
+                    FkCaso = row["caso_idcaso"],
+                    Caso = row["caso_nombre"], // Nombre de la empresa
+                    FKPersona = row["persona_idpersona"],
+                    Persona = row["persona_nombre"] // Nombre de la red social
+                    
                 });
             }
 
             // Devuelve un objeto en formato JSON que contiene la lista de productos.
-            return new { data = asignarredessocialesList };
+            return new { data = casohaspersonaList };
         }
 
 
         //Comentado Eliminar por integridad de Datos
-	    [WebMethod]
-        public static bool DeleteAsignarredsocial(int id)
+        [WebMethod]
+        public static bool DeleteCasoHasPersona(int id)
         {
             // Crear una instancia de la clase de lógica de asignarredsocial
-            AsignarredsocialLog objAsig = new AsignarredsocialLog();
+            CasoHasPersonaLog objCp = new CasoHasPersonaLog();
 
             // Invocar al método para eliminar el asignar red social y devolver el resultado
-            return objAsig.deleteAsignarredsocial(id);
+            return objCp.deleteCasoHasPersona(id);
         }
 
         // Metodo validar permisos roles
@@ -120,11 +120,11 @@ namespace Presentation
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            FrmAsignarRedSocial.Visible = true;// Se pone visible el formulario
+                            FrmCasoHasPersona.Visible = true;// Se pone visible el formulario
                             BtnSave.Visible = true;// Se pone visible el boton guardar
                             break;
                         case "ACTUALIZAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmCasoHasPersona.Visible = true;
                             BtnUpdate.Visible = true;// Se pone visible el boton actualizar
                             PanelAdmin.Visible = true;// Se pone visible el panel
                             _showEditButton = true;// Se pone visible el boton editar dentro de la datatable
@@ -158,12 +158,12 @@ namespace Presentation
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmCasoHasPersona.Visible = true;
                             BtnSave.Visible = true;
                             PanelAdmin.Visible = true;
                             break;
                         case "ACTUALIZAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmCasoHasPersona.Visible = true;
                             BtnUpdate.Visible = true;
                             PanelAdmin.Visible = true;
                             _showEditButton = true;
@@ -197,12 +197,12 @@ namespace Presentation
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmCasoHasPersona.Visible = true;
                             BtnSave.Visible = true;
                             PanelAdmin.Visible = true;
                             break;
                         case "ACTUALIZAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmCasoHasPersona.Visible = true;
                             BtnUpdate.Visible = true;
                             PanelAdmin.Visible = true;
                             _showEditButton = true;
@@ -229,80 +229,79 @@ namespace Presentation
             }
         }
 
-        private void showEmpresaDDL()
+        private void showCasoDDL()
         {
-            DDLEmpresa_idempresa.DataSource = objEmp.showEmpresaDDL();
-            DDLEmpresa_idempresa.DataValueField = "idempresa";  // ID numérico
-            DDLEmpresa_idempresa.DataTextField = "nombre";      // Nombre visible
-            DDLEmpresa_idempresa.DataBind();
-            DDLEmpresa_idempresa.Items.Insert(0, "Seleccione");
+            DDLCaso_idcaso.DataSource = objCas.showCasoDDL();
+            DDLCaso_idcaso.DataValueField = "idcaso";  // ID numérico
+            DDLCaso_idcaso.DataTextField = "nombre";      // Nombre visible
+            DDLCaso_idcaso.DataBind();
+            DDLCaso_idcaso.Items.Insert(0, "Seleccione");
         }
 
-        private void showRedsocialDDL()
+        private void showPersonaDDL()
         {
-            DDLRedsocial_idredsocial.DataSource = objRed.showRedsocialDDL();
-            DDLRedsocial_idredsocial.DataValueField = "idredsocial";  // ID numérico
-            DDLRedsocial_idredsocial.DataTextField = "nombre";
-            DDLRedsocial_idredsocial.DataBind();
-            DDLRedsocial_idredsocial.Items.Insert(0, "Seleccione");
+            DDLPersona_idpersona.DataSource = objPer.showPersonasDDL();
+            DDLPersona_idpersona.DataValueField = "idpersona";  // ID numérico
+            DDLPersona_idpersona.DataTextField = "nombre_completo";
+            DDLPersona_idpersona.DataBind();
+            DDLPersona_idpersona.Items.Insert(0, "Seleccione");
         }
 
         //Metodo para limpiar los TextBox y los DDL
         private void clear()
         {
-            AsignarredsocialID.Value = "";
-            DDLEmpresa_idempresa.SelectedIndex = 0;
-            DDLRedsocial_idredsocial.SelectedIndex = 0;
-            TBUrl.Text = "";
-
-
+            CasoHasPersonaID.Value = "";
+            DDLCaso_idcaso.SelectedIndex = 0;
+            DDLCaso_idcaso.SelectedIndex = 0;
         }
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
-                _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.SelectedValue);
-                _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.SelectedValue);
-                _url = TBUrl.Text;
-                execute = objAsig.saveAsignarredsocial(_empresa_idempresa, _redsocial_idredsocial, _url);
+                _caso_idcaso = Convert.ToInt32(DDLCaso_idcaso.SelectedValue);
+                _persona_idpersona = Convert.ToInt32(DDLPersona_idpersona.SelectedValue);
+                execute = objCp.saveCasoHasPersona(_caso_idcaso, _persona_idpersona);
                 if (execute)
                 {
+                    LblMsj.Style["color"] = "green";
                     LblMsj.Text = "Se guardo exitosamente";
                     clear();
                 }
                 else
                 {
+                    LblMsj.Style["color"] = "red";
                     LblMsj.Text = "Error al guardar";
                 }
             }
-            
+
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un producto para actualizar
-            if (string.IsNullOrEmpty(AsignarredsocialID.Value))
+            if (string.IsNullOrEmpty(CasoHasPersonaID.Value))
             {
-                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsj.Style["color"] = "red";
+                LblMsj.Text = "No se ha seleccionado un implicado";
                 return;
             }
 
-            _id = Convert.ToInt32(AsignarredsocialID.Value);
-            _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.Text);
-            _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.Text);
-            _url = TBUrl.Text;
-            execute = objAsig.updateAsignarredsocial(_id, _empresa_idempresa, _redsocial_idredsocial, _url);
+            _id = Convert.ToInt32(CasoHasPersonaID.Value);
+            _caso_idcaso = Convert.ToInt32(DDLCaso_idcaso.Text);
+            _persona_idpersona = Convert.ToInt32(DDLPersona_idpersona.Text);
+            execute = objCp.updateCasoHasPersona(_id, _caso_idcaso, _persona_idpersona);
             if (execute)
             {
+                LblMsj.Style["color"] = "green";
                 LblMsj.Text = "Se actualizo exitosamente";
                 clear();
             }
             else
             {
+                LblMsj.Style["color"] = "red";
                 LblMsj.Text = "Error al actualizar";
             }
         }
-
     }
 }

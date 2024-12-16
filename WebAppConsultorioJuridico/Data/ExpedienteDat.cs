@@ -25,6 +25,46 @@ namespace Data
             objPer.closeConnection();
             return objData;
         }
+
+        public DataSet showExpedienteByIdCaso(int _id)
+        {
+            // Instancias necesarias para la conexión y manejo de datos
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+            MySqlCommand objSelectCmd = new MySqlCommand();
+
+            try
+            {
+                // Abrir la conexión
+                objSelectCmd.Connection = objPer.openConnection();
+
+                // Configurar el comando con el procedimiento almacenado
+                objSelectCmd.CommandText = "spSelectExpedienteByIdCaso"; // Nombre del procedimiento
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+                // Agregar el parámetro del procedimiento almacenado
+                objSelectCmd.Parameters.AddWithValue("p_idCaso", _id);
+
+                // Asociar el comando al adaptador
+                objAdapter.SelectCommand = objSelectCmd;
+
+                // Llenar el DataSet con los datos obtenidos
+                objAdapter.Fill(objData);
+            }
+            catch (Exception ex)
+            {
+                // Manejar errores en caso de ocurrir
+                throw new Exception("Error al obtener los datos: " + ex.Message);
+            }
+            finally
+            {
+                // Cerrar la conexión en cualquier caso
+                objPer.closeConnection();
+            }
+
+            // Devolver el conjunto de datos llenado
+            return objData;
+        }
         //Metodo para guardar un nuevo Expediente
         public bool saveExpediente(int _caso_idcaso, string _codigo, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
         {
@@ -109,7 +149,7 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spDeleteExpendiente"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idexpendiente", MySqlDbType.Int32).Value = _id;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

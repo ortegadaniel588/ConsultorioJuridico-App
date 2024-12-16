@@ -16,6 +16,11 @@ namespace Logic
         {
             return objExp.showExpediente();
         }
+
+        public DataSet showExpedienteByIdCaso(int _id)
+        {
+            return objExp.showExpedienteByIdCaso(_id);
+        }
         //Metodo para guardar un nuevo Expediente
         public bool saveExpediente(int _caso_idcaso, string _codigo, string _accionrealizada, string _razon, string _relevancia, string _evidencia, string _comentario, string _estado)
         {

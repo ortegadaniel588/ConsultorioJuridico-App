@@ -42,7 +42,7 @@ namespace Data
             return objData;
         }
         //Metodo para guardar un nuevo Caso
-        public bool saveCaso(string _codigo, string _nombre, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool saveCaso(string _codigo, string _nombre, int _empresa_id, DateTime _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -80,7 +80,7 @@ namespace Data
         }
 
         //Metodo para actulizar un Caso
-        public bool updateCaso(int _id, string _codigo, string _nombre, int _empresa_id, string _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
+        public bool updateCaso(int _id, string _codigo, string _nombre, int _empresa_id, DateTime _fechacierre, string _asunto, int _tipo_id, int _estado_id, string _complejidad, int _empleado_id)
         {
             bool executed = false;
             int row;
@@ -142,6 +142,39 @@ namespace Data
             }
             objPer.closeConnection();
             return executed;
+        }
+
+        // Método para mostrar cuantos casos existen por estados.
+        public DataSet showCountCasosEstados()
+        {
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCountCasosEstados";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            objAdapter.SelectCommand = objSelectCmd;
+            objAdapter.Fill(objData);
+            objPer.closeConnection();
+            return objData;
+        }
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountCasos()
+        {
+            int totalCasos;
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCountCasos";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            // Agregar el parámetro de salida
+            objSelectCmd.Parameters.Add(new MySqlParameter("@total_casos", MySqlDbType.Int32));
+            objSelectCmd.Parameters["@total_casos"].Direction = ParameterDirection.Output;
+            // Ejecutar el comando
+            objSelectCmd.ExecuteNonQuery();
+            // Obtener el valor del parámetro de salida
+            totalCasos = Convert.ToInt32(objSelectCmd.Parameters["@total_casos"].Value);
+            return totalCasos;
         }
     }
 }

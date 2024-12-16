@@ -58,7 +58,7 @@ namespace Data
             objSelectCmd.Parameters.Add("p_vision", MySqlDbType.VarString).Value = _vision;
             objSelectCmd.Parameters.Add("p_direccion", MySqlDbType.VarString).Value = _direccion;
             objSelectCmd.Parameters.Add("p_telefono", MySqlDbType.VarString).Value = _telefono;
-            objSelectCmd.Parameters.Add("p_telefono2", MySqlDbType.VarString).Value = _telefono2; // Asumiendo que _complejidad es un string como 'alta', 'media', 'baja'
+            objSelectCmd.Parameters.Add("p_telefono2", MySqlDbType.VarString).Value = _telefono2;
             objSelectCmd.Parameters.Add("p_correo", MySqlDbType.VarString).Value = _correo;
 
             try

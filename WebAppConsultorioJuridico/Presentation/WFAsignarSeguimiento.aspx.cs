@@ -11,18 +11,22 @@ using System.Web.UI.WebControls;
 
 namespace Presentation
 {
-    public partial class WFAsignarredsocial : System.Web.UI.Page
+    public partial class WFAsignarSeguimiento : System.Web.UI.Page
     {
-        AsignarredsocialLog objAsig = new AsignarredsocialLog();
-        EmpresaLog objEmp = new EmpresaLog();  
-        RedsocialLog objRed = new RedsocialLog();
+        SeguimientoLog objSeg = new SeguimientoLog();
+        CasoLog objCas = new CasoLog();
 
 
         private int _id;
-        private int _empresa_idempresa;
-        private int _redsocial_idredsocial;
-        private string _url;
-        private bool execute = false;
+        private int _caso_id;
+        private DateTime _fecha_actualizacion;
+        private string _proceso;
+        private string _descripcion;
+        private string _estado;
+        private static int _idcaso;
+        private static string _nombre_caso;
+        private bool executed = false;
+
 
         public bool _showEditButton { get; set; } = false;
         public bool _showDeleteButton { get; set; } = false;
@@ -33,67 +37,88 @@ namespace Presentation
             {
                 BtnSave.Visible = false;
                 BtnUpdate.Visible = false;
-                FrmAsignarRedSocial.Visible = false;
+                FrmAsignarSeguimiento.Visible = false;
                 PanelAdmin.Visible = false;
-                //showAsignarredsocial();
-                showEmpresaDDL();
-                showRedsocialDDL();
+                //showSeguimiento();
+                LBNombrecaso.Text = _nombre_caso;
+                showCasoDDL();
 
             }
             validatePermissionRol();
         }
 
-        /*private void showAsignarredsocial()
+        /*/private void showSeguimiento()
         {
             DataSet objData = new DataSet();
-            objData = objAsig.showAsignarredsocial();
+            objData = objSeg.showSeguimiento();
             GVEmpresa.DataSource = objData;
             GVEmpresa.DataBind();
         }*/
-
         [WebMethod]
-        public static object listAsignarredessociales()
+        public static object ListSeguimientos()
         {
-            AsignarredsocialLog objAsig = new AsignarredsocialLog();
+            SeguimientoLog objSeg = new SeguimientoLog();
 
-            // Se obtiene un DataSet que contiene la lista de productos desde la base de datos.
-            var dataSet = objAsig.showAsignarredsocial();
+            // Se obtiene un DataSet que contiene la lista de seguimiento desde la base de datos.
+            var dataSet = objSeg.showSeguimientoByIdCaso(_idcaso);
 
-            // Se crea una lista para almacenar los productos que se van a devolver.
-            var asignarredessocialesList = new List<object>();
+            // Se crea una lista para almacenar los seguimiento que se van a devolver.
+            var seguimientosList = new List<object>();
 
-            // Se itera sobre cada fila del DataSet (que representa un caso).
+            // Se itera sobre cada fila del DataSet (que representa un seguimiento).
             foreach (DataRow row in dataSet.Tables[0].Rows)
             {
-                asignarredessocialesList.Add(new
+                seguimientosList.Add(new
                 {
-                    AsignarredsocialID = row["idasignarredsocial"],
-                    FkEmpresa = row["empresa_idempresa"],
-                    EmpresaNombre = row["empresa_nombre"], // Nombre de la empresa
-                    FKRedsocial = row["redsocial_idredsocial"],
-                    RedsocialNombre = row["redsocial_nombre"], // Nombre de la red social
-                    Url = row["url"]
+                    SeguimientoID = row["idseguimiento"],
+                    FKCaso = row["caso_idcaso"],
+                    Casocode = row["caso_codigo"],
+                    Fechaactualizacion = Convert.ToDateTime(row["fechaactualizacion"]).ToString("yyyy-MM-dd"), // Formato de fecha específico.
+                    Proceso = row["proceso"],
+                    Descripcion = row["descripcion"],
+                    Estado = row["estado"],
+                    Asunto = row["asunto"],
+                    Fechaapertura = Convert.ToDateTime(row["fechadeapertura"]).ToString("yyyy-MM-dd"),// Formato de fecha específico
+                    Fechacierre = Convert.ToDateTime(row["fechacierre"]).ToString("yyyy-MM-dd"),// Formato de fecha específico
 
                 });
             }
 
-            // Devuelve un objeto en formato JSON que contiene la lista de productos.
-            return new { data = asignarredessocialesList };
+            // Devuelve un objeto en formato JSON que contiene la lista de seguimiento.
+            return new { data = seguimientosList };
         }
 
-
-        //Comentado Eliminar por integridad de Datos
-	    [WebMethod]
-        public static bool DeleteAsignarredsocial(int id)
+        // Comentado Eliminar por integridad de Datos
+        [WebMethod]
+        public static bool DeleteSeguimiento(int id)
         {
-            // Crear una instancia de la clase de lógica de asignarredsocial
-            AsignarredsocialLog objAsig = new AsignarredsocialLog();
+            // Crear una instancia de la clase de lógica de seguimiento
+            SeguimientoLog objSeg = new SeguimientoLog();
 
-            // Invocar al método para eliminar el asignar red social y devolver el resultado
-            return objAsig.deleteAsignarredsocial(id);
+            // Invocar al método para eliminar el seguimiento y devolver el resultado
+            return objSeg.deleteSeguimiento(id);
         }
 
-        // Metodo validar permisos roles
+        [WebMethod]
+        public static int extraerIdCaso(int id, string nombre)
+        {
+            // Escribir el ID en la consola para fines de depuración
+            _idcaso = id;
+
+            if (nombre != null)
+            {
+                _nombre_caso = nombre;
+
+            }
+            else
+            {
+                _nombre_caso = "";
+            }
+            System.Diagnostics.Debug.WriteLine("IDcaso: " + id + " Nombre: " + nombre);
+            return id;
+
+        }
+
         private void validatePermissionRol()
         {
             // Se Obtiene el usuario actual desde la sesión
@@ -120,11 +145,11 @@ namespace Presentation
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            FrmAsignarRedSocial.Visible = true;// Se pone visible el formulario
+                            FrmAsignarSeguimiento.Visible = true;// Se pone visible el formulario
                             BtnSave.Visible = true;// Se pone visible el boton guardar
                             break;
                         case "ACTUALIZAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmAsignarSeguimiento.Visible = true;
                             BtnUpdate.Visible = true;// Se pone visible el boton actualizar
                             PanelAdmin.Visible = true;// Se pone visible el panel
                             _showEditButton = true;// Se pone visible el boton editar dentro de la datatable
@@ -150,20 +175,20 @@ namespace Presentation
                 //LblMsg.Text = "Bienvenido, Gerente!";
 
                 masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                masterPage.linkPermissions.Visible = false; // Se oculta el enlace Permiso 
-                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkSeguimiento.Visible = false; // Se oculta el enlace Permiso 
+                masterPage.linkSeguimiento.Visible = false;// Se oculta el enlace de Permiso Rol
 
                 foreach (var permiso in objUser.Permisos)
                 {
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmAsignarSeguimiento.Visible = true;
                             BtnSave.Visible = true;
                             PanelAdmin.Visible = true;
                             break;
                         case "ACTUALIZAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmAsignarSeguimiento.Visible = true;
                             BtnUpdate.Visible = true;
                             PanelAdmin.Visible = true;
                             _showEditButton = true;
@@ -197,12 +222,12 @@ namespace Presentation
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmAsignarSeguimiento.Visible = true;
                             BtnSave.Visible = true;
                             PanelAdmin.Visible = true;
                             break;
                         case "ACTUALIZAR":
-                            FrmAsignarRedSocial.Visible = true;
+                            FrmAsignarSeguimiento.Visible = true;
                             BtnUpdate.Visible = true;
                             PanelAdmin.Visible = true;
                             _showEditButton = true;
@@ -229,80 +254,75 @@ namespace Presentation
             }
         }
 
-        private void showEmpresaDDL()
+        private void showCasoDDL()
         {
-            DDLEmpresa_idempresa.DataSource = objEmp.showEmpresaDDL();
-            DDLEmpresa_idempresa.DataValueField = "idempresa";  // ID numérico
-            DDLEmpresa_idempresa.DataTextField = "nombre";      // Nombre visible
-            DDLEmpresa_idempresa.DataBind();
-            DDLEmpresa_idempresa.Items.Insert(0, "Seleccione");
+            DDCaso_idcaso.DataSource = objCas.showCasoDDL();
+            DDCaso_idcaso.DataValueField = "idcaso";
+            DDCaso_idcaso.DataTextField = "nombre";
+            DDCaso_idcaso.DataBind();
+            DDCaso_idcaso.SelectedValue = "" + _idcaso;
+            //DDCaso_idcaso.Items.Insert(0, "Seleccione");
         }
 
-        private void showRedsocialDDL()
-        {
-            DDLRedsocial_idredsocial.DataSource = objRed.showRedsocialDDL();
-            DDLRedsocial_idredsocial.DataValueField = "idredsocial";  // ID numérico
-            DDLRedsocial_idredsocial.DataTextField = "nombre";
-            DDLRedsocial_idredsocial.DataBind();
-            DDLRedsocial_idredsocial.Items.Insert(0, "Seleccione");
-        }
-
-        //Metodo para limpiar los TextBox y los DDL
         private void clear()
         {
-            AsignarredsocialID.Value = "";
-            DDLEmpresa_idempresa.SelectedIndex = 0;
-            DDLRedsocial_idredsocial.SelectedIndex = 0;
-            TBUrl.Text = "";
-
-
+            SeguimientoID.Value = "";
+            //DDCaso_idcaso.SelectedIndex = 0;
+            TBFechaactualizacion.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            TBProceso.Text = "";
+            TBDescripcion.Text = "";
+            TBEstado.SelectedIndex = 0;
         }
+
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
+
+           // _caso_id = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
+            _fecha_actualizacion = DateTime.Parse(TBFechaactualizacion.Text);
+            _proceso = TBProceso.Text;
+            _descripcion = TBDescripcion.Text;
+            _estado = TBEstado.Text;
+            executed = objSeg.saveSeguimiento(_idcaso, _fecha_actualizacion, _proceso, _descripcion, _estado);
+            if (executed)
             {
-                _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.SelectedValue);
-                _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.SelectedValue);
-                _url = TBUrl.Text;
-                execute = objAsig.saveAsignarredsocial(_empresa_idempresa, _redsocial_idredsocial, _url);
-                if (execute)
-                {
-                    LblMsj.Text = "Se guardo exitosamente";
-                    clear();
-                }
-                else
-                {
-                    LblMsj.Text = "Error al guardar";
-                }
+                LblMsj.Style["color"] = "green";
+                LblMsj.Text = "Se guardo exitosamente";
+                clear();
             }
-            
+            else
+            {
+                LblMsj.Style["color"] = "red";
+                LblMsj.Text = "Error al guardar";
+            }
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
             // Verifica si se ha seleccionado un producto para actualizar
-            if (string.IsNullOrEmpty(AsignarredsocialID.Value))
+            if (string.IsNullOrEmpty(SeguimientoID.Value))
             {
-                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsj.Text = "No se ha seleccionado un segumiento para actualizar.";
                 return;
             }
-
-            _id = Convert.ToInt32(AsignarredsocialID.Value);
-            _empresa_idempresa = Convert.ToInt32(DDLEmpresa_idempresa.Text);
-            _redsocial_idredsocial = Convert.ToInt32(DDLRedsocial_idredsocial.Text);
-            _url = TBUrl.Text;
-            execute = objAsig.updateAsignarredsocial(_id, _empresa_idempresa, _redsocial_idredsocial, _url);
-            if (execute)
+            _id = Convert.ToInt32(SeguimientoID.Value);
+            _caso_id = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
+            _fecha_actualizacion = DateTime.Parse(TBFechaactualizacion.Text);
+            _proceso = TBProceso.Text;
+            _descripcion = TBDescripcion.Text;
+            _estado = TBEstado.Text;
+            executed = objSeg.updateSeguimiento(_id, _caso_id, _fecha_actualizacion, _proceso, _descripcion, _estado);
+            if (executed)
             {
+                LblMsj.Style["color"] = "green";
                 LblMsj.Text = "Se actualizo exitosamente";
                 clear();
             }
             else
             {
+                LblMsj.Style["color"] = "red";
                 LblMsj.Text = "Error al actualizar";
             }
         }
-
     }
 }

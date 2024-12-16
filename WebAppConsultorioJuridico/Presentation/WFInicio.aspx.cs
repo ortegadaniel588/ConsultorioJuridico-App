@@ -15,13 +15,41 @@ namespace Presentation
     {
         //Crear los objetos
         UsuariosLog objUsu = new UsuariosLog();
+        EmpleadoLog objEmp = new EmpleadoLog();
+        CasoHasPersonaLog objCp = new CasoHasPersonaLog();
+        CasoLog objCas = new CasoLog();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                showCountUsers();
+                showCountEmpleados();   
+                showCountClientes();
+                showCountCasos();
             }
             validatePermissionRol();
+        }
+
+        [WebMethod]
+        public static object ListCountCasosEstados()
+        {
+            CasoLog objCas = new CasoLog();
+            // Se obtiene un DataSet que contiene la lista de casos que existen por estado
+            var dataSet = objCas.showCountCasosEstados();
+            // Se crea una lista para almacenar las cantidades que de productos x categorias 
+            var casosEstadoList = new List<object>();
+            // Se itera sobre cada fila del DataSet.
+            foreach (DataRow row in dataSet.Tables[0].Rows)
+            {
+                casosEstadoList.Add(new
+                {
+                    EstadoName = row["Nombre"],
+                    TotalCasos = row["TotalCasos"],
+                });
+            }
+            // Devuelve un objeto en formato JSON que contiene la lista de productos x categorias.
+            return new { data = casosEstadoList };
         }
 
         // Metodo para validar permisos roles
@@ -29,47 +57,43 @@ namespace Presentation
         {
             // Se Obtiene el usuario actual desde la sesión
             var objUser = (User)Session["User"];
-
-            // Variable para acceder a la MasterPage y modificar la visibilidad de los enlaces.
             var masterPage = (Main)Master;
 
             if (objUser == null)
             {
-                // Redirige a la página de inicio de sesión si el usuario no está autenticado
                 Response.Redirect("Default.aspx");
                 return;
             }
-            // Obtener el rol del usuario
+
             var userRole = objUser.Rol.Nombre;
+            if (objUser.Permisos == null || !objUser.Permisos.Any())
+            {
+                LblMsg.Text = "El usuario no tiene permisos asignados.";
+                return;
+            }
 
             if (userRole == "Administrador")
             {
-                //LblMsg.Text = "Bienvenido, Administrador!";
+                LblMsg.Text = "Bienvenido, Administrador!";
+                // Tiene acceso a todo, no necesita ocultar nada
 
                 foreach (var permiso in objUser.Permisos)
                 {
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
+                            FrmInicio.Visible = true;
                             break;
                         case "ACTUALIZAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
+                            FrmInicio.Visible = true;
                             break;
                         case "MOSTRAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-                            //LblMsg.Text += " Tienes permiso de Mostrar!";
-
+                            // Configuración para mostrar
                             break;
                         case "ELIMINAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-                            //LblMsg.Text += " Tienes permiso de Eliminar!";
-
+                            // Configuración para eliminar
                             break;
                         default:
-                            // Si el permiso no coincide con ninguno de los casos anteriores
                             LblMsg.Text += $" Permiso desconocido: {permiso.Nombre}";
                             break;
                     }
@@ -77,71 +101,49 @@ namespace Presentation
             }
             else if (userRole == "Abogado")
             {
-                //LblMsg.Text = "Bienvenido, Gerente!";
-
-                masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;// Se oculta el enlace de Permiso Rol
+                LblMsg.Text = "Bienvenido, Abogado!";
+                
+                masterPage.linkUser.Visible = false;
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;
+                masterPage.linkSecurity.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
                     switch (permiso.Nombre)
                     {
-                        case "CREAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
-                            break;
                         case "ACTUALIZAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
+                            FrmInicio.Visible = true;
                             break;
                         case "MOSTRAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-                            //LblMsg.Text += " Tienes permiso de Mostrar!";
-
-                            break;
-                        case "ELIMINAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-                            //LblMsg.Text += " Tienes permiso de Eliminar!";
-
+                            // Configuración para mostrar casos
                             break;
                         default:
-                            // Si el permiso no coincide con ninguno de los casos anteriores
                             LblMsg.Text += $" Permiso desconocido: {permiso.Nombre}";
                             break;
                     }
                 }
-
             }
-            else if (userRole == "Secretaria")
+            else if (userRole == "Secretario")
             {
-                //LblMsg.Text = "Bienvenido, Secretaria!";
-                masterPage.linkUser.Visible = false;
-                masterPage.linkPermission.Visible = false;
-                masterPage.linkPermissionRol.Visible = false;
+                LblMsg.Text = "Bienvenido, Secretario!";
+                
+                masterPage.linkPermissions.Visible = false;
+                masterPage.linkPermissionsRoles.Visible = false;
+                masterPage.linkSecurity.Visible = false;
+                masterPage.linkCasos.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
                     switch (permiso.Nombre)
                     {
                         case "CREAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
-                            break;
-                        case "ACTUALIZAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
+                            FrmInicio.Visible = true;
                             break;
                         case "MOSTRAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
-                            break;
-                        case "ELIMINAR":
-                            // Aqui van las acciones para los elementos del WFInicio
-
+                            // Configuración para mostrar registros
                             break;
                         default:
-                            // Si el permiso no coincide con ninguno de los casos anteriores
                             LblMsg.Text += $" Permiso desconocido: {permiso.Nombre}";
                             break;
                     }
@@ -149,10 +151,31 @@ namespace Presentation
             }
             else
             {
-                // Si el rol no es reconocido, se deniega el acceso
-                LblMsg.Text = "Rol no reconocido. No tienes permisos suficientes para acceder a esta página.";
+                LblMsg.Text = "Rol no reconocido.";
                 Response.Redirect("WFInicio.aspx");
             }
+        }
+        private void showCountUsers()
+        {
+            int count = objUsu.showCountUsers();
+            LblCantUsu.Text = count.ToString();
+        }
+
+        private void showCountEmpleados()
+        {
+            int count = objEmp.showCountEmpleados();
+            LblCantEmp.Text = count.ToString();
+        }
+        private void showCountClientes()
+        {
+            int count = objCp.showCountClientes();
+            LblCantClient.Text = count.ToString();
+        }
+
+        private void showCountCasos()
+        {
+            int count = objCas.showCountCasos();
+            LblCantCasos.Text = count.ToString();
         }
 
     }

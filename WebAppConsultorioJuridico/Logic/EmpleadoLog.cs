@@ -42,5 +42,10 @@ namespace Logic
         {
             return objEmp.deleteEmpleado(_id);
         }
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountEmpleados()
+        {
+            return objEmp.showCountEmpleado();
+        }
     }
 }

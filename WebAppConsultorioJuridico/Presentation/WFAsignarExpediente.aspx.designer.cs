@@ -11,17 +11,26 @@ namespace Presentation
 {
 
 
-    public partial class WFExpediente
+    public partial class WFAsignarExpediente
     {
 
         /// <summary>
-        /// Control FrmExpediente.
+        /// Control LBNombrecaso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm FrmExpediente;
+        protected global::System.Web.UI.WebControls.Label LBNombrecaso;
+
+        /// <summary>
+        /// Control FrmAsignarExpediente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm FrmAsignarExpediente;
 
         /// <summary>
         /// Control ExpedienteID.
@@ -49,15 +58,6 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DDCaso_idcaso;
-
-        /// <summary>
-        /// Control RequiredFieldValidator8.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
 
         /// <summary>
         /// Control Label2.

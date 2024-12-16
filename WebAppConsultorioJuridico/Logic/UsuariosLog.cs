@@ -37,5 +37,10 @@ namespace Logic
         {
             return objUse.updateUsers(_id, _mail, _password, _salt, _state, _date, _fkrol, _fkpersona);
         }
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountUsers()
+        {
+            return objUse.showCountUsers();
+        }
     }
 }

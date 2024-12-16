@@ -29,7 +29,7 @@ namespace Logic
         }
 
         //Metodo para actulizar un RedesSociales
-        public bool updateRedsocial(int _id, string _nombre, int _descripcion)
+        public bool updateRedsocial(int _id, string _nombre, string _descripcion)
         {
             return objRed.updateRedsocial(_id, _nombre, _descripcion);
         }

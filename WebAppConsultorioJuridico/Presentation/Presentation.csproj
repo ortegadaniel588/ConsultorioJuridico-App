@@ -128,7 +128,9 @@
     <Content Include="resources\images\loading-7528_128.gif" />
     <Content Include="resources\images\loading-7528_256.gif" />
     <Content Include="resources\js\sidebar.js" />
-    <Content Include="resources\loading.gif" />
+    <Content Include="WFAsignarPersona.aspx" />
+    <Content Include="WFAsignarSeguimiento.aspx" />
+    <Content Include="WFCasoHasPersona.aspx" />
     <Content Include="WFEmpresa.aspx" />
     <Content Include="WFEspecialidad.aspx" />
     <Content Include="WFInicio.aspx" />
@@ -153,6 +155,13 @@
     <Content Include="WFHorario.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WFAsignarExpediente.aspx.cs">
+      <DependentUpon>WFAsignarExpediente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAsignarExpediente.aspx.designer.cs">
+      <DependentUpon>WFAsignarExpediente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -166,6 +175,27 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFAsignarPersona.aspx.cs">
+      <DependentUpon>WFAsignarPersona.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAsignarPersona.aspx.designer.cs">
+      <DependentUpon>WFAsignarPersona.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFAsignarSeguimiento.aspx.cs">
+      <DependentUpon>WFAsignarSeguimiento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFAsignarSeguimiento.aspx.designer.cs">
+      <DependentUpon>WFAsignarSeguimiento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFCasoHasPersona.aspx.cs">
+      <DependentUpon>WFCasoHasPersona.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFCasoHasPersona.aspx.designer.cs">
+      <DependentUpon>WFCasoHasPersona.aspx</DependentUpon>
     </Compile>
     <Compile Include="WFEmpresa.aspx.cs">
       <DependentUpon>WFEmpresa.aspx</DependentUpon>

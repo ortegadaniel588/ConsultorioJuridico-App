@@ -11,26 +11,35 @@ namespace Presentation
 {
 
 
-    public partial class WFPermissionsRoles
+    public partial class WFAsignarPersona
     {
 
         /// <summary>
-        /// Control FrmPermissionRol.
+        /// Control LBNombrecaso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm FrmPermissionRol;
+        protected global::System.Web.UI.WebControls.Label LBNombrecaso;
 
         /// <summary>
-        /// Control HFRolPermisoID.
+        /// Control FrmAsignarPersona.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HFRolPermisoID;
+        protected global::System.Web.UI.HtmlControls.HtmlForm FrmAsignarPersona;
+
+        /// <summary>
+        /// Control CasoHasPersonaID.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField CasoHasPersonaID;
 
         /// <summary>
         /// Control Label1.
@@ -42,22 +51,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// Control DDLRoles.
+        /// Control DDLCaso_idcaso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLRoles;
+        protected global::System.Web.UI.WebControls.DropDownList DDLCaso_idcaso;
 
         /// <summary>
-        /// Control RFVRoles.
+        /// Control RFVCaso_idcaso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVRoles;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVCaso_idcaso;
 
         /// <summary>
         /// Control Label2.
@@ -69,49 +78,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// Control DDLPermisos.
+        /// Control DDLPersona_idpersona.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DDLPermisos;
+        protected global::System.Web.UI.WebControls.DropDownList DDLPersona_idpersona;
 
         /// <summary>
-        /// Control RFVPermisos.
+        /// Control RFVPersona_idpersona.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPermisos;
-
-        /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-
-        /// <summary>
-        /// Control TBDate.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TBDate;
-
-        /// <summary>
-        /// Control RFVDate.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVDate;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVPersona_idpersona;
 
         /// <summary>
         /// Control BtnSave.
@@ -132,12 +114,21 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Button BtnUpdate;
 
         /// <summary>
-        /// Control LblMsg.
+        /// Control LblMsj.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMsg;
+        protected global::System.Web.UI.WebControls.Label LblMsj;
+
+        /// <summary>
+        /// Control PanelAdmin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelAdmin;
     }
 }

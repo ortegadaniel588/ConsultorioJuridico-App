@@ -15,6 +15,15 @@ namespace Presentation
     {
 
         /// <summary>
+        /// Control FrmInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm FrmInicio;
+
+        /// <summary>
         /// Control LblMsg.
         /// </summary>
         /// <remarks>
@@ -42,21 +51,21 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Label LblCantEmp;
 
         /// <summary>
-        /// Control LblCantProd.
+        /// Control LblCantClient.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCantProd;
+        protected global::System.Web.UI.WebControls.Label LblCantClient;
 
         /// <summary>
-        /// Control LblCantProv.
+        /// Control LblCantCasos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCantProv;
+        protected global::System.Web.UI.WebControls.Label LblCantCasos;
     }
 }

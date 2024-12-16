@@ -6,118 +6,187 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form runat="server">
-        <div>
-            <%--CODIGO--%>
-            <asp:HiddenField ID="CasoID" runat="server" />
-            <asp:Label ID="Label1" runat="server" Text="Ingrese el código"></asp:Label>
-            <asp:TextBox ID="TBCodigo" runat="server"></asp:TextBox>
-            <%--NOMBRE--%>
-            <asp:Label ID="Label2" runat="server" Text="Ingrese el nombre"></asp:Label>
-            <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox>
-            
-            <%--EMPRESA--%>
-            <asp:Label ID="Label3" runat="server" Text="Seleccione la empresa"></asp:Label>
-            <asp:DropDownList ID="DDLEpresa" runat="server"></asp:DropDownList>
-            <%--FCIERRE--%>
-            <asp:Label ID="Label4" runat="server" Text="Fecha de cierre"></asp:Label>
-            <asp:TextBox ID="TBFechacierre" runat="server" TextMode="DateTime"></asp:TextBox>
-            <%--ASUNTO--%>
-            <asp:Label ID="Label5" runat="server" Text="Ingrese el asunto"></asp:Label>
-            <asp:TextBox ID="TBAsunto" runat="server"></asp:TextBox>
-            <%--TIPO--%>
-            <asp:Label ID="Label6" runat="server" Text="Selleccione el tipo"></asp:Label>
-            <asp:DropDownList ID="DDLTipo" runat="server"></asp:DropDownList>
-            <%--ESTADO--%>
-            <asp:Label ID="Label7" runat="server" Text="Seleccione el estado"></asp:Label>
-            <asp:DropDownList ID="DDLEstado" runat="server"></asp:DropDownList>
-            <%--COMPLEJIDAD--%>
-            <asp:Label ID="Label8" runat="server" Text="Seleccione su complejidad"></asp:Label>
-            <asp:DropDownList ID="DDLComplejidad" runat="server">
-                <asp:ListItem Text="alta" Value="1"></asp:ListItem>
-                <asp:ListItem Text="media" Value="2"></asp:ListItem>
-                <asp:ListItem Text="baja" Value="3"></asp:ListItem>
-            </asp:DropDownList>
-            <%--EMPLEADO--%>
-            <asp:Label ID="Label9" runat="server" Text="Seleccione un abogado"></asp:Label>
-            <asp:DropDownList ID="DDLEmpleado" runat="server"></asp:DropDownList>
-
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Casos
         </div>
-        <%--Botone guradar y actualizar--%>
-        <div>
-            <asp:Button ID="BtnSave" runat="server" Text="Button" />
-            <asp:Button ID="BtnUpdate" runat="server" Text="Button" />
-            <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label>
-        </div>
-        <br />
-    </form>
-    <%--    lista de productos--%>
+        <div class="card-body">
+            <form id="FrmCaso" runat="server">
+                <%-- ID del Caso --%>
+                <asp:HiddenField ID="CasoID" runat="server" />
 
-    <%--lista de productos--%>
-    <h2>Lista de los Casos</h2>
-    <table id="casosTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Código</th>
-                <th>Nombre</th>
-                <th>Empresa</th>
-                <th>Fecha apertura</th>
-                <th>Fecha cierre</th>
-                <th>Asunto</th>
-                <th>FkTipo</th>
-                <th>Tipo</th>
-                <th>FkEstado</th>
-                <th>Estado</th>
-                <th>Complejidad</th>
-                <th>FkEmpleado</th>
-                <th>Empleado</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div>
+                <div class="row m-1">
+                    <div class="col-4">
+                        <%-- Código --%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el Código"></asp:Label>
+                        <asp:TextBox ID="TBCodigo" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RFVCode" runat="server" ControlToValidate="TBCodigo" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Nombre --%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese el Nombre"></asp:Label>
+                        <asp:TextBox ID="TBNombre" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TBNombre" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Consultorio --%>
+                        <asp:Label ID="Label3" CssClass="form-label" runat="server" Text="Seleccione el Consultorio"></asp:Label>
+                        <asp:DropDownList ID="DDLEpresa" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RFEmpresa" runat="server" ControlToValidate="DDLEpresa" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar el consultorio."></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col-4">
+                        <%-- Fecha de Cierre --%>
+                        <asp:Label ID="Label4" CssClass="form-label" runat="server" Text="Fecha de Cierre"></asp:Label>
+                        <asp:TextBox ID="TBFechacierre" CssClass="form-control" TextMode="Date" runat="server"></asp:TextBox>
+                    </div>
+                    <div class="col-4">
+                        <%-- Asunto --%>
+                        <asp:Label ID="Label5" CssClass="form-label" runat="server" Text="Ingrese el Asunto"></asp:Label>
+                        <asp:TextBox ID="TBAsunto" CssClass="form-control" TextMode="MultiLine" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TBAsunto" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Tipo --%>
+                        <asp:Label ID="Label6" CssClass="form-label" runat="server" Text="Seleccione el Tipo"></asp:Label>
+                        <asp:DropDownList ID="DDLTipo" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="DDLTipo" InitialValue="0" ErrorMessage="Debes seleccionar el tipo." ForeColor="Red"></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col-4">
+                        <%-- Estado --%>
+                        <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Seleccione el Estado"></asp:Label>
+                        <asp:DropDownList ID="DDLEstado" CssClass="form-select" runat="server">
+                            <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="DDLEstado" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar la complejidad."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Complejidad --%>
+                        <asp:Label ID="Label8" CssClass="form-label" runat="server" Text="Seleccione la Complejidad"></asp:Label>
+                        <asp:DropDownList ID="DDLComplejidad" CssClass="form-select" runat="server">
+                            <asp:ListItem Text="Seleccione" Value="0"></asp:ListItem>
+                            <asp:ListItem Text="Alta" Value="alta"></asp:ListItem>
+                            <asp:ListItem Text="Media" Value="media"></asp:ListItem>
+                            <asp:ListItem Text="Baja" Value="baja"></asp:ListItem>
+                        </asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="DDLComplejidad" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar la complejidad."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-4">
+                        <%-- Abogado --%>
+                        <asp:Label ID="Label9" CssClass="form-label" runat="server" Text="Seleccione un Abogado"></asp:Label>
+                        <asp:DropDownList ID="DDLEmpleado" CssClass="form-select" runat="server"></asp:DropDownList>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="DDLEmpleado" InitialValue="" ForeColor="Red" ErrorMessage="Debes seleccionar un abogado."></asp:RequiredFieldValidator>
+                    </div>
+                </div>
+
+                <div class="row m-1">
+                    <div class="col">
+                        <%-- Botones Guardar y Actualizar --%>
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsj" CssClass="form-label" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <div class="card m-1">
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Casos
+            </div>
+            <div class="table-responsive">
+                <table id="casosTable" class="table table-hover display table-sm" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>FKEmpresa</th>
+                            <th>Empresa</th>
+                            <th>Fecha Apertura</th>
+                            <th>Fecha Cierre</th>
+                            <th>Asunto</th>
+                            <th>FkTipo</th>
+                            <th>Tipo</th>
+                            <th>FkEstado</th>
+                            <th>Estado</th>
+                            <th>Complejidad</th>
+                            <th>FkEmpleado</th>
+                            <th>Abogado</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </asp:Panel>
+    </div>
+
 
     <script src="resources/js/datatables.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#productsTable').DataTable({
+            $('#casosTable').DataTable({
                 "processing": true,
                 "serverSide": false,
                 "ajax": {
-                    "url": "WFCaso.aspx/ListCasos",// Se invoca el WebMethod Listar Productos
+                    "url": "WFCaso.aspx/ListCasos",// Se invoca el WebMethod Listar casos
                     "type": "POST",
                     "contentType": "application/json",
                     "data": function (d) {
                         return JSON.stringify(d);// Convierte los datos a JSON
                     },
                     "dataSrc": function (json) {
-                        return json.d.data;// Obtiene la lista de productos del resultado
+                        return json.d.data;// Obtiene la lista de caso del resultado
                     }
                 },
                 "columns": [
                     { "data": "CasoID" },
                     { "data": "Codigo" },
                     { "data": "Nombre" },
+                    { "data": "FKEmpresa", "visible": false },
                     { "data": "Empresa" },
                     { "data": "Fechaapertura" },
                     { "data": "Fechacierra" },
                     { "data": "Asunto" },
-                    { "data": "FkTipo", "visible": false },
+                    { "data": "FKTipo", "visible": false },
                     { "data": "Tipo" },
-                    { "data": "FkEstado", "visible": false },
-                    { "data": "Estado"},
+                    { "data": "FKEstado", "visible": false },
+                    { "data": "Estado" },
                     { "data": "Complejidad" },
-                    { "data": "FkEmpleado", "visible": false },
-                    { "data": "Empleado"},
+                    { "data": "FKEmpleado", "visible": false },
+                    { "data": "Empleado" },
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button class="edit-btn" data-id="${row.CasoID}">Editar</button>
-                              <button class="delete-btn" data-id="${row.CasoID}">Eliminar</button>`;
+                            return `
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-link btn-lg text-primary px-0 expediente-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}" title="Expediente">
+                                            <i class="lni lni-folder-1"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg text-success px-0 seguimineto-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}" title="Seguimiento">
+                                            <i class="lni lni-search-text"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg px-0 implicado-btn" data-id="${row.CasoID}" data-nombre="${row.Nombre}" title="Implicados" style="color:#6f42c1">
+                                            <i class="lni lni-target-user"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg px-0 edit-btn" data-id="${row.CasoID}" title="Editar" style="color:#fd7e14">
+                                            <i class="lni lni-pencil-1"></i>
+                                        </button>
+                                        <button class="btn btn-link btn-lg text-danger px-0 delete-btn" data-id="${row.CasoID}" title="Eliminar">
+                                            <i class="lni lni-trash-3"></i>
+                                        </button>
+                                    </div>
+                                `;
                         }
                     }
                 ],
@@ -153,6 +222,29 @@
                     deleteCaso(id);// Invoca a la función para eliminar el caso
                 }
             });
+            // Extraer id caso para asignar un expediente
+            $('#casosTable').on('click', '.expediente-btn', function () {
+                const id = $(this).data('id');// Obtener el ID del caso
+                const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
+                asignarExpediente(id, nombre);// Invoca a la función para eliminar el caso
+
+            });
+
+            // Extraer id caso para asignar un segumineto
+            $('#casosTable').on('click', '.seguimineto-btn', function () {
+                const id = $(this).data('id');// Obtener el ID del caso
+                const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
+                asignarSeguimiento(id, nombre);// Invoca a la función para eliminar el caso
+
+            });
+            // Extraer id caso para asignar un implicado
+            $('#casosTable').on('click', '.implicado-btn', function () {
+                const id = $(this).data('id');// Obtener el ID del caso
+                const nombre = $(this).data('nombre'); // Obtener el Nombre del caso
+                asignarImplicado(id, nombre);// Invoca a la función para eliminar el caso
+
+            });
+
         });
 
         // Cargar los datos en los TextBox y DDL para actualizar
@@ -160,30 +252,90 @@
             $('#<%= CasoID.ClientID %>').val(rowData.CasoID);
             $('#<%= TBCodigo.ClientID %>').val(rowData.Codigo);
             $('#<%= TBNombre.ClientID %>').val(rowData.Nombre);
-            $('#<%= DDLEpresa.ClientID %>').val(rowData.Empresa);
+            $('#<%= DDLEpresa.ClientID %>').val(rowData.FKEmpresa);
             $('#<%= TBFechacierre.ClientID %>').val(rowData.Fechacierra);
             $('#<%= TBAsunto.ClientID %>').val(rowData.Asunto);
-            $('#<%= DDLTipo.ClientID %>').val(rowData.Tipo);
-            $('#<%= DDLEstado.ClientID %>').val(rowData.Estado);
+            $('#<%= DDLTipo.ClientID %>').val(rowData.FKTipo);
+            $('#<%= DDLEstado.ClientID %>').val(rowData.FKEstado);
             $('#<%= DDLComplejidad.ClientID %>').val(rowData.Complejidad);
-            $('#<%= DDLEmpleado.ClientID %>').val(rowData.Empleado);
+            $('#<%= DDLEmpleado.ClientID %>').val(rowData.FKEmpleado);
         }
 
-        // Función para eliminar un producto
-        /*function deleteCaso(id) {
+        // Función para eliminar un caso
+        function deleteCaso(id) {
             $.ajax({
                 type: "POST",
-                url: "WFCaso.aspx/DeleteCaso",// Se invoca el WebMethod Eliminar un Producto
+                url: "WFCaso.aspx/DeleteCaso",// Se invoca el WebMethod Eliminar un caso
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify({ id: id }),
                 success: function (response) {
                     $('#casosTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
-                    alert("Producto eliminado exitosamente.");
+                    alert("Caso eliminado exitosamente.");
                 },
                 error: function () {
-                    alert("Error al eliminar el producto.");
+                    alert("Error al eliminar el caso.");
                 }
             });
-        }*/
+
+        }
+
+        // Función para asignar un expediente
+        function asignarExpediente(id, nombre) {
+            $.ajax({
+                type: "POST",
+                url: "WFAsignarExpediente.aspx/extraerIdCaso", // Se invoca el WebMethod extraer id caso
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: id, nombre: nombre }),
+                success: function (response) {
+                    $('#casosTable').DataTable().ajax.reload(); // Recargar la tabla después de extraer id
+                    // Redirigir usando la URL que recibimos del servidor
+                    // Asegúrate de que la URL esté correctamente especificada
+                    window.location.href = "WFAsignarExpediente.aspx"; // Redirige a la página deseada
+                },
+                error: function () {
+                    alert("Error al asignar el expediente.");
+                }
+            });
+        }
+        // Función para asignar un expediente
+        function asignarSeguimiento(id, nombre) {
+            $.ajax({
+                type: "POST",
+                url: "WFAsignarSeguimiento.aspx/extraerIdCaso", // Se invoca el WebMethod extraer id caso
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: id, nombre: nombre }),
+                success: function (response) {
+                    $('#casosTable').DataTable().ajax.reload(); // Recargar la tabla después de extraer id
+                    // Redirigir usando la URL que recibimos del servidor
+                    // Asegúrate de que la URL esté correctamente especificada
+                    window.location.href = "WFAsignarSeguimiento.aspx"; // Redirige a la página deseada
+                },
+                error: function () {
+                    alert("Error al asignar el seguimiento.");
+                }
+            });
+        }
+
+        // Función para asignar un expediente
+        function asignarImplicado(id, nombre) {
+            $.ajax({
+                type: "POST",
+                url: "WFAsignarPersona.aspx/extraerIdCaso", // Se invoca el WebMethod extraer id caso
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({ id: id, nombre: nombre }),
+                success: function (response) {
+                    $('#casosTable').DataTable().ajax.reload(); // Recargar la tabla después de extraer id
+                    // Redirigir usando la URL que recibimos del servidor
+                    // Asegúrate de que la URL esté correctamente especificada
+                    window.location.href = "WFAsignarPersona.aspx"; // Redirige a la página deseada
+                },
+                error: function () {
+                    alert("Error al asignar el implicado.");
+                }
+            });
+        }
+
+
+
     </script>
 </asp:Content>

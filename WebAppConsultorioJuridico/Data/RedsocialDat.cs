@@ -74,7 +74,7 @@ namespace Data
         }
 
         //Metodo para actulizar un RedesSociales
-        public bool updateRedsocial(int _id, string _nombre, int _descripcion)
+        public bool updateRedsocial(int idredsocial, string nombre, string descripcion)
         {
             bool executed = false;
             int row;
@@ -84,9 +84,9 @@ namespace Data
             objSelectCmd.CommandText = "spUpdateRedSocial";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = _nombre;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
+            objSelectCmd.Parameters.Add("p_idredsocial", MySqlDbType.Int32).Value = idredsocial;
+            objSelectCmd.Parameters.Add("p_nombre", MySqlDbType.VarString).Value = nombre;
+            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = descripcion;
 
             try
             {
@@ -104,8 +104,9 @@ namespace Data
             return executed;
         }
 
+
         //Metodo para borrar una RedesSociales
-        public bool deleteRedsocial(int _id)
+        public bool deleteRedsocial(int idtipo)
         {
             bool executed = false;
             int row;
@@ -114,7 +115,7 @@ namespace Data
             objSelectCmd.Connection = objPer.openConnection();
             objSelectCmd.CommandText = "spDeleteRedSocial"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
-            objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
+            objSelectCmd.Parameters.Add("p_idredsocial", MySqlDbType.Int32).Value = idtipo;
             try
             {
                 row = objSelectCmd.ExecuteNonQuery();

@@ -16,14 +16,19 @@ namespace Logic
         {
             return objSeg.showSeguimiento();
         }
+
+        public DataSet showSeguimientoByIdCaso(int _id)
+        {
+            return objSeg.showSeguimientoByIdCaso(_id);
+        }
         //Metodo para guardar un nuevo Seguimiento
-        public bool saveSeguimiento(int _caso_id, string _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
+        public bool saveSeguimiento(int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
         {
             return objSeg.saveSeguimiento(_caso_id, _fecha_actualizacion, _proceso, _descripcion, _estado);
         }
 
         //Metodo para actulizar un Seguimiento
-        public bool updateSeguimiento(int _id, int _caso_id, string _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
+        public bool updateSeguimiento(int _id, int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
         {
             return objSeg.updateSeguimiento(_id, _caso_id, _fecha_actualizacion, _proceso, _descripcion, _estado);
         }

@@ -1,48 +1,46 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Web;
 
 namespace Data
 {
-    public class SeguimientoDat
+    public class CasoHasPersonaDat
     {
         Persistence objPer = new Persistence();
-        //Metodo para mostrar todas las Seguimiento
-        public DataSet showSeguimiento()
+        //Metodo para mostrar todas las caso has persona
+        public DataSet showCasoHasPersona()
         {
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spSelectSeguimientos";
+            objSelectCmd.CommandText = "spSelectCasoHasPersonas";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objAdapter.SelectCommand = objSelectCmd;
             objAdapter.Fill(objData);
             objPer.closeConnection();
             return objData;
         }
-
-        public DataSet showSeguimientoByIdCaso(int _id)
+        public DataSet showCasoHasPersonaByIdCaso(int _id)
         {
-            // Instancias necesarias para la conexi�n y manejo de datos
+            // Instancias necesarias para la conexión y manejo de datos
             MySqlDataAdapter objAdapter = new MySqlDataAdapter();
             DataSet objData = new DataSet();
             MySqlCommand objSelectCmd = new MySqlCommand();
 
             try
             {
-                // Abrir la conexi�n
+                // Abrir la conexión
                 objSelectCmd.Connection = objPer.openConnection();
 
                 // Configurar el comando con el procedimiento almacenado
-                objSelectCmd.CommandText = "spSelectSeguimientoByIdCaso"; // Nombre del procedimiento
+                objSelectCmd.CommandText = "spSelectCasoHasPersonasByIdCaso"; // Nombre del procedimiento
                 objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-                // Agregar el par�metro del procedimiento almacenado
+                // Agregar el parámetro del procedimiento almacenado
                 objSelectCmd.Parameters.AddWithValue("p_idCaso", _id);
 
                 // Asociar el comando al adaptador
@@ -58,7 +56,7 @@ namespace Data
             }
             finally
             {
-                // Cerrar la conexi�n en cualquier caso
+                // Cerrar la conexión en cualquier caso
                 objPer.closeConnection();
             }
 
@@ -66,22 +64,22 @@ namespace Data
             return objData;
         }
 
-        //Metodo para guardar un nuevo Seguimiento
-        public bool saveSeguimiento(int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
+
+        //Metodo para guardar un nuevo AsignarRedesSocial
+        public bool saveCasoHasPersona(int _caso_idcaso, int _persona_idpersona)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spInsertSeguimiento";
+            objSelectCmd.CommandText = "spInsertCasoHasPersona";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
-            objSelectCmd.Parameters.Add("p_caso_id", MySqlDbType.Int32).Value = _caso_id;
-            objSelectCmd.Parameters.Add("p_fecha_actualizacion", MySqlDbType.DateTime).Value = _fecha_actualizacion;
-            objSelectCmd.Parameters.Add("p_proceso", MySqlDbType.VarString).Value = _proceso;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
-            objSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = _estado;
+            objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
+            objSelectCmd.Parameters.Add("p_persona_idpersona", MySqlDbType.Int32).Value = _persona_idpersona;
+
+
 
             try
             {
@@ -100,24 +98,20 @@ namespace Data
             return executed;
         }
 
-        //Metodo para actulizar un Seguimiento
-        public bool updateSeguimiento(int _id, int _caso_id, DateTime _fecha_actualizacion, string _proceso, string _descripcion, string _estado)
+        //Metodo para actulizar un AsignarRedesSocial
+        public bool updateCasoHasPersona(int _id, int _caso_idcaso, int _persona_idpersona)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spUpdateSeguimiento";
+            objSelectCmd.CommandText = "spUpdateCasoHasPersona";
             objSelectCmd.CommandType = CommandType.StoredProcedure;
 
             objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
-            objSelectCmd.Parameters.Add("p_caso_id", MySqlDbType.Int32).Value = _caso_id;
-            objSelectCmd.Parameters.Add("p_fecha_actualizacion", MySqlDbType.DateTime).Value = _fecha_actualizacion;
-            objSelectCmd.Parameters.Add("p_proceso", MySqlDbType.VarString).Value = _proceso;
-            objSelectCmd.Parameters.Add("p_descripcion", MySqlDbType.VarString).Value = _descripcion;
-            objSelectCmd.Parameters.Add("p_estado", MySqlDbType.VarString).Value = _estado;
-
+            objSelectCmd.Parameters.Add("p_caso_idcaso", MySqlDbType.Int32).Value = _caso_idcaso;
+            objSelectCmd.Parameters.Add("p_persona_idpersona", MySqlDbType.Int32).Value = _persona_idpersona;
 
             try
             {
@@ -135,15 +129,15 @@ namespace Data
             return executed;
         }
 
-        //Metodo para borrar una Seguimiento
-        public bool deleteSeguimiento(int _id)
+        //Metodo para borrar una AsignarRedesSocial
+        public bool deleteCasoHasPersona(int _id)
         {
             bool executed = false;
             int row;
 
             MySqlCommand objSelectCmd = new MySqlCommand();
             objSelectCmd.Connection = objPer.openConnection();
-            objSelectCmd.CommandText = "spDeleteSeguimiento"; //nombre del procedimiento almacenado
+            objSelectCmd.CommandText = "spDeleteCasoHasPersona"; //nombre del procedimiento almacenado
             objSelectCmd.CommandType = CommandType.StoredProcedure;
             objSelectCmd.Parameters.Add("p_id", MySqlDbType.Int32).Value = _id;
             try
@@ -161,5 +155,24 @@ namespace Data
             objPer.closeConnection();
             return executed;
         }
+
+        //Metodo para mostrar la cantidad de Usuarios
+        public int showCountClientes()
+        {
+            int totalClientes;
+            MySqlCommand objSelectCmd = new MySqlCommand();
+            objSelectCmd.Connection = objPer.openConnection();
+            objSelectCmd.CommandText = "spSelectCountClientes";
+            objSelectCmd.CommandType = CommandType.StoredProcedure;
+            // Agregar el parámetro de salida
+            objSelectCmd.Parameters.Add(new MySqlParameter("@total_clientes", MySqlDbType.Int32));
+            objSelectCmd.Parameters["@total_clientes"].Direction = ParameterDirection.Output;
+            // Ejecutar el comando
+            objSelectCmd.ExecuteNonQuery();
+            // Obtener el valor del parámetro de salida
+            totalClientes = Convert.ToInt32(objSelectCmd.Parameters["@total_clientes"].Value);
+            return totalClientes;
+        }
+
     }
 }

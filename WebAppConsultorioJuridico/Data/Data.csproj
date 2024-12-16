@@ -120,6 +120,7 @@
   <ItemGroup>
     <Compile Include="AsignarredsocialDat.cs" />
     <Compile Include="CasoDat.cs" />
+    <Compile Include="CasoHasPersonaDat.cs" />
     <Compile Include="CitasDat.cs" />
     <Compile Include="EmpleadoDat.cs" />
     <Compile Include="EmpresaDat.cs" />

@@ -14,6 +14,13 @@ namespace Presentation
         private string _nombre, _descripcion;
         private bool executed = false;
 
+        /*
+    *  Variables de tipo pública que indiquen si el usuario tiene
+    *  permiso para ver los botones editar y eliminar.
+    */
+        public bool _showEditButton { get; set; } = true;
+        public bool _showDeleteButton { get; set; } = true;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

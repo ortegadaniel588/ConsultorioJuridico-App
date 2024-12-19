@@ -178,5 +178,46 @@ namespace Presentation
             LblCantCasos.Text = count.ToString();
         }
 
+        //[WebMethod]
+        //public static object GetTendenciaCasosCerrados()
+        //{
+        //    CasoLog objCasoLogic = new CasoLog();
+
+        //    // Se obtiene un DataSet con los datos de tendencia desde la capa lógica
+        //    var dataSet = objCasoLogic.spTendenciaCasosCerradosPorMes();
+
+        //    // Lista para almacenar los datos procesados
+        //    var casosList = new List<object>();
+
+        //    // Se recorre cada fila del DataSet
+        //    foreach (DataRow row in dataSet.Tables[0].Rows)
+        //    {
+        //        casosList.Add(new
+        //        {
+        //            Anio = row["anio"],
+        //            Mes = row["mes"],
+        //            TotalCasos = row["total_casos"]
+        //        });
+        //    }
+
+        //    // Devuelve los datos en formato JSON
+        //    return new { data = casosList };
+        //}
+        [WebMethod]
+        public static object GetTendenciaCasosCerrados()
+        {
+            // Datos de prueba simulados
+            var casosTendencia = new List<object>
+            {
+                new { Mes = "Enero", Anio = "2024", TotalCasos = 3 },
+                new { Mes = "Febrero", Anio = "2024", TotalCasos = 5 },
+                new { Mes = "Marzo", Anio = "2024", TotalCasos = 4 },
+                new { Mes = "Abril", Anio = "2024", TotalCasos = 7 },
+                new { Mes = "Mayo", Anio = "2024", TotalCasos = 2 },
+            };
+
+            return new { data = casosTendencia };
+        }
+
     }
 }

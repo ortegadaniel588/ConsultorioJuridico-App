@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\css\StyleDashboard.css" />
     <Content Include="resources\css\StyleLogin.css" />
     <Content Include="resources\css\variables.css" />
     <Content Include="resources\images\logo.png" />

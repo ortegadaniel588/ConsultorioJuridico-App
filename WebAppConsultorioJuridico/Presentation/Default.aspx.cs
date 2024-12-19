@@ -9,15 +9,14 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-
 namespace Presentation
-{   
+{
     public partial class Default : System.Web.UI.Page
     {
         UsuariosLog objUserLog = new UsuariosLog();
         User objUser = new User();
 
-        private string _usuario;    
+        private string _usuario;
         private string _contrasena;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,10 +27,17 @@ namespace Presentation
             // Muestra la imagen de cargando antes de procesar la encriptación
             ScriptManager.RegisterStartupScript(this, GetType(), "showLoading", "showLoading();", true);
 
-            ICryptoService cryptoService = new PBKDF2();
             _usuario = TBUsuario.Text;
             _contrasena = TBContrasena.Text;
 
+            if (string.IsNullOrEmpty(_usuario) || string.IsNullOrEmpty(_contrasena))
+            {
+                LblMsg.Text = "Por favor, ingrese su correo y contraseña.";
+                ScriptManager.RegisterStartupScript(this, GetType(), "hideLoading", "hideLoading();", true);
+                return;
+            }
+
+            ICryptoService cryptoService = new PBKDF2();
             objUser = objUserLog.showUsersMail(_usuario);// Busca el correo del usuario
 
             if (objUser != null)
@@ -44,7 +50,7 @@ namespace Presentation
                     string passEncryp = cryptoService.Compute(_contrasena, objUser.Salt);
                     if (cryptoService.Compare(objUser.Contrasena, passEncryp))
                     {
-                        FormsAuthentication.RedirectFromLoginPage("WFInicio.aspx", true);
+                        Response.Redirect("WFInicio.aspx");
                         TBUsuario.Text = "";
                         TBContrasena.Text = "";
                     }

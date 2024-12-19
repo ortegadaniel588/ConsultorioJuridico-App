@@ -28,8 +28,8 @@ namespace Presentation
         // Enlaces de seguridad
         public HtmlAnchor linkSecurity;
         public HtmlAnchor linkUser;
-        public HtmlAnchor linkPermission;
-        public HtmlAnchor linkPermissionRol;
+        public HtmlAnchor linkPermissions;
+        public HtmlAnchor linkPermissionsRoles;
 
 
         protected void Page_Load(object sender, EventArgs e)

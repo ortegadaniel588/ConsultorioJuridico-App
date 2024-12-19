@@ -1,0 +1,118 @@
+﻿:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #34495E;
+    --accent-color: #C0392B;
+    --text-light: #ECF0F1;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensaje de bienvenida */
+.welcome-message {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgba(44, 62, 80, 0.1);
+}
+
+/* Tarjetas del dashboard */
+.dashboard-card {
+    transition: transform 0.2s ease;
+    border: none !important;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .dashboard-card .card-body {
+        background-color: var(--primary-color);
+        color: var(--text-light) !important;
+        border-radius: 10px 10px 0 0;
+        padding: 1.5rem;
+    }
+
+    .dashboard-card .card-footer {
+        background-color: var(--secondary-color) !important;
+        border-top: none !important;
+        border-radius: 0 0 10px 10px;
+    }
+
+/* Títulos y números en tarjetas */
+.card-title-container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: var(--text-light);
+    margin-bottom: 0.5rem;
+}
+
+.card-title {
+    margin: 0;
+    color: var(--text-light);
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.stats-number {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--text-light);
+    margin: 1rem 0;
+    display: block;
+}
+
+/* Enlaces en footer */
+.small-box-footer {
+    color: var(--text-light) !important;
+    text-decoration: none;
+    display: block;
+    padding: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+    .small-box-footer:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: var(--accent-color) !important;
+    }
+
+/* Tarjetas de gráficas */
+.chart-card {
+    border: none !important;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    background-color: white;
+}
+
+    .chart-card .card-header {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        border-radius: 10px 10px 0 0;
+        padding: 1rem 1.5rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .chart-card .card-body {
+        padding: 1.5rem;
+        background-color: white;
+        border-radius: 0 0 10px 10px;
+    }
+
+/* Contenedor principal */
+.dashboard-container {
+    padding: 1.5rem;
+}

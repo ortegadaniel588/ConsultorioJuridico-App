@@ -26,6 +26,7 @@
     padding: 2rem;
     width: 400px;
     transition: transform var(--transition-speed) ease;
+    position: relative;
 }
 
     .login-card:hover {
@@ -99,3 +100,59 @@
         color: var(--accent-color);
         text-decoration: underline;
     }
+
+/* Overlay de carga */
+.loading-overlay {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* Loader */
+.loader {
+    color: var(--primary-color); /* Cambiado de #ffffff a var(--primary-color) */
+    font-size: 45px;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    transform: translateZ(0);
+    animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
+}
+
+@keyframes mltShdSpin {
+    0% {
+        box-shadow: 0 -0.83em 0 -0.4em var(--primary-color), 0 -0.83em 0 -0.42em var(--primary-color), 0 -0.83em 0 -0.44em var(--primary-color), 0 -0.83em 0 -0.46em var(--primary-color), 0 -0.83em 0 -0.477em var(--primary-color);
+    }
+
+    5%, 95% {
+        box-shadow: 0 -0.83em 0 -0.4em var(--primary-color), 0 -0.83em 0 -0.42em var(--primary-color), 0 -0.83em 0 -0.44em var(--primary-color), 0 -0.83em 0 -0.46em var(--primary-color), 0 -0.83em 0 -0.477em var(--primary-color);
+    }
+
+    10%, 59% {
+        box-shadow: 0 -0.83em 0 -0.4em var(--primary-color), -0.087em -0.825em 0 -0.42em var(--primary-color), -0.173em -0.812em 0 -0.44em var(--primary-color), -0.256em -0.789em 0 -0.46em var(--primary-color), -0.297em -0.775em 0 -0.477em var(--primary-color);
+    }
+
+    20% {
+        box-shadow: 0 -0.83em 0 -0.4em var(--primary-color), -0.338em -0.758em 0 -0.42em var(--primary-color), -0.555em -0.617em 0 -0.44em var(--primary-color), -0.671em -0.488em 0 -0.46em var(--primary-color), -0.749em -0.34em 0 -0.477em var(--primary-color);
+    }
+
+    38% {
+        box-shadow: 0 -0.83em 0 -0.4em var(--primary-color), -0.377em -0.74em 0 -0.42em var(--primary-color), -0.645em -0.522em 0 -0.44em var(--primary-color), -0.775em -0.297em 0 -0.46em var(--primary-color), -0.82em -0.09em 0 -0.477em var(--primary-color);
+    }
+
+    100% {
+        box-shadow: 0 -0.83em 0 -0.4em var(--primary-color), 0 -0.83em 0 -0.42em var(--primary-color), 0 -0.83em 0 -0.44em var(--primary-color), 0 -0.83em 0 -0.46em var(--primary-color), 0 -0.83em 0 -0.477em var(--primary-color);
+    }
+}

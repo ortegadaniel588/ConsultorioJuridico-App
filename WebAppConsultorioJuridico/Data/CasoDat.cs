@@ -176,5 +176,39 @@ namespace Data
             totalCasos = Convert.ToInt32(objSelectCmd.Parameters["@total_casos"].Value);
             return totalCasos;
         }
+
+        public DataSet spTendenciaCasosCerradosPorMes()
+        {
+            // Objeto para adaptar los datos desde la BD a un DataSet
+            MySqlDataAdapter objAdapter = new MySqlDataAdapter();
+            DataSet objData = new DataSet();
+
+            try
+            {
+                // Configuración del comando SQL
+                MySqlCommand objSelectCmd = new MySqlCommand();
+                objSelectCmd.Connection = objPer.openConnection(); // Abre la conexión
+                objSelectCmd.CommandText = "spTendenciaCasosCerradosPorMes"; // Nombre del procedimiento almacenado
+                objSelectCmd.CommandType = CommandType.StoredProcedure;
+
+                // Asignación del comando al adaptador
+                objAdapter.SelectCommand = objSelectCmd;
+
+                // Llenado del DataSet con los resultados del procedimiento
+                objAdapter.Fill(objData);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al ejecutar el procedimiento almacenado: " + ex.Message);
+            }
+            finally
+            {
+                // Asegurarse de cerrar la conexión
+                objPer.closeConnection();
+            }
+
+            return objData; // Devuelve el DataSet con los resultados
+        }
+
     }
 }

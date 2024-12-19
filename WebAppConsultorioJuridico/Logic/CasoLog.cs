@@ -49,6 +49,10 @@ namespace Logic
         {
             return objCas.showCountCasos();
         }
+        public DataSet spTendenciaCasosCerradosPorMes()
+        {
+            return objCas.spTendenciaCasosCerradosPorMes();
+        }
 
     }
 }

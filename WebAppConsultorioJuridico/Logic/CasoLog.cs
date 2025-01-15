@@ -54,5 +54,10 @@ namespace Logic
             return objCas.spTendenciaCasosCerradosPorMes();
         }
 
+        public DataSet spAsignacionCitasPorMes()
+        {
+            return objCas.spAsignacionCitasPorMes();
+        }
+
     }
 }

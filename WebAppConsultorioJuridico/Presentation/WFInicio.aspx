@@ -97,6 +97,17 @@
             <div class="col-12 col-xl-6">
                 <div class="chart-card">
                     <div class="card-header">
+                        <i class="lni lni-bar-chart-4 me-2"></i>
+                        Asignacion de Citas por mes
+                    </div>
+                    <div class="card-body">
+                        <div id="columnchart" style="width: 100%; height: 400px;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="chart-card">
+                    <div class="card-header">
                         <i class="fas fa-chart-line me-2"></i>
                         Tendencia de Casos Cerrados
                        
@@ -106,22 +117,29 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-   
+        </div>   
     </form>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        // Carga de Google Charts
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(fetchDataAndDrawChart);
-        google.charts.setOnLoadCallback(drawTendenciaChart);
 
-        // Gráfica circular
-        function fetchDataAndDrawChart() {
+    <script type="text/javascript">
+        // Solo una carga inicial
+        google.charts.load('current', { 'packages': ['corechart'] });
+
+        // Callback principal después de la carga
+        google.charts.setOnLoadCallback(function () {
+            // Llamar a las funciones de dibujo aquí, sin setOnLoadCallback individuales
+            fetchDataAndDrawPieChart();
+            fetchDataAndDrawAsignacionCitasChart();
+            drawTendenciaChart();
+        });
+    </script>
+
+    <!-- Script para la gráfica circular -->
+    <script type="text/javascript">
+        function fetchDataAndDrawPieChart() {
             $.ajax({
                 url: 'WFInicio.aspx/ListCountCasosEstados',
                 type: 'POST',
@@ -152,8 +170,54 @@
                 }
             });
         }
+    </script>
+    <!-- Script para la gráfica de columnas -->
+    <script type="text/javascript">
+        function fetchDataAndDrawAsignacionCitasChart() {
+            $.ajax({
+                url: 'WFInicio.aspx/GetAsignacionCitasPorMes',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                success: function (response) {
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('string', 'Mes');
+                    data.addColumn('number', 'Total Citas');
 
-        // Gráfica de tendencia
+                    response.d.data.forEach(function (item) {
+                        var fecha = new Date(item.MesActual + "-01");
+                        var nombreMes = fecha.toLocaleDateString('es-ES', { month: 'long' });
+                        var anio = fecha.getFullYear();
+                        data.addRow([nombreMes + ' ' + anio, item.TotalCitasAsignadas]);
+                    });
+
+                    var options = {
+                        title: 'Asignación de Citas por Mes',
+                        colors: ['#3498DB'],
+                        animation: { duration: 1000, easing: 'out', startup: true },
+                        hAxis: {
+                            title: 'Mes',
+                            slantedText: true,
+                            slantedTextAngle: 45
+                        },
+                        vAxis: {
+                            title: 'Total Citas',
+                            minValue: 0
+                        },
+                        bar: { groupWidth: '75%' }
+                    };
+
+                    var chart = new google.visualization.ColumnChart(document.getElementById('columnchart'));
+                    chart.draw(data, options);
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        }
+    </script>
+    <!-- Script para la gráfica de tendencia -->
+    <script type="text/javascript">
         function drawTendenciaChart() {
             $.ajax({
                 url: 'WFInicio.aspx/GetTendenciaCasosCerrados',
@@ -205,11 +269,14 @@
                 }
             });
         }
+    </script>
 
-        // Responsive
+    <script type="text/javascript">
         window.addEventListener('resize', function () {
-            fetchDataAndDrawChart();
+            fetchDataAndDrawPieChart();
+            fetchDataAndDrawAsignacionCitasChart();
             drawTendenciaChart();
         });
     </script>
+
 </asp:Content>

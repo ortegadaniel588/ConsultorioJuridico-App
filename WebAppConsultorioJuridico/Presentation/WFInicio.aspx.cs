@@ -203,6 +203,34 @@ namespace Presentation
         //    // Devuelve los datos en formato JSON
         //    return new { data = casosList };
         //}
+
+        //[WebMethod]
+        //public static object GetAsignacionCitasPorMes()
+        //{
+        //    // Crear una instancia de la capa lógica o de acceso a datos
+        //    CasoLog objCasoLogic = new CasoLog();
+
+        //    // Obtener los datos desde el procedimiento almacenado
+        //    var dataSet = objCasoLogic.spAsignacionCitasPorMes();
+
+        //    // Crear una lista para los datos que se van a devolver
+        //    var citasList = new List<object>();
+
+        //    // Iterar sobre cada fila del DataSet
+        //    foreach (DataRow row in dataSet.Tables[0].Rows)
+        //    {
+        //        citasList.Add(new
+        //        {
+        //            MesActual = row["MesActual"], // Nombre de la columna en el procedimiento almacenado
+        //            TotalCitasAsignadas = row["TotalCitasAsignadas"] // Nombre de la columna en el resultado
+        //        });
+        //    }
+
+        //    // Devolver un objeto en formato JSON con la lista de citas
+        //    return new { data = citasList };
+        //}
+
+
         [WebMethod]
         public static object GetTendenciaCasosCerrados()
         {
@@ -218,6 +246,22 @@ namespace Presentation
 
             return new { data = casosTendencia };
         }
+
+        [WebMethod]
+        public static object GetAsignacionCitasPorMes()
+        {
+            var datosPrueba = new List<object>()
+            {
+                new { MesActual = "2024-01", TotalCitasAsignadas = 25 },
+                new { MesActual = "2024-02", TotalCitasAsignadas = 30 },
+                new { MesActual = "2024-03", TotalCitasAsignadas = 15 },
+                new { MesActual = "2024-04", TotalCitasAsignadas = 40 }
+            };
+
+            return new { data = datosPrueba };
+        }
+
+
 
     }
 }

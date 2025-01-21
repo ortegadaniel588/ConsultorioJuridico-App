@@ -105,14 +105,14 @@
                         "render": function (row) {
                             let buttons = '';
                             if (showEditButton) {
-                                buttons += `<button type="button" class="btn btn-info btn-sm edit-btn" data-id="${row.PermisoID}">
-                                            <i class="fas fa-edit"></i> Editar
-                                          </button> `;
+                                buttons += `<button class="btn btn-link btn-lg px-0 edit-btn" data-id="${row.PermisoID}" title="Editar" style="color:#fd7e14">
+                                                <i class="lni lni-pencil-1"></i>
+                                            </button> `;
                             }
                             if (showDeleteButton) {
-                                buttons += `<button type="button" class="btn btn-danger btn-sm delete-btn" data-id="${row.PermisoID}">
-                                            <i class="fas fa-trash"></i> Eliminar
-                                          </button>`;
+                                buttons += `<button class="btn btn-link btn-lg text-danger px-0 delete-btn" data-id="${row.PermisoID}" title="Eliminar">
+                                                <i class="lni lni-trash-3"></i>
+                                            </button>`;
                             }
                             return buttons;
                         }

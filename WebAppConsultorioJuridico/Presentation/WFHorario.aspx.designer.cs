@@ -51,6 +51,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.DropDownList DDLEmpleados;
 
         /// <summary>
+        /// Control RFVEmpleado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVEmpleado;
+
+        /// <summary>
         /// Control Label2.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,15 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TBFecha;
+
+        /// <summary>
+        /// Control RFVFecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVFecha;
 
         /// <summary>
         /// Control Label3.
@@ -87,6 +105,15 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBHoraInicio;
 
         /// <summary>
+        /// Control RFVHoraInicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVHoraInicio;
+
+        /// <summary>
         /// Control Label4.
         /// </summary>
         /// <remarks>
@@ -103,6 +130,15 @@ namespace Presentation
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TBHoraFin;
+
+        /// <summary>
+        /// Control RFVHoraFin.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVHoraFin;
 
         /// <summary>
         /// Control BtnSave.

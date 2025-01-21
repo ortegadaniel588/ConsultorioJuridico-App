@@ -144,8 +144,8 @@
                     {
                         "data": null,
                         "render": function (data, type, row) {
-                            return `<button type="button" class="btn btn-info btn-sm edit-btn" data-id="${row.UserID}">
-                                        <i class="fas fa-edit"></i> Editar
+                            return `<button class="btn btn-link btn-lg px-0 edit-btn" data-id="${row.UserID}" title="Editar" style="color:#fd7e14">
+                                            <i class="lni lni-pencil-1"></i>
                                     </button>`;
                         }
                     }

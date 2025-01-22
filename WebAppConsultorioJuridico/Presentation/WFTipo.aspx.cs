@@ -50,7 +50,15 @@ namespace Presentation
             // Devuelve un objeto en formato JSON que contiene la lista de Tipos.
             return new { data = TipoList };
         }
+        private void clear()
+        {
+            TipoID.Value = "";
+            TBNombre.Text = "";
+            TBDescripcion.Text = "";
 
+
+
+        }
         [WebMethod]
         public static bool deleteTipo(int idtipo)
         {
@@ -69,6 +77,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se guardo exitosamente";
+                clear();
             }
             else
             {
@@ -92,6 +101,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

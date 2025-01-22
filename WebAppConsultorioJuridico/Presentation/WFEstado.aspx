@@ -49,7 +49,7 @@
             </div>
             <div class="table-responsive">
                 <%--Lista de Redes Sociales--%>
-                <table id="redessocialesTable" class="table table-hover display" style="width: 100%">
+                <table id="EstadoTable" class="table table-hover display" style="width: 100%">
                     <thead>
                         <tr>
                             <th>EstadoID</th>
@@ -142,12 +142,12 @@
         }
 
         //Función para eliminar un Estado
-        function deleteEstado(idestado) {
+        function deleteEstado(id) {
             $.ajax({
                 type: "POST",
                 url: "WFEstado.aspx/deleteEstado",// Se invoca el WebMethod Eliminar un Producto
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ idestado: idestado }),
+                data: JSON.stringify({ id: id }),
                 success: function (response) {
                     $('#EstadoTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
                     alert("Estado eliminado exitosamente.");

@@ -5,35 +5,65 @@
     <link href="resources/css/datatables.min.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="FrmEstado" runat="server">
-        <asp:HiddenField ID="EstadoID" runat="server" />
-        <%--Nombre--%>
-        <asp:Label ID="Label1" runat="server" Text="Ingrese el nombre"></asp:Label>
-        <asp:TextBox ID="TBNombre" runat="server"></asp:TextBox><br />
-        <%--Descripción--%>
-        <asp:Label ID="Label2" runat="server" Text="Ingrese la descripción"></asp:Label>
-        <asp:TextBox ID="TBDescripcion" runat="server"></asp:TextBox><br />
-    
-        <%--Botones Guardar y Actualizar--%>
-        <asp:Button ID="BtnSave" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
-        <asp:Button ID="BtnUpdate" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" /><br />
-        <asp:Label ID="LblMsj" runat="server" Text=""></asp:Label><br />
-    </form>
+    <div class="card m-1">
+        <div class="card-header">
+            Gestión de Redes Sociales
+        </div>
+        <div class="card-body">
+            <form id="FrmEstado" runat="server">
+                <%--Id--%>
+                <asp:HiddenField ID="EstadoID" runat="server" />
+                <div class="row m-1">
+                    <div class="col-6">
+                        <%--Nombre--%>
+                        <asp:Label ID="Label1" CssClass="form-label" runat="server" Text="Ingrese el nombre"></asp:Label>
+                        <asp:TextBox ID="TBNombre" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="TBNombre" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                    </div>
+                    <div class="col-6">
+                        <%--Descripción--%>
+                        <asp:Label ID="Label2" CssClass="form-label" runat="server" Text="Ingrese la descripción"></asp:Label>
+                        <asp:TextBox ID="TBDescripcion" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TBDescripcion" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
 
-    <%--lista de productos--%>
-    <h2>Lista de los estados</h2>
-    <table id="EstadoTable" class="display" style="width: 100%">
-        <thead>
-            <tr>
-                <th>EstadoID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+                    </div>
+                </div>
 
+                <div class="row m-1">
+                    <div class="col">
+                        <%--Botones Guardar y Actualizar--%>
+                        <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
+                        <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
+                        <asp:Label ID="LblMsj" CssClass="form-label" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card m-1">
+        <%--Panel para la gestión de Redes Sociales--%>
+        <asp:Panel ID="PanelAdmin" runat="server">
+            <div class="card-header">
+                Lista de Estados de casos
+            </div>
+            <div class="table-responsive">
+                <%--Lista de Redes Sociales--%>
+                <table id="EstadoTable" class="table table-hover display" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>EstadoID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </asp:Panel>
+    </div>
     <script src="resources/js/datatables.min.js"></script>
 
     <script type="text/javascript">
@@ -112,12 +142,12 @@
         }
 
         //Función para eliminar un Estado
-        function deleteEstado(idestado) {
+        function deleteEstado(id) {
             $.ajax({
                 type: "POST",
                 url: "WFEstado.aspx/deleteEstado",// Se invoca el WebMethod Eliminar un Producto
                 contentType: "application/json; charset=utf-8",
-                data: JSON.stringify({ idestado: idestado }),
+                data: JSON.stringify({ id: id }),
                 success: function (response) {
                     $('#EstadoTable').DataTable().ajax.reload();// Recargar la tabla después de eliminar
                     alert("Estado eliminado exitosamente.");

@@ -52,6 +52,14 @@ namespace Presentation
             return new { data = EstadoList };
         }
 
+        //Metodo para limpiar los TextBox y los DDL
+        private void clear()
+        {
+            EstadoID.Value = "";
+            TBNombre.Text = "";
+            TBDescripcion.Text = "";
+        }
+
         //Comentado Eliminar por integridad de Datos
         [WebMethod]
         public static bool deleteEstado(int id)
@@ -71,6 +79,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se guardo exitosamente";
+                clear();
             }
             else
             {
@@ -94,6 +103,7 @@ namespace Presentation
             if (execute)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                clear();
             }
             else
             {

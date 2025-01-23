@@ -148,7 +148,7 @@
                                 <i class="lni lni-hand-taking-user"></i>
                                 Permisos
 
-                            </a>
+                            </a>    
                         </li>
                         <li class="sidebar-item">
                             <a id="linkPermissionsRoles" runat="server" href="WFPermissionsRoles.aspx" class="sidebar-link">
@@ -214,7 +214,7 @@
 
         <!-- Main Content -->
         <div class="main">
-            <div class="content-wrapper p-3">
+            <div class="content-wrapper p-2">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

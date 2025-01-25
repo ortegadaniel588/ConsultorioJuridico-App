@@ -107,7 +107,18 @@
                     }
                 ],
                 "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
                 }
             });
 
@@ -128,8 +139,6 @@
             $('#<%= DDLHorarios.ClientID %>').val(rowData.horarioId);
             $('#<%= TBAsunto.ClientID %>').val(rowData.asunto);
             $('#<%= DDLEstado.ClientID %>').val(rowData.estado);
-            $('#<%= BtnSave.ClientID %>').hide();
-            $('#<%= BtnUpdate.ClientID %>').show();
         }
 
         function deleteCita(id) {

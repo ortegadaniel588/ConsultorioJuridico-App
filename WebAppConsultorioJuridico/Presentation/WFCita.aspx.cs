@@ -30,7 +30,7 @@ namespace Presentation
             {
                 DDLHorarios.DataSource = objHorario.ShowHorariosDDL();
                 DDLHorarios.DataValueField = "idhorario";
-                DDLHorarios.DataTextField = "horario_info";
+                DDLHorarios.DataTextField = "fecha";
                 DDLHorarios.DataBind();
                 DDLHorarios.Items.Insert(0, "Seleccione");
             }
@@ -169,8 +169,6 @@ namespace Presentation
             DDLHorarios.SelectedIndex = 0;
             TBAsunto.Text = "";
             DDLEstado.SelectedIndex = 0;
-            BtnSave.Visible = true;
-            BtnUpdate.Visible = false;
             LblMsg.Text = "";
         }
     }

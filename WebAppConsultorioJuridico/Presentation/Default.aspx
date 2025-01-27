@@ -1,10 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Presentation.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Presentation.Default" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es">
 <head runat="server">
-    <meta charset="utf-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Inicio de sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="resources/css/StyleLogin.css" rel="stylesheet" />
@@ -28,15 +28,15 @@
                     <asp:Label ID="Label3" CssClass="form-label" runat="server">Contraseña</asp:Label>
                     <asp:TextBox ID="TBContrasena" CssClass="form-control" runat="server" TextMode="Password"></asp:TextBox>
                 </div>
+                <asp:Button ID="BtnIniciar" CssClass="btn btn-login btn-lg w-100 text-white" runat="server" Text="Iniciar sesión" OnClick="BtnIniciar_Click" OnClientClick="showLoading();" />
                 <div class="mb-4">
                     <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                 </div>
-                <asp:Button ID="BtnIniciar" CssClass="btn btn-login btn-lg w-100 text-white" runat="server" Text="Iniciar sesión" OnClick="BtnIniciar_Click" OnClientClick="showLoading();" />
                 <asp:Label ID="LblMsg" runat="server" CssClass="mt-3 d-block text-center text-danger"></asp:Label>
             </div>
         </div>
     </form>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         function showLoading() {

@@ -58,11 +58,23 @@
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="DDLRelevancia" InitialValue="0" ForeColor="Red" ErrorMessage="Debes seleccionar la complejidad."></asp:RequiredFieldValidator>
 
                     </div>
+                    <!--<div class="col-6">
+                        <%--Evidencia--%>
+                        <asp:Label ID="Label20" CssClass="form-label" runat="server" Text="Ingrese la evidencia"></asp:Label>
+                        <asp:TextBox ID="TBEvidenci" runat="server" CssClass="form-control"></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TBEvidenci" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+
+                    </div>-->
+                    <div class="col-6" style="display: none;">
+                        <%--Evidencia--%>
+                        <asp:Label ID="Label11" CssClass="form-label" runat="server" Text="Ingrese la evidencia"></asp:Label>
+                        <asp:TextBox ID="TBEvidencia" runat="server" CssClass="form-control"></asp:TextBox>
+
+                    </div>
                     <div class="col-6">
                         <%--Evidencia--%>
-                        <asp:Label ID="Label7" CssClass="form-label" runat="server" Text="Ingrese la evidencia"></asp:Label>
-                        <asp:TextBox ID="TBEvidencia" runat="server" CssClass="form-control"></asp:TextBox>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TBEvidencia" ForeColor="Red" Display="Dynamic" ErrorMessage="Este campo es obligatorio."></asp:RequiredFieldValidator>
+                        <asp:Label ID="Label10" CssClass="form-label" runat="server" Text="Ingrese la evidencia"></asp:Label>
+                        <asp:FileUpload ID="TBEvidencia2" runat="server" CssClass="form-control" />
 
                     </div>
                 </div>
@@ -159,7 +171,17 @@
                     { "data": "Accionrealizada" },
                     { "data": "Razon" },
                     { "data": "Relevancia" },
-                    { "data": "Evidencia" },
+                    {
+                        "data": "Evidencia",
+                        "render": function (data, type, row) {
+                            if (data) {
+                                return `<a href="${data}" target="_blank">Ver evidencia</a>`;
+                            } else {
+                                return "Sin evidencia";
+                            }
+
+                        }
+                    },
                     { "data": "Comentario" },
                     { "data": "Estado" },
                     {

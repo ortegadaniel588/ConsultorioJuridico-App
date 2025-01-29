@@ -186,13 +186,22 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.TextBox TBEvidencia;
 
         /// <summary>
-        /// Control RequiredFieldValidator3.
+        /// Control Label10.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.Label Label10;
+
+        /// <summary>
+        /// Control TBEvidencia2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload TBEvidencia2;
 
         /// <summary>
         /// Control Label8.

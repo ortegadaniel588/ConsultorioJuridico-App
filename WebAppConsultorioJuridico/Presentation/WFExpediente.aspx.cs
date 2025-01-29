@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
@@ -27,6 +28,7 @@ namespace Presentation
         private string _evidencia;
         private string _comentario;
         private string _estado;
+        private string rutaEvidencia;
 
         private bool executed = false;
 
@@ -267,28 +269,112 @@ namespace Presentation
 
         protected void BtnSave_Click(object sender, EventArgs e)
         {
+            //_caso_idcaso = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
+            try
+            {
+                // Validar que se haya seleccionado un archivo
+                if (TBEvidencia2.HasFile)
+                {
+                    // Obtener el archivo
+                    HttpPostedFile file = TBEvidencia2.PostedFile;
+
+                    // Validar el tamaño del archivo (opcional)
+                    //if (file.ContentLength > 0 && file.ContentLength < 10485760) // 10 MB
+                    if (file.ContentLength > 0)
+                    {
+                        // Guardar el archivo en el servidor
+                        string fileName = Path.GetFileName(file.FileName);
+                        string filePath = Server.MapPath("~/resources/uploads/") + fileName;
+                        file.SaveAs(filePath);
+
+                        // Aquí puedes guardar la ruta del archivo en la base de datos
+                        rutaEvidencia = "/resources/uploads/" + fileName;
+
+                        // Llamar a tu método para guardar el expediente en la base de datos
+                        // GuardarExpediente(rutaEvidencia);
+                    }
+                    else
+                    {
+                        LblMsj.Text = "El archivo es demasiado grande o no se ha seleccionado ningún archivo.";
+                        LblMsj.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+                else
+                {
+                    LblMsj.Text = "Por favor, seleccione un archivo de evidencia.";
+                    LblMsj.ForeColor = System.Drawing.Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                LblMsj.Text = "Error al subir el archivo: " + ex.Message;
+                LblMsj.ForeColor = System.Drawing.Color.Red;
+            }
             _caso_idcaso = Convert.ToInt32(DDCaso_idcaso.SelectedValue);
             _codigo = TBCodigo.Text;
             _accionrealizada = TBAccionrealizada.Text;
             _razon = TBRazon.Text;
             _relevancia = DDLRelevancia.Text;
-            _evidencia = TBEvidencia.Text;
+            //_evidencia = TBEvidencia.Text;
+            _evidencia = rutaEvidencia;
             _comentario = TBComentario.Text;
             _estado = DDLEstado.Text;
             executed = objEsp.saveExpediente(_caso_idcaso, _codigo,  _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
             if (executed)
             {
                 LblMsj.Text = "Se guardo exitosamente";
+                LblMsj.ForeColor = System.Drawing.Color.Green;
                 clear();
             }
             else
             {
                 LblMsj.Text = "Error al guardar";
+                LblMsj.ForeColor = System.Drawing.Color.Red;
             }
         }
 
         protected void BtnUpdate_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Validar que se haya seleccionado un archivo
+                if (TBEvidencia2.HasFile)
+                {
+                    // Obtener el archivo
+                    HttpPostedFile file = TBEvidencia2.PostedFile;
+
+                    // Validar el tamaño del archivo (opcional)
+                    //if (file.ContentLength > 0 && file.ContentLength < 10485760) // 10 MB
+                    if (file.ContentLength > 0)
+                    {
+                        // Guardar el archivo en el servidor
+                        string fileName = Path.GetFileName(file.FileName);
+                        string filePath = Server.MapPath("~/resources/uploads/") + fileName;
+                        file.SaveAs(filePath);
+
+                        // Aquí puedes guardar la ruta del archivo en la base de datos
+                        rutaEvidencia = "/resources/uploads/" + fileName;
+
+                        // Llamar a tu método para actualizar el expediente en la base de datos
+                        // ActualizarExpediente(rutaEvidencia);
+                    }
+                    else
+                    {
+                        LblMsj.Text = "El archivo es demasiado grande o no se ha seleccionado ningún archivo.";
+                        LblMsj.ForeColor = System.Drawing.Color.Red;
+                    }
+                }
+                else
+                {
+                    LblMsj.Text = "Por favor, seleccione un archivo de evidencia.";
+                    LblMsj.ForeColor = System.Drawing.Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                LblMsj.Text = "Error al subir el archivo: " + ex.Message;
+                LblMsj.ForeColor = System.Drawing.Color.Red;
+            }
             // Verifica si se ha seleccionado un producto para actualizar
             if (string.IsNullOrEmpty(ExpedienteID.Value))
             {
@@ -302,18 +388,28 @@ namespace Presentation
             _accionrealizada = TBAccionrealizada.Text;
             _razon = TBRazon.Text;
             _relevancia = DDLRelevancia.Text;
-            _evidencia = TBEvidencia.Text;
+            //_evidencia = TBEvidencia.Text;
+            if (rutaEvidencia != null)
+            {
+                _evidencia = rutaEvidencia;
+            }
+            else
+            {
+                _evidencia = TBEvidencia.Text;
+            }
             _comentario = TBComentario.Text;
             _estado = DDLEstado.Text;
             executed = objEsp.updateExpediente(_id, _caso_idcaso, _codigo, _accionrealizada, _razon, _relevancia, _evidencia, _comentario, _estado);
             if (executed)
             {
                 LblMsj.Text = "Se actualizo exitosamente";
+                LblMsj.ForeColor = System.Drawing.Color.Green;
                 clear();
             }
             else
             {
                 LblMsj.Text = "Error al actualizar";
+                LblMsj.ForeColor = System.Drawing.Color.Red;
             }
         }
     }

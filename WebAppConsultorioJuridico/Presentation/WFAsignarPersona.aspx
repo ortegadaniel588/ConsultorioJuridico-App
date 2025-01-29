@@ -46,7 +46,7 @@
         <asp:Panel ID="PanelAdmin" runat="server">
 
             <div class="card-header">
-                Lista de Asignaciones de Redes Sociales
+                Lista de Implicados
             </div>
             <div class="table-responsive">
                 <%--Lista de Asignaciones de Redes Sociales--%>

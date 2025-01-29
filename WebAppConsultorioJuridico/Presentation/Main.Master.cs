@@ -28,6 +28,7 @@ namespace Presentation
         // Enlaces de seguridad
         public HtmlAnchor linkSecurity;
         public HtmlAnchor linkUser;
+        public HtmlAnchor linkRol;
         public HtmlAnchor linkPermissions;
         public HtmlAnchor linkPermissionsRoles;
 

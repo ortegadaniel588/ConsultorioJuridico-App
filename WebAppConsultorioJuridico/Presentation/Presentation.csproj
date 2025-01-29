@@ -149,6 +149,7 @@
     <Content Include="WFPersona.aspx" />
     <Content Include="WFPermission.aspx" />
     <Content Include="WFRedsocial.aspx" />
+    <Content Include="WFRol.aspx" />
     <Content Include="WFSeguimiento.aspx" />
     <Content Include="WFTipo.aspx" />
     <Content Include="WFUsuario.aspx" />
@@ -289,6 +290,13 @@
     </Compile>
     <Compile Include="WFRedsocial.aspx.designer.cs">
       <DependentUpon>WFRedsocial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFRol.aspx.cs">
+      <DependentUpon>WFRol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFRol.aspx.designer.cs">
+      <DependentUpon>WFRol.aspx</DependentUpon>
     </Compile>
     <Compile Include="WFSeguimiento.aspx.cs">
       <DependentUpon>WFSeguimiento.aspx</DependentUpon>

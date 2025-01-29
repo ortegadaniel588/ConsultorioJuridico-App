@@ -144,6 +144,12 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a id="linkRol" runat="server" href="WFRol.aspx" class="sidebar-link">
+                                <i class="lni lni-user-4"></i>
+                                Roles
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a id="linkPermissions" runat="server" href="WFPermission.aspx" class="sidebar-link">
                                 <i class="lni lni-hand-taking-user"></i>
                                 Permisos

@@ -16,6 +16,7 @@ namespace Presentation
         public HtmlAnchor linkPersonas;
         public HtmlAnchor linkEmpresa;
         public HtmlAnchor linkEspecialidad;
+        public HtmlAnchor linkEmpleado;
         public HtmlAnchor linkEstado;
         public HtmlAnchor linkTipo;
         public HtmlAnchor linkRedsocial;

@@ -115,6 +115,13 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a id="linkEmpleado" runat="server" href="WFEmpleado.aspx" class="sidebar-link">
+                        <i class="lni lni-users"></i>
+                        <span>Empleados</span>
+                    </a>
+                </li>
+
                 <!--<li class="sidebar-item">
                     <a id="linkEmpresa2" runat="server" href="WFEmpresa.aspx" class="sidebar-link">
                         <i class="lni lni-buildings-1"></i>

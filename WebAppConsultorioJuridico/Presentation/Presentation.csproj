@@ -122,6 +122,7 @@
     <Content Include="resources\css\StyleLogin.css" />
     <Content Include="resources\css\variables.css" />
     <Content Include="resources\images\logo.png" />
+    <Content Include="WFEmpleado.aspx" />
     <Content Include="WFAsignarExpediente.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Logout.aspx" />
@@ -157,6 +158,13 @@
     <Content Include="WFHorario.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="WFEmpleado.aspx.cs">
+      <DependentUpon>WFEmpleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFEmpleado.aspx.designer.cs">
+      <DependentUpon>WFEmpleado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WFAsignarExpediente.aspx.cs">
       <DependentUpon>WFAsignarExpediente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

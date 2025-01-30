@@ -34,7 +34,7 @@
                         <%--Botones Guardar y Actualizar--%>
                         <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
                         <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-                        <asp:Label ID="LblMsj" CssClass="form-label" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="LblMsg" CssClass="form-label" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
             </form>

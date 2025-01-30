@@ -191,9 +191,10 @@ namespace Presentation
             else if (userRole == "Secretario")
             {
                 //LblMsg.Text = "Bienvenido, Secretaria!";
-                masterPage.linkUser.Visible = false;
                 masterPage.linkPermissions.Visible = false;
                 masterPage.linkPermissionsRoles.Visible = false;
+                masterPage.linkSecurity.Visible = false;
+                masterPage.linkCasos.Visible = true;
 
                 foreach (var permiso in objUser.Permisos)
                 {

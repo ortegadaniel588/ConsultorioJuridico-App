@@ -8,7 +8,7 @@
             Gestión de Citas
         </div>
         <div class="card-body">
-            <form runat="server">
+            <form id="FrmCita" runat="server" class="container mt-4">
                 <asp:HiddenField ID="TBId" runat="server" />
                 
                 <div class="row m-1">
@@ -58,24 +58,26 @@
         </div>
     </div>
 
-    <div class="card m-1">
-        <div class="card-header">
-            Lista de Citas
+    <asp:Panel ID="PanelAdmin" runat="server">
+        <div class="card m-1">
+            <div class="card-header">
+                Lista de Citas
+            </div>
+            <div class="card-body">
+                <table id="citasTable" class="table table-hover display" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Horario</th>
+                            <th>Asunto</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        <div class="card-body">
-            <table id="citasTable" class="table table-hover display" style="width: 100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Horario</th>
-                        <th>Asunto</th>
-                        <th>Estado</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
+    </asp:Panel>
 
     <script src="resources/js/datatables.min.js"></script>
     <script type="text/javascript">

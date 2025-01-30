@@ -21,26 +21,10 @@ namespace Presentation
         {
             if (!IsPostBack)
             {
-                LoadUsuarios();
-                LoadEspecialidades();
+                showUsuariosDDL();
+                showEspecialidadesDDL();
             }
             validatePermissionRol();
-        }
-
-        private void LoadUsuarios()
-        {
-            DDLUsuarios.DataSource = usuariosLog.showUsers().Tables[0];
-            DDLUsuarios.DataTextField = "Mail";
-            DDLUsuarios.DataValueField = "UserID";
-            DDLUsuarios.DataBind();
-        }
-
-        private void LoadEspecialidades()
-        {
-            DDLEspecialidades.DataSource = especialidadLog.showEspecialidad().Tables[0];
-            DDLEspecialidades.DataTextField = "Nombre";
-            DDLEspecialidades.DataValueField = "EspecialidadID";
-            DDLEspecialidades.DataBind();
         }
 
         private void validatePermissionRol()
@@ -143,6 +127,26 @@ namespace Presentation
                 LblMsg.Text = "Rol no reconocido.";
                 Response.Redirect("WFInicio.aspx");
             }
+        }
+
+        // Método para mostrar los usuarios en el DDL
+        private void showUsuariosDDL()
+        {
+            DDLUsuarios.DataSource = usuariosLog.showUsers().Tables[0];
+            DDLUsuarios.DataValueField = "UserID"; // Nombre de la llave primaria
+            DDLUsuarios.DataTextField = "Mail";
+            DDLUsuarios.DataBind();
+            DDLUsuarios.Items.Insert(0, "Seleccione");
+        }
+
+        // Método para mostrar las especialidades en el DDL
+        private void showEspecialidadesDDL()
+        {
+            DDLEspecialidades.DataSource = especialidadLog.showEspecialidad().Tables[0];
+            DDLEspecialidades.DataValueField = "EspecialidadID"; // Nombre de la llave primaria
+            DDLEspecialidades.DataTextField = "Nombre";
+            DDLEspecialidades.DataBind();
+            DDLEspecialidades.Items.Insert(0, "Seleccione");
         }
 
         [WebMethod]

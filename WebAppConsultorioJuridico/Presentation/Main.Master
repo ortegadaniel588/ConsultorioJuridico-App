@@ -22,19 +22,15 @@
                 <img src="resources/images/logo.png" alt="Logo" class="navbar-logo-img" />
             </div>
             <a class="navbar-brand" href="#">Lexy</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Acerca de</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ayuda</a>
-                    </li>
-                </ul>
-            </div>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="Logout.aspx">
+                        <i class="lni lni-exit" style="font-size: 1.5em; margin-right: 0.5em;"></i>
+                        <span>Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -161,7 +157,7 @@
                                 <i class="lni lni-hand-taking-user"></i>
                                 Permisos
 
-                            </a>    
+                            </a>
                         </li>
                         <li class="sidebar-item">
                             <a id="linkPermissionsRoles" runat="server" href="WFPermissionsRoles.aspx" class="sidebar-link">
@@ -216,13 +212,6 @@
                     </ul>
                 </li>
             </ul>
-
-            <div class="sidebar-footer">
-                <a href="Logout.aspx" class="sidebar-link">
-                    <i class="lni lni-exit"></i>
-                    <span>Cerrar sesión</span>
-                </a>
-            </div>
         </nav>
 
         <!-- Main Content -->

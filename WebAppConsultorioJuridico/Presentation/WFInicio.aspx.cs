@@ -237,11 +237,11 @@ namespace Presentation
             // Datos de prueba simulados
             var casosTendencia = new List<object>
             {
-                new { Mes = "Enero", Anio = "2024", TotalCasos = 3 },
-                new { Mes = "Febrero", Anio = "2024", TotalCasos = 5 },
-                new { Mes = "Marzo", Anio = "2024", TotalCasos = 4 },
-                new { Mes = "Abril", Anio = "2024", TotalCasos = 7 },
-                new { Mes = "Mayo", Anio = "2024", TotalCasos = 2 },
+                new { Mes = "Septiembre", Anio = "2024", TotalCasos = 3 },
+                new { Mes = "Octubre", Anio = "2024", TotalCasos = 5 },
+                new { Mes = "Noviembre", Anio = "2024", TotalCasos = 4 },
+                new { Mes = "Diciembre", Anio = "2024", TotalCasos = 7 },
+                new { Mes = "Enero", Anio = "2025", TotalCasos = 2 },
             };
 
             return new { data = casosTendencia };
@@ -252,10 +252,11 @@ namespace Presentation
         {
             var datosPrueba = new List<object>()
             {
-                new { MesActual = "2024-01", TotalCitasAsignadas = 25 },
-                new { MesActual = "2024-02", TotalCitasAsignadas = 30 },
-                new { MesActual = "2024-03", TotalCitasAsignadas = 15 },
-                new { MesActual = "2024-04", TotalCitasAsignadas = 40 }
+                new { MesActual = "2024-10", TotalCitasAsignadas = 15 },
+                new { MesActual = "2024-11", TotalCitasAsignadas = 40 },
+                new { MesActual = "2024-12", TotalCitasAsignadas = 20 },
+                new { MesActual = "2025-01", TotalCitasAsignadas = 12 },
+
             };
 
             return new { data = datosPrueba };

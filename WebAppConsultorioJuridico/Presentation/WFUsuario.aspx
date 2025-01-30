@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeFile="WFUsuario.aspx.cs" Inherits="Presentation.WFUsuario" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="WFUsuario.aspx.cs" Inherits="Presentation.WFUsuario" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="resources/css/dataTables.min.css" rel="stylesheet" />
@@ -9,7 +9,7 @@
             Gestión de Usuarios
         </div>
         <div class="card-body">
-            <form runat="server">
+            <form id="FrmUsuario" runat="server" class="container mt-4">
                 <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true" />
                 <asp:HiddenField ID="HFUserId" runat="server" />
                 
@@ -102,26 +102,28 @@
         </div>
     </div>
 
-    <div class="card m-1">
-        <div class="card-header">
-            Lista de Usuarios
+    <asp:Panel ID="PanelAdmin" runat="server">
+        <div class="card m-1">
+            <div class="card-header">
+                Lista de Usuarios
+            </div>
+            <div class="card-body">
+                <table id="usersTable" class="table table-hover display" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Correo</th>
+                            <th>Estado</th>
+                            <th>Fecha</th>
+                            <th>Rol</th>
+                            <th>Persona</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        <div class="card-body">
-            <table id="usersTable" class="table table-hover display" style="width: 100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Correo</th>
-                        <th>Estado</th>
-                        <th>Fecha</th>
-                        <th>Rol</th>
-                        <th>Persona</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
+    </asp:Panel>
 
     <script src="resources/js/datatables.min.js"></script>
     <script type="text/javascript">

@@ -105,13 +105,13 @@ namespace Presentation
         protected global::System.Web.UI.WebControls.Button BtnUpdate;
 
         /// <summary>
-        /// Control LblMsj.
+        /// Control LblMsg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMsj;
+        protected global::System.Web.UI.WebControls.Label LblMsg;
 
         /// <summary>
         /// Control PanelAdmin.

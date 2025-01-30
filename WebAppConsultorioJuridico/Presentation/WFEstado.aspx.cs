@@ -24,6 +24,7 @@ namespace Presentation
             if (!Page.IsPostBack)
             {
             }
+            validatePermissionRol();
         }
 
         private void validatePermissionRol()
@@ -182,12 +183,12 @@ namespace Presentation
             execute = objEst.saveEstado(nombre, descripcion);
             if (execute)
             {
-                LblMsj.Text = "Se guardo exitosamente";
+                LblMsg.Text = "Se guardo exitosamente";
                 clear();
             }
             else
             {
-                LblMsj.Text = "Error al guardar";
+                LblMsg.Text = "Error al guardar";
             }
         }
 
@@ -196,7 +197,7 @@ namespace Presentation
             // Verifica si se ha seleccionado un producto para actualizar
             if (string.IsNullOrEmpty(EstadoID.Value))
             {
-                LblMsj.Text = "No se ha seleccionado un producto para actualizar.";
+                LblMsg.Text = "No se ha seleccionado un producto para actualizar.";
                 return;
             }
 
@@ -206,12 +207,12 @@ namespace Presentation
             execute = objEst.updateEstado(idestado, nombre, descripcion);
             if (execute)
             {
-                LblMsj.Text = "Se actualizo exitosamente";
+                LblMsg.Text = "Se actualizo exitosamente";
                 clear();
             }
             else
             {
-                LblMsj.Text = "Error al actualizar";
+                LblMsg.Text = "Error al actualizar";
             }
         }
 

@@ -10,7 +10,7 @@
             Gestión de Horarios
         </div>
         <div class="card-body">
-            <form id="FrmHorario" runat="server">
+            <form id="FrmHorario" runat="server" class="container mt-4">
                 <asp:HiddenField ID="HFHorarioID" runat="server" />
                 
                 <div class="row m-1">
@@ -64,32 +64,34 @@
                     <div class="col">
                         <asp:Button ID="BtnSave" CssClass="btn btn-success" runat="server" Text="Guardar" OnClick="BtnSave_Click" />
                         <asp:Button ID="BtnUpdate" CssClass="btn btn-primary" runat="server" Text="Actualizar" OnClick="BtnUpdate_Click" />
-                        <asp:Label ID="LblMsg" CssClass="form-label" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="LblMsg" CssClass="form-label text-success" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 
-    <div class="card m-1">
-        <div class="card-header">
-            Lista de Horarios
+    <asp:Panel ID="PanelAdmin" runat="server">
+        <div class="card m-1">
+            <div class="card-header">
+                Lista de Horarios
+            </div>
+            <div class="card-body">
+                <table id="tblHorarios" class="table table-hover display" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Empleado</th>
+                            <th>Fecha</th>
+                            <th>Hora Inicio</th>
+                            <th>Hora Fin</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        <div class="card-body">
-            <table id="tblHorarios" class="table table-hover display" style="width: 100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Empleado</th>
-                        <th>Fecha</th>
-                        <th>Hora Inicio</th>
-                        <th>Hora Fin</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
+    </asp:Panel>
 
     <script src="resources/js/datatables.min.js" type="text/javascript"></script>
     <script type="text/javascript">

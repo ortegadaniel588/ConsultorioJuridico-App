@@ -173,10 +173,19 @@ namespace Presentation
             else if (userRole == "Abogado")
             {
                 //LblMsg.Text = "Bienvenido, Gerente!";
-
                 masterPage.linkUser.Visible = false;// Se oculta el enlace de Usuario
-                masterPage.linkSeguimiento.Visible = false; // Se oculta el enlace Permiso 
-                masterPage.linkSeguimiento.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkPermissions.Visible = false; // Se oculta el enlace Permiso 
+                masterPage.linkPermissionsRoles.Visible = false;// Se oculta el enlace de Permiso Rol
+                masterPage.linkConfiguration.Visible = false;
+                masterPage.linkPersonas.Visible = false;
+                masterPage.linkEspecialidad.Visible = false;
+                masterPage.linkEmpresa.Visible = false;
+                masterPage.linkAsignarRedsocial.Visible = false;
+                masterPage.linkRedsocial.Visible = false;
+                masterPage.linkEstado.Visible = false;
+                masterPage.linkTipo.Visible = false;
+                masterPage.linkSecurity.Visible = false;
+                masterPage.linkRol.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {

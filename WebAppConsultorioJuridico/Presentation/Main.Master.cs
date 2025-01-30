@@ -31,6 +31,7 @@ namespace Presentation
         public HtmlAnchor linkRol;
         public HtmlAnchor linkPermissions;
         public HtmlAnchor linkPermissionsRoles;
+        public HtmlAnchor linkConfiguration;
 
 
         protected void Page_Load(object sender, EventArgs e)

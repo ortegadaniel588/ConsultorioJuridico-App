@@ -167,7 +167,7 @@
                 </li>
                 <%--Configuración--%>
                 <li class="sidebar-item">
-                    <a id="Config" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
+                    <a id="linkConfiguration" runat="server" href="#" class="sidebar-link collapsed has-dropdown"
                         data-bs-toggle="collapse" data-bs-target="#config" aria-expanded="false" aria-controls="auth">
                         <i class="lni lni-gear-1"></i>
                         <span>Configuración</span>

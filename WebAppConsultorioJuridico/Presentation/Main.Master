@@ -116,7 +116,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a id="linkEmpleado" runat="server" href="WFEmpleado.aspx" class="sidebar-link">
+                    <a id="linkEmpleados" runat="server" href="WFEmpleado.aspx" class="sidebar-link">
                         <i class="lni lni-users"></i>
                         <span>Empleados</span>
                     </a>

@@ -119,6 +119,7 @@ namespace Presentation
                 masterPage.linkPermissions.Visible = false;
                 masterPage.linkPermissionsRoles.Visible = false;
                 masterPage.linkSecurity.Visible = false;
+                masterPage.linkEmpleados.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {

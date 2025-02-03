@@ -186,6 +186,7 @@ namespace Presentation
                 masterPage.linkTipo.Visible = false;
                 masterPage.linkSecurity.Visible = false;
                 masterPage.linkRol.Visible = false;
+                masterPage.linkEmpleados.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
@@ -226,6 +227,7 @@ namespace Presentation
                 masterPage.linkPermissionsRoles.Visible = false;
                 masterPage.linkSecurity.Visible = false;
                 masterPage.linkCasos.Visible = true;
+                masterPage.linkEmpleados.Visible = false;
 
                 foreach (var permiso in objUser.Permisos)
                 {
